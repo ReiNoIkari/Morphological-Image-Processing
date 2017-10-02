@@ -76,6 +76,7 @@ function startBenchmark(img, functionName, parameter)
 
 //Loading image and convert it to binary
 imp = IJ.openImage("http://wsr.imagej.net/images/embryos.jpg");
+IJ.run(imp, "8-bit", "");
 Prefs.blackBackground = true;
 IJ.run(imp, "Make Binary", "");
 
