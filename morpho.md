@@ -87,7 +87,7 @@ Let's use once more a pratical application :
 **Fig.12a: Original image before the Closing operation**
 **Fig.12b: Result of the Closing operation on fig.10 using as a structuring element a disk of size 7**
 
-![Fig.12](images/close.png)
+![Fig.13](images/close.png)
 
 We can observe that closing have the opposite effect of opening : instead of opening the black areas inside our white figures, closing closes them which have for effect to make them disappear.
 It is important to note that opening and closing are less destructive of the original boundary shape than erode and dilate.
