@@ -25,8 +25,7 @@ The opening technique consist of an erosion followed by a dilation using the sam
 
 
 **Equation.10: Mathematical definition of the opening morphological transformation** 
-OOOOOOOOOOOOOOOOOOOOOOOOOOORRRRRRRRRRRRRRRRRRRR ??????
-**Equation.10: Mathematical definition of the morphological transformation opening** 
+
 
 
 
@@ -50,10 +49,6 @@ Closing is the dual of opening and can be described mathemacaly with :
 
 
 **Equation.11: Mathematical definition of the closing morphological transformation** 
-
-OOOOOOOOOOOOOOOOOOOOOOOOOOORRRRRRRRRRRRRRRRRRRR ??????
-
-**Equation.11: Mathematical definition of the morphological transformation closing** 
 
 This could be described like this : closing is a dilation followed by an erosion using the same structuring element for both operations
 Closing is similar in some ways to dilation in that it tends to enlarge the boundaries foreground (bright) regions in an image (and shrink background color holes in such regions).
