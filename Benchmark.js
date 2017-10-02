@@ -27,6 +27,7 @@ function startBenchmark(img, functionName, parameter)
     var timeList = [];
     var memoryList = [];
 
+
     for(var i = 0; i<100; i++)
     {
         var temp= img.duplicate();
@@ -76,17 +77,15 @@ function startBenchmark(img, functionName, parameter)
 
 //Loading image and convert it to binary
 imp = IJ.openImage("http://wsr.imagej.net/images/embryos.jpg");
-IJ.run(imp, "8-bit", "");
 Prefs.blackBackground = true;
 IJ.run(imp, "Make Binary", "");
+IJ.run("Options...", "iterations=1 count=1 black edm=8-bit");
 
 functionList= ["Erode","Dilate","Open","Close-","Skeletonize","Distance Map","Ultimate Points"];
-parameterList = [""];
+parameterList = ["Overwrite"];
 
 for (var i=0;i<functionList.length;i++)
 {
-    functionName= functionList[i];
-    parameter = parameterList[0];
     IJ.log("Function : "+functionList[i]+"\n");
-    startBenchmark(imp, functionName, parameter);
+    startBenchmark(imp, functionList[i] , parameterList[0]);
 }
