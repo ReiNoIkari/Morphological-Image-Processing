@@ -63,7 +63,7 @@ Here is a pratical application :
 **Fig.10a: Original image before the Opening operation**
 **Fig.10b: Result of the Opening operation on fig.10 using as a structuring element a disk of size 7**
 
-![Fig.11](images/open.png)
+![Fig.11](images/open.PNG)
 
 As we can see in fig. 11 some black areas that were inside white figures have been connected with the outside due to some foreground pixel removal.
 Here is an explanation : the erosion is done first, which is shrinking the boundaries of your objects. After that we perform dilation, which is expanding the boundaries of the objects. Thus, because small ones were removed in erosion step, bring back biggest elementsare brought back.
@@ -87,7 +87,7 @@ Let's use once more a pratical application :
 **Fig.12a: Original image before the Closing operation**
 **Fig.12b: Result of the Closing operation on fig.10 using as a structuring element a disk of size 7**
 
-![Fig.13](images/close.png)
+![Fig.13](images/close.PNG)
 
 We can observe that closing have the opposite effect of opening : instead of opening the black areas inside our white figures, closing closes them which have for effect to make them disappear.
 It is important to note that opening and closing are less destructive of the original boundary shape than erode and dilate.
