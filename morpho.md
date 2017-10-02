@@ -19,7 +19,7 @@ In one hand, X is the set of Euclidean coordinates which corresponds to the imag
 
 As an example of binary dilation, suppose that the structuring element is a 3×3 square, with the origin at its center, as shown in Figure 1. Note that in this and subsequent diagrams, foreground pixels are represented by 1's and background pixels by 0's.
 
-![Equation.9](images/kern3x3.gif)
+![Fig.9](images/kern3x3.gif)
 
 Figure 1 A 3×3 square structuring element
 
@@ -27,9 +27,17 @@ To compute the dilation of a binary input image by this structuring element, we 
 
 For our example 3×3 structuring element, the effect of this operation is to set to the foreground color any background pixels that have a neighboring foreground pixel. Such pixels must lie at the edges of white regions, and so the practical upshot is that foreground regions grow (and holes inside a region shrink).
 
+![Fig.4](images/ImageDeBase.PNG)
+![Fig.5](images/dilate1.PNG)
+![Fig.6](images/dilate2.PNG)
+
 The erosion operator is the dilatiation operator's dual. Indeed, each of the foreground pixels in the input image in turn are considered. For each foreground pixel we superimpose the structuring element on top of the input image so that the origin of the structuring element coincides with the input pixel coordinates. If for every pixel in the structuring element, the corresponding pixel in the image underneath is a foreground pixel, then the input pixel is left as it is. If any of the corresponding pixels in the image are background, however, the input pixel is also set to background value. **A MODIFIER**
 
 For our example 3×3 structuring element, the effect of this operation is to remove any foreground pixel that is not completely surrounded by other white pixels (assuming 8-connectedness). Such pixels must lie at the edges of white regions, and so the practical upshot is that foreground regions shrink (and holes inside a region grow). **A MODIFIER**
+
+![Fig.7](images/ImageDeBase.PNG)
+![Fig.8](images/erode1.PNG)
+![Fig.9](images/erode2.PNG)
 
 ### Opening and Closing
 
