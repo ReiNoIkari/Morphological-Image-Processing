@@ -57,13 +57,11 @@ The opening technique consist of an erosion followed by a dilation using the sam
 In a simple way opening will have for effect to opens black holes inside white regions and separates touching white regions (in the case that the objects are bright on a dark foreground).It will have as effect the removal of capes, isthmus and islands smaller than the structuring element.
 Here is a pratical application :
 
-![Fig.10](images/opening.png)
-
-
-**Fig.10a: Original image before the Opening operation**
-**Fig.10b: Result of the Opening operation on fig.10 using as a structuring element a disk of size 7**
-
 ![Fig.11](images/open.PNG)
+
+**Fig.10: Result of the Opening operation on fig.10 using as a structuring element a disk of 3 by 3 size**
+
+
 
 As we can see in fig. 11 some black areas that were inside white figures have been connected with the outside due to some foreground pixel removal.
 Here is an explanation : the erosion is done first, which is shrinking the boundaries of your objects. After that we perform dilation, which is expanding the boundaries of the objects. Thus, because small ones were removed in erosion step, bring back biggest elementsare brought back.
@@ -81,13 +79,13 @@ Closing is similar in some ways to dilation in that it tends to enlarge the boun
 Let's use once more a pratical application : 
 
 
-![Fig.12](images/closing.png)
+![Fig.12](images/close.PNG)
 
 
-**Fig.12a: Original image before the Closing operation**
-**Fig.12b: Result of the Closing operation on fig.10 using as a structuring element a disk of size 7**
 
-![Fig.13](images/close.PNG)
+**Fig.12: Result of the Closing operation on fig.10 using as a structuring element a disk of 3 by 3 size **
+
+
 
 We can observe that closing have the opposite effect of opening : instead of opening the black areas inside our white figures, closing closes them which have for effect to make them disappear.
 It is important to note that opening and closing are less destructive of the original boundary shape than erode and dilate.
