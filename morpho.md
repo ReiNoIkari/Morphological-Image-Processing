@@ -19,7 +19,7 @@ In one hand, X is the set of Euclidean coordinates which corresponds to the imag
 
 As an example of binary dilation, suppose that the structuring element is a 3×3 square, with the origin at its center, as shown in Figure 1. Note that in this and subsequent diagrams, foreground pixels are represented by 1's and background pixels by 0's.
 
-
+![Equation.9](images/kern3x3.gif)
 
 Figure 1 A 3×3 square structuring element
 
