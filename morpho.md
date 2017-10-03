@@ -121,6 +121,8 @@ As with thinning, slight irregularities in a boundary will lead to spurious spur
 
 Note that some implementations of skeletonization algorithms produce skeletons that are not guaranteed to be continuous, even if the shape they are derived from is. This is due to the fact that the algorithms must of necessity run on a discrete grid. The MAT is actually the locus of slope discontinuities in the distance transform. **A MODIF**
 
+![Fig.13](images/skeletonizefinal.PNG)
+
 ### EDM
 The map indicates, for each pixel in the objects (or the background) of the originally binary picture, the shortest distance to the nearest pixel in the background (or the objects).
 ### UEP with structuring element
