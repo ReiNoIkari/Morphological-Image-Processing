@@ -9,6 +9,11 @@ For the purposes of object or defect identification required in industrial visio
 
 ### Hit-or-Miss
 
+The hit-and-miss transform is used to detect occurrences given binary patterns in fixed orientations. It can be used to look for several patterns (or alternatively, for the same pattern in several orientations) simply by running successive transforms using different structuring elements, and then running OR operation between all the results. 
+If any "on" pixels of the image to process' targeted area is covered by "on" pixel of the structuring element, it is called "hit".
+If none of the image that have to be processed' "on" pixel in a targeted area is covered by a "on" pixel or the structuring element, it is called "miss". 
+If all "on" pixels on structuring element is cover all "on" pixels of an image to process targeted area, it is called "fit".
+
 ### Dilate & Erode
 
 The dilation operator takes two pieces of data as inputs. The first one is the image which is going to be dilated and the second one is the structuring element. Thus, the tructuring element determines the precise effect of the dilation on the first image.
