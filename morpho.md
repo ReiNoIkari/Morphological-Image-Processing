@@ -20,10 +20,6 @@ In general, the hit or miss transform is defined as :
 With the condition that B1 ∩ B2 = Ø, because if B1 is not a negative mask of B2, the hit-miss transform would result in the empty set.
 
 
-
-
-INSERER LA FORMULE ICIIIIIII
------------------------------------
 ### Dilate & Erode
 
 The dilation operator takes two pieces of data as inputs. The first one is the image which is going to be dilated and the second one is the structuring element. Thus, the tructuring element determines the precise effect of the dilation on the first image.
