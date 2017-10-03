@@ -17,7 +17,7 @@ If none of the image that have to be processed' "on" pixel in a targeted area is
 If all "on" pixels on structuring element is cover all "on" pixels of an image to process targeted area, it is called "fit".
 In general, the hit or miss transform is defined as :
 ![Fig.9](images/hit_or_miss_formule.PNG)
-<img src="data:images/hit_or_miss_formule.PNG" alt="hit_or_miss" style="width: 200px;"/>
+<img src="images/hit_or_miss_formule.PNG" alt="hit_or_miss" width: "200px"/>
 With the condition that B1 ∩ B2 = Ø, because if B1 is not a negative mask of B2, the hit-miss transform would result in the empty set.
 
 
@@ -119,7 +119,7 @@ As with thinning, slight irregularities in a boundary will lead to spurious spur
 Note that some implementations of skeletonization algorithms produce skeletons that are not guaranteed to be continuous, even if the shape they are derived from is. This is due to the fact that the algorithms must of necessity run on a discrete grid. The MAT is actually the locus of slope discontinuities in the distance transform. **A MODIF**
 
 ### EDM
-
+The map indicates, for each pixel in the objects (or the background) of the originally binary picture, the shortest distance to the nearest pixel in the background (or the objects).
 ### UEP with structuring element
 
 
