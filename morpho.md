@@ -5,27 +5,18 @@ The main purpose of mathematical morphology is to study or process a set with an
 This involves a loss of information, but also a great elimination of structures that do not fits to certains criteria such as width or volume.
 For the purposes of object or defect identification required in industrial vision applications, the operations of mathematical morphology are more useful than the convolution operations employed in signal processing because the morphological operators relate directly to shape.
 
+Augmentation nb de données -> Besoin d'automatisation. (transition image processing)
+
+
 ## Material & Methods
 
 ### Hit-or-Miss
-
-The hit-and-miss transform is used to detect occurrences given binary patterns in fixed orientations. It can be used to look for several patterns (or alternatively, for the same pattern in several orientations) simply by running successive transforms using different structuring elements, and then running OR operation between all the results. 
+Hit or miss is what could be defined as the basic operation of the morphological area of image processing. It is used to detect occurrences given binary patterns in fixed orientations. It can be used to look for several patterns (or alternatively, for the same pattern in several orientations) simply by running successive transforms using different structuring elements, and then running OR operation between all the results. Therefore, Most of the other morphological operations are derived from this notion(opening, closing, erosion, dilation...).
 If any "on" pixels of the image to process' targeted area is covered by "on" pixel of the structuring element, it is called "hit".
 If none of the image that have to be processed' "on" pixel in a targeted area is covered by a "on" pixel or the structuring element, it is called "miss". 
 If all "on" pixels on structuring element is cover all "on" pixels of an image to process targeted area, it is called "fit".
 
 
-
-
----------------------------------
-Hit or miss is what could be defined as the basic operation of the morphological area of image processing. It's a morphological operation where we mainly focus on finding patterns of foreground and background objects of a binary imagea according to a structuring element. Most of the other morphological operations are derived from this notion(opening, closing, erosion, dilation...).
-Given that hit or miss looks for patern both foreground and background, there is the need of two structuring element : one that will be used for the foreground and the other one for the background.
-
-Hit conditions : If the foreground and background pixels in the structuring element exactly matches with the foreground and background pixels in the image then it is hit condition and pixels below the orgin of structuring elements is bet to the foreground colour
-
-miss conditions : if foreground and background pixels in element doesn't match exactly then it is miss condition
-
-Hit or miss represented this way :
 
 INSERER LA FORMULE ICIIIIIII
 -----------------------------------
