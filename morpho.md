@@ -19,7 +19,7 @@ In general, the hit or miss transform is defined as :
 ![Fig.9](images/hit_or_miss_formule.PNG)
 <img src="images/hit_or_miss_formule.PNG" alt="hit_or_miss" width: "200px"/>
 
-<img src="images/hit_or_miss_formule.PNG" alt="alt text" width="140">
+<img src="images/hit_or_miss_formule.PNG" alt="alt text" width="340">
 With the condition that B1 ∩ B2 = Ø, because if B1 is not a negative mask of B2, the hit-miss transform would result in the empty set.
 
 
