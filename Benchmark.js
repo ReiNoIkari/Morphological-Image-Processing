@@ -32,8 +32,9 @@ function startBenchmark(img, functionName, parameter)
     {
         var temp= img.duplicate();
         getExecutionTime(temp,functionName,parameter);
-        getMemoryUsage(temp,functionName,parameter);
+	getMemoryUsage(temp,functionName,parameter);
         temp.close();
+	IJ.run("Close All", "");
     }
 
     //Benchmarking
@@ -49,6 +50,7 @@ function startBenchmark(img, functionName, parameter)
             time += getExecutionTime(temp,functionName,parameter);
             memory += getMemoryUsage(temp,functionName,parameter);
             temp.close();
+	    IJ.run("Close All", "");
         }
 	
 
@@ -81,11 +83,13 @@ Prefs.blackBackground = true;
 IJ.run(imp, "Make Binary", "");
 IJ.run("Options...", "iterations=1 count=1 black edm=8-bit");
 
-functionList= ["Erode","Dilate","Open","Close-","Skeletonize","Distance Map","Ultimate Points"];
-parameterList = ["Overwrite"];
+//"Erode","Dilate","Open","Close-","Skeletonize",
+functionList= ["Distance Map","Ultimate Points","Morphological Filters","Morphological Filters","Morphological Filters","Morphological Filters"];
+//"","","","","",
+parameterList = ["overwrite","","operation=Erosion element=Disk radius=2","operation=Dilation element=Disk radius=2","operation=Opening element=Disk radius=2","operation=Closing element=Disk radius=2"];
 
 for (var i=0;i<functionList.length;i++)
 {
     IJ.log("Function : "+functionList[i]+"\n");
-    startBenchmark(imp, functionList[i] , parameterList[0]);
+    startBenchmark(imp, functionList[i] , parameterList[i]);
 }
