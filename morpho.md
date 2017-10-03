@@ -14,6 +14,21 @@ If any "on" pixels of the image to process' targeted area is covered by "on" pix
 If none of the image that have to be processed' "on" pixel in a targeted area is covered by a "on" pixel or the structuring element, it is called "miss". 
 If all "on" pixels on structuring element is cover all "on" pixels of an image to process targeted area, it is called "fit".
 
+
+
+
+---------------------------------
+Hit or miss is what could be defined as the basic operation of the morphological area of image processing. It's a morphological operation where we mainly focus on finding patterns of foreground and background objects of a binary imagea according to a structuring element. Most of the other morphological operations are derived from this notion(opening, closing, erosion, dilation...).
+Given that hit or miss looks for patern both foreground and background, there is the need of two structuring element : one that will be used for the foreground and the other one for the background.
+
+Hit conditions : If the foreground and background pixels in the structuring element exactly matches with the foreground and background pixels in the image then it is hit condition and pixels below the orgin of structuring elements is bet to the foreground colour
+
+miss conditions : if foreground and background pixels in element doesn't match exactly then it is miss condition
+
+Hit or miss represented this way :
+
+INSERER LA FORMULE ICIIIIIII
+-----------------------------------
 ### Dilate & Erode
 
 The dilation operator takes two pieces of data as inputs. The first one is the image which is going to be dilated and the second one is the structuring element. Thus, the tructuring element determines the precise effect of the dilation on the first image.
