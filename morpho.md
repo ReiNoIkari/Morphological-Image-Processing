@@ -168,11 +168,11 @@ Usualy,The Ultimate eroded point operation is used as a marker for objects locat
 
 ## Results
 
-### Hit-or-Miss
-
-### Dilate
+This section will be dedicated for the results obtained using the default operations in ImageJ and if there are available some third party plugins. The image used is one of the sample available by default in ImageJ which is : Embryos. The original image will always be in binary mode.
 
 ### Erode
+
+### Dilate
 
 ### Open
 
