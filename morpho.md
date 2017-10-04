@@ -189,7 +189,7 @@ As we can see some black areas that were inside white figures have been connecte
 The same results have been obtained by the dilation operation as we can see :
 
 <p align="center">
-<img src="Results/combined_dilation.PNG" alt="alt text" width="1000" weight="center">
+<img src="Results/combined_dilation.PNG" width="1000" weight="center">
 </p>
 
 
