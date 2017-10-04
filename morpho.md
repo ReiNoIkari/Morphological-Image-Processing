@@ -195,6 +195,7 @@ The same results have been obtained by the dilation operation as we can see :
 
 **Fig.13: Result of the dilation operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin **
 
+
 This time, it's background pixels that are removed in favour of foreground pixels.
 
 ### Open and Close
@@ -209,7 +210,8 @@ The result obtains for the opening are as follow :
 </p>
 
 
-**Fig.14: Result of the closing operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin **
+**Fig.14: Result of the opening operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin **
+
 
 As a reminder, an opening operator could be resumed as an erode followed by a dilation, so in the results we should see some traces of it.
 If we look closely, we can see that indeed an erosion has been applied to the picture, but that compared to the fig.12 the black areas are little less more present. We can explain this as the fact that compared to the fig.12, here after the initial erosion, the dilation will have for effect to expand the boundaries of the objects. Thus, because small ones were removed in erosion step, bring back biggest elements are brought back.
@@ -219,6 +221,10 @@ The results obtained from the closing operation are the follow :
 <p align="center">
 <img src="/Results/combined_closing.png" width="1000" weight="center">
 </p>
+
+
+**Fig.15: Result of the closing operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin **
+
 
 We can observe that closing have the opposite effect of opening : instead of opening the black areas inside our white figures, closing closes them which have for effect to make them disappear.
 
