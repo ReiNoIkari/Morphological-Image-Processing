@@ -244,7 +244,5 @@ et argumenter sur le résultat a conserver entre les plugins
 ## Conclusion
 
 ## References
-
- ### Skeletonize
   
 
