@@ -61,8 +61,9 @@ Let's take a closer look to the opening operation.
 
 The opening technique consist of an erosion followed by a dilation using the same structuring element for both operations
 
-![Equation.10](images/opening_formula.png)
-
+<p align="center">
+<img src="images/opening_formula.png" alt="alt text" width="200" weight="center">
+</p>
 
 **Equation.10: Mathematical definition of the opening morphological transformation** 
 
