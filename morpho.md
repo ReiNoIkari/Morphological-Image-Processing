@@ -16,8 +16,7 @@ If any "on" pixels of the image to process' targeted area is covered by "on" pix
 If none of the image that have to be processed' "on" pixel in a targeted area is covered by a "on" pixel or the structuring element, it is called "miss". 
 If all "on" pixels on structuring element is cover all "on" pixels of an image to process targeted area, it is called "fit".
 In general, the hit or miss transform is defined as :
-![Fig.8](images/hit_or_miss_formule.PNG)
-<img src="images/hit_or_miss_formule.PNG" alt="hit_or_miss" width: "200px"/>
+
 <p align="center">
 <img src="images/hit_or_miss_formule.PNG" alt="alt text" width="340" weight="center">
 </p>
