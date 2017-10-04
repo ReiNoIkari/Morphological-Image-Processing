@@ -45,15 +45,18 @@ To compute the dilation of a binary input image by this structuring element, we 
 
 For our example 3×3 structuring element, the effect of this operation is to set to the foreground color any background pixels that have a neighboring foreground pixel. Such pixels must lie at the edges of white regions, and so the practical upshot is that foreground regions grow (and holes inside a region shrink).
 
-![Fig.8](images/dilate.PNG)
+<p align="center">
+<img src="images/dilate.PNG" alt="alt text" width="340" weight="center">
+</p>
 **Fig.8: Result of the Dilate operation on 8 using as a structuring element a disk of 3 by 3 size. This operation is done 2 times in a row**
 
 The erosion operator is the dilatiation operator's dual. Indeed, each of the foreground pixels in the input image in turn are considered. For each foreground pixel we superimpose the structuring element on top of the input image so that the origin of the structuring element coincides with the input pixel coordinates. If for every pixel in the structuring element, the corresponding pixel in the image underneath is a foreground pixel, then the input pixel is left as it is. If any of the corresponding pixels in the image are background, however, the input pixel is also set to background value. **A MODIFIER**
 
 For our example 3×3 structuring element, the effect of this operation is to remove any foreground pixel that is not completely surrounded by other white pixels (assuming 8-connectedness). Such pixels must lie at the edges of white regions, and so the practical upshot is that foreground regions shrink (and holes inside a region grow). **A MODIFIER**
 
-
-![Fig.9](images/erode.PNG)
+<p align="center">
+<img src="images/erode.PNG" alt="alt text" width="340" weight="center">
+</p>
 **Fig.9: Result of the Erode operation on 8 using as a structuring element a disk of 3 by 3 size. This operation is done 2 times in a row**
 
 ### Opening and Closing
@@ -77,7 +80,10 @@ The opening technique consist of an erosion followed by a dilation using the sam
 In a simple way opening will have for effect to opens black holes inside white regions and separates touching white regions (in the case that the objects are bright on a dark foreground).It will have as effect the removal of capes, isthmus and islands smaller than the structuring element.
 Here is a pratical application :
 
-![Fig.11](images/open.PNG)
+<p align="center">
+<img src="images/open.PNG" alt="alt text" width="340" weight="center">
+</p>
+
 
 **Fig.10: Result of the Opening operation on fig.10 using as a structuring element a disk of 3 by 3 size**
 
@@ -101,8 +107,9 @@ Closing is similar in some ways to dilation in that it tends to enlarge the boun
 
 Let's use once more a pratical application : 
 
-
-![Fig.12](images/close.PNG)
+<p align="center">
+<img src="images/close.PNG" alt="alt text" width="340" weight="center">
+</p>
 
 
 
@@ -126,8 +133,10 @@ In addition, to this, the MAT  has the property that it can be used to exactly r
 
 As with thinning, slight irregularities in a boundary may interfere with recognition processes based on the topological properties of the skeleton. 
 
+<p align="center">
+<img src="images/skeletonizefinal.PNG" alt="alt text" width="340" weight="center">
+</p>
 
-![Fig.13](images/skeletonizefinal.PNG)
 
 ### EDM
 The map indicates, for each pixel in the objects (or the background) of the originally binary picture, the shortest distance to the nearest pixel in the background (or the objects).
