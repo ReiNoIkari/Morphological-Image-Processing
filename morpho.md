@@ -217,7 +217,7 @@ If we look closely, we can see that indeed an erosion has been applied to the pi
 The results obtained from the closing operation are the follow :
 
 <p align="center">
-<img src="Results/combined_closing.PNG" alt="alt text" width="1000" weight="center">
+<img src="/Results/combined_closing.png" alt="alt text" width="1000" weight="center">
 </p>
 
 We can observe that closing have the opposite effect of opening : instead of opening the black areas inside our white figures, closing closes them which have for effect to make them disappear.
