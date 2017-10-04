@@ -55,7 +55,7 @@ The erosion operator is the dilatiation operator's dual. Indeed, each of the for
 For our example 3×3 structuring element, the effect of this operation is to remove any foreground pixel that is not completely surrounded by other white pixels (assuming 8-connectedness). Such pixels must lie at the edges of white regions, and so the practical upshot is that foreground regions shrink (and holes inside a region grow). **A MODIFIER**
 
 <p align="center">
-<img src="images/erode.PNG" alt="alt text" width="340" weight="center">
+<img src="images/erode.PNG" alt="alt text" width="1000" weight="center">
 </p>
 **Fig.9: Result of the Erode operation on 8 using as a structuring element a disk of 3 by 3 size. This operation is done 2 times in a row**
 
@@ -81,7 +81,7 @@ In a simple way opening will have for effect to opens black holes inside white r
 Here is a pratical application :
 
 <p align="center">
-<img src="images/open.PNG" alt="alt text" width="340" weight="center">
+<img src="images/open.PNG" alt="alt text" width="1000" weight="center">
 </p>
 
 
@@ -108,7 +108,7 @@ Closing is similar in some ways to dilation in that it tends to enlarge the boun
 Let's use once more a pratical application : 
 
 <p align="center">
-<img src="images/close.PNG" alt="alt text" width="340" weight="center">
+<img src="images/close.PNG" alt="alt text" width="1000" weight="center">
 </p>
 
 
@@ -134,7 +134,7 @@ In addition, to this, the MAT  has the property that it can be used to exactly r
 As with thinning, slight irregularities in a boundary may interfere with recognition processes based on the topological properties of the skeleton. 
 
 <p align="center">
-<img src="images/skeletonizefinal.PNG" alt="alt text" width="340" weight="center">
+<img src="images/skeletonizefinal.PNG" alt="alt text" width="1000" weight="center">
 </p>
 
 
