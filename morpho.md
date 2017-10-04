@@ -232,9 +232,36 @@ It is important to note that opening and closing are less destructive of the ori
 
 ### Skeletonize
 
+The Skeletonize is used in order to only have left a skeleton (or the boundary of an object). It takes as input a binary image, and as output a binary too.
+Only the default ImageJ default function was used as we didn't find any ready to use plugin that we thought interesting.
+
+The skeletonize operation give an image as follows :
+
+<p align="center">
+<img src="/Results/combined_skeletonize.png" alt="alt text" width="1000" weight="center">
+</p>
+
+**Fig.15: Result of the closing operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin**
+
+As we can see we have some results to point out.
+The cell that only (or almost) contained foreground pixels only leave a little trace as a skeleton this is due to the fact that the lack of background pixels doesn't permit to have a clean skeleton.
+The second thing to note is that the more background pixels an object has the more detailed (and complex) a skeleton can be.
+In a complex environment like a culture, the skeletonize operation alone cannot be enough to have an idea of the shape.
 ### EDM
 
 ### UEP with structuring element
+
+The Ultimate eroded point is a variant of the erosion method, but instead of eroding only one time it will erode multiple times only one and only point remains for each object present in an image. The input is a binary image, but the output will be a graylevel image.
+ The obtained result is:
+
+<p align="center">
+<img src="/Results/combined_UEP.png" alt="alt text" width="1000" weight="center">
+</p>
+
+**Fig.17: Result of the closing operation using as a structuring element a disk of 3 by 3 size. From left to right : original image, the UEP original image wihout process, the UEP original transformed to binary, the transformed UEP with a dilation applied**
+
+After an UEP using the default ImageJ function the output image seems to be only black. In order to check this theory, we transformed the image to binary, and we could already see some points corresponding to the last point that would be eroded for each object. Finally, in order to make the result more usable, we applied a dilation.
+As we can, see the more "perfect" the object is, in our case a cell containing only foreground pixels, the more the theoretical ultimate eroded point is valid. However, as soon as we start getting more complex object, we can see that those objects can have multiples ultimate eroded point. This can be explained as the computer is not capable to determine the object in his whole (cause of the background pixels inside the cells) and so is treats which should be considered as one object in multiples, which explain those multiple UEP.
 
 ## Discussion
 
