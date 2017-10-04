@@ -1,0 +1,5 @@
+The collection of screenshots is stored here, Original is the original embryos image converted to binary.
+the UEP results were not really visible at first, we had to turn them back to binary instead of gray scale to see the ultimate points.
+The UEP dilated is the binary-converted result that we dilated using the ImageJ dilation tranform, to make the points more visible, in order to compare with the original image.
+
+the morphoJ pictures are the result obtained via the morphoJ plugin, that can be found here : https://github.com/ijpb/MorphoLibJ
