@@ -170,13 +170,59 @@ Usualy,The Ultimate eroded point operation is used as a marker for objects locat
 
 This section will be dedicated to the results obtained using the default operations in ImageJ and if there are available some third party plugins. The image used is one of the sample available by default in ImageJ which is : Embryos. The original image will always be in binary mode.
 
-### Erode
+### Erode and Dilate
 
-### Dilate
+The erosion and dilates methods have been using the default functions available in ImageJ and with plugins created by the Institut Jean-Pierre Bourgin - INRA(MorphoLibJ). The original file must be a binary image, the final one will be of the same type. In ImageJ, we can't select a specific structuring element (or should i say we didn't find ---to be safe???? to debate-----)this one being a disk of size 3 whereas the MorphoLibJ plugin let the choice to the user.
 
-### Open
+<p align="center">
+<img src="Results/combined_erosion.PNG" alt="alt text" width="1000" weight="center">
+</p>
 
-### Close
+
+
+**Fig.12: Result of the erode operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin **
+
+
+As we can see some black areas that were inside white figures have been connected with the outside due to some foreground pixel removal. This is due to the fact that some foreground pixel have been removed (due to not being surrounded by other foreground pixels). Moreover, the results seems to be the same whatever we use one plugin or the other.
+(peut etre faire une image avec une strucruting element COMPLETEMENT DIFF pour montrer que le kernel joue son role??)
+
+The same results have been obtained by the dilation operation as we can see :
+
+<p align="center">
+<img src="Results/combined_dilation.PNG" alt="alt text" width="1000" weight="center">
+</p>
+
+
+**Fig.13: Result of the dilation operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin **
+
+This time, it's background pixels that are removed in favour of foreground pixels.
+
+### Open and Close
+
+The opening and closing operation take as input a binary image and conserve the same type as output.
+As for the erosion and dilation method, we used the same protocol using ImageJ default function and the plugin created by the INRA.
+The result obtains for the opening are as follow :
+
+
+<p align="center">
+<img src="Results/combined_opening.PNG" alt="alt text" width="1000" weight="center">
+</p>
+
+
+**Fig.14: Result of the closing operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin **
+
+As a reminder, an opening operator could be resumed as an erode followed by a dilation, so in the results we should see some traces of it.
+If we look closely, we can see that indeed an erosion has been applied to the picture, but that compared to the fig.12 the black areas are little less more present. We can explain this as the fact that compared to the fig.12, here after the initial erosion, the dilation will have for effect to expand the boundaries of the objects. Thus, because small ones were removed in erosion step, bring back biggest elements are brought back.
+
+The results obtained from the closing operation are the follow :
+
+<p align="center">
+<img src="Results/combined_closing.PNG" alt="alt text" width="1000" weight="center">
+</p>
+
+We can observe that closing have the opposite effect of opening : instead of opening the black areas inside our white figures, closing closes them which have for effect to make them disappear.
+
+It is important to note that opening and closing are less destructive of the original boundary shape than erode and dilate.
 
 ### Skeletonize
 
