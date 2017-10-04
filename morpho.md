@@ -114,7 +114,7 @@ Let's use once more a pratical application :
 
 
 
-**Fig.12: Result of the Closing operation on fig.10 using as a structuring element a disk of 3 by 3 size **
+**Fig.12: Result of the Closing operation on fig.10 using as a structuring element a disk of 3 by 3 size**
 
 
 
@@ -180,7 +180,7 @@ The erosion and dilates methods have been using the default functions available 
 
 
 
-**Fig.12: Result of the erode operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin **
+**Fig.12: Result of the erode operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin**
 
 
 As we can see some black areas that were inside white figures have been connected with the outside due to some foreground pixel removal. This is due to the fact that some foreground pixel have been removed (due to not being surrounded by other foreground pixels). Moreover, the results seems to be the same whatever we use one plugin or the other.
@@ -193,7 +193,7 @@ The same results have been obtained by the dilation operation as we can see :
 </p>
 
 
-**Fig.13: Result of the dilation operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin **
+**Fig.13: Result of the dilation operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin**
 
 
 This time, it's background pixels that are removed in favour of foreground pixels.
@@ -210,7 +210,7 @@ The result obtains for the opening are as follow :
 </p>
 
 
-**Fig.14: Result of the opening operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin **
+**Fig.14: Result of the opening operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin**
 
 
 As a reminder, an opening operator could be resumed as an erode followed by a dilation, so in the results we should see some traces of it.
@@ -223,7 +223,7 @@ The results obtained from the closing operation are the follow :
 </p>
 
 
-**Fig.15: Result of the closing operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin **
+**Fig.15: Result of the closing operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin**
 
 
 We can observe that closing have the opposite effect of opening : instead of opening the black areas inside our white figures, closing closes them which have for effect to make them disappear.
