@@ -46,7 +46,7 @@ To compute the dilation of a binary input image by this structuring element, we 
 For our example 3×3 structuring element, the effect of this operation is to set to the foreground color any background pixels that have a neighboring foreground pixel. Such pixels must lie at the edges of white regions, and so the practical upshot is that foreground regions grow (and holes inside a region shrink).
 
 <p align="center">
-<img src="images/dilate.PNG" alt="alt text" width="340" weight="center">
+<img src="images/dilate.PNG" alt="alt text" width="680" weight="center">
 </p>
 **Fig.8: Result of the Dilate operation on 8 using as a structuring element a disk of 3 by 3 size. This operation is done 2 times in a row**
 
