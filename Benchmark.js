@@ -83,10 +83,8 @@ Prefs.blackBackground = true;
 IJ.run(imp, "Make Binary", "");
 IJ.run("Options...", "iterations=1 count=1 black edm=8-bit");
 
-//"Erode","Dilate","Open","Close-","Skeletonize",
-functionList= ["Distance Map","Ultimate Points","Morphological Filters","Morphological Filters","Morphological Filters","Morphological Filters"];
-//"","","","","",
-parameterList = ["overwrite","","operation=Erosion element=Disk radius=2","operation=Dilation element=Disk radius=2","operation=Opening element=Disk radius=2","operation=Closing element=Disk radius=2"];
+functionList= ["Erode","Dilate","Open","Close-","Skeletonize","Distance Map","Ultimate Points","Morphological Filters","Morphological Filters","Morphological Filters","Morphological Filters"];
+parameterList = ["","","","","","overwrite","","operation=Erosion element=Disk radius=2","operation=Dilation element=Disk radius=2","operation=Opening element=Disk radius=2","operation=Closing element=Disk radius=2"];
 
 for (var i=0;i<functionList.length;i++)
 {
