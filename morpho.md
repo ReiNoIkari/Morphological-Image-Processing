@@ -113,13 +113,12 @@ This process is mostly compared as an explanation to a slow-burning material. Fi
 The skeleton/MAT can be produced in two main waysusing the erode operator or the distance transform. The first successively erodes away pixels from the boundary (while preserving the end points of line segments) until no more thinning is possible whereas the second calculates the distance transform of the image. The skeleton then lies along the singularities in the distance transform. The latter approach seems to be more adapted to the MAT calculation. Indeed, the MAT is the same as the distance transform but with all points off the skeleton suppressed to zero.
  Whether differents skeletonization algorithm exist, the general effects are all similar, as are the uses to which the skeletons are put.
 
-The skeleton provides a simple and compact representation of a shape that preserves many of the topological and size characteristics of the original shape. Thus, for instance, we can get a rough idea of the length of a shape by considering just the end points of the skeleton and finding the maximally separated pair of end points on the skeleton. Similarly, we can distinguish many qualitatively different shapes from one another on the basis of how many `triple points' there are, i.e. points where at least three branches of the skeleton meet.
+The skeleton aims to provide a simple representation of a shape that preserves many of the topological and size characteristics of the original. Thus, for instance, we can get a rough idea of the length of a shape by considering just the end points of the skeleton and finding the maximally separated pair of end points on the skeleton. Similarly, we can distinguish many qualitatively different shapes from one another on the basis of how many 'triple points' there are, i.e. points where at least three branches of the skeleton meet.
 
-In addition, to this, the MAT (not the pure skeleton) has the property that it can be used to exactly reconstruct the original shape if necessary.
+In addition, to this, the MAT  has the property that it can be used to exactly reconstruct the original shape if necessary.
 
-As with thinning, slight irregularities in a boundary will lead to spurious spurs in the final image which may interfere with recognition processes based on the topological properties of the skeleton. Despurring or pruning can be carried out to remove spurs of less than a certain length but this is not always effective since small perturbations in the boundary of an image can lead to large spurs in the skeleton.
+As with thinning, slight irregularities in a boundary may interfere with recognition processes based on the topological properties of the skeleton. 
 
-Note that some implementations of skeletonization algorithms produce skeletons that are not guaranteed to be continuous, even if the shape they are derived from is. This is due to the fact that the algorithms must of necessity run on a discrete grid. The MAT is actually the locus of slope discontinuities in the distance transform. **A MODIF**
 
 ![Fig.13](images/skeletonizefinal.PNG)
 
