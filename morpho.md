@@ -34,7 +34,10 @@ In one hand, X is the set of Euclidean coordinates which corresponds to the imag
 
 As an example of binary dilation, suppose that the structuring element is a 3×3 square, with the origin at its center, as shown in Figure 1. Note that in this and subsequent diagrams, foreground pixels are represented by 1's and background pixels by 0's.
 
-![Fig.9](images/kern3x3.gif)
+
+<p align="center">
+<img src="images/kern3x3.gif" alt="alt text" width="340" weight="center">
+</p>
 
 **Figure 1 : A 3×3 square structuring element**
 
@@ -85,7 +88,10 @@ Here is an explanation : the erosion is done first, which is shrinking the bound
 
 Closing is the dual of opening and can be described mathemacaly with :
 
-![Equation.11](images/opening_formula.png)
+<p align="center">
+<img src="images/opening_formula.png" alt="alt text" width="200" weight="center">
+</p>
+
 
 
 **Equation.11: Mathematical definition of the closing morphological transformation** 
