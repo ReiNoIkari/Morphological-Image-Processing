@@ -148,19 +148,15 @@ There are several different sorts of distance transform, depending upon which di
 Even once the metric has been chosen, there are many ways of computing the distance transform of a binary image. One intuitive but extremely inefficient way of doing it is to perform multiple successive erosions with a suitable structuring element until all foreground regions of the image have been eroded away. If each pixel is labeled with the number of erosions that had to be performed before it disappeared, then this is just the distance transform. The actual structuring element that should be used depends upon which distance metric has been chosen. A 3×3 square element gives the `chessboard' distance transform, a cross shaped element gives the `city block' distance transform, and a disk shaped element gives the Euclidean distance transform. Of course it is not actually possible to generate a good disk shaped element on a discrete grid on a small scale, but there are algorithms that vary the structuring element on each erosion so as to approximate a circular element.
 
 The distance transform can be calculated much more efficiently using clever algorithms in only two passes (e.g. Rosenfeld and Pfaltz 1968). This algorithm, which is based on recursive morphology, will not be described here.
+
+
 ### UEP with structuring element
 
+Ultimate eroded point (or UEP) is derived from the erosion operator and is defined as the last point that would be present after recursively erodes until the last pass before the object would be visible. 
+In order to apply multiple UEP on an image, each object is considered separately, which makes possible to use different numbers of erosions for each object and so having the ultimate eroded point not only for an image but for each object which is useful for cells images for example. 
 
-
-
-
-
-
-
-
-
-
-
+In an image, the algorithm will search for the brightest pixel for each objet and be sure that none of is neighbors are as bright as it. If it is the sole point, then it will be the only one to be part of the UEP, if there are multiple pixels of the same object, then the center of the brightest pixels will be used. Furthermore, in order to be categorized as a UEP, the determined pixel besides being the brightest need to be a point that is equidistant from at least two (but usually three) boundary locations. In order to find the brightest point, the UEP method uses the peaks or local maxima of the EDM.
+Usualy,The Ultimate eroded point operation is used as a marker for objects locations
 
 
 
