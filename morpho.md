@@ -186,10 +186,12 @@ This section will be dedicated for the results obtained using the default operat
 
 ## Discussion
 
+comparer les benchmark pour les differentes transformations et conclure sur le meilleur algo si possible
+et argumenter sur le résultat a conserver entre les plugins 
+
 ## Conclusion
 
 ## References
-
 
  ### Skeletonize
   
