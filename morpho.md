@@ -155,6 +155,12 @@ The distance transform can be calculated much more efficiently using clever algo
 Ultimate eroded point (or UEP) is derived from the erosion operator and is defined as the last point that would be present after recursively erodes until the last pass before the object would be visible. 
 In order to apply multiple UEP on an image, each object is considered separately, which makes possible to use different numbers of erosions for each object and so having the ultimate eroded point not only for an image but for each object which is useful for cells images for example. 
 
+The ultimate erode point is represented as follow :
+
+<p align="center">
+<img src="images/UEP_formula.png" alt="alt text" width="200" weight="center">
+</p>
+
 In an image, the algorithm will search for the brightest pixel for each objet and be sure that none of is neighbors are as bright as it. If it is the sole point, then it will be the only one to be part of the UEP, if there are multiple pixels of the same object, then the center of the brightest pixels will be used. Furthermore, in order to be categorized as a UEP, the determined pixel besides being the brightest need to be a point that is equidistant from at least two (but usually three) boundary locations. In order to find the brightest point, the UEP method uses the peaks or local maxima of the EDM.
 Usualy,The Ultimate eroded point operation is used as a marker for objects locations
 
