@@ -97,7 +97,7 @@ In a simple way opening will have for effect to opens black holes inside white r
 Here is a pratical application :
 
 <p align="center">
-<img src="/images/bridge_open.png" alt="alt text" width="1000" weight="center">
+<img src="/images/combined_bridge_open.png" alt="alt text" width="1000" weight="center">
 </p>
 
 
@@ -124,7 +124,7 @@ Closing is similar in some ways to dilation in that it tends to enlarge the boun
 Let's use once more a pratical application : 
 
 <p align="center">
-<img src="/images/bridge_close.png" alt="alt text" width="1000" weight="center">
+<img src="/images/combined_bridge_close.png" alt="alt text" width="1000" weight="center">
 </p>
 
 
