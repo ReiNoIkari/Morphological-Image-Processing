@@ -297,7 +297,7 @@ The image obtained is as follow :
 
 
 <p align="center">
-<img src="/Results/combined_edm.png" alt="alt text" width="3000" weight="center">
+<img src="/Results/combined_edm.png" alt="alt text" width="9000" weight="center">
 </p>
 
 **Fig.16: Result of the EDM operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin**
@@ -312,7 +312,7 @@ The Ultimate eroded point is a variant of the erosion method, but instead of ero
  The obtained result is:
 
 <p align="center">
-<img src="/Results/combined_UEP.png" alt="alt text" width="3000" weight="center">
+<img src="/Results/combined_UEP.png" alt="alt text" width="8000" weight="center">
 </p>
 
 **Fig.17: Result of the closing operation using as a structuring element a disk of 3 by 3 size. From left to right : original image, the UEP original image wihout process, the UEP original transformed to binary, the transformed UEP with a dilation applied**
