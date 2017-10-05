@@ -146,6 +146,10 @@ One way to think about the distance transform is to first imagine that foregroun
 There are several different sorts of distance transform, depending upon which distance metric is being used to determine the distance between pixels. The example shown in Figure 1 uses the `chessboard' distance metric but both the Euclidean and `city block' metrics can be used as well.
 
 Even once the metric has been chosen, there are many ways of computing the distance transform of a binary image. One intuitive but extremely inefficient way of doing it is to perform multiple successive erosions with a suitable structuring element until all foreground regions of the image have been eroded away. If each pixel is labeled with the number of erosions that had to be performed before it disappeared, then this is just the distance transform. The actual structuring element that should be used depends upon which distance metric has been chosen. A 3×3 square element gives the `chessboard' distance transform, a cross shaped element gives the `city block' distance transform, and a disk shaped element gives the Euclidean distance transform. Of course it is not actually possible to generate a good disk shaped element on a discrete grid on a small scale, but there are algorithms that vary the structuring element on each erosion so as to approximate a circular element.
+<p align="center">
+<img src="images/EDFTransform.PNG" alt="alt text" width="200" weight="center">
+</p>
+
 
 The distance transform can be calculated much more efficiently using clever algorithms in only two passes (e.g. Rosenfeld and Pfaltz 1968). This algorithm, which is based on recursive morphology, will not be described here.
 
