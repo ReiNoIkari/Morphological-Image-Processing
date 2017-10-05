@@ -395,13 +395,12 @@ In a first sight, the ImageJ's function tends to use less memory and to run fast
 
 ## Conclusion
 
+During this study, we took a look at some mathematical morphology processes allowing the data treatment in binary images. 
+We saw that it exists different kind of approaches to study the morphological mathematics of an image accoording to the final aim of the user. More, those approaches can be implemented from different ways and hasn't necessarly the sames results when running.
+We didn't find any relevant plugin to compare for some ImageJ's functions.
 Image Processing is a wide domain that contain numerous branches and applications (from **quelque chose** to robot vision). What we studied is just a tiny part of the whole tools proposed by ImageJ.
 
-on a utilisé des processus permettant d'automatiser le traitement de donnees de mathématique morphologique sur images binaires.
-Il existe différentes approches pour étudier la morphologie mathématique d'une image suivant le rendu souhaité et l'étude a mener, et ces différents moyens peuvent être implémentés de différentes facons et n'ont pas précisément les mêmes résultats et les mêmes caractéristiques à l'exécution. 
-
-Nous n'avons pas trouvé de plugin pertinent à comparer aux fonction présentes dans ImageJ. 
-Pour ce faire, la gestion des paramètres présente une grande importance. En effet, 
+Other notions such as thinning or watershed could have also been studied or presented in the topic. 
 
 References test [^GIL2002],[^LEG2016],[^GON1992],[^HAR1992],[^JAI1989],[^VER1991]
 
