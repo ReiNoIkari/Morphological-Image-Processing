@@ -318,7 +318,7 @@ This proves that the result obtained during Mathematical Morphology is dependent
 
 Let's continue with the benchmarks results.
 Between the original ImageJ function and the plugin created by the INRA, there is quite a difference as it can be observed. 
-In a first sight, the ImageJ's function tends to use less memory and to run faster than the INRA plugin. Indeed, ImageJ's erode operator would takes about 13.68 milliseconds (ms) to run and use about 52.07 MiB when the INRA's plugin would have an about 55.50 ùs runtime and a 57.60 MiB memory use. This kind of result is seeable for every operation and transform. However, those results can't be compared since the INRA's plugins perform more operation than the "by default" operations. Indeed, we noticed for example that each turn of a INRA's plug run causes a resulting image to be launched. This induces a significative increasment of the runtime.   
+In a first sight, the ImageJ's function tends to use less memory and to run faster than the INRA plugin. Indeed, ImageJ's erode operator would takes about 13.68 milliseconds (ms) to run and use about 52.07 MiB when the INRA's plugin would have an about 55.50 ùs runtime and a 57.60 MiB memory use. This kind of result is seeable for every operation and transform. However, those results can't be compared since the INRA's plugins perform more operation than the "by default" operations. Indeed, we noticed for example that each turn of a INRA's plug run causes a resulting image to be launched. This induces a significative increasment of the runtime. In an other hand, the INRA's plugin is more modular from its implementation that allows the user to set some parameters such as the size and shape of the kernel. 
 
 
 ## Conclusion
