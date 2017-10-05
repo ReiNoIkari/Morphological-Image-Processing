@@ -14,13 +14,14 @@ For the purposes of object or defect identification required in industrial visio
 In this project, we will focus on the Morphology part from Image Processing, and we will initially explain some main operations in this area, and observe some obtained results to finally discuss about it.
 
 (maybe saying : this first month we will focus...)
+
 ## Material & Methods
 In order to be able to compare and discuss about the different algorithms in a practical and effective way we decided to create a benchmark.
 
 It could be described this way:
 
 First, we initialise our classes a hundred times as a warm up phase so that we limit the wasted time corresponding to the initializing phase during the critical phase.
-Then, in the benchmark part itself, we run our operations 1000 times to be sure we have enough data and we run those operations 10 times in order to limit variations (meaning that in the end we ran 10000 times each operation)
+Then, in the benchmark part itself, we run our operations 1000 times to be sure to get enough data and we run those operations 10 times in order to limit variations (meaning that in the end we ran 10000 times each operation)
 
 **Line des 45 degrés pour verifier**
 
