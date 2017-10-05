@@ -157,6 +157,7 @@ This metric is isotropic in that distances measured are independent of object or
 <img src="images/EDT_cheval.gif" alt="alt text" width="200" weight="center">
 </p>
 **Fig.13: Result of the euclidean distance mapping transform**
+
 ### UEP with structuring element
 
 Ultimate eroded point (or UEP) is derived from the erosion operator and is defined as the last point that would be present after recursively erodes until the last pass before the object would be visible. 
