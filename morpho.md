@@ -241,6 +241,18 @@ The same results have been obtained by the dilation operation as we can see :
 
 This time, it's background pixels that are removed in favour of foreground pixels.
 
+A benchmark has also been done in order to compare the excution time and the usage of memory for both plugins which are below :
+
+<p align="center">
+<img src="/Results/combined_benchmark_erode.png" width="1000" weight="center">
+</p>
+<p align="center">
+<img src="/Results/combined_benchmark_dilate.png" width="1000" weight="center">
+</p>
+As we can see the average excution time from 10000 runs as the average memory used for the default ImageJ plugin are less than the MorphoLibJ plugin for both of the operations. For ImageJ we have an average excution time of 13.683 ms and average memory used of 52.066 MiB while for the MorphoLibJ we have an average excution time of 55.496 ms and average memory used of 57.509 MiB
+
+**Fig.13: Benchmarks of the erosion and dilation operation using as a structuring element a disk of 3 by 3 size. Left : Results of the ImageJ plugin  right : Results of the MorphoLibJ plugin**
+
 ### Open and Close
 
 The opening and closing operation take as input a binary image and conserve the same type as output.
@@ -272,6 +284,17 @@ The results obtained from the closing operation are the follow :
 We can observe that closing have the opposite effect of opening : instead of opening the black areas inside our white figures, closing closes them which have for effect to make them disappear.
 
 It is important to note that opening and closing are less destructive of the original boundary shape than erode and dilate.
+
+As for the erosion and dilate methods, we have performed some benchmarks :
+
+
+<p align="center">
+<img src="/Results/combined_benchmark_open.png" width="1000" weight="center">
+</p>
+<p align="center">
+<img src="/Results/combined_benchmark_close.png" width="1000" weight="center">
+</p>
+As we can see the average excution time from 10000 runs as the average memory used for the default ImageJ plugin are less than the MorphoLibJ plugin for both of the operations. For the erode operation, for ImageJ we have an average excution time of 13.683 ms and average memory used of 52.066 MiB while for the MorphoLibJ we have an average excution time of 55.496 ms and average memory used of 57.509 MiB. For the dilate operation, for ImageJ we have an average excution time of 17.695 ms and average memory used of 52.336 MiB while for the MorphoLibJ we have an average excution time of 47.629 ms and average memory used of 55.863 MiB
 
 ### Skeletonize
 
