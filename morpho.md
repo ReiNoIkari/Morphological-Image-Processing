@@ -151,7 +151,11 @@ From a measurement perspective, the Euclidean distance is the most useful becaus
 </p>
 
 Where <img src="images/Capture.PNG" alt="alt text" width="40" weight="center">, is some two-dimensional distance metric. Different distance metrics result in different distance transformations. The Euclidean distance metric uses the L2 norm.
+This metric is isotropic in that distances measured are independent of object orientation, subject of course to the limitation that the object boundary is digital, and therefore in discrete locations. The major limitation of the Euclidean metric, however is that it is not easy to calculate efficiently for complex shapes. 
 
+<p align="center">
+<img src="images/EDFTransform.PNG" alt="alt text" width="200" weight="center">
+</p>
 
 ### UEP with structuring element
 
