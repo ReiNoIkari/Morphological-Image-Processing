@@ -270,7 +270,7 @@ In a complex environment like a culture, the skeletonize operation alone cannot 
 The Euclidean distance matrix
 
 <p align="center">
-<img src="/Results/combined_skeletonize.png" alt="alt text" width="1000" weight="center">
+<img src="/Results/combined_edm.png" alt="alt text" width="1000" weight="center">
 </p>
 
 **Fig.16: Result of the closing operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin**
