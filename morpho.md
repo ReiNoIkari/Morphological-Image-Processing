@@ -173,14 +173,14 @@ Several kind of distance transform exists, depending upon which distance metric 
 From a measurement perspective, the Euclidean distance is the most useful because it corresponds to the way objects are measured in the real world.
 
 <p align="center">
-<img src="combined_bridge_edm.png" alt="alt text" width="200" weight="center">
+<img src="/images/EDFTransform.PNG" alt="alt text" width="200" weight="center">
 </p>
 
 Where <img src="images/Capture.PNG" alt="alt text" width="40" weight="center">, is some two-dimensional distance metric. Different distance metrics result in different distance transformations. The Euclidean distance metric uses the L2 norm.
 This metric is isotropic in that distances measured are independent of object orientation, subject of course to the limitation that the object boundary is digital, and therefore in discrete locations. The major limitation of the Euclidean metric, however is that it is not easy to calculate efficiently for complex shapes. 
 
 <p align="center">
-<img src="/images/bridge_EDM.png" alt="alt text" width="200" weight="center">
+<img src="/images/combined_bridge_edm.png" alt="alt text" width="200" weight="center">
 </p>
 
 
@@ -202,7 +202,7 @@ In an image, the algorithm will search for the brightest pixel for each objet an
 Usualy,The Ultimate eroded point operation is used as a marker for objects locations
 
 <p align="center">
-<img src="combined_bridge_uep.png" alt="alt text" width="400" weight="center">
+<img src="/images/combined_bridge_uep.png" alt="alt text" width="400" weight="center">
 </p>
 
 **Fig.14: Result of the ultimate erode point on fig.14 using as a structuring element a disk of 3 by 3 size**
