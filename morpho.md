@@ -144,14 +144,13 @@ The Euclidean Distance Mapping (or EDM), is one of several Distance transform te
 Once again, the metaphor of a fire cunsumming a slow burning material is often used to describe the process. Just as the skeletonize tranform, a fire starts at each point of the object's boundaries and moves into the interior. Each point in the interiour is labeled with the amount of time that the fire took to reach it.  
 
 Several kind of distance transform exists, depending upon which distance metric is being used to determine the distance between pixels. The 'chessboard distance' and the 'city block' transform can be quoted, using respectively 3×3 square and cross shaped structuring elements whereas the Euclidean distance mapping uses a disk shaped one.
-
+From a measurement perspective, the Euclidean distance is the most useful because it corresponds to the way objects are measured in the real world.
 
 <p align="center">
 <img src="images/EDFTransform.PNG" alt="alt text" width="200" weight="center">
 </p>
 
-
-The distance transform can be calculated much more efficiently using clever algorithms in only two passes (e.g. Rosenfeld and Pfaltz 1968). This algorithm, which is based on recursive morphology, will not be described here.
+Where, is some two-dimensional distance metric. Different distance metrics result in different distance transformations. The Euclidean distance metric uses the L2 norm.
 
 
 ### UEP with structuring element
