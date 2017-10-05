@@ -1,6 +1,6 @@
 # Mathematical Morphology
 
-Vincent DEJONGHE\*, Adrien MENDES-SANTOS, Rodolphe TWOREK
+Vincent DEJONGHE\*, Adrien MENDES SANTOS, Rodolphe TWOREK
 
 ## Introduction
 
