@@ -162,7 +162,7 @@ In addition, to this, the MAT  has the property that it can be used to exactly r
 As with thinning, slight irregularities in a boundary may interfere with recognition processes based on the topological properties of the skeleton. 
 
 <p align="center">
-<img src="/images/combined_bridge_skeleton.png" alt="alt text" width="1000" weight="center">
+<img src="/images/combined_bridge_skeleton.png" alt="alt text" width="2000" weight="center">
 </p>
 
 
