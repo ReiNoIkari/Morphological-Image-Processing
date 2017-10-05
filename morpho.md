@@ -1,6 +1,6 @@
 # Mathematical Morphology
 
-Vincent DEJONGHE*, Adrien MENDES-SANTOS, Rodolphe TWOREK
+Vincent DEJONGHE\*, Adrien MENDES-SANTOS, Rodolphe TWOREK
 
 ## Introduction
 
@@ -271,13 +271,19 @@ The second thing to note is that the more background pixels an object has the mo
 In a complex environment like a culture, the skeletonize operation alone cannot be enough to have an idea of the shape.
 ### Euclidean distance map
 
-The Euclidean distance map
+Euclidean distance map (or EDM) is a method which consist in calculating the distance between a foreground pixels and the closet background neighborgt pixels.
+The image obtained is as follow :
+
 
 <p align="center">
 <img src="/Results/combined_edm.png" alt="alt text" width="1000" weight="center">
 </p>
 
-**Fig.16: Result of the closing operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin**
+**Fig.16: Result of the EDM operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin**
+
+As we can see, we have two main results. The objects containing no (or almost) background pixels inside in the original picture, have a better score(which can be seen with their brigthness, the more they are the higher score thet got).
+The others object, containg many background pixels have more mitigated scores. This is due to the fact that the background pixels have an influence in the distance(vicent passe par la, thanks) reducing the score.
+
 
 ### Ultimate eroded point
 
@@ -319,7 +325,7 @@ References test [^GIL2002],[^LEG2016],[^GON1992],[^HAR1992],[^JAI1989],[^VER1991
   
   [^GIL2002]: J. Gil R. Kimmel Efficient Dilation, Erosion, Opening, and Closing Algorithms, 2002.
   
-  [^LEG2016]: David Legland, Ignacio Arganda-Carreras, Philippe Andrey; MorphoLibJ: integrated library and plugins for mathematical morphology with ImageJ. Bioinformatics, 2016.
+  [^LEG2016]: D. Legland, I. Arganda-Carreras, P. Andrey; MorphoLibJ: integrated library and plugins for mathematical morphology with ImageJ. Bioinformatics, 2016.
   
   [^GON1992]: R. Gonzalez and R. Woods Digital Image Processing, Addison-Wesley Publishing Company, 1992.
   
@@ -329,7 +335,7 @@ References test [^GIL2002],[^LEG2016],[^GON1992],[^HAR1992],[^JAI1989],[^VER1991
   
   [^VER1991]: D. Vernon Machine Vision, Prentice-Hall, 1991. 
   
-  [^BAI2004]: Donald G Bailey, An Efficient Euclidean Distance Transform, 2004. 
+  [^BAI2004]: D. G Bailey, An Efficient Euclidean Distance Transform, 2004. 
   
   
 
