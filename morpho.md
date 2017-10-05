@@ -254,7 +254,7 @@ It is important to note that opening and closing are less destructive of the ori
 
 ### Skeletonize
 
-The Skeletonize is used in order to only have left a skeleton (or the boundary of an object). It takes as input a binary image, and as output a binary too.
+The Skeletonize operator is used in order to only have left a skeleton (from the boundary of an object). It takes as input a binary image, and as output a binary too.
 Only the default ImageJ default function was used as we didn't find any ready to use plugin that we thought interesting.
 
 The skeletonize operation give an image as follows :
@@ -263,7 +263,7 @@ The skeletonize operation give an image as follows :
 <img src="/Results/combined_skeletonize.png" alt="alt text" width="1000" weight="center">
 </p>
 
-**Fig.15: Result of the closing operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin**
+**Fig.15: Result of the skeletonize operation using as a structuring element a disk of 3 by 3 size. Left : Original image, right : made with ImageJ default function**
 
 As we can see we have some results to point out.
 The cell that only (or almost) contained foreground pixels only leave a little trace as a skeleton this is due to the fact that the lack of background pixels doesn't permit to have a clean skeleton.
