@@ -265,10 +265,10 @@ The skeletonize operation give an image as follows :
 
 **Fig.15: Result of the skeletonize operation using as a structuring element a disk of 3 by 3 size. Left : Original image, right : made with ImageJ default function**
 
-As we can see we have some results to point out.
-The cell that only (or almost) contained foreground pixels only leave a little trace as a skeleton this is due to the fact that the lack of background pixels doesn't permit to have a clean skeleton.
-The second thing to note is that the more background pixels an object has the more detailed (and complex) a skeleton can be.
-In a complex environment like a culture, the skeletonize operation alone cannot be enough to have an idea of the shape.
+The cell that only (or almost) contained foreground pixels only leave a little trace as a skeleton. This is due to the lack of background pixels that doesn't allows to obtain a clean skeleton.
+The second thing to point out is that the more background pixels an object contains the more detailed (and complex) a skeleton can be.
+In a complex environment like a biological culture, the skeletonize operation alone cannot be enough to have an idea of the shape.
+
 ### Euclidean distance map
 
 Euclidean distance map (or EDM) is a method which consist in calculating the distance between a foreground pixels and the closet background neighborgt pixels.
