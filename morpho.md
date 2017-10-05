@@ -21,7 +21,7 @@ In order to be able to compare and discuss about the different algorithms in a p
 It could be described this way:
 
 First, we initialise our classes a hundred times as a warm up phase so that we limit the wasted time corresponding to the initializing phase during the critical phase.
-Then, in the benchmark part itself, we run our operations 1000 times to be sure to get enough data and we run those operations 10 times in order to limit variations (meaning that in the end we ran 10000 times each operation)
+Then, in the benchmark part itself, we run our operations 1000 times to be sure to get enough data and we run those operations 10 times in order to limit variations (meaning that in the end we ran 10000 times each operation). The time variation have been calculated in millisecond with five significant figures as for the memory but the unit is Mebibyte(MiB).
 
 **Line des 45 degrés pour verifier**
 
