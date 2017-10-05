@@ -1,0 +1,34 @@
+Function : Morphological Filters
+The average execution time for Morphological Filters is 51.23673 ms.
+The average used memory is 86.56682 MiB.
+The average execution time for Morphological Filters is 51.49103 ms.
+The average used memory is 112.95641 MiB.
+The average execution time for Morphological Filters is 51.64380 ms.
+The average used memory is 110.62805 MiB.
+The average execution time for Morphological Filters is 50.49914 ms.
+The average used memory is 91.33823 MiB.
+The average execution time for Morphological Filters is 51.08698 ms.
+The average used memory is 107.95485 MiB.
+The average execution time for Morphological Filters is 51.62235 ms.
+The average used memory is 111.43126 MiB.
+The average execution time for Morphological Filters is 50.57452 ms.
+The average used memory is 96.07391 MiB.
+The average execution time for Morphological Filters is 50.91951 ms.
+The average used memory is 93.80377 MiB.
+The average execution time for Morphological Filters is 51.22402 ms.
+The average used memory is 107.16987 MiB.
+The average execution time for Morphological Filters is 50.55804 ms.
+The average used memory is 104.91014 MiB.
+End of benchmark
+Time | Memory
+51.236725657 | 86.56681719207764
+51.491026776 | 112.95640812683105
+51.643798387000004 | 110.62805195617676
+50.499138740999996 | 91.33822872161865
+51.086982453000005 | 107.95484896850586
+51.622353746 | 111.43126177215576
+50.574517632 | 96.0739116973877
+50.91950947 | 93.80377220153808
+51.224022356 | 107.16986795043945
+50.5580435 | 104.91013855743408
+

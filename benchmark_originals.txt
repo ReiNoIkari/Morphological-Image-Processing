@@ -1,0 +1,239 @@
+Function : Erode
+The average execution time for Erode is 14.36747 ms.
+The average used memory is 50.09162 MiB.
+The average execution time for Erode is 13.71147 ms.
+The average used memory is 52.25463 MiB.
+The average execution time for Erode is 13.69160 ms.
+The average used memory is 52.33073 MiB.
+The average execution time for Erode is 13.61405 ms.
+The average used memory is 52.37018 MiB.
+The average execution time for Erode is 13.60578 ms.
+The average used memory is 52.18682 MiB.
+The average execution time for Erode is 13.60137 ms.
+The average used memory is 52.33754 MiB.
+The average execution time for Erode is 13.54823 ms.
+The average used memory is 52.22075 MiB.
+The average execution time for Erode is 13.56429 ms.
+The average used memory is 52.26566 MiB.
+The average execution time for Erode is 13.55719 ms.
+The average used memory is 52.32503 MiB.
+The average execution time for Erode is 13.57033 ms.
+The average used memory is 52.27389 MiB.
+End of benchmark
+Time | Memory
+14.367466829 | 50.091617256164554
+13.711465272 | 52.25463446044922
+13.691596578 | 52.330728210449216
+13.614047525 | 52.37018299102783
+13.605775613 | 52.18681797790527
+13.601371727 | 52.33754329681396
+13.54823239 | 52.220754692077634
+13.564285567 | 52.26566326904297
+13.557193489 | 52.32502507019043
+13.57033357 | 52.27389108276367
+
+Function : Dilate
+The average execution time for Dilate is 17.67860 ms.
+The average used memory is 52.36450 MiB.
+The average execution time for Dilate is 17.66763 ms.
+The average used memory is 52.35738 MiB.
+The average execution time for Dilate is 17.66960 ms.
+The average used memory is 52.33619 MiB.
+The average execution time for Dilate is 17.73396 ms.
+The average used memory is 52.41399 MiB.
+The average execution time for Dilate is 17.69763 ms.
+The average used memory is 52.30852 MiB.
+The average execution time for Dilate is 17.70725 ms.
+The average used memory is 52.27189 MiB.
+The average execution time for Dilate is 17.70970 ms.
+The average used memory is 52.27929 MiB.
+The average execution time for Dilate is 17.69455 ms.
+The average used memory is 52.32764 MiB.
+The average execution time for Dilate is 17.70552 ms.
+The average used memory is 52.31733 MiB.
+The average execution time for Dilate is 17.68671 ms.
+The average used memory is 52.38365 MiB.
+End of benchmark
+Time | Memory
+17.678598596 | 52.36450284576416
+17.66762829 | 52.35738353729248
+17.669595109 | 52.336191215515136
+17.733957956999998 | 52.4139914855957
+17.697626268 | 52.308516456604
+17.707245129 | 52.27189138031006
+17.709701686 | 52.27928821563721
+17.694552392000002 | 52.32763536071777
+17.705524019000002 | 52.31733415985107
+17.686707243999997 | 52.38365187072754
+
+Function : Open
+The average execution time for Open is 29.93423 ms.
+The average used memory is 52.67525 MiB.
+The average execution time for Open is 29.92962 ms.
+The average used memory is 52.58867 MiB.
+The average execution time for Open is 29.98337 ms.
+The average used memory is 52.58564 MiB.
+The average execution time for Open is 29.94064 ms.
+The average used memory is 52.62089 MiB.
+The average execution time for Open is 29.89627 ms.
+The average used memory is 52.69292 MiB.
+The average execution time for Open is 29.96990 ms.
+The average used memory is 52.52088 MiB.
+The average execution time for Open is 29.89898 ms.
+The average used memory is 52.61166 MiB.
+The average execution time for Open is 29.91806 ms.
+The average used memory is 52.68010 MiB.
+The average execution time for Open is 29.92796 ms.
+The average used memory is 52.64018 MiB.
+The average execution time for Open is 29.88600 ms.
+The average used memory is 52.56383 MiB.
+End of benchmark
+Time | Memory
+29.934225349 | 52.67524899291992
+29.929624623 | 52.58866510009766
+29.983372931 | 52.58563542175293
+29.940642191 | 52.6208883895874
+29.896267646000002 | 52.69291757965088
+29.969899104 | 52.520879096984864
+29.898981523 | 52.61165605926514
+29.918063589000003 | 52.68010320281982
+29.92796126 | 52.640180404663084
+29.885997395 | 52.56383457946777
+
+Function : Close-
+The average execution time for Close- is 29.92799 ms.
+The average used memory is 52.60235 MiB.
+The average execution time for Close- is 29.94866 ms.
+The average used memory is 52.56716 MiB.
+The average execution time for Close- is 29.94597 ms.
+The average used memory is 52.65135 MiB.
+The average execution time for Close- is 29.95584 ms.
+The average used memory is 52.66085 MiB.
+The average execution time for Close- is 29.93210 ms.
+The average used memory is 52.56916 MiB.
+The average execution time for Close- is 29.90079 ms.
+The average used memory is 52.63235 MiB.
+The average execution time for Close- is 30.05493 ms.
+The average used memory is 52.67091 MiB.
+The average execution time for Close- is 29.90150 ms.
+The average used memory is 52.60767 MiB.
+The average execution time for Close- is 29.93374 ms.
+The average used memory is 52.57133 MiB.
+The average execution time for Close- is 29.90504 ms.
+The average used memory is 52.65420 MiB.
+End of benchmark
+Time | Memory
+29.927994815 | 52.60235359954834
+29.948655435 | 52.567160095214845
+29.945970951 | 52.65134914398193
+29.955844452 | 52.660846961975096
+29.932099849 | 52.569159774780275
+29.900788809 | 52.63235356140137
+30.054928605999997 | 52.670911239624026
+29.901499953000002 | 52.60766525268555
+29.933742499 | 52.57132726287842
+29.905042447 | 52.65419608306885
+
+Function : Skeletonize
+The average execution time for Skeletonize is 105.31008 ms.
+The average used memory is 86.61452 MiB.
+The average execution time for Skeletonize is 104.99927 ms.
+The average used memory is 86.81807 MiB.
+The average execution time for Skeletonize is 105.05045 ms.
+The average used memory is 86.75977 MiB.
+The average execution time for Skeletonize is 104.52027 ms.
+The average used memory is 86.83161 MiB.
+The average execution time for Skeletonize is 103.51121 ms.
+The average used memory is 86.65354 MiB.
+The average execution time for Skeletonize is 103.59641 ms.
+The average used memory is 86.71659 MiB.
+The average execution time for Skeletonize is 103.59701 ms.
+The average used memory is 86.79046 MiB.
+The average execution time for Skeletonize is 103.49527 ms.
+The average used memory is 86.73222 MiB.
+The average execution time for Skeletonize is 103.54738 ms.
+The average used memory is 86.81166 MiB.
+The average execution time for Skeletonize is 103.64718 ms.
+The average used memory is 86.61929 MiB.
+End of benchmark
+Time | Memory
+105.310078306 | 86.61451625061035
+104.999269206 | 86.81806771850586
+105.050452742 | 86.75977450561524
+104.520268986 | 86.8316068725586
+103.511208688 | 86.65353863525391
+103.59641126100001 | 86.7165934677124
+103.597008118 | 86.79045523834229
+103.49526598199999 | 86.73221533966064
+103.547383205 | 86.81166387176513
+103.647177211 | 86.61929000854492
+
+Function : Distance Map
+The average execution time for Distance Map is 53.98534 ms.
+The average used memory is 85.54755 MiB.
+The average execution time for Distance Map is 54.36820 ms.
+The average used memory is 85.42449 MiB.
+The average execution time for Distance Map is 56.99174 ms.
+The average used memory is 85.44542 MiB.
+The average execution time for Distance Map is 56.95053 ms.
+The average used memory is 85.46131 MiB.
+The average execution time for Distance Map is 56.62331 ms.
+The average used memory is 85.32608 MiB.
+The average execution time for Distance Map is 57.40150 ms.
+The average used memory is 85.34672 MiB.
+The average execution time for Distance Map is 56.05795 ms.
+The average used memory is 85.37035 MiB.
+The average execution time for Distance Map is 54.65953 ms.
+The average used memory is 85.38695 MiB.
+The average execution time for Distance Map is 54.49397 ms.
+The average used memory is 85.39565 MiB.
+The average execution time for Distance Map is 54.36565 ms.
+The average used memory is 85.40956 MiB.
+End of benchmark
+Time | Memory
+53.985340007 | 85.54754710388184
+54.368200689999995 | 85.42448894500733
+56.991739245 | 85.44541786956788
+56.950532355 | 85.46131258392334
+56.62331185 | 85.3260841140747
+57.40149696500001 | 85.34672434997559
+56.057952529 | 85.37035186767578
+54.659527647 | 85.3869500427246
+54.493973555 | 85.39564515686035
+54.365647512 | 85.40956463623047
+
+Function : Ultimate Points
+The average execution time for Ultimate Points is 75.44968 ms.
+The average used memory is 119.22524 MiB.
+The average execution time for Ultimate Points is 75.54426 ms.
+The average used memory is 150.54370 MiB.
+The average execution time for Ultimate Points is 75.21758 ms.
+The average used memory is 172.37164 MiB.
+The average execution time for Ultimate Points is 75.50426 ms.
+The average used memory is 174.28685 MiB.
+The average execution time for Ultimate Points is 75.41585 ms.
+The average used memory is 225.82266 MiB.
+The average execution time for Ultimate Points is 75.65703 ms.
+The average used memory is 237.98708 MiB.
+The average execution time for Ultimate Points is 75.36954 ms.
+The average used memory is 182.76807 MiB.
+The average execution time for Ultimate Points is 74.74870 ms.
+The average used memory is 207.73093 MiB.
+The average execution time for Ultimate Points is 75.32955 ms.
+The average used memory is 284.27566 MiB.
+The average execution time for Ultimate Points is 75.35422 ms.
+The average used memory is 203.86296 MiB.
+End of benchmark
+Time | Memory
+75.449682931 | 119.22523974609375
+75.544261127 | 150.54370453643799
+75.217580551 | 172.3716357345581
+75.504264567 | 174.28685316467286
+75.41584556000001 | 225.82265727233886
+75.657031509 | 237.9870813369751
+75.369539964 | 182.76807249450684
+74.748699479 | 207.73092768859863
+75.329550234 | 284.2756600036621
+75.354218102 | 203.86296479034425
+
+Function : Morphological Filters
