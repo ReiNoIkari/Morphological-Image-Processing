@@ -149,7 +149,7 @@ As with thinning, slight irregularities in a boundary may interfere with recogni
 </p>
 
 
-### EDM
+### Euclidean Distance Mapping
 The Euclidean Distance Mapping (or EDM), is one of several Distance transform techniques in Image Processing. The shortest distance to the nearest pixel in the background for each objects is labeled. The result looks pretty similar to the original inputed image in terms of shape, but the pixel's greyscale values are changed to show the distance to the closest boundary from each point.
 Once again, the metaphor of a fire cunsumming a slow burning material is often used to describe the process. Just as the skeletonize tranform, a fire starts at each point of the object's boundaries and moves into the interior. Each point in the interiour is labeled with the amount of time that the fire took to reach it.  
 
@@ -168,7 +168,7 @@ This metric is isotropic in that distances measured are independent of object or
 </p>
 **Fig.13: Result of the euclidean distance mapping transform**
 
-### UEP with structuring element
+### Ultimate eroded point
 
 Ultimate eroded point (or UEP) is derived from the erosion operator and is defined as the last point that would be present after recursively erodes until the last pass before the object would be visible. 
 In order to apply multiple UEP on an image, each object is considered separately, which makes possible to use different numbers of erosions for each object and so having the ultimate eroded point not only for an image but for each object which is useful for cells images for example. 
@@ -265,9 +265,9 @@ As we can see we have some results to point out.
 The cell that only (or almost) contained foreground pixels only leave a little trace as a skeleton this is due to the fact that the lack of background pixels doesn't permit to have a clean skeleton.
 The second thing to note is that the more background pixels an object has the more detailed (and complex) a skeleton can be.
 In a complex environment like a culture, the skeletonize operation alone cannot be enough to have an idea of the shape.
-### EDM
+### Euclidean distance map
 
-The Euclidean distance matrix
+The Euclidean distance map
 
 <p align="center">
 <img src="/Results/combined_edm.png" alt="alt text" width="1000" weight="center">
@@ -275,7 +275,7 @@ The Euclidean distance matrix
 
 **Fig.16: Result of the closing operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin**
 
-### UEP with structuring element
+### Ultimate eroded point
 
 The Ultimate eroded point is a variant of the erosion method, but instead of eroding only one time it will erode multiple times only one and only point remains for each object present in an image. The input is a binary image, but the output will be a graylevel image.
  The obtained result is:
