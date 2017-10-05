@@ -296,13 +296,21 @@ et argumenter sur le résultat a conserver entre les plugins
 
 ## Conclusion
 
+References test [^GIL2002],[^LEG2016],[^GON1992],[^HAR1992],[^JAI1989],[^VER1991]
+
 ## References
   
   [^GIL2002]: J. Gil R. Kimmel Efficient Dilation, Erosion, Opening, and Closing Algorithms, 2002.
+  
   [^LEG2016]: David Legland, Ignacio Arganda-Carreras, Philippe Andrey; MorphoLibJ: integrated library and plugins for mathematical morphology with ImageJ. Bioinformatics 2016; 32 (22): 3532-3534. doi: 10.1093/bioinformatics/btw413.
+  
   [^GON1992]: R. Gonzalez and R. Woods Digital Image Processing, Addison-Wesley Publishing Company, 1992.
+  
   [^HAR1992]: R. Haralick and L. Shapiro Computer and Robot Vision, Vol. 1, Addison-Wesley Publishing Company, 1992.
+  
   [^JAI1989]: A. Jain Fundamentals of Digital Image Processing, Prentice-Hall, 1989.
+  
   [^VER1991]: D. Vernon Machine Vision, Prentice-Hall, 1991. 
+  
   
 
