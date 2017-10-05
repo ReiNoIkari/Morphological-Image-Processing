@@ -25,7 +25,7 @@ With the condition that B1 ∩ B2 = Ø, because if B1 is not a negative mask of 
 <img src="images/hit_or_miss.gif" alt="alt text" width="340" weight="center">
 </p>
 
-### Dilate & Erode
+### Dilate & Erode (FORMULES A AJOUTER)
 
 The dilation operator takes two pieces of data as inputs. The first one is the image which is going to be dilated and the second one is the structuring element. Thus, the tructuring element determines the precise effect of the dilation on the first image.
 
