@@ -21,7 +21,7 @@ In order to be able to compare and discuss about the different algorithms in a p
 It could be described this way:
 
 First, we initialise our classes a hundred times as a warm up phase so that we limit the wasted time corresponding to the initializing phase during the critical phase.
-Then, in the benchmark part itself, we run our operations 1000 times to be sure to get enough data and we run those operations 10 times in order to limit variations (meaning that in the end we ran 10000 times each operation). The time variation have been calculated in millisecond with five significant figures as for the memory but the unit is Mebibyte(MiB).
+Then, in the benchmark part itself, we run our operations 1000 times to be sure to get enough data and we run those operations 10 times in order to limit variations (meaning that in the end we ran 10000 times each operation)
 
 **Line des 45 degrés pour verifier**
 
@@ -318,7 +318,7 @@ This proves that the result obtained during Mathematical Morphology is dependent
 
 Let's continue with the benchmarks results.
 Between the original ImageJ function and the plugin created by the INRA, there is quite a difference as it can be observed. 
-Let's analyse 
+In a first sight, the ImageJ's function tends to use less memory and to run faster than the INRA plugin. Indeed, ImageJ's erode operator would takes about 13.68 milliseconds (ms) to run and use about 52.07 MiB when the INRA's plugin would have an about 55.50 ùs runtime and a 57.60 MiB memory use. This kind of result is seeable for every operation and transform. However, those results can't be compared since the INRA's plugins perform more operation than the "by default" operations. Indeed, we noticed for example that each turn of a INRA's plug run causes a resulting image to be launched. This induces a significative increasment of the runtime.   
 
 
 ## Conclusion
