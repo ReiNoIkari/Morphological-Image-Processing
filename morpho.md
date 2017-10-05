@@ -313,6 +313,15 @@ The cell that only (or almost) contained foreground pixels only leave a little t
 The second thing to point out is that the more background pixels an object contains the more detailed (and complex) a skeleton can be.
 In a complex environment like a biological culture, the skeletonize operation alone cannot be enough to have an idea of the shape.
 
+Even tough the lack of another plugin won't let us fully compare some performances we still decided to permorfed banchmarks result for the ImageJ plugin. The results are the one given below :
+
+
+<p align="center">
+<img src="/Results/benchmark_skeletonize.png" width="1000" weight="center">
+</p>
+
+As we can see, for the  for the skeletonization  operator we have an average excution time of 104.127 ms and average memory used of 86.735 MiB.
+
 ### Euclidean distance map
 
 Euclidean distance map (or EDM) is a method which consist in calculating the distance between a foreground pixels and the closet background neighborgt pixels.
@@ -328,6 +337,14 @@ The image obtained is as follow :
 As we can see, we have two main results. The objects containing no (or almost) background pixels inside in the original picture, have a better score(which can be seen with their brigthness, the more they are the higher score thet got).
 The others object, containg many background pixels have more mitigated scores. This is due to the fact that the background pixels have an influence in the distance(vicent passe par la, thanks) reducing the score.
 
+Like the skeletonize operator, we still decided to run some benchmarks for the Euclidean distance map method. We obtained those results :
+
+
+<p align="center">
+<img src="/Results/benchmark_EDM.png" width="1000" weight="center">
+</p>
+
+As we can see, for the  for the EDM operator we have an average excution time of 155.589 ms and average memory used of 85.411 MiB.
 
 ### Ultimate eroded point
 
@@ -342,6 +359,15 @@ The Ultimate eroded point is a variant of the erosion method, but instead of ero
 
 After an UEP using the default ImageJ function the output image seems to be only black. In order to check this theory, we transformed the image to binary, and we could already see some points corresponding to the last point that would be eroded for each object. Finally, in order to make the result more usable, we applied a dilation.
 As we can, see the more "perfect" the object is, in our case a cell containing only foreground pixels, the more the theoretical ultimate eroded point is valid. However, as soon as we start getting more complex object, we can see that those objects can have multiples ultimate eroded point. This can be explained as the computer is not capable to determine the object in his whole (cause of the background pixels inside the cells) and so is treats which should be considered as one object in multiples, which explain those multiple UEP.
+
+Like the skeletonize operator, and the EDM method we still decided to run some benchmarks for the Ultimate eroded point method. The resultat are has follow :
+
+
+<p align="center">
+<img src="/Results/benchmark_uep.png" width="1000" weight="center">
+</p>
+
+We can observe for the UEP method we have an average excution time of 75.359 ms and average memory used of 195.887 MiB.
 
 ## Discussion 
 
