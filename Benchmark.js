@@ -11,10 +11,10 @@ function startBenchmark(img, functionName, parameter)
     for(var i = 0; i<100; i++)
     {
         var temp= img.duplicate();
-	var startTime = System.currentTimeMillis();
+	var startTime = System.nanoTime();
 	IJ.freeMemory();
 	IJ.run(temp, functionName, parameter);
-	var endTime = System.currentTimeMillis();   
+	var endTime = System.nanoTime();   
 	var memoryUsage= IJ.currentMemory();      
 	var spentTime = endTime - startTime;
         temp.close();
@@ -32,9 +32,9 @@ function startBenchmark(img, functionName, parameter)
         {
             var temp = img.duplicate();
 	    IJ.freeMemory();
-	    var startTime = System.currentTimeMillis();
+	    var startTime = System.nanoTime();
 	    IJ.run(temp, functionName, parameter);
-	    var endTime = System.currentTimeMillis();   
+	    var endTime = System.nanoTime();   
 	    var memoryUsage= IJ.currentMemory();      
 	    var spentTime = endTime - startTime;
             time += spentTime
@@ -44,14 +44,14 @@ function startBenchmark(img, functionName, parameter)
         }
 	
 
-        // calculate average value of  and return to user explaining how many iterations were used for the average.
-        var average = time/1000;
+        // calculating the average value of the 1000 runs
+        var avg_time = time/1000/1000000; ///1000 for 1000 runs, then /1000000 to convert ns to ms
         var avg_mem = memory/1000;
 	
         avg_mem = avg_mem/1048576; //convert bytes to Mebibytes
-        IJ.log("The average execution time for "+functionName+" is "+average+" ms.\n");
+        IJ.log("The average execution time for "+functionName+" is "+avg_time+" ms.\n");
         IJ.log("The average used memory is "+avg_mem.toFixed(2)+" MiB.\n");
-        timeList.push(average);
+        timeList.push(avg_time);
         memoryList.push(avg_mem);
     }
 
@@ -73,7 +73,7 @@ Prefs.blackBackground = true;
 IJ.run(imp, "Make Binary", "");
 IJ.run("Options...", "iterations=1 count=1 black edm=8-bit");
 
-
+//list of our IJ functions/plugins to use, and the corresponding options (obtained via IJ macro recorder)
 functionList= ["Erode","Dilate","Open","Close-","Skeletonize","Distance Map","Ultimate Points","Morphological Filters","Morphological Filters","Morphological Filters","Morphological Filters"];
 parameterList = ["","","","","","overwrite","","operation=Erosion element=Disk radius=2","operation=Dilation element=Disk radius=2","operation=Opening element=Disk radius=2","operation=Closing element=Disk radius=2"];
 
