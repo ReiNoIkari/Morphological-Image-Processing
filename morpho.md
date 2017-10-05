@@ -194,7 +194,7 @@ This section is dedicated to the results obtained using the default operations i
 
 ### Erode and Dilate
 
-The erosion and dilates methods have been runing the default functions available in ImageJ and plugins created by the Institut Jean-Pierre Bourgin - INRA(MorphoLibJ). The original file have to be be a binary image, and the process' result will be of the same type. We encountered a problem by searching how to select a specific structuring element in ImageJ. Indeed, if the option exists, we didn't found it, this one being a disk of size 3 whereas the MorphoLibJ plugin allows the user to choose.
+The erosion and dilates methods have been runing the default functions available in ImageJ and plugins created by the Institut Jean-Pierre Bourgin - INRA(MorphoLibJ). The original file have to be be a binary image, and the process' result will be of the same type. We encountered a problem by searching how to select a specific structuring element in ImageJ. Indeed, if the option exists, we didn't find it, this one being a disk of size 3 whereas the MorphoLibJ plugin allows the user to choose.
 
 <p align="center">
 <img src="/Results/combined_erode.png" width="1000" weight="center">
@@ -235,8 +235,8 @@ The result obtains for the opening are as follow :
 **Fig.14: Result of the opening operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin**
 
 
-As a reminder, an opening operator could be resumed as an erode followed by a dilation, so in the results we should see some traces of it.
-If we look closely, we can see that indeed an erosion has been applied to the picture, but that compared to the fig.12 the black areas are little less more present. We can explain this as the fact that compared to the fig.12, here after the initial erosion, the dilation will have for effect to expand the boundaries of the objects. Thus, because small ones were removed in erosion step, bring back biggest elements are brought back.
+As a reminder, an opening operator could be resumed as an erode followed by a dilation. As a consequence, we should see some traces of it.
+By having a closer look, we can see that indeed an erosion has been applied to the picture, but that compared to the fig.12 the black areas are little less more present. We can explain this as the fact that compared to the fig.12, here after the initial erosion, the dilation will have for effect to expand the boundaries of the objects. Thus, because small ones were removed in erosion step, bring back biggest elements are brought back.
 
 The results obtained from the closing operation are the follow :
 
