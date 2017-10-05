@@ -265,6 +265,14 @@ The second thing to note is that the more background pixels an object has the mo
 In a complex environment like a culture, the skeletonize operation alone cannot be enough to have an idea of the shape.
 ### EDM
 
+The Euclidean distance matrix
+
+<p align="center">
+<img src="/Results/combined_skeletonize.png" alt="alt text" width="1000" weight="center">
+</p>
+
+**Fig.16: Result of the closing operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin**
+
 ### UEP with structuring element
 
 The Ultimate eroded point is a variant of the erosion method, but instead of eroding only one time it will erode multiple times only one and only point remains for each object present in an image. The input is a binary image, but the output will be a graylevel image.
