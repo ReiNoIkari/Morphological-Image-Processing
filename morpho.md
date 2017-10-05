@@ -323,6 +323,8 @@ In a first sight, the ImageJ's function tends to use less memory and to run fast
 
 ## Conclusion
 
+et's analyse the image we obtained during the result phase. As we can see using the same structuring element result in having the same output image no effect, but when using a completely different structuring element we see some differences. This is can be explained by the fact the other plugin we used, are only an amelioration of the origial ImageJ functions(the mathematical algorithm being the same for all the erosions for example) but instead the basic function has been modified in order to add more parameters like the starting element change (INRA plugins).
+
 References test [^GIL2002],[^LEG2016],[^GON1992],[^HAR1992],[^JAI1989],[^VER1991]
 
 ## References
