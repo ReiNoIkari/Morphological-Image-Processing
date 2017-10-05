@@ -158,7 +158,7 @@ In addition, to this, the MAT  has the property that it can be used to exactly r
 As with thinning, slight irregularities in a boundary may interfere with recognition processes based on the topological properties of the skeleton. 
 
 <p align="center">
-<img src="/images/bridge_Skeletonize.png" alt="alt text" width="1000" weight="center">
+<img src="/images/combined_bridge_skeleton.png" alt="alt text" width="1000" weight="center">
 </p>
 
 
@@ -173,7 +173,7 @@ Several kind of distance transform exists, depending upon which distance metric 
 From a measurement perspective, the Euclidean distance is the most useful because it corresponds to the way objects are measured in the real world.
 
 <p align="center">
-<img src="images/EDFTransform.PNG" alt="alt text" width="200" weight="center">
+<img src="combined_bridge_edm.png" alt="alt text" width="200" weight="center">
 </p>
 
 Where <img src="images/Capture.PNG" alt="alt text" width="40" weight="center">, is some two-dimensional distance metric. Different distance metrics result in different distance transformations. The Euclidean distance metric uses the L2 norm.
@@ -202,7 +202,7 @@ In an image, the algorithm will search for the brightest pixel for each objet an
 Usualy,The Ultimate eroded point operation is used as a marker for objects locations
 
 <p align="center">
-<img src="/images/bridge_UEP.png" alt="alt text" width="400" weight="center">
+<img src="combined_bridge_uep.png" alt="alt text" width="400" weight="center">
 </p>
 
 **Fig.14: Result of the ultimate erode point on fig.14 using as a structuring element a disk of 3 by 3 size**
