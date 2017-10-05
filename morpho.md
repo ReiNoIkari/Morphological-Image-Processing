@@ -184,11 +184,11 @@ Where <img src="images/Capture.PNG" alt="alt text" width="40" weight="center">, 
 This metric is isotropic in that distances measured are independent of object orientation, subject of course to the limitation that the object boundary is digital, and therefore in discrete locations. The major limitation of the Euclidean metric, however is that it is not easy to calculate efficiently for complex shapes. 
 
 <p align="center">
-<img src="/images/combined_bridge_edm.png" alt="alt text" width="200" weight="center">
+<img src="/images/combined_bridge_edm.png" alt="alt text" width="2000" weight="center">
 </p>
 
 
-**Fig.13: Result of the Skeletonization on fig.13 using as a structuring element a disk of 3 by 3 size**
+**Fig.13: Result of the Euclidean distance mapping on fig.13 using as a structuring element a disk of 3 by 3 size**
 
 
 ### Ultimate eroded point
