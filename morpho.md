@@ -15,6 +15,14 @@ In this project, we will focus on the Morphology part from Image Processing, and
 
 (maybe saying : this first month we will focus...)
 ## Material & Methods
+In order to be able to compare and discuss about the different algorithms in a practical and effective way we decided to create a benchmark.
+
+It could be described this way:
+
+First, we initialise our classes a hundred times as a warm up phase so that we limit the wasted time corresponding to the initializing phase during the critical phase.
+Then, in the benchmark part itself, we run our operations 1000 times to be sure we have enough data and we run those operations 10 times in order to limit variations (meaning that in the end we ran 10000 times each operation)
+
+**Line des 45 degrés pour verifier**
 
 ### Hit-or-Miss
 Hit or miss is what could be defined as the basic operation of the morphological area of image processing. It is used to detect occurrences given binary patterns in fixed orientations. It can be used to look for several patterns (or alternatively, for the same pattern in several orientations) simply by running successive transforms using different structuring elements, and then running OR operation between all the results. Therefore, Most of the other morphological operations are derived from this notion(opening, closing, erosion, dilation...).
@@ -191,6 +199,7 @@ Usualy,The Ultimate eroded point operation is used as a marker for objects locat
 ## Results
 
 This section is dedicated to the results obtained using the default operations in ImageJ and if there are available some third party plugins. The image used is one of the sample available by default in ImageJ, called "Embryos". The input image will always be in binary mode.
+**ajouter la ligne diagonale dans chaque résultats**
 
 ### Erode and Dilate
 
@@ -299,23 +308,12 @@ The Ultimate eroded point is a variant of the erosion method, but instead of ero
 After an UEP using the default ImageJ function the output image seems to be only black. In order to check this theory, we transformed the image to binary, and we could already see some points corresponding to the last point that would be eroded for each object. Finally, in order to make the result more usable, we applied a dilation.
 As we can, see the more "perfect" the object is, in our case a cell containing only foreground pixels, the more the theoretical ultimate eroded point is valid. However, as soon as we start getting more complex object, we can see that those objects can have multiples ultimate eroded point. This can be explained as the computer is not capable to determine the object in his whole (cause of the background pixels inside the cells) and so is treats which should be considered as one object in multiples, which explain those multiple UEP.
 
-## Discussion [WIP]
+## Discussion 
 
-comparer les benchmark pour les differentes transformations et conclure sur le meilleur algo si possible
-et argumenter sur le résultat a conserver entre les plugins 
+Let's analyse the images we obtained during the result phase. As we can see, using the same structuring element result in having the same output image has no significative effect, but using a completely different structuring element results some differences. It can be explained by the fact that the other plugin we used when we could find one didn't reinvent the wheel (the different algorithm being the same for erosion for example). However, instead, the basic function has been modified in order to add more parameters like the starting element change (INRA plugins).
+Therefore, the output image obtained by the "Line 45 degree" which correspond to the diagonal of the kernel, is of course not completely different but the differences obtained are easily seeable by eye.
 
-
-In order to be able to compare and discuss about the different algorithm in a practical and effective manner we decided to create a benchmark.
-
-It could be described this way:
-
-First, we initialise our classes a hundred times as a warm up phase so that we limit the wasted time corresponding to the initializing phase during the critical phase.
-Then, in the benchmark part itself, we run our operations 1000 times to be sure we have enough data and we run those operations 10 times in order to limit variations (meaning that in the end we ran 10000 times each operation)
-
-Let's analyse the images we obtained during the result phase. As we can see using the same structuring element result in having the same output image no effect, but when using a completely different structuring element we see some differences. This is can be explained by the fact the other plugin we used when we could find one didn't reinvent the wheel (the different algorithm being the same for erosion for example) but instead the basic function has been modified in order to add more parameters like the starting element change (INRA plugins).
-Therefore, as we can see, the output image obtained by the "Line 45 degree" which correspond to the diagonal of the kernel, is of course not completely different but the differences obtained are easily detectable by eye.
-
-This proves that the result obtained during Mathematical Morphology is dependent on the choice of the Kernel and not of the plugin since the method use is the same.
+This proves that the result obtained during Mathematical Morphology is dependent on the choice of the Kernel and not of the plugin since the method used is the same.
 
 Let's continue with the benchmarks results.
 Between the original ImageJ function and the plugin created by the INRA, there is quite a difference as it can be observed. 
