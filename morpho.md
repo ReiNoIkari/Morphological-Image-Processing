@@ -97,7 +97,7 @@ In a simple way opening will have for effect to opens black holes inside white r
 Here is a pratical application :
 
 <p align="center">
-<img src="images/open.PNG" alt="alt text" width="1000" weight="center">
+<img src="/images/bridge_open.png" alt="alt text" width="1000" weight="center">
 </p>
 
 
@@ -124,7 +124,7 @@ Closing is similar in some ways to dilation in that it tends to enlarge the boun
 Let's use once more a pratical application : 
 
 <p align="center">
-<img src="images/close.PNG" alt="alt text" width="1000" weight="center">
+<img src="/images/bridge_close.png" alt="alt text" width="1000" weight="center">
 </p>
 
 
@@ -158,8 +158,11 @@ In addition, to this, the MAT  has the property that it can be used to exactly r
 As with thinning, slight irregularities in a boundary may interfere with recognition processes based on the topological properties of the skeleton. 
 
 <p align="center">
-<img src="images/skeletonizefinal.PNG" alt="alt text" width="1000" weight="center">
+<img src="/images/bridge_Skeletonize.png" alt="alt text" width="1000" weight="center">
 </p>
+
+
+**Fig.13: Result of the euclidean distance mapping transform on fig.13 using as a structuring element a disk of 3 by 3 size**
 
 
 ### Euclidean Distance Mapping
@@ -177,9 +180,12 @@ Where <img src="images/Capture.PNG" alt="alt text" width="40" weight="center">, 
 This metric is isotropic in that distances measured are independent of object orientation, subject of course to the limitation that the object boundary is digital, and therefore in discrete locations. The major limitation of the Euclidean metric, however is that it is not easy to calculate efficiently for complex shapes. 
 
 <p align="center">
-<img src="images/EDT_cheval.gif" alt="alt text" width="200" weight="center">
+<img src="/images/bridge_EDM.png" alt="alt text" width="200" weight="center">
 </p>
-**Fig.13: Result of the euclidean distance mapping transform**
+
+
+**Fig.13: Result of the Skeletonization on fig.13 using as a structuring element a disk of 3 by 3 size**
+
 
 ### Ultimate eroded point
 
@@ -195,6 +201,11 @@ The ultimate erode point is represented as follow :
 In an image, the algorithm will search for the brightest pixel for each objet and be sure that none of is neighbors are as bright as it. If it is the sole point, then it will be the only one to be part of the UEP, if there are multiple pixels of the same object, then the center of the brightest pixels will be used. Furthermore, in order to be categorized as a UEP, the determined pixel besides being the brightest need to be a point that is equidistant from at least two (but usually three) boundary locations. In order to find the brightest point, the UEP method uses the peaks or local maxima of the EDM.
 Usualy,The Ultimate eroded point operation is used as a marker for objects locations
 
+<p align="center">
+<img src="/images/bridge_UEP.png" alt="alt text" width="400" weight="center">
+</p>
+
+**Fig.14: Result of the ultimate erode point on fig.14 using as a structuring element a disk of 3 by 3 size**
 
 
 ## Results
