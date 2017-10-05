@@ -13,9 +13,7 @@ The main purpose of mathematical morphology is to study or process a set with an
 This involves a loss of information, but also a great elimination of structures that do not fits to certains criteria such as width or volume.
 For the purposes of object or defect identification required in industrial vision applications, the operations of mathematical morphology are more useful than the convolution operations employed in signal processing because the morphological operators relate directly to shape.
 
-In this project, we will focus on the Morphology part from Image Processing, and we will initially explain some main operations in this area, and observe some obtained results to finally discuss about it.
-
-(maybe saying : this first month we will focus...)
+In this project, we will focus on the Morphology part from Image Processing, we will initially explain some main operations in this area, and observe some obtained results to finally discuss about it.
 
 ## Material & Methods
 In order to be able to compare and discuss about the different algorithms in a practical and effective way we decided to create a benchmark.
