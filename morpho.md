@@ -236,7 +236,7 @@ The result obtains for the opening are as follow :
 
 
 As a reminder, an opening operator could be resumed as an erode followed by a dilation. As a consequence, we should see some traces of it.
-By having a closer look, we can see that indeed an erosion has been applied to the picture, but that compared to the fig.12 the black areas are little less more present. We can explain this as the fact that compared to the fig.12, here after the initial erosion, the dilation will have for effect to expand the boundaries of the objects. Thus, because small ones were removed in erosion step, bring back biggest elements are brought back.
+By having a closer look, we can see that indeed an erosion has been applied to the picture, but that compared to the fig.12 the black areas are little less more present. We can explain this as the fact that compared to the fig.12, just after the initial erosion, the dilation will have for effect to expand the boundaries of the objects. Thus, because small ones were removed in erosion step, biggest elements are brought back.
 
 The results obtained from the closing operation are the follow :
 
