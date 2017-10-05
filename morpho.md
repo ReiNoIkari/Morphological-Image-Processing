@@ -311,7 +311,7 @@ As we can, see the more "perfect" the object is, in our case a cell containing o
 
 ## Discussion 
 
-Let's analyse the images we obtained during the result phase. As we can see, using the same structuring element result in having the same output image has no significative effect, but using a completely different structuring element results some differences. It can be explained by the fact that the other plugin we used when we could find one didn't reinvent the wheel (the different algorithm being the same for erosion for example). However, instead, the basic function has been modified in order to add more parameters like the starting element change (INRA plugins).
+Let's analyse the images we obtained during the result phase. As we can see, using the same structuring element result in having the same output image has no significative effect, but using a completely different structuring element results some differences. It can be  explained by the fact the other plugin we used, are only an amelioration of the origial ImageJ functions(the mathematical algorithm being the same for all the erosions for example) but instead the basic function has been modified in order to add more parameters like the starting element change (INRA plugins).
 Therefore, the output image obtained by the "Line 45 degree" which correspond to the diagonal of the kernel, is of course not completely different but the differences obtained are easily seeable by eye.
 
 This proves that the result obtained during Mathematical Morphology is dependent on the choice of the Kernel and not of the plugin since the method used is the same.
@@ -323,7 +323,13 @@ In a first sight, the ImageJ's function tends to use less memory and to run fast
 
 ## Conclusion
 
-et's analyse the image we obtained during the result phase. As we can see using the same structuring element result in having the same output image no effect, but when using a completely different structuring element we see some differences. This is can be explained by the fact the other plugin we used, are only an amelioration of the origial ImageJ functions(the mathematical algorithm being the same for all the erosions for example) but instead the basic function has been modified in order to add more parameters like the starting element change (INRA plugins).
+Image Processing is a wide domain that contain numerous branches and applications (from **quelque chose** to robot vision). What we studied is just a tiny part of the whole tools proposed by ImageJ.
+
+on a utilisé des processus permettant d'automatiser le traitement de donnees de mathématique morphologique sur images binaires.
+Il existe différentes approches pour étudier la morphologie mathématique d'une image suivant le rendu souhaité et l'étude a mener, et ces différents moyens peuvent être implémentés de différentes facons et n'ont pas précisément les mêmes résultats et les mêmes caractéristiques à l'exécution. 
+
+Nous n'avons pas trouvé de plugin pertinent à comparer aux fonction présentes dans ImageJ. 
+Pour ce faire, la gestion des paramètres présente une grande importance. En effet, 
 
 References test [^GIL2002],[^LEG2016],[^GON1992],[^HAR1992],[^JAI1989],[^VER1991]
 
