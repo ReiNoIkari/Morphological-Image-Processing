@@ -1,3 +1,7 @@
+# Mathematical Morphology
+
+Vincent Dejonghe*, Adrien MENDES-SANTOS, Rodolphe TWOREK
+
 ## Introduction
 
 The developement of some bioinformatics tool, more speciﬁcally, DNA sequencer made that every day a huge number of genomes are sequenced. Therefore, scienctifcs have access to huge databases with raw sequences which can make studing organism easier. One problem still persist : those collected data are worthless if they are not interpretednad the concern is that a lifetime won't be enough for a scientific to follow the flow. That’s were informatics come in order to help to analyse those huge amount of raw data, and in our case more precisely Image Processing. 
