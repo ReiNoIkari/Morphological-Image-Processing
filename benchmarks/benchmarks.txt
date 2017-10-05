@@ -1,0 +1,43 @@
+erode :
+times :  13.683176856
+memories :  52.06568583068848
+
+dilate :
+times :  17.695113669
+memories :  52.33603865280152
+
+open :
+times :  29.9285035611
+memories :  52.61800088272095
+
+close :
+times :  29.9406567816
+memories :  52.618732297515876
+
+Skeletonize :
+times :  104.12745237050001
+memories :  86.73477219085694
+
+Distance Map :
+times :  55.58977223550001
+memories :  85.41140866699219
+
+UEP :
+times :  75.3590674024
+memories :  195.88747967681883
+
+Morpho - closing :
+times :  51.670829991699996
+memories :  101.5615129989624
+
+Morpho - dilate :
+times :  47.62940803239999
+memories :  55.863245735931386
+
+Morpho - erode :
+times :  55.495779571700005
+memories :  57.50944794006348
+
+Morpho - Open :
+times :  51.0856118718
+memories :  102.2833307144165
