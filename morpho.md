@@ -150,7 +150,7 @@ From a measurement perspective, the Euclidean distance is the most useful becaus
 <img src="images/EDFTransform.PNG" alt="alt text" width="200" weight="center">
 </p>
 
-Where (image/Capture.PNG), is some two-dimensional distance metric. Different distance metrics result in different distance transformations. The Euclidean distance metric uses the L2 norm.
+Where <img src="images/Capture.PNG" alt="alt text" width="100" weight="center">, is some two-dimensional distance metric. Different distance metrics result in different distance transformations. The Euclidean distance metric uses the L2 norm.
 
 
 ### UEP with structuring element
