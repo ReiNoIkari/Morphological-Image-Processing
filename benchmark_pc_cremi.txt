@@ -1,24 +1,24 @@
 Function : Erode
 The average execution time for Erode is 10.535 ms.
-The average used memory is 67.24 MB.
+The average used memory is 67.24 MiB.
 The average execution time for Erode is 10.509 ms.
-The average used memory is 78.81 MB.
+The average used memory is 78.81 MiB.
 The average execution time for Erode is 10.409 ms.
-The average used memory is 102.55 MB.
+The average used memory is 102.55 MiB.
 The average execution time for Erode is 10.373 ms.
-The average used memory is 110.37 MB.
+The average used memory is 110.37 MiB.
 The average execution time for Erode is 10.436 ms.
-The average used memory is 120.14 MB.
+The average used memory is 120.14 MiB.
 The average execution time for Erode is 10.522 ms.
-The average used memory is 78.67 MB.
+The average used memory is 78.67 MiB.
 The average execution time for Erode is 10.756 ms.
-The average used memory is 78.51 MB.
+The average used memory is 78.51 MiB.
 The average execution time for Erode is 10.327 ms.
-The average used memory is 99.11 MB.
+The average used memory is 99.11 MiB.
 The average execution time for Erode is 10.384 ms.
-The average used memory is 111.95 MB.
+The average used memory is 111.95 MiB.
 The average execution time for Erode is 10.339 ms.
-The average used memory is 129.47 MB.
+The average used memory is 129.47 MiB.
 End of benchmark
 Time | Memory
 10.535 | 67.23650987243653
@@ -34,25 +34,25 @@ Time | Memory
 
 Function : Dilate
 The average execution time for Dilate is 13.996 ms.
-The average used memory is 132.80 MB.
+The average used memory is 132.80 MiB.
 The average execution time for Dilate is 13.933 ms.
-The average used memory is 125.13 MB.
+The average used memory is 125.13 MiB.
 The average execution time for Dilate is 13.963 ms.
-The average used memory is 69.84 MB.
+The average used memory is 69.84 MiB.
 The average execution time for Dilate is 13.997 ms.
-The average used memory is 89.26 MB.
+The average used memory is 89.26 MiB.
 The average execution time for Dilate is 13.972 ms.
-The average used memory is 103.53 MB.
+The average used memory is 103.53 MiB.
 The average execution time for Dilate is 14 ms.
-The average used memory is 114.43 MB.
+The average used memory is 114.43 MiB.
 The average execution time for Dilate is 13.985 ms.
-The average used memory is 115.70 MB.
+The average used memory is 115.70 MiB.
 The average execution time for Dilate is 14.042 ms.
-The average used memory is 66.69 MB.
+The average used memory is 66.69 MiB.
 The average execution time for Dilate is 13.953 ms.
-The average used memory is 79.20 MB.
+The average used memory is 79.20 MiB.
 The average execution time for Dilate is 13.963 ms.
-The average used memory is 102.69 MB.
+The average used memory is 102.69 MiB.
 End of benchmark
 Time | Memory
 13.996 | 132.79878550720215
@@ -68,25 +68,25 @@ Time | Memory
 
 Function : Open
 The average execution time for Open is 23.875 ms.
-The average used memory is 109.10 MB.
+The average used memory is 109.10 MiB.
 The average execution time for Open is 23.871 ms.
-The average used memory is 72.07 MB.
+The average used memory is 72.07 MiB.
 The average execution time for Open is 23.876 ms.
-The average used memory is 101.28 MB.
+The average used memory is 101.28 MiB.
 The average execution time for Open is 23.842 ms.
-The average used memory is 120.21 MB.
+The average used memory is 120.21 MiB.
 The average execution time for Open is 23.889 ms.
-The average used memory is 71.42 MB.
+The average used memory is 71.42 MiB.
 The average execution time for Open is 23.929 ms.
-The average used memory is 68.50 MB.
+The average used memory is 68.50 MiB.
 The average execution time for Open is 24.007 ms.
-The average used memory is 82.64 MB.
+The average used memory is 82.64 MiB.
 The average execution time for Open is 23.908 ms.
-The average used memory is 78.40 MB.
+The average used memory is 78.40 MiB.
 The average execution time for Open is 23.865 ms.
-The average used memory is 104.83 MB.
+The average used memory is 104.83 MiB.
 The average execution time for Open is 23.888 ms.
-The average used memory is 84.33 MB.
+The average used memory is 84.33 MiB.
 End of benchmark
 Time | Memory
 23.875 | 109.10307363891602
@@ -102,25 +102,25 @@ Time | Memory
 
 Function : Close-
 The average execution time for Close- is 23.835 ms.
-The average used memory is 99.62 MB.
+The average used memory is 99.62 MiB.
 The average execution time for Close- is 23.951 ms.
-The average used memory is 85.36 MB.
+The average used memory is 85.36 MiB.
 The average execution time for Close- is 23.881 ms.
-The average used memory is 91.09 MB.
+The average used memory is 91.09 MiB.
 The average execution time for Close- is 23.962 ms.
-The average used memory is 106.16 MB.
+The average used memory is 106.16 MiB.
 The average execution time for Close- is 23.906 ms.
-The average used memory is 67.52 MB.
+The average used memory is 67.52 MiB.
 The average execution time for Close- is 23.876 ms.
-The average used memory is 83.81 MB.
+The average used memory is 83.81 MiB.
 The average execution time for Close- is 23.897 ms.
-The average used memory is 87.62 MB.
+The average used memory is 87.62 MiB.
 The average execution time for Close- is 23.888 ms.
-The average used memory is 91.51 MB.
+The average used memory is 91.51 MiB.
 The average execution time for Close- is 23.99 ms.
-The average used memory is 84.06 MB.
+The average used memory is 84.06 MiB.
 The average execution time for Close- is 23.971 ms.
-The average used memory is 105.64 MB.
+The average used memory is 105.64 MiB.
 End of benchmark
 Time | Memory
 23.835 | 99.61500791168213
@@ -136,25 +136,25 @@ Time | Memory
 
 Function : Skeletonize
 The average execution time for Skeletonize is 90.008 ms.
-The average used memory is 317.51 MB.
+The average used memory is 317.51 MiB.
 The average execution time for Skeletonize is 90.049 ms.
-The average used memory is 305.41 MB.
+The average used memory is 305.41 MiB.
 The average execution time for Skeletonize is 89.871 ms.
-The average used memory is 293.50 MB.
+The average used memory is 293.50 MiB.
 The average execution time for Skeletonize is 89.519 ms.
-The average used memory is 293.00 MB.
+The average used memory is 293.00 MiB.
 The average execution time for Skeletonize is 89.483 ms.
-The average used memory is 278.10 MB.
+The average used memory is 278.10 MiB.
 The average execution time for Skeletonize is 89.596 ms.
-The average used memory is 272.93 MB.
+The average used memory is 272.93 MiB.
 The average execution time for Skeletonize is 89.347 ms.
-The average used memory is 292.30 MB.
+The average used memory is 292.30 MiB.
 The average execution time for Skeletonize is 89.499 ms.
-The average used memory is 278.73 MB.
+The average used memory is 278.73 MiB.
 The average execution time for Skeletonize is 91.644 ms.
-The average used memory is 313.26 MB.
+The average used memory is 313.26 MiB.
 The average execution time for Skeletonize is 90.386 ms.
-The average used memory is 313.02 MB.
+The average used memory is 313.02 MiB.
 End of benchmark
 Time | Memory
 90.008 | 317.50530651092527
@@ -170,25 +170,25 @@ Time | Memory
 
 Function : Distance Map
 The average execution time for Distance Map is 106.468 ms.
-The average used memory is 1828.03 MB.
+The average used memory is 1828.03 MiB.
 The average execution time for Distance Map is 108.315 ms.
-The average used memory is 1874.46 MB.
+The average used memory is 1874.46 MiB.
 The average execution time for Distance Map is 107.618 ms.
-The average used memory is 1870.37 MB.
+The average used memory is 1870.37 MiB.
 The average execution time for Distance Map is 107.64 ms.
-The average used memory is 1872.54 MB.
+The average used memory is 1872.54 MiB.
 The average execution time for Distance Map is 112.697 ms.
-The average used memory is 1884.88 MB.
+The average used memory is 1884.88 MiB.
 The average execution time for Distance Map is 112.267 ms.
-The average used memory is 1876.03 MB.
+The average used memory is 1876.03 MiB.
 The average execution time for Distance Map is 112.944 ms.
-The average used memory is 1855.63 MB.
+The average used memory is 1855.63 MiB.
 The average execution time for Distance Map is 107.629 ms.
-The average used memory is 1877.23 MB.
+The average used memory is 1877.23 MiB.
 The average execution time for Distance Map is 107.993 ms.
-The average used memory is 1897.56 MB.
+The average used memory is 1897.56 MiB.
 The average execution time for Distance Map is 108.273 ms.
-The average used memory is 1919.15 MB.
+The average used memory is 1919.15 MiB.
 End of benchmark
 Time | Memory
 106.468 | 1828.025793395996
@@ -204,25 +204,25 @@ Time | Memory
 
 Function : Ultimate Points
 The average execution time for Ultimate Points is 131.642 ms.
-The average used memory is 1842.47 MB.
+The average used memory is 1842.47 MiB.
 The average execution time for Ultimate Points is 130.322 ms.
-The average used memory is 1874.55 MB.
+The average used memory is 1874.55 MiB.
 The average execution time for Ultimate Points is 129.484 ms.
-The average used memory is 1870.13 MB.
+The average used memory is 1870.13 MiB.
 The average execution time for Ultimate Points is 129.132 ms.
-The average used memory is 1894.90 MB.
+The average used memory is 1894.90 MiB.
 The average execution time for Ultimate Points is 130.737 ms.
-The average used memory is 1848.98 MB.
+The average used memory is 1848.98 MiB.
 The average execution time for Ultimate Points is 127.849 ms.
-The average used memory is 1828.13 MB.
+The average used memory is 1828.13 MiB.
 The average execution time for Ultimate Points is 125.55 ms.
-The average used memory is 1811.86 MB.
+The average used memory is 1811.86 MiB.
 The average execution time for Ultimate Points is 125.939 ms.
-The average used memory is 1833.96 MB.
+The average used memory is 1833.96 MiB.
 The average execution time for Ultimate Points is 126.263 ms.
-The average used memory is 1872.64 MB.
+The average used memory is 1872.64 MiB.
 The average execution time for Ultimate Points is 125.833 ms.
-The average used memory is 1827.86 MB.
+The average used memory is 1827.86 MiB.
 End of benchmark
 Time | Memory
 131.642 | 1842.4655952529906
@@ -238,25 +238,25 @@ Time | Memory
 
 Function : Morphological Filters
 The average execution time for Morphological Filters is 105.829 ms.
-The average used memory is 1820.30 MB.
+The average used memory is 1820.30 MiB.
 The average execution time for Morphological Filters is 107.794 ms.
-The average used memory is 1857.74 MB.
+The average used memory is 1857.74 MiB.
 The average execution time for Morphological Filters is 115.539 ms.
-The average used memory is 1864.59 MB.
+The average used memory is 1864.59 MiB.
 The average execution time for Morphological Filters is 112.141 ms.
-The average used memory is 1862.20 MB.
+The average used memory is 1862.20 MiB.
 The average execution time for Morphological Filters is 105.768 ms.
-The average used memory is 1863.43 MB.
+The average used memory is 1863.43 MiB.
 The average execution time for Morphological Filters is 106.113 ms.
-The average used memory is 1870.44 MB.
+The average used memory is 1870.44 MiB.
 The average execution time for Morphological Filters is 106.59 ms.
-The average used memory is 1871.50 MB.
+The average used memory is 1871.50 MiB.
 The average execution time for Morphological Filters is 105.539 ms.
-The average used memory is 1878.27 MB.
+The average used memory is 1878.27 MiB.
 The average execution time for Morphological Filters is 105.83 ms.
-The average used memory is 1869.01 MB.
+The average used memory is 1869.01 MiB.
 The average execution time for Morphological Filters is 111.211 ms.
-The average used memory is 1871.71 MB.
+The average used memory is 1871.71 MiB.
 End of benchmark
 Time | Memory
 105.829 | 1820.3002189102174
@@ -272,25 +272,25 @@ Time | Memory
 
 Function : Morphological Filters
 The average execution time for Morphological Filters is 115.699 ms.
-The average used memory is 1738.63 MB.
+The average used memory is 1738.63 MiB.
 The average execution time for Morphological Filters is 117.6 ms.
-The average used memory is 1761.94 MB.
+The average used memory is 1761.94 MiB.
 The average execution time for Morphological Filters is 115.968 ms.
-The average used memory is 1753.75 MB.
+The average used memory is 1753.75 MiB.
 The average execution time for Morphological Filters is 115.803 ms.
-The average used memory is 1774.62 MB.
+The average used memory is 1774.62 MiB.
 The average execution time for Morphological Filters is 114.111 ms.
-The average used memory is 1766.13 MB.
+The average used memory is 1766.13 MiB.
 The average execution time for Morphological Filters is 106 ms.
-The average used memory is 1803.23 MB.
+The average used memory is 1803.23 MiB.
 The average execution time for Morphological Filters is 105.948 ms.
-The average used memory is 1809.85 MB.
+The average used memory is 1809.85 MiB.
 The average execution time for Morphological Filters is 105.962 ms.
-The average used memory is 1816.45 MB.
+The average used memory is 1816.45 MiB.
 The average execution time for Morphological Filters is 106.109 ms.
-The average used memory is 1808.20 MB.
+The average used memory is 1808.20 MiB.
 The average execution time for Morphological Filters is 105.764 ms.
-The average used memory is 1830.10 MB.
+The average used memory is 1830.10 MiB.
 End of benchmark
 Time | Memory
 115.699 | 1738.6305940933228
@@ -306,25 +306,25 @@ Time | Memory
 
 Function : Morphological Filters
 The average execution time for Morphological Filters is 109.085 ms.
-The average used memory is 1810.64 MB.
+The average used memory is 1810.64 MiB.
 The average execution time for Morphological Filters is 117.281 ms.
-The average used memory is 1840.18 MB.
+The average used memory is 1840.18 MiB.
 The average execution time for Morphological Filters is 118.491 ms.
-The average used memory is 1861.52 MB.
+The average used memory is 1861.52 MiB.
 The average execution time for Morphological Filters is 109.108 ms.
-The average used memory is 1871.88 MB.
+The average used memory is 1871.88 MiB.
 The average execution time for Morphological Filters is 109.148 ms.
-The average used memory is 1894.72 MB.
+The average used memory is 1894.72 MiB.
 The average execution time for Morphological Filters is 117.7 ms.
-The average used memory is 1772.70 MB.
+The average used memory is 1772.70 MiB.
 The average execution time for Morphological Filters is 119.128 ms.
-The average used memory is 1735.78 MB.
+The average used memory is 1735.78 MiB.
 The average execution time for Morphological Filters is 128.843 ms.
-The average used memory is 1737.22 MB.
+The average used memory is 1737.22 MiB.
 The average execution time for Morphological Filters is 121.767 ms.
-The average used memory is 1746.44 MB.
+The average used memory is 1746.44 MiB.
 The average execution time for Morphological Filters is 124.402 ms.
-The average used memory is 1747.71 MB.
+The average used memory is 1747.71 MiB.
 End of benchmark
 Time | Memory
 109.085 | 1810.639268951416
@@ -340,25 +340,25 @@ Time | Memory
 
 Function : Morphological Filters
 The average execution time for Morphological Filters is 119.106 ms.
-The average used memory is 1754.36 MB.
+The average used memory is 1754.36 MiB.
 The average execution time for Morphological Filters is 119.8 ms.
-The average used memory is 1749.68 MB.
+The average used memory is 1749.68 MiB.
 The average execution time for Morphological Filters is 119.115 ms.
-The average used memory is 1780.45 MB.
+The average used memory is 1780.45 MiB.
 The average execution time for Morphological Filters is 119.327 ms.
-The average used memory is 1790.46 MB.
+The average used memory is 1790.46 MiB.
 The average execution time for Morphological Filters is 124.949 ms.
-The average used memory is 1770.69 MB.
+The average used memory is 1770.69 MiB.
 The average execution time for Morphological Filters is 126.558 ms.
-The average used memory is 1802.74 MB.
+The average used memory is 1802.74 MiB.
 The average execution time for Morphological Filters is 120.669 ms.
-The average used memory is 1800.49 MB.
+The average used memory is 1800.49 MiB.
 The average execution time for Morphological Filters is 122.843 ms.
-The average used memory is 1800.34 MB.
+The average used memory is 1800.34 MiB.
 The average execution time for Morphological Filters is 123.711 ms.
-The average used memory is 1800.85 MB.
+The average used memory is 1800.85 MiB.
 The average execution time for Morphological Filters is 121.89 ms.
-The average used memory is 1788.12 MB.
+The average used memory is 1788.12 MiB.
 End of benchmark
 Time | Memory
 119.106 | 1754.3618028259277
