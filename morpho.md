@@ -190,11 +190,11 @@ Usualy,The Ultimate eroded point operation is used as a marker for objects locat
 
 ## Results
 
-This section will be dedicated to the results obtained using the default operations in ImageJ and if there are available some third party plugins. The image used is one of the sample available by default in ImageJ which is : Embryos. The original image will always be in binary mode.
+This section is dedicated to the results obtained using the default operations in ImageJ and if there are available some third party plugins. The image used is one of the sample available by default in ImageJ, called "Embryos". The input image will always be in binary mode.
 
 ### Erode and Dilate
 
-The erosion and dilates methods have been using the default functions available in ImageJ and with plugins created by the Institut Jean-Pierre Bourgin - INRA(MorphoLibJ). The original file must be a binary image, the final one will be of the same type. In ImageJ, we can't select a specific structuring element (or should i say we didn't find ---to be safe???? to debate-----)this one being a disk of size 3 whereas the MorphoLibJ plugin let the choice to the user.
+The erosion and dilates methods have been runing the default functions available in ImageJ and plugins created by the Institut Jean-Pierre Bourgin - INRA(MorphoLibJ). The original file have to be be a binary image, and the process' result will be of the same type. We encountered a problem by searching how to select a specific structuring element in ImageJ. Indeed, if the option exists, we didn't found it, this one being a disk of size 3 whereas the MorphoLibJ plugin allows the user to choose.
 
 <p align="center">
 <img src="/Results/combined_erode.png" width="1000" weight="center">
