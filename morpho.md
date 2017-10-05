@@ -1,4 +1,4 @@
-# Mathematical Morphology
+# Tiny Image in JavaScript : Mathematical Morphology
 
 Vincent DEJONGHE\*, Adrien MENDES SANTOS, Rodolphe TWOREK
 
@@ -16,6 +16,10 @@ For the purposes of object or defect identification required in industrial visio
 In this project, we will focus on the Morphology part from Image Processing, we will initially explain some main operations in this area, and observe some obtained results to finally discuss about it.
 
 ## Material & Methods
+
+ImageJ is a mutiplatform open source software for image processing developped by the National Institutes of Health. It was originaly developped for biomedical uses. It allows for example to analyze electrophoresis gels, or the the tumor detection and analyzis. It use since broad to other fields. Thus, a huge amount of current operation are yet doable with the software : greyscale adjustment, noise reduction, lightning correction, boundaries detection, Fourier transform (direct and invert), thresholding, logical and arithmetical operation between images and linear transform. Processes taken from mathematical morphology are also available such as erosion, dilatation, watersheld, skeletonize, etc. Moreover, ImageJ allows the user to add new functionnalities by create plugins and macros.
+Our goal is to study those latter functions. 
+
 In order to be able to compare and discuss about the different algorithms in a practical and effective way we decided to create a benchmark.
 
 It could be described this way:
