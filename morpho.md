@@ -128,6 +128,14 @@ This process is mostly compared as an explanation to a slow-burning material. Fi
 The skeleton/MAT can be produced in two main waysusing the erode operator or the distance transform. The first successively erodes away pixels from the boundary (while preserving the end points of line segments) until no more thinning is possible whereas the second calculates the distance transform of the image. The skeleton then lies along the singularities in the distance transform. The latter approach seems to be more adapted to the MAT calculation. Indeed, the MAT is the same as the distance transform but with all points off the skeleton suppressed to zero.
  Whether differents skeletonization algorithm exist, the general effects are all similar, as are the uses to which the skeletons are put.
 
+Mathematically, skeletonize is reprensented by :
+
+<p align="center">
+<img src="images/erosion_formule.PNG" alt="alt text" width="1000" weight="center">
+</p>
+
+Where <img src="images/Signe1.PNG" alt="alt text" width="40" weight="center"> and <img src="images/Signe2.PNG" alt="alt text" width="40" weight="center">
+
 The skeleton aims to provide a simple representation of a shape that preserves many of the topological and size characteristics of the original. Thus, for instance, we can get a rough idea of the length of a shape by considering just the end points of the skeleton and finding the maximally separated pair of end points on the skeleton. Similarly, we can distinguish many qualitatively different shapes from one another on the basis of how many 'triple points' there are, i.e. points where at least three branches of the skeleton meet.
 
 In addition, to this, the MAT  has the property that it can be used to exactly reconstruct the original shape if necessary.
