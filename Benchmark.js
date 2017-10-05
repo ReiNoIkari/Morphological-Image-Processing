@@ -49,8 +49,8 @@ function startBenchmark(img, functionName, parameter)
         var avg_mem = memory/1000;
 	
         avg_mem = avg_mem/1048576; //convert bytes to Mebibytes
-        IJ.log("The average execution time for "+functionName+" is "+avg_time+" ms.\n");
-        IJ.log("The average used memory is "+avg_mem.toFixed(2)+" MiB.\n");
+        IJ.log("The average execution time for "+functionName+" is "+avg_time.toFixed(5)+" ms.\n");
+        IJ.log("The average used memory is "+avg_mem.toFixed(5)+" MiB.\n");
         timeList.push(avg_time);
         memoryList.push(avg_mem);
     }
