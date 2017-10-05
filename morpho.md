@@ -329,5 +329,7 @@ References test [^GIL2002],[^LEG2016],[^GON1992],[^HAR1992],[^JAI1989],[^VER1991
   
   [^VER1991]: D. Vernon Machine Vision, Prentice-Hall, 1991. 
   
+  [^BAI2004]: Donald G Bailey, An Efficient Euclidean Distance Transform, 2004. 
+  
   
 
