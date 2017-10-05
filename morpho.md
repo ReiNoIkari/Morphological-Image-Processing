@@ -317,6 +317,11 @@ Therefore, as we can see, the output image obtained by the "Line 45 degree" whic
 
 This proves that the result obtained during Mathematical Morphology is dependent on the choice of the Kernel and not of the plugin since the method use is the same.
 
+Let's continue with the benchmarks results.
+Between the original ImageJ function and the plugin created by the INRA, there is quite a difference as it can be observed. 
+Let's analyse 
+
+
 ## Conclusion
 
 References test [^GIL2002],[^LEG2016],[^GON1992],[^HAR1992],[^JAI1989],[^VER1991]
