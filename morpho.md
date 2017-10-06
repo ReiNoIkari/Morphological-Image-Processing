@@ -1,6 +1,8 @@
 # Tiny Image in JavaScript : Mathematical Morphology
 
-Vincent DEJONGHE\*, Adrien MENDES SANTOS, Rodolphe TWOREK
+Vincent DEJONGHE, Adrien MENDES SANTOS, Rodolphe TWOREK\*
+
+Link to Github :
 
 ## Introduction
 
@@ -87,7 +89,7 @@ For our example 3×3 structuring element, the effect of this operation is to rem
 </p>
 **Fig.9: Result of the Erode operation on 8 using as a structuring element a disk of 3 by 3 size. This operation is done 2 times in a row**
 
-### Opening and Closing
+### Opening and Closing (rappeler pourquoi c'est plus safe que erode)
 
 
 Opening and closing are two secondary operations that play an important role in morphological image processing. Both could be defined as the combination of erosions and dilations and since they are derived from eroding and dilate they posses the same limits as the original techniques which means they can only be applied to binary images (or a graylevel image in particular cases). The general aims of those two operations are quite simple: making an image as smooth as possible without size change (or at least limited).
