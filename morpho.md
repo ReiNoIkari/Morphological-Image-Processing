@@ -171,7 +171,7 @@ Mathematically, skeletonize is reprensented by :
 <img src="images/skeletonyze_formula.PNG" alt="alt text" width="340" weight="center">
 </p>
 **Equation 6 : skeletonyze Formula**
-Where <img src="images/signe1.PNG" alt="alt text" width="40" weight="center"> and <img src="images/signe2.PNG" alt="alt text" width="40" weight="center"> are the morphological erosion and opening.
+Where <img src="images/signe1.PNG" alt="alt text" width="40"> and <img src="images/signe2.PNG" alt="alt text" width="40"> are the morphological erosion and opening.
 
 The skeleton aims to provide a simple representation of a shape that preserves many of the topological and size characteristics of the original. Thus, for instance, we can get a rough idea of the length of a shape by considering just the end points of the skeleton and finding the maximally separated pair of end points on the skeleton. Similarly, we can distinguish many qualitatively different shapes from one another on the basis of how many 'triple points' there are, i.e. points where at least three branches of the skeleton meet.
 
