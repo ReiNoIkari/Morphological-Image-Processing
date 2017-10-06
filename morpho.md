@@ -6,21 +6,23 @@ Link to Github : https://github.com/ReiNoIkari/Morphological-Image-Processing
 
 ## Introduction
 
-The developement of some bioinformatics tool, more speciﬁcally, DNA sequencer made that every day a huge number of genomes are sequenced. Therefore, scienctifcs have access to huge databases with raw sequences which can make studing organism easier. One problem still persist : those collected data are worthless if they are not interpreted and the concern is that a lifetime won't be enough for a scientific to follow the flow. That’s were informatics come in order to help to analyse those huge amount of raw data, and in our case more precisely Image Processing. 
+Nowadays, scienctifcs have access to huge images databases which can make studing organism easier.  One problem still persist : those collected data are worthless if they are not interpreted and the concern is that a lifetime won't be enough for a scientific to follow the flow. That’s were informatics come in order to help to analyse those huge amount of raw data, and in our case more precisely Image Processing. Indeed, the developement of some Image processing tool made that easier to computerize and analyse.
 
 Mathematical morphology has been invented in 1964 by Georges Matheron and Jean Serra in the MINES ParisTech's laboratories. Its development was always motivated by industrial application. At the begining, the main purpose was to answers issues in the mining exploitation field. Then this purpose diversified itself to biology, medical imagery, material science, industrial vision, multimedia, teledetection and geophisic, etc. It consist in a mathematical and informatical theory and technique which is linked with algebra, the lattice theory, topology and probabilities.
 
 Currently, one of the mathematical morphology’s main field is Image Processing. It allows to use particularly filtering, segmentation and quantification tools. Since it’s emergence in 1964, it knows a growing success and constitues a part of many Image Processing softwares yet.
-The main purpose of mathematical morphology is to study or process a set with an other set called structuring element, wich is used as a probe. For each position of this structing element, a look is taken about its ability to touch or be inclued on the main set. The result of this process is an output set.
-This involves a loss of information, but also a great elimination of structures that do not fits to certains criteria such as width or volume.
+
 For the purposes of object or defect identification required in industrial vision applications, the operations of mathematical morphology are more useful than the convolution operations employed in signal processing because the morphological operators relate directly to shape.
 
-In this project, we will focus on the Morphology part from Image Processing, we will initially explain some main operations in this area, and observe some obtained results to finally discuss about it.
+In this project, we will focus on the Morphology part from Image Processing, we will initially explain some main operations in this area, then observe obtained results from those operation applied on an image, to finally discuss about them.
 
 ## Material & Methods
 
 ImageJ is a mutiplatform open source software for image processing developped by the National Institutes of Health. It was originaly developped for biomedical uses. It allows for example to analyze electrophoresis gels, or the the tumor detection and analyzis. It use since broad to other fields. Thus, a huge amount of current operation are yet doable with the software : greyscale adjustment, noise reduction, lightning correction, boundaries detection, Fourier transform (direct and invert), thresholding, logical and arithmetical operation between images and linear transform. Processes taken from mathematical morphology are also available such as erosion, dilatation, watersheld, skeletonize, etc. Moreover, ImageJ allows the user to add new functionnalities by create plugins and macros.
 Our goal is to study those latter functions. 
+
+The main purpose of mathematical morphology is to study or process a set with an other set called structuring element, wich is used as a probe. For each position of this structing element, a look is taken about its ability to touch or be inclued on the main set. The result of this process is an output set.
+This involves a loss of information, but also a great elimination of structures that do not fits to certains criteria such as width or volume.
 
 In order to be able to compare and discuss about the different algorithms in a practical and effective way we decided to create a benchmark.
 
