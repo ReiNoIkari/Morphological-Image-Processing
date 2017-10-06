@@ -355,22 +355,25 @@ The image obtained is as follow :
 
 **Fig.16: Result of the EDM operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin**
 
-As we can see, we have two main results. The objects containing no (or not many) background pixels inside in the original picture, have a better score(which can be seen by their brighter pixels, the more they are the higher score thet got).
-The others object, containg many background pixels have more mitigated scores. This is due to the fact that the background pixels have an influence in the distance(vicent passe par la, thanks) reducing the score.
+As we can see, we have two main results. The objects containing no (or not many) background pixels inside in the original picture, have a better score. The furthest from any background pixel the brighter the pixel, and the higher the score.
+The others object, containg many background pixels have lower scores. This is due to the fact that the background pixels in the middle of the object reduce the distances between foreground and background pixels.
 
-Like the skeletonize operator, we still decided to run some benchmarks for the Euclidean distance map method. We obtained those results :
+Here are the benchmark's results for the skeletonize method :
 
 
 <p align="center">
 <img src="/Results/benchmark_EDM.png" width="1000" weight="center">
 </p>
 
+** fig?? **
+
 As we can see, for the  for the EDM operator we have an average excution time of 155.589 ms and average memory used of 85.411 MiB.
 
 ### Ultimate eroded point
 
-The Ultimate eroded point is a variant of the erosion method, but instead of eroding only one time it will erode multiple times only one and only point remains for each object present in an image. The input is a binary image, but the output will be a graylevel image.
- The obtained result is:
+The Ultimate eroded point is based on the EDM method. The input is a binary image, but the output will be a graylevel image.
+It will only keep the pixels with the highest scores on the Euclidean Distance Map (the brightest ones) for each object.
+ Here are the results obtained with this method :
 
 <p align="center">
 <img src="/Results/combined_UEP.png" alt="alt text" width="8000" weight="center">
@@ -388,11 +391,13 @@ Like the skeletonize operator, and the EDM method we still decided to run some b
 <img src="/Results/benchmark_uep.png" width="1000" weight="center">
 </p>
 
-We can observe for the UEP method we have an average excution time of 75.359 ms and average memory used of 195.887 MiB.
+**Fig ?? **
+
+We can observe for the UEP method that we have an average excution time of 75.359 ms and average memory used of 195.887 MiB.
 
 ## Discussion 
 
-Let's analyse the images we obtained during the result phase. As we can see, using the same structuring element result in having the same output image has no significative effect, but using a completely different structuring element results some differences. It can be  explained by the fact the other plugin we used, are only an amelioration of the origial ImageJ functions(the mathematical algorithm being the same for all the erosions for example) but instead the basic function has been modified in order to add more parameters like the starting element change (INRA plugins).
+Let's analyse the images we obtained during the result phase. As we can see, using the same structuring element has no significative effect, but using a completely different structuring element modifies the output results. It can be  explained by the fact the other plugin we used, are only an amelioration of the origial ImageJ functions(the mathematical algorithm being the same for all the erosions for example) but instead the basic function has been modified in order to add more parameters like the starting element change (INRA plugins).
 Therefore, the output image obtained by the "Line 45 degree" which correspond to the diagonal of the kernel, is of course not completely different but the differences obtained are easily seeable by eye.
 
 This proves that the result obtained during Mathematical Morphology is dependent on the choice of the Kernel and not of the plugin since the method used is the same.
