@@ -2,7 +2,7 @@
 
 Vincent DEJONGHE, Adrien MENDES SANTOS, Rodolphe TWOREK\*
 
-Link to Github :
+Link to Github : https://github.com/ReiNoIkari/Morphological-Image-Processing
 
 ## Introduction
 
