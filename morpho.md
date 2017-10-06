@@ -6,13 +6,13 @@ Link to Github : https://github.com/ReiNoIkari/Morphological-Image-Processing
 
 ## Introduction
 
-Nowadays, scienctifcs have access to huge images databases which can make studing organism easier.  One problem still persist : those collected data are worthless if they are not interpreted and the concern is that a lifetime won't be enough for a scientific to follow the flow. That’s were informatics come in order to help to analyse those huge amount of raw data, and in our case more precisely Image Processing. Indeed, the developement of some Image processing tool made that easier to computerize and analyse.
+Nowadays, scientists have access to huge image databases which can make studying organisms easier.  One problem still persist : those collected datas are worthless if they are not interpreted and the concern is that a lifetime won't be enough for a scientist to follow the flow. That’s were informatics come in order to help to analyse those huge amount of raw data, and in our case more precisely Image Processing. Indeed, the developement of some Image processing tool made that easier to computerize and analyse.
 
-Mathematical morphology has been invented in 1964 by Georges Matheron and Jean Serra in the MINES ParisTech's laboratories. Its development was always motivated by industrial application. At the begining, the main purpose was to answers issues in the mining exploitation field. Then this purpose diversified itself to biology, medical imagery, material science, industrial vision, multimedia, teledetection and geophisic, etc. It consist in a mathematical and informatical theory and technique which is linked with algebra, the lattice theory, topology and probabilities.
+Mathematical morphology has been invented in 1964 by Georges Matheron and Jean Serra in the MINES ParisTech's laboratories. Its development was always motivated by industrial application. At the begining, the main purpose was to answer issues in the mining exploitation field. Then this purpose diversified itself to biology, medical imagery, material science, industrial vision, multimedia, teledetection, geophisic, etc. It consist in a mathematical and informatical theory and technique which is linked with algebra, the lattice theory, topology and probabilities.
 
-Currently, one of the mathematical morphology’s main field is Image Processing. It allows to use particularly filtering, segmentation and quantification tools. Since it’s emergence in 1964, it knows a growing success and constitues a part of many Image Processing softwares yet.
+Currently, one of the mathematical morphology’s main field is Image Processing. It particularly allows to use filtering, segmentation and quantification tools. Since it’s emergence in 1964, it knows a growing success and constitues a part of many Image Processing softwares yet.
 
-For the purposes of object or defect identification required in industrial vision applications, the operations of mathematical morphology are more useful than the convolution operations employed in signal processing because the morphological operators relate directly to shape.
+For the purposes of object identification required in industrial vision applications, the operations of mathematical morphology are more useful than the convolution operations employed in signal processing because the morphological operators relate directly to shape.
 
 In this project, we will focus on the Morphology part from Image Processing, we will initially explain some main operations in this area, then observe obtained results from those operation applied on an image, to finally discuss about them.
 
@@ -28,9 +28,9 @@ In order to be able to compare and discuss about the different algorithms in a p
 
 It could be described this way:
 
-Firstly, we initialise our classes a hundred times during a warm up phase so that we limit the wasted time corresponding to the initializing phase during the critical phase.
-Then, in the benchmark part itself, we run our operations 1,000 times to be sure to get enough data and we run those operations 10 times in order to limit variations (meaning that in the end we ran 10,000 times each operation)
-In order to compare the relevance of the structuring element, we decided to run our different operation with a completely different kernel than the one used by default in ImageJ. This kernel is shaped as a 45 degrees diagonal of a 3 by 3 pixel square.
+Firstly, we initialise our classes a hundred times during a warm up phase so **that we limit the wasted time corresponding to the initializing phase during the critical phase.**
+Then, in the benchmark part itself, we run **our operations** 1,000 times to be sure to get enough data and we run **those operations** 10 times in order to statistically analyse (meaning that in the end we ran 10,000 times each operation)
+In order to compare the relevance of the structuring element, we decided to run our different operation with a completely different kernel than the one used by default in ImageJ. This kernel is shaped as a 45 degrees diagonal in a 3 by 3 pixel square.
 
 ### Hit-or-Miss
 Hit or miss is what could be defined as the basic operation of the morphological area of image processing. It is used to detect occurrences given binary patterns in fixed orientations. It can be used to look for several patterns (or alternatively, for the same pattern in several orientations) simply by running successive transforms using different structuring elements, and then running OR operation between all the results. Therefore, Most of the other morphological operations are derived from this notion(opening, closing, erosion, dilation...).
@@ -42,7 +42,7 @@ In general, the hit or miss transform is defined as :
 <p align="center">
 <img src="images/hit_or_miss_formule.PNG" alt="alt text" width="340" weight="center">
 </p>
-With the condition that B1 ∩ B2 = Ø, because if B1 is not a negative mask of B2, the hit-miss transform would result in the empty set.
+With the condition that B1 ∩ B2 = Ø, because if B1 is not a negative mask of B2, the hit-miss transform would result in the empty set. **reference**
 <p align="center">
 <img src="images/hit_or_miss.gif" alt="alt text" width="340" weight="center">
 </p>
@@ -75,7 +75,8 @@ For our example 3×3 structuring element, the effect of this operation is to set
 <p align="center">
 <img src="/images/combined_bridge_dila.png" alt="alt text" width="1000" weight="center">
 </p>
-**Fig.8: Result of the Dilate operation on 8 using as a structuring element a disk of 3 by 3 size. This operation is done 2 times in a row**
+
+**Fig.8: Result of the Dilate operation using as a structuring element a disk of 3 by 3 size. This operation is done 2 times in a row**
 
 The erosion operator is the dilatiation operator's dual. Indeed, each of the foreground pixels in the input image in turn are considered. For each foreground pixel we superimpose the structuring element on top of the input image so that the origin of the structuring element coincides with the input pixel coordinates. If for every pixel in the structuring element, the corresponding pixel in the image underneath is a foreground pixel, then the input pixel is left as it is. If any of the corresponding pixels in the image are background, however, the input pixel is also set to background value. 
 
@@ -88,7 +89,8 @@ For our example 3×3 structuring element, the effect of this operation is to rem
 <p align="center">
 <img src="/images/combined_bridge_ero.png" alt="alt text" width="1000" weight="center">
 </p>
-**Fig.9: Result of the Erode operation on 8 using as a structuring element a disk of 3 by 3 size. This operation is done 2 times in a row**
+
+**Fig.9: Result of the Erode operation using as a structuring element a disk of 3 by 3 size. This operation is done 2 times in a row**
 
 ### Opening and Closing (rappeler pourquoi c'est plus safe que erode)
 
@@ -153,9 +155,9 @@ It is important to note that opening and closing are less destructive of the ori
 
 ### Skeletonize
 
-Skeletonization (also called "Medial Axis Transform" or MAT) allows the user to reduce a focused region from a binary image to its skeletal remnant. Indeed, most of the foreground pixels are throwwed when the connectivity is concerved. 
+Skeletonization (also called "Medial Axis Transform" or MAT) allows the user to reduce a focused region from a binary image to its skeletal remnant. Indeed, most of the foreground pixels are throwed when the connectivity is concerved. 
 This process is mostly compared as an explanation to a slow-burning material. Fire is set simultaneously to all the boundary of the area of interest. This fire slowly moves into the interior of the area. A trace remains at each point when the fire coming from each area meets itself. This trace is called "quench line" and represents the skeleton of the area.
-The skeleton/MAT can be produced in two main waysusing the erode operator or the distance transform. The first successively erodes away pixels from the boundary (while preserving the end points of line segments) until no more thinning is possible whereas the second calculates the distance transform of the image. The skeleton then lies along the singularities in the distance transform. The latter approach seems to be more adapted to the MAT calculation. Indeed, the MAT is the same as the distance transform but with all points off the skeleton suppressed to zero.
+The skeleton/MAT can be produced in two main ways using the erode operator or the distance transform. The first successively erodes away pixels from the boundary (while preserving the end points of line segments) until no more thinning is possible whereas the second calculates the distance transform of the image. The skeleton then lies along the singularities in the distance transform. The latter approach seems to be more adapted to the MAT calculation. Indeed, the MAT is the same as the distance transform but with all points off the skeleton suppressed to zero.
  Whether differents skeletonization algorithm exist, the general effects are all similar, as are the uses to which the skeletons are put.
 
 Mathematically, skeletonize is reprensented by :
@@ -177,7 +179,7 @@ As with thinning, slight irregularities in a boundary may interfere with recogni
 </p>
 
 
-**Fig.13: Result of the euclidean distance mapping transform on fig.13 using as a structuring element a disk of 3 by 3 size**
+**Fig.13: Result of the euclidean distance mapping transform using as a structuring element a disk of 3 by 3 size**
 
 
 ### Euclidean Distance Mapping
@@ -199,13 +201,13 @@ This metric is isotropic in that distances measured are independent of object or
 </p>
 
 
-**Fig.13: Result of the Euclidean distance mapping on fig.13 using as a structuring element a disk of 3 by 3 size**
+**Fig.13: Result of the Euclidean distance mapping using as a structuring element a disk of 3 by 3 size**
 
 
 ### Ultimate eroded point
 
-Ultimate eroded point (or UEP) is derived from the erosion operator and is defined as the last point that would be present after recursively erodes until the last pass before the object would be visible. 
-In order to apply multiple UEP on an image, each object is considered separately, which makes possible to use different numbers of erosions for each object and so having the ultimate eroded point not only for an image but for each object which is useful for cells images for example. 
+**Ultimate eroded point (or UEP) is derived from the erosion operator and is defined as the last point that would be present after recursively eroding until the last pass before the object would be invisible. 
+In order to apply multiple UEP on an image, each object is considered separately, which makes possible to use different numbers of erosions for each object and so having the ultimate eroded point not only for an image but for each object which is useful for cells images for example. **
 
 The ultimate erode point is represented as follow :
 
@@ -213,7 +215,7 @@ The ultimate erode point is represented as follow :
 <img src="images/UEP_formula.png" alt="alt text" width="400" weight="center">
 </p>
 
-In an image, the algorithm will search for the brightest pixel for each objet and be sure that none of is neighbors are as bright as it. If it is the sole point, then it will be the only one to be part of the UEP, if there are multiple pixels of the same object, then the center of the brightest pixels will be used. Furthermore, in order to be categorized as a UEP, the determined pixel besides being the brightest need to be a point that is equidistant from at least two (but usually three) boundary locations. In order to find the brightest point, the UEP method uses the peaks or local maxima of the EDM.
+In an image, the algorithm will search for **the brightest pixel for each objet and be sure that none of is neighbors are as bright as it**. If it is the sole point, then it will be the only one to be part of the UEP, if there are multiple pixels of the same object, then the center of the brightest pixels will be used. Furthermore, in order to be categorized as a UEP, the determined pixel besides being the brightest need to be a point that is equidistant from at least two (but usually three) boundary locations. **In order to find the brightest point, the UEP method uses the peaks or local maxima of the EDM.**
 Usualy,The Ultimate eroded point operation is used as a marker for objects locations
 
 <p align="center">
@@ -230,7 +232,7 @@ This section is dedicated to the results obtained using the default operations i
 
 ### Erode and Dilate
 
-The erosion and dilates methods have been runing the default functions available in ImageJ and plugins created by the Institut Jean-Pierre Bourgin - INRA(MorphoLibJ). The original file have to be be a binary image, and the process' result will be of the same type. We encountered a problem by searching how to select a specific structuring element in ImageJ. Indeed, if the option exists, we didn't find it, this one being a disk of size 3 whereas the MorphoLibJ plugin allows the user to choose.
+The erosion and dilates methods have been runing the default functions available in ImageJ and plugins created by the Institut Jean-Pierre Bourgin - INRA(MorphoLibJ). The original file have to be be a binary image, and the process' result will be of the same type. We encountered a problem by searching how to select a specific structuring element pattern in ImageJ. Indeed, if the option exists, we didn't find it, the default one being a disk of size 3 whereas the MorphoLibJ plugin allows the user to choose between disks, diamonds, lines...
 
 <p align="center">
 <img src="/Results/combined_erode.png" width="1000" weight="center">
@@ -242,7 +244,7 @@ The erosion and dilates methods have been runing the default functions available
 
 
 As we can see some black areas that were inside white figures have been connected with the outside due to some foreground pixel removal. This is due to the fact that some foreground pixel have been removed (due to not being surrounded by other foreground pixels). Moreover, the results seems to be the same whatever we use one plugin or the other.
-(peut etre faire une image avec une strucruting element COMPLETEMENT DIFF pour montrer que le kernel joue son role??)
+**(peut etre faire une image avec une strucruting element COMPLETEMENT DIFF pour montrer que le kernel joue son role??) -> mettre les images par 4 : 2 du haut = original + imageJ, 2 du bas = morpho + morpho 45° **
 
 The same results have been obtained by the dilation operation as we can see :
 
@@ -256,7 +258,7 @@ The same results have been obtained by the dilation operation as we can see :
 
 This time, it's background pixels that are removed in favour of foreground pixels.
 
-A benchmark has also been done in order to compare the excution time and the usage of memory for both plugins which are below :
+A benchmark was done in order to compare the excution time and the usage of memory for both plugins which are below :
 
 <p align="center">
 <img src="/Results/combined_benchmark_erode.png" width="1000" weight="center">
@@ -264,9 +266,11 @@ A benchmark has also been done in order to compare the excution time and the usa
 <p align="center">
 <img src="/Results/combined_benchmark_dilate.png" width="1000" weight="center">
 </p>
+
+**Fig.13: Benchmarks of the erosion and dilation operation using as a structuring element a disk of 3 by 3 pixels size. Left : Results of the ImageJ plugin  right : Results of the MorphoLibJ plugin**
+
 As we can see the average excution time from 10000 runs as the average memory used for the default ImageJ plugin are less than the MorphoLibJ plugin for both of the operations. For ImageJ we have an average excution time of 13.683 ms and average memory used of 52.066 MiB while for the MorphoLibJ we have an average excution time of 55.496 ms and average memory used of 57.509 MiB
 
-**Fig.13: Benchmarks of the erosion and dilation operation using as a structuring element a disk of 3 by 3 size. Left : Results of the ImageJ plugin  right : Results of the MorphoLibJ plugin**
 
 ### Open and Close
 
@@ -284,7 +288,7 @@ The result obtains for the opening are as follow :
 
 
 As a reminder, an opening operator could be resumed as an erode followed by a dilation. As a consequence, we should see some traces of it.
-By having a closer look, we can see that indeed an erosion has been applied to the picture, but that compared to the fig.12 the black areas are little less more present. We can explain this as the fact that compared to the fig.12, just after the initial erosion, the dilation will have for effect to expand the boundaries of the objects. Thus, because small ones were removed in erosion step, biggest elements are brought back.
+By having a closer look, we can see that indeed an erosion has been applied to the picture, but that compared to the fig.12 the black areas are little less more present. We can explain this as the fact that compared to the **fig.12 (Fig erosion)**, just after the initial erosion, the dilation will have for effect to expand the boundaries of the objects. Thus, because small ones were removed in erosion step, biggest elements are brought back.
 
 The results obtained from the closing operation are the follow :
 
@@ -300,8 +304,7 @@ We can observe that closing have the opposite effect of opening : instead of ope
 
 It is important to note that opening and closing are less destructive of the original boundary shape than erode and dilate.
 
-As for the erosion and dilate methods, we have performed some benchmarks :
-
+Here are the benchmark's results for the open and close methods :
 
 <p align="center">
 <img src="/Results/combined_benchmark_open.png" width="1000" weight="center">
@@ -309,12 +312,15 @@ As for the erosion and dilate methods, we have performed some benchmarks :
 <p align="center">
 <img src="/Results/combined_benchmark_close.png" width="1000" weight="center">
 </p>
+
+**Fig.13: Benchmarks of the open and close operations using as a structuring element a disk of 3 by 3 size. Left : Results of the ImageJ plugin  right : Results of the MorphoLibJ plugin**
+
 As we can see the average excution time from 10000 runs as the average memory used for the default ImageJ plugin are less than the MorphoLibJ plugin for both of the operations. For the opening operation, for ImageJ we have an average excution time of 29.928 ms and average memory used of 52.618 MiB while for the MorphoLibJ we have an average excution time of 51.086 ms and average memory used of 102.283 MiB. For the closing operation, for ImageJ we have an average excution time of 29.941 ms and average memory used of 52.619 MiB while for the MorphoLibJ we have an average excution time of 51.671 ms and average memory used of 101.562 MiB
 
 ### Skeletonize
 
 The Skeletonize operator is used in order to only have left a skeleton (from the boundary of an object). It takes as input a binary image, and as output a binary too.
-Only the default ImageJ default function was used as we didn't find any ready to use plugin that we thought interesting.
+Only the default ImageJ default function was used as we didn't find any ready to use plugin that we thought pertinent.
 
 The skeletonize operation give an image as follows :
 
@@ -324,11 +330,11 @@ The skeletonize operation give an image as follows :
 
 **Fig.15: Result of the skeletonize operation using as a structuring element a disk of 3 by 3 size. Left : Original image, right : made with ImageJ default function**
 
-The cell that only (or almost) contained foreground pixels only leave a little trace as a skeleton. This is due to the lack of background pixels that doesn't allows to obtain a clean skeleton.
+The cell that only contained foreground pixels only leave a little trace as a skeleton. **This is due to the lack of background pixels that doesn't allows to obtain a clean skeleton. (pourquoi "clean" ? en quoi un clean skeleton est mieux?)**
 The second thing to point out is that the more background pixels an object contains the more detailed (and complex) a skeleton can be.
 In a complex environment like a biological culture, the skeletonize operation alone cannot be enough to have an idea of the shape.
 
-Even tough the lack of another plugin won't let us fully compare some performances we still decided to permorfed banchmarks result for the ImageJ plugin. The results are the one given below :
+Even tough the lack of plugins won't let us compare some performances we still decided to perform benchmarks results for the ImageJ plugin. The results are the one given below :
 
 
 <p align="center">
@@ -339,7 +345,7 @@ As we can see, for the  for the skeletonization  operator we have an average exc
 
 ### Euclidean distance map
 
-Euclidean distance map (or EDM) is a method which consist in calculating the distance between a foreground pixels and the closet background neighborgt pixels.
+Euclidean distance map (or EDM) is a method which consist in calculating the distance between a foreground pixel and the closest background neighbor pixel.
 The image obtained is as follow :
 
 
@@ -349,7 +355,7 @@ The image obtained is as follow :
 
 **Fig.16: Result of the EDM operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin**
 
-As we can see, we have two main results. The objects containing no (or almost) background pixels inside in the original picture, have a better score(which can be seen with their brigthness, the more they are the higher score thet got).
+As we can see, we have two main results. The objects containing no (or not many) background pixels inside in the original picture, have a better score(which can be seen by their brighter pixels, the more they are the higher score thet got).
 The others object, containg many background pixels have more mitigated scores. This is due to the fact that the background pixels have an influence in the distance(vicent passe par la, thanks) reducing the score.
 
 Like the skeletonize operator, we still decided to run some benchmarks for the Euclidean distance map method. We obtained those results :
