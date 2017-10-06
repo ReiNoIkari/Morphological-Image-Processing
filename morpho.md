@@ -417,9 +417,6 @@ During this study, we took a look at some mathematical morphology processes allo
 
 
 
-
-References test [^GIL2002],[^LEG2016],[^GON1992],[^HAR1992],[^JAI1989],[^VER1991]
-
 ## References
   
   [^GIL2002]: J. Gil R. Kimmel Efficient Dilation, Erosion, Opening, and Closing Algorithms, 2002.
