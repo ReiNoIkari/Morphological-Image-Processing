@@ -216,7 +216,7 @@ In an image, the algorithm will search for the brightest pixel for each objet an
 Usualy,The Ultimate eroded point operation is used as a marker for objects locations
 
 <p align="center">
-<img src="/images/combined_bridge_uep.png" alt="alt text" width="400" weight="center">
+<img src="/images/combined_bridge_uep.png" alt="alt text" width="1000" weight="center">
 </p>
 
 **Fig.14: Result of the ultimate erode point on fig.14 using as a structuring element a disk of 3 by 3 size**
