@@ -18,7 +18,7 @@ In this project, we will focus on the Morphology part from Image Processing, we 
 
 ## Material & Methods
 
-ImageJ is a mutiplatform open source software for image processing developped by the National Institutes of Health. It was originaly developped for biomedical uses. It allows for example to analyze electrophoresis gels, or the the tumor detection and analyzis. It use since broad to other fields. Thus, a huge amount of current operation are yet doable with the software : greyscale adjustment, noise reduction, lightning correction, boundaries detection, Fourier transform, thresholding, logical and arithmetical operation between images and linear transform. Processes taken from mathematical morphology are also available such as erosion, dilatation, watersheld, skeletonize, etc. During this project, we'll focus on the of the latter functions. Besides, ImageJ allows the user to add new functionnalities by implementing plugins and macros, which we will be used to compare with the "by default" ImageJ's functions.
+ImageJ is a mutiplatform open source software for image processing developped by the National Institutes of Health. It was originaly developped for biomedical uses. It allows for example to analyze electrophoresis gels, or the the tumor detection and analysis. It uses since broad to other fields. Thus, a huge amount of current operations are yet doable with the software : greyscale adjustment, noise reduction, lightning correction, boundaries detection, Fourier transform, thresholding, logical and arithmetical operation between images and linear transform. Processes taken from mathematical morphology are also available such as erosion, dilatation, watersheld, skeletonize, etc. During this project, we will focus on the latter functions. Besides, ImageJ allows the user to add new functionnalities by implementing plugins and macros, which we will be used to compare to the default ImageJ's functions.
  
 
 The main purpose of mathematical morphology is to study or process a set with an other set called structuring element or kernel, wich is used as a probe. For each position of this structing element, a look is taken about its ability to touch or be inclued on the main set. The result of this process is an output set.
@@ -43,15 +43,16 @@ In general, the hit or miss transform is defined as :
 <img src="images/hit_or_miss_formule.PNG" alt="alt text" width="340" weight="center">
 </p>
 **Equation 1 : Hit or Miss Formula**
+
 With the condition that B1 ∩ B2 = Ø, because if B1 is not a negative mask of B2, the hit-miss transform would result in the empty set. 
 <p align="center">
 <img src="images/hit_or_miss.gif" alt="alt text" width="340" weight="center">
 </p>
-**Figure 1 : Hit or Miss principal**
+**Figure 1 : Hit or Miss principle**
 
 ### Dilate & Erode 
 
-The dilation operator takes two pieces of data as inputs. The first one is the image which is going to be dilated and the second one is the structuring element. Thus, the tructuring element determines the precise effect of the dilation on the first image.
+The dilation operator takes two pieces of data as input. The first one is the image which is going to be dilated and the second one is the structuring element. Thus, the structuring element determines the precise effect of the dilation on the first image.
 
 It mathematically goes like this :
 
@@ -401,14 +402,14 @@ We can observe for the UEP method that we have an average excution time of 75.35
 
 ## Discussion 
 
-Let's analyse the images we obtained during the result phase. As we can see, using the same structuring element has no significative effect, but using a completely different structuring element modifies the output results. It can be  explained by the fact that the other plugin we used, is based on the origial ImageJ functions(the mathematical algorithm being the same for all the erosions for example) but instead the plugin has been created in order to add more parameters like the structural element choice (INRA plugins).
-Therefore, the output image obtained by the "45 degree line", which correspond to the diagonal of the kernel, doesn't completly change but we can easily see the differences.
+Let's analyse the images we obtained during the result phase. As we can see, using the same structuring element has no significative effect, but using a completely different structuring element modifies the output results. It can be  explained by the fact that the other plugin we used is based on the origial ImageJ functions(the mathematical algorithm being the same for all the erosions for example). But the plugin has been created in order to add more parameters like the structural element choice (INRA plugins).
+Therefore, the output image obtained by the "45 degree line", which correspond to the diagonal of the kernel, doesn't completly change but we can easily see the differences compared to the default discrete 3x3 disk.
 
 This proves that the result obtained during Mathematical Morphology depends on the Kernel choice and not on the plugin since the method used is the same.
 
 Let's continue with the benchmarks results.
 Between the original ImageJ function and the plugin created by the INRA, there is quite a difference as it can be observed. 
-At first, the ImageJ's function tends to use less memory and to run faster than the INRA plugin. Indeed, ImageJ's erode operator would takes about 13.68 milliseconds (ms) to run and use about 52.07 MiB when the INRA's plugin would have an about 55.50 ms runtime and a 57.60 MiB memory use. This kind of result is seeable for every operation and transform. However, those results are not completely relevant since the INRA's plugins perform more operation than the default operations. Indeed, we noticed for example that each turn of a INRA's plug run causes a resulting image to be launched. This induces a significative increasment of the runtime. In an other hand, the INRA's plugin is more modular from its implementation that allows the user to set some parameters such as the size and shape of the kernel. 
+At first, the ImageJ's function tends to use less memory and to run faster than the INRA plugin. Indeed, ImageJ's erode operator would take about 13.68 milliseconds (ms) to run and use about 52.07 MiB when the INRA's plugin would have a runtime around 55.50 ms and a 57.60 MiB memory use. These defferencies are noticeable for every tested functions. However, those results are not completely relevant since the INRA's plugins perform more operation than the default ImageJ's function. Indeed, we noticed for example that each turn of a INRA's plug run causes a resulting image to be launched. This induces a significant runtime increase. Furthermore, the INRA's plugin is more modular from its implementation that allows the user to set some parameters such as the shape of the kernel. 
 
 
 ## Conclusion
