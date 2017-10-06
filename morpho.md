@@ -42,13 +42,23 @@ In general, the hit or miss transform is defined as :
 <p align="center">
 <img src="images/hit_or_miss_formule.PNG" alt="alt text" width="340" weight="center">
 </p>
+
+
 **Equation 1 : Hit or Miss Formula**
+
+
 
 With the condition that B1 ∩ B2 = Ø, because if B1 is not a negative mask of B2, the hit-miss transform would result in the empty set. 
 <p align="center">
 <img src="images/hit_or_miss.gif" alt="alt text" width="340" weight="center">
 </p>
+
+
+
 **Figure 1 : Hit or Miss principle**
+
+
+
 
 ### Dilate & Erode 
 
@@ -62,7 +72,12 @@ In one hand, X is the set of Euclidean coordinates which corresponds to the imag
 <img src="images/dilatation_formula.PNG" alt="alt text" width="340" weight="center">
 </p>
 
+
+
 **Equation 2 : Dilatation Formula**
+
+
+
 Let's take a 3x3 square structuring element as an example for binary dilation, with the origin at its center, as shown in Figure 1. Note that in this and subsequent diagrams, foreground pixels are represented by 1's and background pixels by 0's.
 
 
@@ -70,7 +85,11 @@ Let's take a 3x3 square structuring element as an example for binary dilation, w
 <img src="images/kern3x3.gif" alt="alt text" width="340" weight="center">
 </p>
 
+
+
 **Figure 2 : A 3×3 square structuring element**
+
+
 
 To compute the dilation of a binary input image by this structuring element, we consider each of the background's pixels in the input image that has to be processed. For each of those, the structuring element is superimposed upon the input image so that the origin of the structuring element matches with image to be processed's pixel position. If at least one pixel in the structuring element matches with a foreground pixel in the image underneath, then the input pixel is set to the foreground value. If all the corresponding pixels in the image are background, however, the input pixel is left at the background value.
 
@@ -80,14 +99,23 @@ For our example 3×3 structuring element, the effect of this operation is to set
 <img src="/images/combined_bridge_dila.png" alt="alt text" width="1000" weight="center">
 </p>
 
+
+
 **Figure 3 : Result of the Dilate operation using as a structuring element a disk of 3 by 3 size. This operation is done 2 times in a row**
+
+
 
 The erosion operator is the dilatiation operator's dual[^GON1992]. Indeed, each of the foreground pixels in the input image in turn are considered. For each foreground pixel we superimpose the structuring element on top of the input image so that the origin of the structuring element coincides with the input pixel coordinates. If for every pixel in the structuring element, the corresponding pixel in the image underneath is a foreground pixel, then the input pixel is left as it is. If any of the corresponding pixels in the image are background, however, the input pixel is also set to background value. 
 
 <p align="center">
 <img src="images/erosion_formula.PNG" alt="alt text" width="500" weight="center">
 </p>
+
+
+
 **Equation 3 : Erosion Formula**
+
+
 
 For our example 3×3 structuring element, the effect of this operation is to remove any foreground pixel that is not completely surrounded by other white pixels (assuming 8-connectedness). Such pixels must lie at the edges of white regions, and so the practical upshot is that foreground regions shrink (and holes inside a region grow). 
 
@@ -95,7 +123,11 @@ For our example 3×3 structuring element, the effect of this operation is to rem
 <img src="/images/combined_bridge_ero.png" alt="alt text" width="1000" weight="center">
 </p>
 
+
+
 **Figure 4 : Result of the Erode operation using as a structuring element a disk of 3 by 3 size. This operation is done 2 times in a row**
+
+
 
 ### Opening and Closing
 
@@ -109,8 +141,9 @@ The opening technique consist of an erosion followed by a dilation using the sam
 <img src="images/opening_formula.png" alt="alt text" width="200" weight="center">
 </p>
 
-**Equation 4: Mathematical definition of the opening morphological transformation** 
 
+
+**Equation 4: Mathematical definition of the opening morphological transformation** 
 
 
 
@@ -139,6 +172,8 @@ Closing is the dual of opening and can be described mathemacaly with :
 
 
 **Equation 5: Mathematical definition of the closing morphological transformation** 
+
+
 
 This could be described like this : closing is a dilation followed by an erosion using the same structuring element for both operations
 Closing is similar in some ways to dilation in that it tends to enlarge the boundaries foreground (bright) regions in an image (and shrink background color holes in such regions).
@@ -170,7 +205,11 @@ Mathematically, skeletonize is reprensented by :
 <p align="center">
 <img src="images/skeletonyze_formula.PNG" alt="alt text" width="340" weight="center">
 </p>
+
+
 **Equation 6 : skeletonyze Formula**
+
+
 Where <img src="images/signe1.PNG" alt="alt text" width="40"> and <img src="images/signe2.PNG" alt="alt text" width="40"> are the morphological erosion and opening.
 
 The skeleton aims to provide a simple representation of a shape that preserves many of the topological and size characteristics of the original. Thus, for instance, we can get a rough idea of the length of a shape by considering just the end points of the skeleton and finding the maximally separated pair of end points on the skeleton. Similarly, we can distinguish many qualitatively different shapes from one another on the basis of how many 'triple points' there are, i.e. points where at least three branches of the skeleton meet.
@@ -197,7 +236,13 @@ From a measurement perspective, the Euclidean distance is the most useful becaus
 <p align="center">
 <img src="/images/EDFTransform.PNG" alt="alt text" width="200" weight="center">
 </p>
+
+
+
 **Equation 7 : EDM formula**
+
+
+
 Where <img src="images/Capture.PNG" alt="alt text" width="40" weight="center">, is some two-dimensional distance metric. Different distance metrics result in different distance transformations. The Euclidean distance metric uses the L2 norm.
 This metric is isotropic in that distances measured are independent of object orientation, subject of course to the limitation that the object boundary is digital, and therefore in discrete locations. The major limitation of the Euclidean metric, however is that it is not easy to calculate efficiently for complex shapes. 
 
@@ -228,7 +273,9 @@ Usualy,The Ultimate eroded point operation is used as a marker for objects locat
 <img src="/images/combined_bridge_uep.png" alt="alt text" width="1000" weight="center">
 </p>
 
+
 **Figure 9: Result of the ultimate erode point using as a structuring element a disk of 3 by 3 size**
+
 
 
 ## Results
@@ -248,6 +295,7 @@ The erosion and dilates methods have been runing the default functions available
 **Figure 10: Result of the erode operation using as a structuring element a disk of 3 by 3 size. Left up: Original image, Right up: made with ImageJ default function, Left down: made with MorphoLibJ plugin, Right down: made with our diagonal kernel**
 
 
+
 As we can see some black areas that were inside white figures have been connected with the outside due to some foreground pixel removal. This is due to the fact that some foreground pixel have been removed (due to not being surrounded by other foreground pixels). Moreover, the results seems to be the same whatever we use one plugin or the other.
 
 
@@ -259,7 +307,10 @@ The same results have been obtained by the dilation operation as we can see :
 
 A common observation when using an other kernel is that we can observe some slight differences in the ouput image. Indeed, some background pixels are more or less present depending on where we look compared to the other images using the default kernel.
 
+
+
 **Figure 11: Result of the dilation operation using as a structuring element a disk of 3 by 3 size. Left up: Original image, Right up: made with ImageJ default function, Left down: made with MorphoLibJ plugin, Right down: made with our diagonal kernel**
+
 
 
 This time, it's background pixels that are removed in favour of foreground pixels.
@@ -273,7 +324,11 @@ A benchmark was done in order to compare the excution time and the usage of memo
 <img src="/Results/combined_benchmark_dilate.png" width="1000" weight="center">
 </p>
 
+
+
 **Figure 12: Benchmarks of the erosion and dilation operation using as a structuring element a disk of 3 by 3 pixels size. Left : Results of the ImageJ plugin  right : Results of the MorphoLibJ plugin**
+
+
 
 As we can see the average excution time from 10000 runs as the average memory used for the default ImageJ plugin are less than the MorphoLibJ plugin for both of the operations. For ImageJ we have an average excution time of 13.683 ms and average memory used of 52.066 MiB while for the MorphoLibJ we have an average excution time of 55.496 ms and average memory used of 57.509 MiB
 
@@ -290,7 +345,9 @@ The result obtains for the opening are as follow :
 </p>
 
 
+
 **Figure 13: Result of the opening operation using as a structuring element a disk of 3 by 3 size. Left up: Original image, Right up: made with ImageJ default function, Left down: made with MorphoLibJ plugin, Right down: made with our diagonal kernel**
+
 
 
 As a reminder, an opening operator could be resumed as an erode followed by a dilation. As a consequence, we should see some traces of it.
@@ -321,7 +378,9 @@ Here are the benchmark's results for the open and close methods :
 <img src="/Results/combined_benchmark_close.png" width="1000" weight="center">
 </p>
 
+
 **Figure 15: Benchmarks of the open and close operations using as a structuring element a disk of 3 by 3 size. Left : Results of the ImageJ plugin  right : Results of the MorphoLibJ plugin**
+
 
 As we can see the average excution time from 10000 runs as the average memory used for the default ImageJ plugin are less than the MorphoLibJ plugin for both of the operations. For the opening operation, for ImageJ we have an average excution time of 29.928 ms and average memory used of 52.618 MiB while for the MorphoLibJ we have an average excution time of 51.086 ms and average memory used of 102.283 MiB. For the closing operation, for ImageJ we have an average excution time of 29.941 ms and average memory used of 52.619 MiB while for the MorphoLibJ we have an average excution time of 51.671 ms and average memory used of 101.562 MiB
 
@@ -336,7 +395,9 @@ The skeletonize operation give an image as follows :
 <img src="/Results/combined_skeletonize.png" alt="alt text" width="1000" weight="center">
 </p>
 
+
 **Figure 16: Result of the skeletonize operation using as a structuring element a disk of 3 by 3 size. Left : Original image, right : made with ImageJ default function**
+
 
 Cells that only contains foreground pixels only leave a little trace as a skeleton compared to the other cells. 
 The second thing to point out is that the more background pixels an object contains the more detailed (and complex) a skeleton can be.
@@ -348,7 +409,10 @@ Even tough the lack of plugins won't let us compare some performances we still d
 <p align="center">
 <img src="/Results/benchmark_skeletonize.png" width="1000" weight="center">
 </p>
+
+
 **Figure 17: Benchmarks of the skeletonize operation using as a structuring element a disk of 3 by 3 size.**
+
 
 As we can see, for the  for the skeletonization  operator we have an average excution time of 104.127 ms and average memory used of 86.735 MiB.
 
@@ -362,7 +426,9 @@ The image obtained is as follow :
 <img src="/Results/combined_edm.png" alt="alt text" width="9000" weight="center">
 </p>
 
+
 **Figure 18: Result of the EDM operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin**
+
 
 As we can see, we have two main results. The objects containing no (or not many) background pixels inside in the original picture, have a better score. The furthest from any background pixel the brighter the pixel, and the higher the score.
 The others object, containg many background pixels have lower scores. This is due to the fact that the background pixels in the middle of the object reduce the distances between foreground and background pixels.
@@ -374,7 +440,9 @@ Here are the benchmark's results for the skeletonize method :
 <img src="/Results/benchmark_EDM.png" width="1000" weight="center">
 </p>
 
+
 **Figure 19: Benchmarks of the EDM operation using as a structuring element a disk of 3 by 3 size.**
+
 
 As we can see, for the  for the EDM operator we have an average excution time of 155.589 ms and average memory used of 85.411 MiB.
 
@@ -388,7 +456,9 @@ It will only keep the pixels with the highest scores on the Euclidean Distance M
 <img src="/Results/combined_UEP.png" alt="alt text" width="8000" weight="center">
 </p>
 
+
 **Figure 20: Result of the UEP operation using as a structuring element a disk of 3 by 3 size. From left top to right bottom: original image, the UEP original image wihout process, the UEP original transformed to binary, the transformed UEP with a dilation applied**
+
 
 After an UEP using the default ImageJ function the output image seems to be only black. In order to check this theory, we transformed the image to binary, and we could already see some points corresponding to the last point that would be eroded for each object. Finally, in order to make the result more usable, we applied a dilation.
 As we can, see the more "perfect" the object is, in our case a cell containing only foreground pixels, the more the theoretical ultimate eroded point is valid. However, as soon as we start getting more complex object, we can see that those objects can have multiples ultimate eroded point. This can be explained as the computer is not capable to determine the object in his whole (cause of the background pixels inside the cells) and so is treats which should be considered as one object in multiples, which explain those multiple UEP.
@@ -400,7 +470,9 @@ Like the skeletonize operator, and the EDM method we still decided to run some b
 <img src="/Results/benchmark_uep.png" width="1000" weight="center">
 </p>
 
+
 **Figure 21: Benchmarks of the UEP using as a structuring element a disk of 3 by 3 size.**
+
 
 We can observe for the UEP method that we have an average excution time of 75.359 ms and average memory used of 195.887 MiB.
 
