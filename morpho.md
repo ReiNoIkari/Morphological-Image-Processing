@@ -42,7 +42,8 @@ In general, the hit or miss transform is defined as :
 <p align="center">
 <img src="images/hit_or_miss_formule.PNG" alt="alt text" width="340" weight="center">
 </p>
-With the condition that B1 ∩ B2 = Ø, because if B1 is not a negative mask of B2, the hit-miss transform would result in the empty set. **reference**
+**Equation 1 : Hit or Miss Formula**
+With the condition that B1 ∩ B2 = Ø, because if B1 is not a negative mask of B2, the hit-miss transform would result in the empty set. 
 <p align="center">
 <img src="images/hit_or_miss.gif" alt="alt text" width="340" weight="center">
 </p>
@@ -60,6 +61,7 @@ In one hand, X is the set of Euclidean coordinates which corresponds to the imag
 <img src="images/dilatation_formula.PNG" alt="alt text" width="340" weight="center">
 </p>
 
+**Equation 2 : Dilatation Formula**
 Let's take a 3x3 square structuring element as an example for binary dilation, with the origin at its center, as shown in Figure 1. Note that in this and subsequent diagrams, foreground pixels are represented by 1's and background pixels by 0's.
 
 
@@ -84,6 +86,7 @@ The erosion operator is the dilatiation operator's dual. Indeed, each of the for
 <p align="center">
 <img src="images/erosion_formula.PNG" alt="alt text" width="500" weight="center">
 </p>
+**Equation 3 : Erosion Formula**
 
 For our example 3×3 structuring element, the effect of this operation is to remove any foreground pixel that is not completely surrounded by other white pixels (assuming 8-connectedness). Such pixels must lie at the edges of white regions, and so the practical upshot is that foreground regions shrink (and holes inside a region grow). 
 
@@ -105,7 +108,7 @@ The opening technique consist of an erosion followed by a dilation using the sam
 <img src="images/opening_formula.png" alt="alt text" width="200" weight="center">
 </p>
 
-**Equation.10: Mathematical definition of the opening morphological transformation** 
+**Equation 4: Mathematical definition of the opening morphological transformation** 
 
 
 
@@ -134,7 +137,7 @@ Closing is the dual of opening and can be described mathemacaly with :
 
 
 
-**Equation.11: Mathematical definition of the closing morphological transformation** 
+**Equation 5: Mathematical definition of the closing morphological transformation** 
 
 This could be described like this : closing is a dilation followed by an erosion using the same structuring element for both operations
 Closing is similar in some ways to dilation in that it tends to enlarge the boundaries foreground (bright) regions in an image (and shrink background color holes in such regions).
@@ -166,7 +169,7 @@ Mathematically, skeletonize is reprensented by :
 <p align="center">
 <img src="images/skeletonyze_formula.PNG" alt="alt text" width="340" weight="center">
 </p>
-
+**Equation 6 : skeletonyze Formula**
 Where <img src="images/signe1.PNG" alt="alt text" width="40" weight="center"> and <img src="images/signe2.PNG" alt="alt text" width="40" weight="center"> are the morphological erosion and opening.
 
 The skeleton aims to provide a simple representation of a shape that preserves many of the topological and size characteristics of the original. Thus, for instance, we can get a rough idea of the length of a shape by considering just the end points of the skeleton and finding the maximally separated pair of end points on the skeleton. Similarly, we can distinguish many qualitatively different shapes from one another on the basis of how many 'triple points' there are, i.e. points where at least three branches of the skeleton meet.
@@ -193,7 +196,7 @@ From a measurement perspective, the Euclidean distance is the most useful becaus
 <p align="center">
 <img src="/images/EDFTransform.PNG" alt="alt text" width="200" weight="center">
 </p>
-
+**Equation 7 : EDM formula**
 Where <img src="images/Capture.PNG" alt="alt text" width="40" weight="center">, is some two-dimensional distance metric. Different distance metrics result in different distance transformations. The Euclidean distance metric uses the L2 norm.
 This metric is isotropic in that distances measured are independent of object orientation, subject of course to the limitation that the object boundary is digital, and therefore in discrete locations. The major limitation of the Euclidean metric, however is that it is not easy to calculate efficiently for complex shapes. 
 
@@ -216,6 +219,7 @@ The ultimate erode point is represented as follow :
 <img src="images/UEP_formula.png" alt="alt text" width="400" weight="center">
 </p>
 
+**Equation 7 : UEP formula**
 In an image, for each object, the algorithm will find the brightest pixel and ensure that none of the other pixels are as bright. If it is the sole point, then it will be the only one to be part of the UEP, if there are multiple pixels of the same object, then the center of the brightest pixels will be used. Furthermore, in order to be categorized as a UEP, the determined pixel besides being the brightest need to be a point that is equidistant from at least two (but usually three) boundary locations. In order to find the brightest point, the UEP method uses the peaks or local maxima of the EDM.
 Usualy,The Ultimate eroded point operation is used as a marker for objects locations
 
