@@ -433,6 +433,7 @@ During this study, we took a look at some mathematical morphology processes allo
 
  Image Processing is a wide domain that contain numerous branches and applications (from biomedical use to robot vision). ImageJ offers many essential ways to perform Image Processing and what we studied is just a tiny part of the whole tools proposed. Those years, the deep learning principal has performed a major breakthrough in a whole bunch of domains. Maybe a projection to Image Processing with ImageJ could be interesting [^SOI2010] .
 
+##References
 
   [^GIL2002]: J. Gil R. Kimmel. Efficient Dilation, Erosion, Opening, and Closing Algorithms, 2002.
   
