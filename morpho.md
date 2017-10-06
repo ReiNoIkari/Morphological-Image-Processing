@@ -409,12 +409,14 @@ At first, the ImageJ's function tends to use less memory and to run faster than 
 
 ## Conclusion
 
-During this study, we took a look at some mathematical morphology processes allowing the data treatment in binary images. 
-We saw that it exists different kind of approaches to study the morphological mathematics of an image accoording to the final aim of the user. More, those approaches can be implemented from different ways and hasn't necessarly the sames results when running.
-We didn't find any relevant plugin to compare for some ImageJ's functions.
-Image Processing is a wide domain that contain numerous branches and applications (from **quelque chose** to robot vision). What we studied is just a tiny part of the whole tools proposed by ImageJ.
+Mathematical morphology have nowadays a very diversified range of application fields from the mining exploitation to the biology, passing by the medical science or the geophysic. 
 
-Other notions such as thinning or watershed could have also been studied or presented in the topic. 
+During this study, we took a look at some mathematical morphology processes allowing the data treatment in binary images with ImageJ. Throughout our study we approached different  ways to treat images depending on what the user aims. More than this, those treatments can be implemented from different ways and hasn't necessarly the sames results when running. Unfortunately, we didn't find any plugin considered relevant to compare with ImageJ's functions, according to our goal. However, the benchmark and the structuring diagonal element we made taught us well about how parameters can influence the results in term of runtime statistics and display. Otherwise, other binary functions could have been studied such as thinning or watershed.
+
+ Image Processing is a wide domain that contain numerous branches and applications (from biomedical use to robot vision). ImageJ offers many essential ways to perform Image Processing and what we studied is just a tiny part of the whole tools proposed. Those years, the deep learning principal has performed a major breakthrough in a whole bunch of domains. Maybe a projection to Image Processing with ImageJ could be interesting.
+
+
+
 
 References test [^GIL2002],[^LEG2016],[^GON1992],[^HAR1992],[^JAI1989],[^VER1991]
 
