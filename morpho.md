@@ -6,7 +6,7 @@ Link to Github : https://github.com/ReiNoIkari/Morphological-Image-Processing
 
 ## Introduction
 
-Nowadays, scientists have access to huge image databases which can make studying organisms easier.  One problem still persist : those collected datas are worthless if they are not interpreted and the concern is that a lifetime won't be enough for a scientist to follow the flow. That’s were informatics come in order to help to analyse those huge amount of raw data, and in our case more precisely Image Processing. Indeed, the developement of some Image processing tool made that easier to computerize and analyse [^GON1992][^JAI1989].
+Nowadays, scientists have access to huge image databases which can make studying organisms easier.  One problem still persist : those collected datas are worthless if they are not interpreted and the concern is that a lifetime won't be enough for a scientist to follow the flow. That’s were informatics come in order to help to analyse those huge amount of raw data, and in our case more precisely Image Processing. Indeed, the developement of some Image processing tool made that easier to computerize and analyse [^GON1992],[^JAI1989].
 
 Mathematical morphology has been invented in 1964 by Georges Matheron and Jean Serra in the MINES ParisTech's laboratories. Its development was always motivated by industrial application. At the begining, the main purpose was to answer issues in the mining exploitation field. Then this purpose diversified itself to biology, medical imagery, material science, industrial vision, multimedia, teledetection, geophisic, etc. It consist in a mathematical and informatical theory and technique which is linked with algebra, the lattice theory, topology and probabilities[^SCH1993].
 
@@ -62,7 +62,7 @@ With the condition that B1 ∩ B2 = Ø, because if B1 is not a negative mask of 
 
 ### Dilate & Erode 
 
-The dilation operator takes two pieces of data as input. The first one is the image which is going to be dilated and the second one is the structuring element. Thus, the structuring element determines the precise effect of the dilation on the first image [^HAR1992][^GIL2002].
+The dilation operator takes two pieces of data as input. The first one is the image which is going to be dilated and the second one is the structuring element. Thus, the structuring element determines the precise effect of the dilation on the first image [^HAR1992],[^GIL2002].
 
 It mathematically goes like this :
 
@@ -133,7 +133,7 @@ For our example 3×3 structuring element, the effect of this operation is to rem
 
 
 Opening and closing are two secondary operations that play an important role in morphological image processing. Both could be defined as the combination of erosions and dilations and since they are derived from eroding and dilate they posses the same limits as the original techniques which means they can only be applied to binary images (or a graylevel image in particular cases). The general aims of those two operations are quite simple: making an image as smooth as possible without size change (or at least limited).
-Let's take a closer look to the opening operation[^BRO2015][^GIL2002].
+Let's take a closer look to the opening operation[^BRO2015],[^GIL2002].
 
 The opening technique consist of an erosion followed by a dilation using the same structuring element for both operations
 
