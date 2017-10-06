@@ -426,7 +426,7 @@ During this study, we took a look at some mathematical morphology processes allo
   
   [^GIL2002]: J. Gil R. Kimmel Efficient Dilation, Erosion, Opening, and Closing Algorithms, 2002.
   
-  [^LEG2016]: D. Legland, I. Arganda-Carreras, P. Andrey; MorphoLibJ: integrated library and plugins for mathematical morphology with ImageJ. Bioinformatics, 2016.
+  [^LEG2016]: D. Legland, I. Arganda-Carreras, P. Andrey; MorphoLibJ: integrated library and plugins for mathematical morphology with      ImageJ. Bioinformatics, 2016.
   
   [^GON1992]: R. Gonzalez and R. Woods Digital Image Processing, Addison-Wesley Publishing Company, 1992.
   
@@ -438,5 +438,11 @@ During this study, we took a look at some mathematical morphology processes allo
   
   [^BAI2004]: D. G Bailey, An Efficient Euclidean Distance Transform, 2004. 
   
-  
+  [^NOV2015]: J. Broeke, JMM. Perez, J. Pascau. Image Processing with ImageJ. 2th ed. Packt Publishing, 2015.
+
+  [^COMP2014] OM. Elrajubi, I. El-Feghi, M. Saghayer. Hit-or-Miss Transform as a Tool for Similar Shape Detection.World Academy of Science, Engineering and Technology, Vol. 4, No:6,2014.
+
+  [^DEC2010] P.Soille. Morphological Image Analysis: Principles and Applications, 2th ed. Springer, 2010.
+
+
 
