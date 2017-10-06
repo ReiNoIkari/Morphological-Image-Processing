@@ -18,20 +18,19 @@ In this project, we will focus on the Morphology part from Image Processing, we 
 
 ## Material & Methods
 
-ImageJ is a mutiplatform open source software for image processing developped by the National Institutes of Health. It was originaly developped for biomedical uses. It allows for example to analyze electrophoresis gels, or the the tumor detection and analyzis. It use since broad to other fields. Thus, a huge amount of current operation are yet doable with the software : greyscale adjustment, noise reduction, lightning correction, boundaries detection, Fourier transform (direct and invert), thresholding, logical and arithmetical operation between images and linear transform. Processes taken from mathematical morphology are also available such as erosion, dilatation, watersheld, skeletonize, etc. Moreover, ImageJ allows the user to add new functionnalities by create plugins and macros.
-Our goal is to study those latter functions. 
+ImageJ is a mutiplatform open source software for image processing developped by the National Institutes of Health. It was originaly developped for biomedical uses. It allows for example to analyze electrophoresis gels, or the the tumor detection and analyzis. It use since broad to other fields. Thus, a huge amount of current operation are yet doable with the software : greyscale adjustment, noise reduction, lightning correction, boundaries detection, Fourier transform, thresholding, logical and arithmetical operation between images and linear transform. Processes taken from mathematical morphology are also available such as erosion, dilatation, watersheld, skeletonize, etc. During this project, we'll focus on the of the latter functions. Besides, ImageJ allows the user to add new functionnalities by implementing plugins and macros, which we will be used to compare with the "by default" ImageJ's functions.
+ 
 
-The main purpose of mathematical morphology is to study or process a set with an other set called structuring element, wich is used as a probe. For each position of this structing element, a look is taken about its ability to touch or be inclued on the main set. The result of this process is an output set.
+The main purpose of mathematical morphology is to study or process a set with an other set called structuring element or kernel, wich is used as a probe. For each position of this structing element, a look is taken about its ability to touch or be inclued on the main set. The result of this process is an output set.
 This involves a loss of information, but also a great elimination of structures that do not fits to certains criteria such as width or volume.
 
 In order to be able to compare and discuss about the different algorithms in a practical and effective way we decided to create a benchmark.
 
 It could be described this way:
 
-First, we initialise our classes a hundred times as a warm up phase so that we limit the wasted time corresponding to the initializing phase during the critical phase.
-Then, in the benchmark part itself, we run our operations 1000 times to be sure to get enough data and we run those operations 10 times in order to limit variations (meaning that in the end we ran 10000 times each operation)
-
-**Line des 45 degrés pour verifier**
+Firstly, we initialise our classes a hundred times during a warm up phase so that we limit the wasted time corresponding to the initializing phase during the critical phase.
+Then, in the benchmark part itself, we run our operations 1,000 times to be sure to get enough data and we run those operations 10 times in order to limit variations (meaning that in the end we ran 10,000 times each operation)
+In order to compare the relevance of the structuring element, we decided to run our different operation with a completely different kernel than the one used by default in ImageJ. This kernel is shaped as a 45 degrees diagonal of a 3 by 3 pixel square.
 
 ### Hit-or-Miss
 Hit or miss is what could be defined as the basic operation of the morphological area of image processing. It is used to detect occurrences given binary patterns in fixed orientations. It can be used to look for several patterns (or alternatively, for the same pattern in several orientations) simply by running successive transforms using different structuring elements, and then running OR operation between all the results. Therefore, Most of the other morphological operations are derived from this notion(opening, closing, erosion, dilation...).
