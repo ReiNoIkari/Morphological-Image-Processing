@@ -28,8 +28,8 @@ In order to be able to compare and discuss about the different algorithms in a p
 
 It could be described this way:
 
-Firstly, we initialise our classes a hundred times during a warm up phase so **that we limit the wasted time corresponding to the initializing phase during the critical phase.**
-Then, in the benchmark part itself, we run **our operations** 1,000 times to be sure to get enough data and we run **those operations** 10 times in order to statistically analyse (meaning that in the end we ran 10,000 times each operation)
+Firstly, we initialise our classes during a warm up phase so ImageJ don't loses time during the critical phase.
+Then we launch 10,000 (10x1000) times our functions in order to statistically analyse them and being sure to limit variance within the data.
 In order to compare the relevance of the structuring element, we decided to run our different operation with a completely different kernel than the one used by default in ImageJ. This kernel is shaped as a 45 degrees diagonal in a 3 by 3 pixel square.
 
 ### Hit-or-Miss
@@ -93,7 +93,7 @@ For our example 3×3 structuring element, the effect of this operation is to rem
 
 **Figure 4 : Result of the Erode operation using as a structuring element a disk of 3 by 3 size. This operation is done 2 times in a row**
 
-### Opening and Closing (rappeler pourquoi c'est plus safe que erode)
+### Opening and Closing
 
 
 Opening and closing are two secondary operations that play an important role in morphological image processing. Both could be defined as the combination of erosions and dilations and since they are derived from eroding and dilate they posses the same limits as the original techniques which means they can only be applied to binary images (or a graylevel image in particular cases). The general aims of those two operations are quite simple: making an image as smooth as possible without size change (or at least limited).
@@ -207,8 +207,8 @@ This metric is isotropic in that distances measured are independent of object or
 
 ### Ultimate eroded point
 
-**Ultimate eroded point (or UEP) is derived from the erosion operator and is defined as the last point that would be present after recursively eroding until the last pass before the object would be invisible. 
-In order to apply multiple UEP on an image, each object is considered separately, which makes possible to use different numbers of erosions for each object and so having the ultimate eroded point not only for an image but for each object which is useful for cells images for example. **
+Ultimate eroded point (or UEP) is derived from the EDM operator and could be defined as the last point that would be present after recursively eroding until the last pass before the object would be invisible. 
+In order to apply multiple UEP on an image, each object thus could be considered separately, which makes possible to use different numbers of erosions for each object and so having the ultimate eroded point not only for an image but for each object which is useful for cells images for example. 
 
 The ultimate erode point is represented as follow :
 
@@ -216,7 +216,7 @@ The ultimate erode point is represented as follow :
 <img src="images/UEP_formula.png" alt="alt text" width="400" weight="center">
 </p>
 
-In an image, the algorithm will search for **the brightest pixel for each objet and be sure that none of is neighbors are as bright as it**. If it is the sole point, then it will be the only one to be part of the UEP, if there are multiple pixels of the same object, then the center of the brightest pixels will be used. Furthermore, in order to be categorized as a UEP, the determined pixel besides being the brightest need to be a point that is equidistant from at least two (but usually three) boundary locations. **In order to find the brightest point, the UEP method uses the peaks or local maxima of the EDM.**
+In an image, for each object, the algorithm will find the brightest pixel and ensure that none of the other pixels are as bright. If it is the sole point, then it will be the only one to be part of the UEP, if there are multiple pixels of the same object, then the center of the brightest pixels will be used. Furthermore, in order to be categorized as a UEP, the determined pixel besides being the brightest need to be a point that is equidistant from at least two (but usually three) boundary locations. In order to find the brightest point, the UEP method uses the peaks or local maxima of the EDM.
 Usualy,The Ultimate eroded point operation is used as a marker for objects locations
 
 <p align="center">
@@ -287,7 +287,7 @@ The result obtains for the opening are as follow :
 
 
 As a reminder, an opening operator could be resumed as an erode followed by a dilation. As a consequence, we should see some traces of it.
-By having a closer look, we can see that indeed an erosion has been applied to the picture, but that compared to the fig.12 the black areas are little less more present. We can explain this as the fact that compared to the **fig.12 (Fig erosion)**, just after the initial erosion, the dilation will have for effect to expand the boundaries of the objects. Thus, because small ones were removed in erosion step, biggest elements are brought back.
+By having a closer look, we can see that indeed an erosion has been applied to the picture, but that compared to the fig.12 the black areas are little less more present. We can explain this as the fact that compared to the figure 10, just after the initial erosion, the dilation will have for effect to expand the boundaries of the objects. Thus, because small ones were removed in erosion step, biggest elements are brought back.
 
 The results obtained from the closing operation are the follow :
 
@@ -329,7 +329,7 @@ The skeletonize operation give an image as follows :
 
 **Figure 16: Result of the skeletonize operation using as a structuring element a disk of 3 by 3 size. Left : Original image, right : made with ImageJ default function**
 
-The cell that only contained foreground pixels only leave a little trace as a skeleton. **This is due to the lack of background pixels that doesn't allows to obtain a clean skeleton. (pourquoi "clean" ? en quoi un clean skeleton est mieux?)**
+Cells that only contains foreground pixels only leave a little trace as a skeleton compared to the other cells. 
 The second thing to point out is that the more background pixels an object contains the more detailed (and complex) a skeleton can be.
 In a complex environment like a biological culture, the skeletonize operation alone cannot be enough to have an idea of the shape.
 
@@ -339,6 +339,7 @@ Even tough the lack of plugins won't let us compare some performances we still d
 <p align="center">
 <img src="/Results/benchmark_skeletonize.png" width="1000" weight="center">
 </p>
+**Figure 18: Benchmarks of the skeletonize operation using as a structuring element a disk of 3 by 3 size.**
 
 As we can see, for the  for the skeletonization  operator we have an average excution time of 104.127 ms and average memory used of 86.735 MiB.
 
@@ -364,7 +365,7 @@ Here are the benchmark's results for the skeletonize method :
 <img src="/Results/benchmark_EDM.png" width="1000" weight="center">
 </p>
 
-**Figure 18: Benchmarks of the skeletonize operation using as a structuring element a disk of 3 by 3 size.**
+**Figure 18: Benchmarks of the EDM operation using as a structuring element a disk of 3 by 3 size.**
 
 As we can see, for the  for the EDM operator we have an average excution time of 155.589 ms and average memory used of 85.411 MiB.
 
