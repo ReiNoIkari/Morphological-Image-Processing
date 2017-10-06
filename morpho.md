@@ -250,12 +250,14 @@ The erosion and dilates methods have been runing the default functions available
 
 As we can see some black areas that were inside white figures have been connected with the outside due to some foreground pixel removal. This is due to the fact that some foreground pixel have been removed (due to not being surrounded by other foreground pixels). Moreover, the results seems to be the same whatever we use one plugin or the other.
 
+
 The same results have been obtained by the dilation operation as we can see :
 
 <p align="center">
 <img src="/Results/combined_dilation.png" width="1000" weight="center">
 </p>
 
+A common observation when using an other kernel is that we can observe some slight differences in the ouput image. Indeed, some background pixels are more or less present depending on where we look compared to the other images using the default kernel.
 
 **Figure 11: Result of the dilation operation using as a structuring element a disk of 3 by 3 size. Left up: Original image, Right up: made with ImageJ default function, Left down: made with MorphoLibJ plugin, Right down: made with our diagonal kernel**
 
@@ -305,6 +307,8 @@ The results obtained from the closing operation are the follow :
 
 
 We can observe that closing have the opposite effect of opening : instead of opening the black areas inside our white figures, closing closes them which have for effect to make them disappear.
+
+As for the erode and dilation operations, the use of an other kernel have an inpact on the output image.
 
 It is important to note that opening and closing are less destructive of the original boundary shape than erode and dilate.
 
