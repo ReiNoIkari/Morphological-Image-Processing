@@ -6,9 +6,9 @@ Link to Github : https://github.com/ReiNoIkari/Morphological-Image-Processing
 
 ## Introduction
 
-Nowadays, scientists have access to huge image databases which can make studying organisms easier.  One problem still persist : those collected datas are worthless if they are not interpreted and the concern is that a lifetime won't be enough for a scientist to follow the flow. That’s were informatics come in order to help to analyse those huge amount of raw data, and in our case more precisely Image Processing. Indeed, the developement of some Image processing tool made that easier to computerize and analyse.
+Nowadays, scientists have access to huge image databases which can make studying organisms easier.  One problem still persist : those collected datas are worthless if they are not interpreted and the concern is that a lifetime won't be enough for a scientist to follow the flow. That’s were informatics come in order to help to analyse those huge amount of raw data, and in our case more precisely Image Processing. Indeed, the developement of some Image processing tool made that easier to computerize and analyse [^GON1992][^JAI1989].
 
-Mathematical morphology has been invented in 1964 by Georges Matheron and Jean Serra in the MINES ParisTech's laboratories. Its development was always motivated by industrial application. At the begining, the main purpose was to answer issues in the mining exploitation field. Then this purpose diversified itself to biology, medical imagery, material science, industrial vision, multimedia, teledetection, geophisic, etc. It consist in a mathematical and informatical theory and technique which is linked with algebra, the lattice theory, topology and probabilities.
+Mathematical morphology has been invented in 1964 by Georges Matheron and Jean Serra in the MINES ParisTech's laboratories. Its development was always motivated by industrial application. At the begining, the main purpose was to answer issues in the mining exploitation field. Then this purpose diversified itself to biology, medical imagery, material science, industrial vision, multimedia, teledetection, geophisic, etc. It consist in a mathematical and informatical theory and technique which is linked with algebra, the lattice theory, topology and probabilities[^SCH1993].
 
 Currently, one of the mathematical morphology’s main field is Image Processing. It particularly allows to use filtering, segmentation and quantification tools. Since it’s emergence in 1964, it knows a growing success and constitues a part of many Image Processing softwares yet.
 
@@ -33,7 +33,7 @@ Then we launch 10,000 (10x1000) times our functions in order to statistically an
 In order to compare the relevance of the structuring element, we decided to run our different operation with a completely different kernel than the one used by default in ImageJ. This kernel is shaped as a 45 degrees diagonal in a 3 by 3 pixel square.
 
 ### Hit-or-Miss
-Hit or miss is what could be defined as the basic operation of the morphological area of image processing. It is used to detect occurrences given binary patterns in fixed orientations. It can be used to look for several patterns (or alternatively, for the same pattern in several orientations) simply by running successive transforms using different structuring elements, and then running OR operation between all the results. Therefore, Most of the other morphological operations are derived from this notion(opening, closing, erosion, dilation...).
+Hit or miss is what could be defined as the basic operation of the morphological area of image processing. It is used to detect occurrences given binary patterns in fixed orientations. It can be used to look for several patterns (or alternatively, for the same pattern in several orientations) simply by running successive transforms using different structuring elements, and then running OR operation between all the results. Therefore, Most of the other morphological operations are derived from this notion(opening, closing, erosion, dilation...)[^ELR2014].
 If any "on" pixels of the image to process' targeted area is covered by "on" pixel of the structuring element, it is called "hit".
 If none of the image that have to be processed' "on" pixel in a targeted area is covered by a "on" pixel or the structuring element, it is called "miss". 
 If all "on" pixels on structuring element is cover all "on" pixels of an image to process targeted area, it is called "fit".
@@ -52,7 +52,7 @@ With the condition that B1 ∩ B2 = Ø, because if B1 is not a negative mask of 
 
 ### Dilate & Erode 
 
-The dilation operator takes two pieces of data as input. The first one is the image which is going to be dilated and the second one is the structuring element. Thus, the structuring element determines the precise effect of the dilation on the first image.
+The dilation operator takes two pieces of data as input. The first one is the image which is going to be dilated and the second one is the structuring element. Thus, the structuring element determines the precise effect of the dilation on the first image [^HAR1992][^GIL2002].
 
 It mathematically goes like this :
 
@@ -82,7 +82,7 @@ For our example 3×3 structuring element, the effect of this operation is to set
 
 **Figure 3 : Result of the Dilate operation using as a structuring element a disk of 3 by 3 size. This operation is done 2 times in a row**
 
-The erosion operator is the dilatiation operator's dual. Indeed, each of the foreground pixels in the input image in turn are considered. For each foreground pixel we superimpose the structuring element on top of the input image so that the origin of the structuring element coincides with the input pixel coordinates. If for every pixel in the structuring element, the corresponding pixel in the image underneath is a foreground pixel, then the input pixel is left as it is. If any of the corresponding pixels in the image are background, however, the input pixel is also set to background value. 
+The erosion operator is the dilatiation operator's dual[^GON1992]. Indeed, each of the foreground pixels in the input image in turn are considered. For each foreground pixel we superimpose the structuring element on top of the input image so that the origin of the structuring element coincides with the input pixel coordinates. If for every pixel in the structuring element, the corresponding pixel in the image underneath is a foreground pixel, then the input pixel is left as it is. If any of the corresponding pixels in the image are background, however, the input pixel is also set to background value. 
 
 <p align="center">
 <img src="images/erosion_formula.PNG" alt="alt text" width="500" weight="center">
@@ -101,7 +101,7 @@ For our example 3×3 structuring element, the effect of this operation is to rem
 
 
 Opening and closing are two secondary operations that play an important role in morphological image processing. Both could be defined as the combination of erosions and dilations and since they are derived from eroding and dilate they posses the same limits as the original techniques which means they can only be applied to binary images (or a graylevel image in particular cases). The general aims of those two operations are quite simple: making an image as smooth as possible without size change (or at least limited).
-Let's take a closer look to the opening operation.
+Let's take a closer look to the opening operation[^BRO2015][^GIL2002].
 
 The opening technique consist of an erosion followed by a dilation using the same structuring element for both operations
 
@@ -160,9 +160,9 @@ It is important to note that opening and closing are less destructive of the ori
 
 ### Skeletonize
 
-Skeletonization (also called "Medial Axis Transform" or MAT) allows the user to reduce a focused region from a binary image to its skeletal remnant. Indeed, most of the foreground pixels are throwed when the connectivity is concerved. 
+Skeletonization (also called "Medial Axis Transform" or MAT) allows the user to reduce a focused region from a binary image to its skeletal remnant. Indeed, most of the foreground pixels are throwed when the connectivity is concerved [^LEG2016]. 
 This process is mostly compared as an explanation to a slow-burning material. Fire is set simultaneously to all the boundary of the area of interest. This fire slowly moves into the interior of the area. A trace remains at each point when the fire coming from each area meets itself. This trace is called "quench line" and represents the skeleton of the area.
-The skeleton/MAT can be produced in two main ways using the erode operator or the distance transform. The first successively erodes away pixels from the boundary (while preserving the end points of line segments) until no more thinning is possible whereas the second calculates the distance transform of the image. The skeleton then lies along the singularities in the distance transform. The latter approach seems to be more adapted to the MAT calculation. Indeed, the MAT is the same as the distance transform but with all points off the skeleton suppressed to zero.
+The skeleton/MAT can be produced in two main ways using the erode operator or the distance transform. The first successively erodes away pixels from the boundary (while preserving the end points of line segments) until no more thinning is possible whereas the second calculates the distance transform of the image. The skeleton then lies along the singularities in the distance transform. The latter approach seems to be more adapted to the MAT calculation. Indeed, the MAT is the same as the distance transform but with all points off the skeleton suppressed to zero[^VER1991].
  Whether differents skeletonization algorithm exist, the general effects are all similar, as are the uses to which the skeletons are put.
 
 Mathematically, skeletonize is reprensented by :
@@ -189,7 +189,7 @@ As with thinning, slight irregularities in a boundary may interfere with recogni
 
 ### Euclidean Distance Mapping
 The Euclidean Distance Mapping (or EDM), is one of several Distance transform techniques in Image Processing. The shortest distance to the nearest pixel in the background for each objects is labeled. The result looks pretty similar to the original inputed image in terms of shape, but the pixel's greyscale values are changed to show the distance to the closest boundary from each point.
-Once again, the metaphor of a fire cunsumming a slow burning material is often used to describe the process. Just as the skeletonize tranform, a fire starts at each point of the object's boundaries and moves into the interior. Each point in the interiour is labeled with the amount of time that the fire took to reach it.  
+Once again, the metaphor of a fire cunsumming a slow burning material is often used to describe the process. Just as the skeletonize tranform, a fire starts at each point of the object's boundaries and moves into the interior. Each point in the interiour is labeled with the amount of time that the fire took to reach it [^BAI2004].  
 
 Several kind of distance transform exists, depending upon which distance metric is being used to determine the distance between pixels. The 'chessboard distance' and the 'city block' transform can be quoted, using respectively 3×3 square and cross shaped structuring elements whereas the Euclidean distance mapping uses a disk shaped one.
 From a measurement perspective, the Euclidean distance is the most useful because it corresponds to the way objects are measured in the real world.
@@ -211,7 +211,7 @@ This metric is isotropic in that distances measured are independent of object or
 
 ### Ultimate eroded point
 
-Ultimate eroded point (or UEP) is derived from the EDM operator and could be defined as the last point that would be present after recursively eroding until the last pass before the object would be invisible. 
+Ultimate eroded point (or UEP) is derived from the EDM operator and could be defined as the last point that would be present after recursively eroding until the last pass before the object would be invisible[^LEG2016]. 
 In order to apply multiple UEP on an image, each object thus could be considered separately, which makes possible to use different numbers of erosions for each object and so having the ultimate eroded point not only for an image but for each object which is useful for cells images for example. 
 
 The ultimate erode point is represented as follow :
@@ -418,7 +418,7 @@ Mathematical morphology have nowadays a very diversified range of application fi
 
 During this study, we took a look at some mathematical morphology processes allowing the data treatment in binary images with ImageJ. Throughout our study we approached different  ways to treat images depending on what the user aims. More than this, those treatments can be implemented from different ways and hasn't necessarly the sames results when running. Unfortunately, we didn't find any plugin considered relevant to compare with ImageJ's functions, according to our goal. However, the benchmark and the structuring diagonal element we made taught us well about how parameters can influence the results in term of runtime statistics and display. Otherwise, other binary functions could have been studied such as thinning or watershed.
 
- Image Processing is a wide domain that contain numerous branches and applications (from biomedical use to robot vision). ImageJ offers many essential ways to perform Image Processing and what we studied is just a tiny part of the whole tools proposed. Those years, the deep learning principal has performed a major breakthrough in a whole bunch of domains. Maybe a projection to Image Processing with ImageJ could be interesting.
+ Image Processing is a wide domain that contain numerous branches and applications (from biomedical use to robot vision). ImageJ offers many essential ways to perform Image Processing and what we studied is just a tiny part of the whole tools proposed. Those years, the deep learning principal has performed a major breakthrough in a whole bunch of domains. Maybe a projection to Image Processing with ImageJ could be interesting [^SOI2010].
 
 
 
@@ -443,6 +443,8 @@ During this study, we took a look at some mathematical morphology processes allo
   [^ELR2014] OM. Elrajubi, I. El-Feghi, M. Saghayer. Hit-or-Miss Transform as a Tool for Similar Shape Detection.World Academy of Science, Engineering and Technology, Vol. 4, No:6,2014.
 
   [^SOI2010] P.Soille. Morphological Image Analysis: Principles and Applications, 2th ed. Springer, 2010.
+  
+  [^SCH1993] Michel Schmitt et Juliette Mattioli, Morphologie mathématique, Masson, Paris, 1993.
 
 
 
