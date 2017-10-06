@@ -339,7 +339,7 @@ Even tough the lack of plugins won't let us compare some performances we still d
 <p align="center">
 <img src="/Results/benchmark_skeletonize.png" width="1000" weight="center">
 </p>
-**Figure 18: Benchmarks of the skeletonize operation using as a structuring element a disk of 3 by 3 size.**
+**Figure 17: Benchmarks of the skeletonize operation using as a structuring element a disk of 3 by 3 size.**
 
 As we can see, for the  for the skeletonization  operator we have an average excution time of 104.127 ms and average memory used of 86.735 MiB.
 
@@ -353,7 +353,7 @@ The image obtained is as follow :
 <img src="/Results/combined_edm.png" alt="alt text" width="9000" weight="center">
 </p>
 
-**Figure 17: Result of the EDM operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin**
+**Figure 18: Result of the EDM operation using as a structuring element a disk of 3 by 3 size. Left : Original image, middle : made with ImageJ default function, right : made with MorphoLibJ plugin**
 
 As we can see, we have two main results. The objects containing no (or not many) background pixels inside in the original picture, have a better score. The furthest from any background pixel the brighter the pixel, and the higher the score.
 The others object, containg many background pixels have lower scores. This is due to the fact that the background pixels in the middle of the object reduce the distances between foreground and background pixels.
@@ -365,7 +365,7 @@ Here are the benchmark's results for the skeletonize method :
 <img src="/Results/benchmark_EDM.png" width="1000" weight="center">
 </p>
 
-**Figure 18: Benchmarks of the EDM operation using as a structuring element a disk of 3 by 3 size.**
+**Figure 19: Benchmarks of the EDM operation using as a structuring element a disk of 3 by 3 size.**
 
 As we can see, for the  for the EDM operator we have an average excution time of 155.589 ms and average memory used of 85.411 MiB.
 
@@ -379,7 +379,7 @@ It will only keep the pixels with the highest scores on the Euclidean Distance M
 <img src="/Results/combined_UEP.png" alt="alt text" width="8000" weight="center">
 </p>
 
-**Figure 19: Result of the UEP operation using as a structuring element a disk of 3 by 3 size. From left top to right bottom: original image, the UEP original image wihout process, the UEP original transformed to binary, the transformed UEP with a dilation applied**
+**Figure 20: Result of the UEP operation using as a structuring element a disk of 3 by 3 size. From left top to right bottom: original image, the UEP original image wihout process, the UEP original transformed to binary, the transformed UEP with a dilation applied**
 
 After an UEP using the default ImageJ function the output image seems to be only black. In order to check this theory, we transformed the image to binary, and we could already see some points corresponding to the last point that would be eroded for each object. Finally, in order to make the result more usable, we applied a dilation.
 As we can, see the more "perfect" the object is, in our case a cell containing only foreground pixels, the more the theoretical ultimate eroded point is valid. However, as soon as we start getting more complex object, we can see that those objects can have multiples ultimate eroded point. This can be explained as the computer is not capable to determine the object in his whole (cause of the background pixels inside the cells) and so is treats which should be considered as one object in multiples, which explain those multiple UEP.
@@ -391,7 +391,7 @@ Like the skeletonize operator, and the EDM method we still decided to run some b
 <img src="/Results/benchmark_uep.png" width="1000" weight="center">
 </p>
 
-**Figure 20: Benchmarks of the UEP using as a structuring element a disk of 3 by 3 size.**
+**Figure 21: Benchmarks of the UEP using as a structuring element a disk of 3 by 3 size.**
 
 We can observe for the UEP method that we have an average excution time of 75.359 ms and average memory used of 195.887 MiB.
 
