@@ -10,7 +10,7 @@
 
 const skeletonize = function (img,copy=true) {
 	let output =  T.Raster.from(img,copy);
-	return img;
+	return output;
 };
 
 
@@ -38,7 +38,7 @@ win0.addView(view0);
 // Add the window to the DOM and display it
 win0.addToDOM('workspace');
 // SKELETONIZE
-/*
+
 let img1 = skeletonize(img0);
 
 let win1 = new T.Window('output');
@@ -47,4 +47,3 @@ let view1 = T.view(img1.getRaster());
 win1.addView(view1);
 // Add the window to the DOM and display it
 win1.addToDOM('workspace');
-*/
