@@ -9,7 +9,16 @@
 
 //Returning Raster or Image ?
 const skeletonize = function (img,copy=true) {
-	let output =  T.Raster.from(img.getRaster(),copy);
+	let output = img;
+	let r_output = output.getRaster();
+	for (let x=0;x<r_output.width;x++){
+		for(let y=0;y<r_output.height;y++) {
+			if (r_output.getPixel(x,y)!=255) {
+				r_output.setPixel(x,y,255);
+			}
+		}
+	}
+	output.setRaster(r_output);
 	return output;
 };
 
@@ -38,9 +47,9 @@ win0.addView(view0);
 // Add the window to the DOM and display it
 win0.addToDOM('workspace');
 // SKELETONIZE
-
+let img1 = skeletonize(img0);
 let win1 = new T.Window('output');
-let view1 = T.view(skeletonize(img0));
+let view1 = T.view(img1.getRaster());
 // Create the window content from the view
 win1.addView(view1);
 // Add the window to the DOM and display it
