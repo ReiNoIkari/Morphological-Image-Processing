@@ -8,13 +8,9 @@
 //			thinning method, based on the hit and miss algorithm?
 
 
-
-
-
-
-
-
-
+const skeletonize = function () {
+	return;
+}
 
 
 
@@ -34,6 +30,7 @@
  */
 let img0 = new T.Image('uint8',500,500);
 img0.setPixels(b_image2);
+console.log(img0);
 let win0 = new T.Window('Skeletonize');
 let view0 = T.view(img0.getRaster());
 // Create the window content from the view
