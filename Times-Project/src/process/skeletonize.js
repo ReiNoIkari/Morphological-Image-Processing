@@ -7,9 +7,9 @@
 //needed : edge detection, selecting pixels to be removed (must not select end-of-line pixels).
 //			thinning method, based on the hit and miss algorithm?
 
-
+//Returning Raster or Image ?
 const skeletonize = function (img,copy=true) {
-	let output =  T.Raster.from(img,copy);
+	let output =  T.Raster.from(img.getRaster(),copy);
 	return output;
 };
 
@@ -39,10 +39,8 @@ win0.addView(view0);
 win0.addToDOM('workspace');
 // SKELETONIZE
 
-let img1 = skeletonize(img0);
-
 let win1 = new T.Window('output');
-let view1 = T.view(img1.getRaster());
+let view1 = T.view(skeletonize(img0));
 // Create the window content from the view
 win1.addView(view1);
 // Add the window to the DOM and display it
