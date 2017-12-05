@@ -33,47 +33,56 @@
  * @author TODO
  */
 
+
+
+
+const dilate = function (img,copy=true) {
+  let ouput =  T.Raster.from(img.getRaster(),copy);
+  let tmp = new T.Image('uint8',500,500);
+  tmp.setPixels(b_image2);
+  // TODO
+    for (let i=0; i<img.length; i++){
+      for (let j=0; j<img.length; j++){
+        if (img[i][j]==1){ tmp[i][j]=1;
+          if (i>0){ tmp[i-1][j] = 1;}
+              if (j>0){ tmp[i][j-1] = 1;}   
+              if (i+1<img.length){ tmp[i+1][j] = 1;}
+              if (j+1<img[i].length){tmp[i][j+1] = 1;}
+      }
+    }
+  }
+ 
+ 
+  return img;
+}
+
+
+
+
+/**
+ * Display uint8 images
+ */
 let img0 = new T.Image('uint8',500,500);
 img0.setPixels(b_image2);
-let win0 = new T.Window('Boats');
+let win0 = new T.Window('Original');
 let view0 = T.view(img0.getRaster());
 // Create the window content from the view
 win0.addView(view0);
 // Add the window to the DOM and display it
 win0.addToDOM('workspace');
 
-const erode = function (img,copy=true) {
-  let ouput =  TRaster.from(img,copy);
-  // TODO
-  return output;
-}
-
-const dilate = function (img,copy=true) {
-  let ouput =  TRaster.from(img,copy);
-  let tmp = new T.Image('uint8',500,500);
-  // TODO
-    for (let i=0; i<img.length; i++){
-      for (let j=0; j<img[i].length; j++){
-        if (image[i][j]==1){ tmp[i][j]=1;
-          if (i>0){ tmp[i-1][j] = 1;}
-              if (j>0){ tmp[i][j-1] = 1;}
-              if (i+1<image.length){ tmp[i+1][j] = 1;}
-              if (j+1<image[i].length){tmp[i][j+1] = 1;}
-      }
-    }
-  }
- 
- 
-  return tmp;
-}
-
-dilate(img0)
 
 
-img1.setPixels(tmp);
+//let img1=dilate(img0)
+
+
 let win1 = new T.Window('Dilated');
-let view1 = T.view(img1.getRaster());
+//let view1 = T.view(img1.getRaster());
+let view1 = T.view(dilate(img0));
+
 // Create the window content from the view
 win1.addView(view1);
 // Add the window to the DOM and display it
-win1.addToDOM('workspace1');
+win1.addToDOM('workspace');
+
+
