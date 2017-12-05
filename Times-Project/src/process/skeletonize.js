@@ -7,27 +7,53 @@
 //needed : edge detection, selecting pixels to be removed (must not select end-of-line pixels).
 //			thinning method, based on the hit and miss algorithm?
 
-//Returning Raster or Image ?
-const skeletonize = function (img,copy=true) {
+
+//takes a 8-bit binary img ( 0/255) returns a 0/1 image
+const convert_process = function(img,undo=false,copy=true) {
 	let output = img;
 	let r_output = output.getRaster();
 	for (let x=0;x<r_output.width;x++){
 		for(let y=0;y<r_output.height;y++) {
-			if (r_output.getPixel(x,y)!=255) {
-				r_output.setPixel(x,y,255);
+			if (undo == false) {
+				if (r_output.getPixel(x,y)==255) {
+					r_output.setPixel(x,y,1);
+				}
+			}
+			else {
+				if (r_output.getPixel(x,y)!=0) {
+					r_output.setPixel(x,y,255);
+				}
 			}
 		}
 	}
 	output.setRaster(r_output);
 	return output;
+}
+
+//takes a 0/1 T.image, returns a 0/1/2 edge image (1 being edges)
+const edge_detection = function(img,copy=true) {
+	let output = img;
+	let r_output = output.getRaster();
+	for (let x=0;x<r_output.width;x++){
+		for(let y=0;y<r_output.height;y++) {
+			//DO SOMETHING 
+			;
+		}
+	}
+	output.setRaster(r_output);
+	return output;
+}
+
+//skeletonize a binary image, returns skeletonized binary image
+const skeletonize = function (img,copy=true) {
+	let output = img;
+	let r_output = output.getRaster();
+	//TO DO : LOOPING THE PROCESS UNTIL SKELETONIZED, THINNING, EDGE DETEC
+	output = edge_detection(convert_process(output)); // converts into 0/1 -> then edge detect
+	output = convert_process(output,true); // re processes into 0/255
+	output.setRaster(r_output);
+	return output;
 };
-
-
-
-
-
-
-
 
 
 
