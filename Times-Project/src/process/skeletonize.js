@@ -7,52 +7,62 @@
 //needed : edge detection, selecting pixels to be removed (must not select end-of-line pixels).
 //			thinning method, based on the hit and miss algorithm?
 
-
-//takes a 8-bit binary img ( 0/255) returns a 0/1 image
-const convert_process = function(img,undo=false,copy=true) {
-	let output = img;
-	let r_output = output.getRaster();
-	for (let x=0;x<r_output.width;x++){
-		for(let y=0;y<r_output.height;y++) {
+//takes a 8-bit binary raster ( 0/255) and converts it to a 0/1 raster
+const convert_process = function(rast,undo=false,copy=true) {
+	for (let x=0;x<rast.width;x++){
+		for(let y=0;y<rast.height;y++) {
 			if (undo == false) {
-				if (r_output.getPixel(x,y)==255) {
-					r_output.setPixel(x,y,1);
+				if (rast.getPixel(x,y)==255) {
+					rast.setPixel(x,y,1);
 				}
 			}
 			else {
-				if (r_output.getPixel(x,y)!=0) {
-					r_output.setPixel(x,y,255);
+				if (rast.getPixel(x,y)==1) {
+					rast.setPixel(x,y,255);
+				}
+				if (rast.getPixel(x,y)==2) {
+					rast.setPixel(x,y,125);
 				}
 			}
 		}
 	}
-	output.setRaster(r_output);
-	return output;
+	return rast;
 }
 
-//takes a 0/1 T.image, returns a 0/1/2 edge image (1 being edges)
-const edge_detection = function(img,copy=true) {
-	let output = img;
-	let r_output = output.getRaster();
-	for (let x=0;x<r_output.width;x++){
-		for(let y=0;y<r_output.height;y++) {
-			//DO SOMETHING 
-			;
+//returns true if a foreground pixel (1) is surrounded by 4 foreground pixels
+const is_interior = function(x,y,raster) {
+	if (raster.getPixel(x,y) != 0){
+		if (x-1 >= 0 && raster.getPixel(x-1,y) == 1 && x+1 <= raster.width && raster.getPixel(x+1,y) == 1 
+			&& y-1 >= 0 && raster.getPixel(x,y-1) == 1 && y+1 <= raster.height && raster.getPixel(x,y+1) == 1 ) {
+			return true
 		}
 	}
-	output.setRaster(r_output);
-	return output;
+	return false
 }
 
-//skeletonize a binary image, returns skeletonized binary image
+//takes a 0/1 T.Raster, returns a 0/1/2 edge raster copy (1 being edges)
+const edge_detection = function(rast,copy=true) {
+	let initial_raster = rast;
+	let r_output = T.Raster.from(rast,copy);
+	for (let x=0;x<initial_raster.width;x++){
+		for(let y=0;y<initial_raster.height;y++) {
+			if (is_interior(x,y,initial_raster)) {
+				r_output.setPixel(x,y,2);
+			}
+		}
+	}
+	return r_output;
+}
+
+//skeletonize a binary image, returns a copy of the image skeletonized
 const skeletonize = function (img,copy=true) {
-	let output = img;
-	let r_output = output.getRaster();
+	let temp = new T.Image('uint8',img.width,img.height);
+	temp.setRaster(T.Raster.from(img.getRaster(),copy));
 	//TO DO : LOOPING THE PROCESS UNTIL SKELETONIZED, THINNING, EDGE DETEC
-	output = edge_detection(convert_process(output)); // converts into 0/1 -> then edge detect
-	output = convert_process(output,true); // re processes into 0/255
-	output.setRaster(r_output);
-	return output;
+	r_output = edge_detection(convert_process(temp.getRaster())); // converts into 0/1 -> then edge detect
+	r_output = convert_process(r_output,true); // re processes into 0/255 ( temporary : in order to visualize, re processes "interior" pixels into grey (125))
+	temp.setRaster(r_output);
+	return temp;
 };
 
 
@@ -72,6 +82,7 @@ let view0 = T.view(img0.getRaster());
 win0.addView(view0);
 // Add the window to the DOM and display it
 win0.addToDOM('workspace');
+
 // SKELETONIZE
 let img1 = skeletonize(img0);
 let win1 = new T.Window('output');
@@ -80,3 +91,13 @@ let view1 = T.view(img1.getRaster());
 win1.addView(view1);
 // Add the window to the DOM and display it
 win1.addToDOM('workspace');
+
+/*//test final image
+let img2 = new T.Image('uint8',500,500);
+img2.setRaster(img0.getRaster());
+let win2 = new T.Window('test');
+let view2 = T.view(img2.getRaster());
+// Create the window content from the view
+win1.addView(view2);
+// Add the window to the DOM and display it
+win1.addToDOM('workspace');*/
