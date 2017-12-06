@@ -68,10 +68,10 @@ const dilate = function(img,copy=true,struct=[0,1,0,1,1,1,0,1,0]){
     }
   }
   for(let k=0; k<img_pixel_list.length; k++) { 
-    for(let l=0; l=img_pixel_list[x].length; l++) {
+    for(let l=0; l=img_pixel_list[k].length; l++) {
       if (img_pixel_list[k]==img_pixel_list[k][l]==struct_Center)
-        for(let m = -(struct.length-struct_Center)<struct.length<m++){
-
+        for(let m = -(struct.length-struct_Center);m<struct.length;m++){
+            ;
         }
    
 
