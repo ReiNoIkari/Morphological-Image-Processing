@@ -36,7 +36,7 @@
 
 
 
-const dilate = function (img,copy=true) {
+/*const dilate2 = function (img,copy=true) {
   let ouput =  T.Raster.from(img.getRaster(),copy);
   let tmp = new T.Image('uint8',500,500);
   tmp.setPixels(b_image2);
@@ -50,19 +50,41 @@ const dilate = function (img,copy=true) {
               if (j+1<img[i].length){tmp[i][j+1] = 1;}
       }
     }
-  }
+  }*/
  
- 
+/* 
   return img;
+}        */  
+const dilate = function(img,copy=true,struct=[0,1,0,1,1,1,0,1,0]){
+  let output = img;
+  let r_output = output.getRaster();
+  let struct_Center=(struct.length+1)/2; 
+  let value_center_pixel=0;
+  let img_pixel_list=[];
+  //Loop to store pixels value of the whole image, easier to check for neighbours later
+  for (let j =0; j<r_output.height; j++){
+    for(let i=0;i<r_output.width; i++){
+      img_pixel_list.push(r_output.getPixel(j,i));
+    }
+  }
+  for(let k=0; k<img_pixel_list.length; k++) { 
+    for(let l=0; l=img_pixel_list[x].length; l++) {
+      if (img_pixel_list[k]==img_pixel_list[k][l]==struct_Center)
+        for(let m = -(struct.length-struct_Center)<struct.length<m++){
+
+        }
+   
+
+    }
+  }
+
+  return output;
 }
-
-
-
 
 /**
  * Display uint8 images
  */
-let img0 = new T.Image('uint8',500,500);
+/*let img0 = new T.Image('uint8',500,500);
 img0.setPixels(b_image2);
 let win0 = new T.Window('Original');
 let view0 = T.view(img0.getRaster());
@@ -73,13 +95,27 @@ win0.addToDOM('workspace');
 
 
 
-//let img1=dilate(img0)
-
 
 let win1 = new T.Window('Dilated');
-//let view1 = T.view(img1.getRaster());
-let view1 = T.view(dilate(img0));
 
+let view1 = T.view(dilate(img0());
+
+win1.addView(view1);
+win1.addToDOM('workspace');*/
+
+
+let img0 = new T.Image('uint8',500,500);
+img0.setPixels(b_image2);
+let win0 = new T.Window('Original');
+let view0 = T.view(img0.getRaster());
+// Create the window content from the view
+win0.addView(view0);
+// Add the window to the DOM and display it
+win0.addToDOM('workspace');
+// SKELETONIZE
+let img1 = dilate(img0);
+let win1 = new T.Window('Dilated');
+let view1 = T.view(img1.getRaster());
 // Create the window content from the view
 win1.addView(view1);
 // Add the window to the DOM and display it
