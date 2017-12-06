@@ -92,7 +92,8 @@ win1.addView(view1);
 // Add the window to the DOM and display it
 win1.addToDOM('workspace');
 
-/*//test final image
+//TODO : Figure why original image doesn't display normally
+/*//test original image
 let img2 = new T.Image('uint8',500,500);
 img2.setRaster(img0.getRaster());
 let win2 = new T.Window('test');
