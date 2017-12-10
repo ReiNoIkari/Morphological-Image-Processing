@@ -61,7 +61,7 @@ const dilate = function(img,copy=true,struct=[0,1,0,1,1,1,0,1,0]){
   let struct_Center=(struct.length+1)/2; 
   let value_center_pixel=0;
   let img_pixel_list=[];
-  
+  var outside = Boolean(false);
   //Loop to store pixels value of the whole image, easier to check for neighbours later
   for (let j =0; j<r_output.height; j++){
     for(let i=0;i<r_output.width; i++){
@@ -80,7 +80,7 @@ const dilate = function(img,copy=true,struct=[0,1,0,1,1,1,0,1,0]){
               outside = true;
             }
             if (!outside) {//si on est à l'interieur de l'image :
-            
+
           }
             
         }
