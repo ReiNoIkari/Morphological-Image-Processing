@@ -80,7 +80,11 @@ const dilate = function(img,copy=true,struct=[0,1,0,1,1,1,0,1,0]){
               outside = true;
             }
             if (!outside) {//si on est à l'interieur de l'image :
-
+            //todo : 
+            //getpixels sur l'iamge
+            //getpixels sur elmt
+            //si dif prendre valeur de elmt
+            
           }
             
         }
