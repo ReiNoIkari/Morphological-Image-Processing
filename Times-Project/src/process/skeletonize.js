@@ -2,9 +2,9 @@
 //
 //algorithm (to be enhanced) :
 // 1/ edge detection
-// 2/ pixels to be removed ? (true if existing non-edge pixels)
-// 3/ thinning (removing pixels around non-edge pixels)
-//needed : edge detection, selecting pixels to be removed (must not select end-of-line pixels).
+// 2/ remove edge pixels ( if next to interior pixel )
+// 3/ test end of thinning (else return to 1/)
+//needed : 
 //			thinning method, based on the hit and miss algorithm?
 
 //takes a 8-bit binary raster ( 0/255) and converts it to a 0/1 raster
@@ -27,48 +27,78 @@ const convert_process = function(rast,undo=false,copy=true) {
 		}
 	}
 	return rast;
-}
+};
 
 //returns true if a foreground pixel (1) is surrounded by 4 foreground pixels
 const is_interior = function(x,y,raster) {
 	if (raster.getPixel(x,y) != 0){
-		if (x-1 >= 0 && raster.getPixel(x-1,y) == 1 && x+1 <= raster.width && raster.getPixel(x+1,y) == 1 
-			&& y-1 >= 0 && raster.getPixel(x,y-1) == 1 && y+1 <= raster.height && raster.getPixel(x,y+1) == 1 ) {
+		if (x-1 >= 0 && raster.getPixel(x-1,y) != 0 && (x+1) <= raster.width && raster.getPixel(x+1,y) != 0 
+			&& y-1 >= 0 && raster.getPixel(x,y-1) != 0 && (y+1) <= raster.height && raster.getPixel(x,y+1) != 0 ) {		
 			return true
 		}
 	}
 	return false
+};
+
+//returns true if the x,y pixel is next to an interior pixel (north, south ,east ,west)
+const is_removable = function(x,y,raster) {
+	if (raster.getPixel(x,y) == 1){
+		if ((x-1 >= 0 && raster.getPixel(x-1,y) == 2) || ((x+1) <= raster.width && raster.getPixel(x+1,y) == 2) 
+			|| (y-1 >= 0 && raster.getPixel(x,y-1) == 2) || ((y+1) <= raster.height && raster.getPixel(x,y+1) == 2) ) {
+			return true;
+		}
+	}
+	return false;
+
 }
 
 //takes a 0/1 T.Raster, returns a 0/1/2 edge raster copy (1 being edges)
-const edge_detection = function(rast,copy=true) {
-	let initial_raster = rast;
+const edge_removal = function(rast,copy=true) {
 	let r_output = T.Raster.from(rast,copy);
-	for (let x=0;x<initial_raster.width;x++){
-		for(let y=0;y<initial_raster.height;y++) {
-			if (is_interior(x,y,initial_raster)) {
+	//edge detection (background = 0, edge = 1, interior =2)
+	for (let x=0;x<=rast.width;x++){
+		for(let y=0;y<=rast.height;y++) {
+			if (is_interior(x,y,rast)) {
 				r_output.setPixel(x,y,2);
 			}
 		}
 	}
-	return r_output;
-}
+
+	//removing all edge pixel in contact with an interior pixel
+	for (let x=0;x<=rast.width;x++){
+		for(let y=0;y<=rast.height;y++) {
+			if (is_removable(x,y,r_output)) {
+				r_output.setPixel(x,y,0);
+			}
+		}
+	}
+
+	//turning back all non-background pixels to 1
+	for (let x=0;x<=rast.width;x++){
+		for(let y=0;y<=rast.height;y++) {
+			if (r_output.getPixel(x,y) !=0) {
+				r_output.setPixel(x,y,1);
+			}
+		}
+	}
+	if (rast.pixelData.length==r_output.pixelData.length && rast.pixelData.every((v,i)=> v === r_output.pixelData[i])){
+		return r_output;
+	}
+	else {
+		return edge_removal(r_output);
+	}
+};
 
 //skeletonize a binary image, returns a copy of the image skeletonized
 const skeletonize = function (img,copy=true) {
 	let temp = new T.Image('uint8',img.width,img.height);
 	temp.setRaster(T.Raster.from(img.getRaster(),copy));
 	//TO DO : LOOPING THE PROCESS UNTIL SKELETONIZED, THINNING, EDGE DETEC
-	r_output = edge_detection(convert_process(temp.getRaster())); // converts into 0/1 -> then edge detect
+	r_output = edge_removal(convert_process(temp.getRaster())); // converts into 0/1 -> then edge detect
 	r_output = convert_process(r_output,true); // re processes into 0/255 ( temporary : in order to visualize, re processes "interior" pixels into grey (125))
 	temp.setRaster(r_output);
 	return temp;
 };
-
-
-
-
-
 
 
 /**
