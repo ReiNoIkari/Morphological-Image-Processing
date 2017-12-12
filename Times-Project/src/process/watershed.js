@@ -43,7 +43,7 @@ const watershed = function (img,copy=true) {
  */
 let img0 = new T.Image('uint8',500,500);
 img0.setPixels(b_image2);
-let win0 = new T.Window('Skeletonize');
+let win0 = new T.Window('Original');
 let view0 = T.view(img0.getRaster());
 // Create the window content from the view
 win0.addView(view0);
@@ -52,7 +52,7 @@ win0.addToDOM('workspace');
 
 // SKELETONIZE
 let img1 = skeletonize(img0);
-let win1 = new T.Window('output');
+let win1 = new T.Window('Output');
 let view1 = T.view(img1.getRaster());
 // Create the window content from the view
 win1.addView(view1);
