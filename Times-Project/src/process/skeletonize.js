@@ -9,8 +9,8 @@
 
 //takes a 8-bit binary raster ( 0/255) and converts it to a 0/1 raster
 const convert_process = function(rast,undo=false,copy=true) {
-	for (let x=0;x<rast.width;x++){
-		for(let y=0;y<rast.height;y++) {
+	for(let y=0;y<=rast.height;y++) {
+		for (let x=0;x<=rast.width;x++){
 			if (undo == false) {
 				if (rast.getPixel(x,y)==255) {
 					rast.setPixel(x,y,1);
@@ -56,8 +56,8 @@ const is_removable = function(x,y,raster) {
 const edge_removal = function(rast,copy=true) {
 	let r_output = T.Raster.from(rast,copy);
 	//edge detection (background = 0, edge = 1, interior =2)
-	for (let x=0;x<=rast.width;x++){
-		for(let y=0;y<=rast.height;y++) {
+	for(let y=0;y<=rast.height;y++) {
+		for (let x=0;x<=rast.width;x++){
 			if (is_interior(x,y,rast)) {
 				r_output.setPixel(x,y,2);
 			}
@@ -65,8 +65,8 @@ const edge_removal = function(rast,copy=true) {
 	}
 
 	//removing all edge pixel in contact with an interior pixel
-	for (let x=0;x<=rast.width;x++){
-		for(let y=0;y<=rast.height;y++) {
+	for(let y=0;y<=rast.height;y++) {
+		for (let x=0;x<=rast.width;x++){
 			if (is_removable(x,y,r_output)) {
 				r_output.setPixel(x,y,0);
 			}
@@ -74,8 +74,8 @@ const edge_removal = function(rast,copy=true) {
 	}
 
 	//turning back all non-background pixels to 1
-	for (let x=0;x<=rast.width;x++){
-		for(let y=0;y<=rast.height;y++) {
+	for(let y=0;y<=rast.height;y++) {
+		for (let x=0;x<=rast.width;x++){
 			if (r_output.getPixel(x,y) !=0) {
 				r_output.setPixel(x,y,1);
 			}
@@ -94,7 +94,7 @@ const skeletonize = function (img,copy=true) {
 	let temp = new T.Image('uint8',img.width,img.height);
 	temp.setRaster(T.Raster.from(img.getRaster(),copy));
 	//TO DO : LOOPING THE PROCESS UNTIL SKELETONIZED, THINNING, EDGE DETEC
-	r_output = edge_removal(convert_process(temp.getRaster())); // converts into 0/1 -> then edge detect
+	let r_output = edge_removal(convert_process(temp.getRaster())); // converts into 0/1 -> then edge detect
 	r_output = convert_process(r_output,true); // re processes into 0/255 ( temporary : in order to visualize, re processes "interior" pixels into grey (125))
 	temp.setRaster(r_output);
 	return temp;
