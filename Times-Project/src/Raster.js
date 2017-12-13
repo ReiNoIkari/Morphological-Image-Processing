@@ -249,8 +249,8 @@ export default class Raster {
    * @author Jean-Christophe Taveau
    */
   pad(topleft_x,topleft_y,small_img) {
-    for (let y = 0; y < small_img.height; y++) {//on choppe toutes les lignes
-      let chunk = small_img.pixelData.slice(y * small_img.width, (y+1) * small_img.width);//
+    for (let y = 0; y < small_img.height; y++) {
+      let chunk = small_img.pixelData.slice(y * small_img.width, (y+1) * small_img.width);
       chunk.forEach ( (px, index) => this.pixelData[topleft_x + index + (topleft_y + y)* this.width] = px, this);
     }
   }
