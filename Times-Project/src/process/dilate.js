@@ -35,24 +35,16 @@
 
 const dilate = function(img,copy=true,struct=[0,1,0,1,1,1,0,1,0]){
 
-
   let output = img;
   let r_output = output.getRaster();
   let struct_Center=(struct.length+1)/2; 
   let value_center_pixel=0;
-  let img_pixel_list=[[]];
   var outside = Boolean(false);
 
 
-  //Loop to store pixels value of the whole image, easier to check for neighbours later
-  for (let j =0; j<r_output.height; j++){
-    for(let i=0;i<r_output.width; i++){
-      img_pixel_list.push(r_output.getPixel(j,i));
-    }
-  }
-  for(let k=0; k<img_pixel_list.height; k++) { //parcours la liste de pixels de l'image en x
-    for(let l=0; l=img_pixel_list.width; l++) {//parcours la liste de pixels de l'image en y
-      if (img_pixel_list[k]==img_pixel_list[k][l]==struct_Center){ //cherche dans la liste de pixels valeur du centre de l'élement structurant
+   for(let k=0; k<r_output.height; k++) { //parcours la liste de pixels de l'image en x
+    for(let l=0; l=r_output.width; l++) {//parcours la liste de pixels de l'image en y
+      if (r_output.getPixel(k,l)==struct_Center){ //cherche dans la liste de pixels valeur du centre de l'élement structurant
         for(let m = -(struct.length-struct_Center);m<struct.length-struct_Center;m++){// On cherche dans la liste de pixel (en x) dans une zone de la taille elmt struct 
           for(let n = -(struct.length-struct_Center);n<struct.length-struct_Center;n++){// On cherche dans la liste de pixel (en y) dans une zone de la taille elmt struct
             if (k + m < 0 || k + m > r_output.width - 1) {//check si on est à l'exterieur de l'image en x ou pas, si oui outside=true
@@ -73,6 +65,10 @@ const dilate = function(img,copy=true,struct=[0,1,0,1,1,1,0,1,0]){
       }
     }
   }
+
+  console.log("PixelsData");
+  console.log(r_output.pixelData);
+  console.log("old_version");
   console.log(img_pixel_list);
   return output;
 }
