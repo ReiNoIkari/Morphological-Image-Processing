@@ -37,8 +37,10 @@
 //not cute to see but w/e
 //check raisonement es ce que les coordonée x du raster_struct coorepondent à ceux image?? Petit doute...
 const worskpace = function(x,y,r_struct) {
-	for(let y=0;y<=r_struct.height;y++) {
-		for (let x=0;x<=r_struct.width;x++){
+  let r_struct=struct.getRaster();
+  let struct_Center=(struct.length+1)/2; 
+	for(y;y>=-r_struct.height && <=r_struct.height;y++) {
+		for (x;x>=-r_struct.width && <=r_struct.width;x++){
       if (r_output.getPixel(x-i,y-i)!=struct_raster.getPixel(x-i,y-i)){
         r_output.setPixels(x,y,struct_raster.getPixel(x-i,y-1));
       }
