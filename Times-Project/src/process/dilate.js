@@ -33,20 +33,60 @@
  * @author TODO
  */
 
+//check all the 8 neighbors for a pixel i
+//not cute to see but w/e
+//check raisonement es ce que les coordonée x du raster_struct coorepondent à ceux image?? Petit doute...
+const worskpace = function(x,y,r_struct) {
+	for(let y=0;y<=r_struct.height;y++) {
+		for (let x=0;x<=r_struct.width;x++){
+      if (r_output.getPixel(x-i,y-i)!=struct_raster.getPixel(x-i,y-i)){
+        r_output.setPixels(x,y,struct_raster.getPixel(x-i,y-1));
+      }
+      if (r_output.getPixel(x-i,y)!=struct_raster.getPixel(x-i,y)){
+        r_output.setPixels(x,y,struct_raster.getPixel(x-i,y));
+      }
+      if (r_output.getPixel(x-i,y+i)!=struct_raster.getPixel(x-i,y+i)){
+        r_output.setPixels(x,y,struct_raster.getPixel(x-i,y+i));
+      }
+      if (r_output.getPixel(x,y-i)!=struct_raster.getPixel(x,y-i)){
+        r_output.setPixels(x,y,struct_raster.getPixel(x,y-i));
+      }
+
+      if (r_output.getPixel(x,y+i)!=struct_raster.getPixel(x,y+1)){
+        r_output.setPixels(x,y,struct_raster.getPixel(x,y+i));
+      }
+      if (r_output.getPixel(x+i,y-i)!=struct_raster.getPixel(x+i,y-i)){
+        r_output.setPixels(x,y,struct_raster.getPixel(x+i,y-i));
+      }
+      if (r_output.getPixel(x+i,y)!=struct_raster.getPixel(x+i,y)){
+        r_output.setPixels(x,y,struct_raster.getPixel(x+i,y));
+      }
+      if (r_output.getPixel(x+i,y+i)!=struct_raster.getPixel(x+i,y+i)){
+        r_output.setPixels(x,y,struct_raster.getPixel(x+i,y+i));
+      }
+		}
+	}
+	return false
+};
+
 const dilate = function(img,copy=true,struct=[0,1,0,1,1,1,0,1,0]){
 
   let output = img;
   let r_output = output.getRaster();
+  let r_struct=struct.getRaster();
   let struct_Center=(struct.length+1)/2; 
+  let radius_y = struct.height-struct_Center
+  let radius_x = struct.width-struct_Center
   let value_center_pixel=0;
+
   var outside = Boolean(false);
 
 
    for(let k=0; k<r_output.height; k++) { //parcours la liste de pixels de l'image en x
     for(let l=0; l=r_output.width; l++) {//parcours la liste de pixels de l'image en y
       if (r_output.getPixel(k,l)==struct_Center){ //cherche dans la liste de pixels valeur du centre de l'élement structurant
-        for(let m = -(struct.length-struct_Center);m<struct.length-struct_Center;m++){// On cherche dans la liste de pixel (en x) dans une zone de la taille elmt struct 
-          for(let n = -(struct.length-struct_Center);n<struct.length-struct_Center;n++){// On cherche dans la liste de pixel (en y) dans une zone de la taille elmt struct
+        for(let m = -radius_x;m<radius_x;m++){// On cherche dans la liste de pixel (en x) dans une zone de la taille elmt struct 
+          for(let n = -radius_y;n<radius_y;n++){// On cherche dans la liste de pixel (en y) dans une zone de la taille elmt struct
             if (k + m < 0 || k + m > r_output.width - 1) {//check si on est à l'exterieur de l'image en x ou pas, si oui outside=true
               outside = true;
             }
