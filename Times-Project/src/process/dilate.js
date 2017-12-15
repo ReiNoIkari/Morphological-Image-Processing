@@ -75,7 +75,6 @@ const worskpace = function(x,y,r_output,r_struct) {
       }
     }
   }
-	return false
 };
 
 const dilate = function(img,copy=true,struct=[0,1,0,1,1,1,0,1,0]){
