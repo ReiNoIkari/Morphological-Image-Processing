@@ -46,30 +46,30 @@ const worskpace = function(x,y,r_output,r_struct) {
       for(y;y>=-r_struct.height && <=r_struct.height;y++) {
         for (x;x>=-r_struct.width && <=r_struct.width;x++){
           //conditions pour les 8 voisins autour d'un pixels donnée, demande plus de travail théorique mais en théorique prend tout les voisins quelques soit la taille du struc element--need check more in detail work in progress
-          if (r_output.getPixel(x-i,y-i)!=struct_raster.getPixel(x-i,y-i)){
-            r_output.setPixels(x,y,struct_raster.getPixel(x-i,y-1));
+          if (r_output.getPixel(x-i,y-j)!=struct_raster.getPixel(x-i,y-j)){
+            r_output.setPixels(x,y,struct_raster.getPixel(x-i,y-j));
           }
           if (r_output.getPixel(x-i,y)!=struct_raster.getPixel(x-i,y)){
             r_output.setPixels(x,y,struct_raster.getPixel(x-i,y));
           }
-          if (r_output.getPixel(x-i,y+i)!=struct_raster.getPixel(x-i,y+i)){
-            r_output.setPixels(x,y,struct_raster.getPixel(x-i,y+i));
+          if (r_output.getPixel(x-i,y+i)!=struct_raster.getPixel(x-i,y+j)){
+            r_output.setPixels(x,y,struct_raster.getPixel(x-i,y+j));
           }
-          if (r_output.getPixel(x,y-i)!=struct_raster.getPixel(x,y-i)){
-            r_output.setPixels(x,y,struct_raster.getPixel(x,y-i));
+          if (r_output.getPixel(x,y-i)!=struct_raster.getPixel(x,y-j)){
+            r_output.setPixels(x,y,struct_raster.getPixel(x,y-j));
           }
 
-          if (r_output.getPixel(x,y+i)!=struct_raster.getPixel(x,y+1)){
-            r_output.setPixels(x,y,struct_raster.getPixel(x,y+i));
+          if (r_output.getPixel(x,y+j)!=struct_raster.getPixel(x,y+j)){
+            r_output.setPixels(x,y,struct_raster.getPixel(x,y+j));
           }
-          if (r_output.getPixel(x+i,y-i)!=struct_raster.getPixel(x+i,y-i)){
-            r_output.setPixels(x,y,struct_raster.getPixel(x+i,y-i));
+          if (r_output.getPixel(x+i,y-j)!=struct_raster.getPixel(x+i,y-j)){
+            r_output.setPixels(x,y,struct_raster.getPixel(x+i,y-j));
           }
           if (r_output.getPixel(x+i,y)!=struct_raster.getPixel(x+i,y)){
             r_output.setPixels(x,y,struct_raster.getPixel(x+i,y));
           }
-          if (r_output.getPixel(x+i,y+i)!=struct_raster.getPixel(x+i,y+i)){
-            r_output.setPixels(x,y,struct_raster.getPixel(x+i,y+i));
+          if (r_output.getPixel(x+i,y+j)!=struct_raster.getPixel(x+i,y+j)){
+            r_output.setPixels(x,y,struct_raster.getPixel(x+i,y+j));
           }
         }
       }
