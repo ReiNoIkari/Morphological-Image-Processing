@@ -36,38 +36,45 @@
 //check all the 8 neighbors for a pixel i
 //not cute to see but w/e
 //check raisonement es ce que les coordonée x du raster_struct coorepondent à ceux image?? Petit doute...
-const worskpace = function(x,y,r_struct) {
-  let r_struct=struct.getRaster();
+const worskpace = function(x,y,r_output,r_struct) {
+  
   let struct_Center=(struct.length+1)/2; 
-	for(y;y>=-r_struct.height && <=r_struct.height;y++) {
-		for (x;x>=-r_struct.width && <=r_struct.width;x++){
-      if (r_output.getPixel(x-i,y-i)!=struct_raster.getPixel(x-i,y-i)){
-        r_output.setPixels(x,y,struct_raster.getPixel(x-i,y-1));
-      }
-      if (r_output.getPixel(x-i,y)!=struct_raster.getPixel(x-i,y)){
-        r_output.setPixels(x,y,struct_raster.getPixel(x-i,y));
-      }
-      if (r_output.getPixel(x-i,y+i)!=struct_raster.getPixel(x-i,y+i)){
-        r_output.setPixels(x,y,struct_raster.getPixel(x-i,y+i));
-      }
-      if (r_output.getPixel(x,y-i)!=struct_raster.getPixel(x,y-i)){
-        r_output.setPixels(x,y,struct_raster.getPixel(x,y-i));
-      }
+  //i et j sont les radius en X et Y permmetant de parcours tout les voirsins d'un pixels donnée quelques soit la taille du structurement element (3*3,5*5...)
+  for (let i=0;i<radius_x;i++){
+    for (let j=0:j<radius_y;j++){
+      //y et x permettend de limité la zone de travail en partant d'un pixel donnée de -radius à +radius
+      for(y;y>=-r_struct.height && <=r_struct.height;y++) {
+        for (x;x>=-r_struct.width && <=r_struct.width;x++){
+          //conditions pour les 8 voisins autour d'un pixels donnée, demande plus de travail théorique mais en théorique prend tout les voisins quelques soit la taille du struc element--need check more in detail work in progress
+          if (r_output.getPixel(x-i,y-i)!=struct_raster.getPixel(x-i,y-i)){
+            r_output.setPixels(x,y,struct_raster.getPixel(x-i,y-1));
+          }
+          if (r_output.getPixel(x-i,y)!=struct_raster.getPixel(x-i,y)){
+            r_output.setPixels(x,y,struct_raster.getPixel(x-i,y));
+          }
+          if (r_output.getPixel(x-i,y+i)!=struct_raster.getPixel(x-i,y+i)){
+            r_output.setPixels(x,y,struct_raster.getPixel(x-i,y+i));
+          }
+          if (r_output.getPixel(x,y-i)!=struct_raster.getPixel(x,y-i)){
+            r_output.setPixels(x,y,struct_raster.getPixel(x,y-i));
+          }
 
-      if (r_output.getPixel(x,y+i)!=struct_raster.getPixel(x,y+1)){
-        r_output.setPixels(x,y,struct_raster.getPixel(x,y+i));
+          if (r_output.getPixel(x,y+i)!=struct_raster.getPixel(x,y+1)){
+            r_output.setPixels(x,y,struct_raster.getPixel(x,y+i));
+          }
+          if (r_output.getPixel(x+i,y-i)!=struct_raster.getPixel(x+i,y-i)){
+            r_output.setPixels(x,y,struct_raster.getPixel(x+i,y-i));
+          }
+          if (r_output.getPixel(x+i,y)!=struct_raster.getPixel(x+i,y)){
+            r_output.setPixels(x,y,struct_raster.getPixel(x+i,y));
+          }
+          if (r_output.getPixel(x+i,y+i)!=struct_raster.getPixel(x+i,y+i)){
+            r_output.setPixels(x,y,struct_raster.getPixel(x+i,y+i));
+          }
+        }
       }
-      if (r_output.getPixel(x+i,y-i)!=struct_raster.getPixel(x+i,y-i)){
-        r_output.setPixels(x,y,struct_raster.getPixel(x+i,y-i));
-      }
-      if (r_output.getPixel(x+i,y)!=struct_raster.getPixel(x+i,y)){
-        r_output.setPixels(x,y,struct_raster.getPixel(x+i,y));
-      }
-      if (r_output.getPixel(x+i,y+i)!=struct_raster.getPixel(x+i,y+i)){
-        r_output.setPixels(x,y,struct_raster.getPixel(x+i,y+i));
-      }
-		}
-	}
+    }
+  }
 	return false
 };
 
@@ -79,7 +86,7 @@ const dilate = function(img,copy=true,struct=[0,1,0,1,1,1,0,1,0]){
   let struct_Center=(struct.length+1)/2; 
   let radius_y = struct.height-struct_Center
   let radius_x = struct.width-struct_Center
-  let value_center_pixel=0;
+  let value_center_pixel=0;//a chnger valeur fausse pour l'instant
 
   var outside = Boolean(false);
 
@@ -108,10 +115,7 @@ const dilate = function(img,copy=true,struct=[0,1,0,1,1,1,0,1,0]){
     }
   }
 
-  console.log("PixelsData");
-  console.log(r_output.pixelData);
-  console.log("old_version");
-  console.log(img_pixel_list);
+
   return output;
 }
 
