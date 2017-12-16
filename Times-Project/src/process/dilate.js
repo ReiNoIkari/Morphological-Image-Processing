@@ -34,8 +34,8 @@
  */
 
 const process = function(r_output){
-  for(let i=0;i<=rast.height;i++) {
-		for (let j=0;j<=rast.width;j++){
+  for(let i=0;i<=r_output.height;i++) {
+		for (let j=0;j<=r_output.width;j++){
 			if (r_output.getPixel(x,y)==2) {
 				r_output.setPixel(x,y,255);
 			}
@@ -52,42 +52,41 @@ const dilate = function(img,struct,copy=true){
   let r_struct=  struct.getRaster();
   let struct_Center=(r_struct.length+1)/2; 
   let value_struc_center=r_struct.xy(struct_Center);
-  let value_center_pixel=255;//a chnger valeur fausse pour l'instant
+  let x_value_struc_element=value_struc_center[0];
+  let y_value_struc_element=value_struc_center[1];
+  let value_center_pixel=r_struct.getPixel(x_value_struc_element,y_value_struc_element);
+  let radius_struct_y = r_struct.height-struct_Center;
+  let radius_struct_x = r_struct.width-struct_Center;
+
+
  
-  let radius_struct_y = r_struct.height-struct_Center
-  let radius_struct_x = r_struct.width-struct_Center
-
-
   for(let y=0; y<temp.height; y++) { //parcours le raster de l'image en x
     for(let x=0; x=temp.width; x++) {//parcours le raster de l'image en y
       if (temp.getPixel(x,y)==value_center_pixel){    
         for (let i=0;i<=radius_struct_x;i++){
           for (let j=0;j<=radius_struct_y;j++){
-
-            //marche pas pck les valeurs dans le getPixel dde r_struc sont complement fausse !
-            //need more reflexion
-            if (temp.getPixel(x-i,y-j)==0 && r_struct.getPixel(x-i,y-j)==255){
+            if (temp.getPixel(x-i,y-j)==0 && r_struct.getPixel(x_value_struc_element-i,y_value_struc_element-j)==255){
               temp.setPixels(x,y,2);
             }
-            if (temp.getPixel(x-i,y)==0 && r_struct.getPixel(x-i,y)==255){
+            if (temp.getPixel(x-i,y)==0 && r_struct.getPixel(x_value_struc_element-i,y_value_struc_element)==255){
               temp.setPixels(x,y,2);
             }
-            if (temp.getPixel(x-i,y+i)==0 && r_struct.getPixel(x-i,y+j)==255){
+            if (temp.getPixel(x-i,y+i)==0 && r_struct.getPixel(x_value_struc_element-i,y_value_struc_element+j)==255){
               temp.setPixels(x,y,r_struct.getPixel(x-i,y+j));
             }
-            if (temp.getPixel(x,y-i)==0 && r_struct.getPixel(x,y-j)==255){
+            if (temp.getPixel(x,y-i)==0 && r_struct.getPixel(x_value_struc_element,y_value_struc_element-j)==255){
               temp.setPixels(x,y,2);
             }
-            if (temp.getPixel(x,y+j)==0 && r_struct.getPixel(x,y+j)==255){
+            if (temp.getPixel(x,y+j)==0 && r_struct.getPixel(x_value_struc_element,y_value_struc_element+j)==255){
               temp.setPixels(x,y,2);
             }
-            if (temp.getPixel(x+i,y-j)==0 && r_struct.getPixel(x+i,y-j)==255){
+            if (temp.getPixel(x+i,y-j)==0 && r_struct.getPixel(x_value_struc_element+i,y_value_struc_element-j)==255){
               temp.setPixels(x,y,2);
             }
-            if (temp.getPixel(x+i,y)==0 && r_struct.getPixel(x+i,y)==255){
+            if (temp.getPixel(x+i,y)==0 && r_struct.getPixel(x_value_struc_element+i,y_value_struc_element)==255){
               temp.setPixels(x,y,2);
             }
-            if (temp.getPixel(x+i,y+j)==0 && r_struct.getPixel(x+i,y+j==255)){
+            if (temp.getPixel(x+i,y+j)==0 && r_struct.getPixel(x_value_struc_element+i,y_value_struc_element+j==255)){
               temp.setPixels(x,y,2);
             }           
           }
