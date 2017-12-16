@@ -57,29 +57,29 @@ const worskpace = function(x,y,r_output,r_struct) {
           //   r_output.setPixels(x,y,struct_raster.getPixel(x-i,y-j));
           // }
           
-          if (r_output.getPixel(x-i,y-j)==0 && struct_raster.getPixel(x-i,y-j)==1){
+          if (r_output.getPixel(x-i,y-j)==0 && struct_raster.getPixel(x-i,y-j)==255){
             r_output.setPixels(x,y,2);
           }
-          if (r_output.getPixel(x-i,y)==0 && struct_raster.getPixel(x-i,y)==1){
+          if (r_output.getPixel(x-i,y)==0 && struct_raster.getPixel(x-i,y)==255){
             r_output.setPixels(x,y,2);
           }
-          if (r_output.getPixel(x-i,y+i)==0 && struct_raster.getPixel(x-i,y+j)==1){
+          if (r_output.getPixel(x-i,y+i)==0 && struct_raster.getPixel(x-i,y+j)==255){
             r_output.setPixels(x,y,struct_raster.getPixel(x-i,y+j));
           }
-          if (r_output.getPixel(x,y-i)==0 && struct_raster.getPixel(x,y-j)==1){
+          if (r_output.getPixel(x,y-i)==0 && struct_raster.getPixel(x,y-j)==255){
             r_output.setPixels(x,y,2);
           }
 
-          if (r_output.getPixel(x,y+j)==0 && struct_raster.getPixel(x,y+j)==1){
+          if (r_output.getPixel(x,y+j)==0 && struct_raster.getPixel(x,y+j)==255){
             r_output.setPixels(x,y,2);
           }
-          if (r_output.getPixel(x+i,y-j)==0 && struct_raster.getPixel(x+i,y-j)==1){
+          if (r_output.getPixel(x+i,y-j)==0 && struct_raster.getPixel(x+i,y-j)==255){
             r_output.setPixels(x,y,2);
           }
-          if (r_output.getPixel(x+i,y)==0 && struct_raster.getPixel(x+i,y)==1){
+          if (r_output.getPixel(x+i,y)==0 && struct_raster.getPixel(x+i,y)==255){
             r_output.setPixels(x,y,2);
           }
-          if (r_output.getPixel(x+i,y+j)==0 && struct_raster.getPixel(x+i,y+j==1)){
+          if (r_output.getPixel(x+i,y+j)==0 && struct_raster.getPixel(x+i,y+j==255)){
             r_output.setPixels(x,y,2);
           }
         }
@@ -93,7 +93,7 @@ const process = function(r_output){
   for(let i=0;i<=rast.height;i++) {
 		for (let j=0;j<=rast.width;j++){
 			if (r_output.getPixel(x,y)==2) {
-				r_output.setPixel(x,y,1);
+				r_output.setPixel(x,y,255);
 			}
 		}
   }
@@ -110,16 +110,16 @@ const dilate = function(img,struct,copy=true){
   //let value_struc_center=r_struct.getPixel(struct.width/2,struct.height/2)
   console.log("heaaa");
   console.log(value_struc_center);
-  let value_center_pixel=1;//a chnger valeur fausse pour l'instant
+  let value_center_pixel=255;//a chnger valeur fausse pour l'instant
 
 
-  // for(let k=0; k<r_output.height; k++) { //parcours la liste de pixels de l'image en x
-  //   for(let l=0; l=r_output.width; l++) {//parcours la liste de pixels de l'image en y
-  //     if (r_output.getPixel(k,l)==value_struc_center){ //cherche dans la liste de pixels valeur du centre de l'élement structurant
-  //       worskpace(k,l,r_output,r_struct);      
-  //     }
-  //   }
-  // }
+  for(let k=0; k<r_output.height; k++) { //parcours la liste de pixels de l'image en x
+    for(let l=0; l=r_output.width; l++) {//parcours la liste de pixels de l'image en y
+      if (r_output.getPixel(k,l)==value_struc_center){ //cherche dans la liste de pixels valeur du centre de l'élement structurant
+        worskpace(k,l,r_output,r_struct);      
+      }
+    }
+  }
 
 
   return output;
