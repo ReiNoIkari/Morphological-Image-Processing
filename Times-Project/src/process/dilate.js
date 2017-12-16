@@ -49,7 +49,7 @@ const worskpace = function(x,y,r_output,r_struct) {
       //k et l permettend de limité la zone de travail en partant d'un pixel donnée de -radius à +radius
       for(k;k>=-radius_struct_y && <=radius_struct_y;k++) {
         for (l;l>=-radius_struct_x && <=radius_struct_x;l++){
-          //conditions pour les 8 voisins autour d'un pixels donnée, demande plus de travail théorique mais en théorique prend tout les voisins quelques soit la taille du struc element--need check more in detail work in progress
+          //conditions pour les voisins autour d'un pixels donnée tourne de en haut à gauche sens aiguille montre
          //Condition pour une dilate toujours pas appliqué need changer ça, pas finis !
          //idee : pour eviter des soucis tel que dilate une zone qui vient juste d'etre dilate, passer
          // par une valeur intermediare et changer à la fin--A implementé, pas encore fait
