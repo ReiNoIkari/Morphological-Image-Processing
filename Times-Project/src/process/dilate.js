@@ -50,33 +50,37 @@ const worskpace = function(x,y,r_output,r_struct) {
       for(k;k>=-radius_struct_y && <=radius_struct_y;k++) {
         for (l;l>=-radius_struct_x && <=radius_struct_x;l++){
           //conditions pour les voisins autour d'un pixels donnée tourne de en haut à gauche sens aiguille montre
-         //Condition pour une dilate toujours pas appliqué need changer ça, pas finis !
-         //idee : pour eviter des soucis tel que dilate une zone qui vient juste d'etre dilate, passer
-         // par une valeur intermediare et changer à la fin--A implementé, pas encore fait
-          if (r_output.getPixel(x-i,y-j)!=struct_raster.getPixel(x-i,y-j)){
-            r_output.setPixels(x,y,struct_raster.getPixel(x-i,y-j));
+          //Cherhe dans la zone taille struct element les 0 dans raster image. Si 0 mais 1 dans raster struc change valeur par 2 pour eviter
+          //résultat de dilation n'est lieu
+
+          // if (r_output.getPixel(x-i,y-j)!=struct_raster.getPixel(x-i,y-j)){
+          //   r_output.setPixels(x,y,struct_raster.getPixel(x-i,y-j));
+          // }
+          
+          if (r_output.getPixel(x-i,y-j)==0 && struct_raster.getPixel(x-i,y-j)==1){
+            r_output.setPixels(x,y,2));
           }
-          if (r_output.getPixel(x-i,y)!=struct_raster.getPixel(x-i,y)){
-            r_output.setPixels(x,y,struct_raster.getPixel(x-i,y));
+          if (r_output.getPixel(x-i,y)==0 && struct_raster.getPixel(x-i,y)==1){
+            r_output.setPixels(x,y,2);
           }
-          if (r_output.getPixel(x-i,y+i)!=struct_raster.getPixel(x-i,y+j)){
+          if (r_output.getPixel(x-i,y+i)==0 && struct_raster.getPixel(x-i,y+j)==1){
             r_output.setPixels(x,y,struct_raster.getPixel(x-i,y+j));
           }
-          if (r_output.getPixel(x,y-i)!=struct_raster.getPixel(x,y-j)){
-            r_output.setPixels(x,y,struct_raster.getPixel(x,y-j));
+          if (r_output.getPixel(x,y-i)==0 && struct_raster.getPixel(x,y-j)==1){
+            r_output.setPixels(x,y,2);
           }
 
-          if (r_output.getPixel(x,y+j)!=struct_raster.getPixel(x,y+j)){
-            r_output.setPixels(x,y,struct_raster.getPixel(x,y+j));
+          if (r_output.getPixel(x,y+j)==0 && struct_raster.getPixel(x,y+j)==1){
+            r_output.setPixels(x,y,2);
           }
-          if (r_output.getPixel(x+i,y-j)!=struct_raster.getPixel(x+i,y-j)){
-            r_output.setPixels(x,y,struct_raster.getPixel(x+i,y-j));
+          if (r_output.getPixel(x+i,y-j)==0 && struct_raster.getPixel(x+i,y-j)==1){
+            r_output.setPixels(x,y,2);
           }
-          if (r_output.getPixel(x+i,y)!=struct_raster.getPixel(x+i,y)){
-            r_output.setPixels(x,y,struct_raster.getPixel(x+i,y));
+          if (r_output.getPixel(x+i,y)==0 && struct_raster.getPixel(x+i,y)==1){
+            r_output.setPixels(x,y,2);
           }
-          if (r_output.getPixel(x+i,y+j)!=struct_raster.getPixel(x+i,y+j)){
-            r_output.setPixels(x,y,struct_raster.getPixel(x+i,y+j));
+          if (r_output.getPixel(x+i,y+j)==0 && struct_raster.getPixel(x+i,y+j==1)){
+            r_output.setPixels(x,y,2);
           }
         }
       }
@@ -84,6 +88,14 @@ const worskpace = function(x,y,r_output,r_struct) {
   }
 };
 
+const process = function(r_output){
+  for(let i=0;i<=rast.height;i++) {
+		for (let j=0;j<=rast.width;j++){
+			if (r_output.getPixel(x,y)==2) {
+				r_output.setPixel(x,y,1);
+			}
+		}
+	};
 const dilate = function(img,copy=true,struct=[0,1,0,1,1,1,0,1,0]){
 
   let output = img;
