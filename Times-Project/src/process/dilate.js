@@ -38,12 +38,15 @@
 //check raisonement es ce que les coordonée x du raster_struct coorepondent à ceux image?? Petit doute...
 const worskpace = function(x,y,r_output,r_struct) {
   
-  let struct_Center=(struct.length+1)/2; 
-  let radius_struct_y = struct.height-struct_Center
-  let radius_struct_x = struct.width-struct_Center
+  let struct_Center=(r_struct.length+1)/2; 
+  let radius_struct_y = r_struct.height-struct_Center
+  let radius_struct_x = r_struct.width-struct_Center
   //i et j sont les radius en X et Y permmetant de parcours tout les voirsins d'un pixels donnée quelques soit la taille du structurement element (3*3,5*5...)
   //i et j start 1 car radius minimum
   //peut etre redondance?? 
+
+  //dilate marche pas probablement à cause de ces 4 for, à check!!!!
+
   for (let i=1;i<=radius_struct_x;i++){
     for (let j=1;j<=radius_struct_y;j++){
       //k et l permettend de limité la zone de travail en partant d'un pixel donnée de -radius à +radius
@@ -97,6 +100,7 @@ const process = function(r_output){
 			}
 		}
   }
+  return r_output;
 };
 const dilate = function(img,struct,copy=true){
 
@@ -115,13 +119,13 @@ const dilate = function(img,struct,copy=true){
 
   // for(let k=0; k<r_output.height; k++) { //parcours la liste de pixels de l'image en x
   //   for(let l=0; l=r_output.width; l++) {//parcours la liste de pixels de l'image en y
-  //     if (r_output.getPixel(k,l)==value_struc_center){ //cherche dans la liste de pixels valeur du centre de l'élement structurant
+  //     if (r_output.getPixel(k,l)==value_center_pixel){ //cherche dans la liste de pixels valeur du centre de l'élement structurant
   //       worskpace(k,l,r_output,r_struct);      
   //     }
   //   }
   // }
 
-
+  //need changer return pour voir si marche ou pas 
   return output;
 }
 
