@@ -39,10 +39,11 @@
 const worskpace = function(x,y,r_output,r_struct) {
   
   let struct_Center=(struct.length+1)/2; 
-  let radius_y = struct.height-struct_Center
-  let radius_x = struct.width-struct_Center
+  let radius_struct_y = struct.height-struct_Center
+  let radius_struct_x = struct.width-struct_Center
   //i et j sont les radius en X et Y permmetant de parcours tout les voirsins d'un pixels donnée quelques soit la taille du structurement element (3*3,5*5...)
   //i et j start 1 car radius minimum
+  //peut etre redondance?? 
   for (let i=1;i<=radius_struct_x;i++){
     for (let j=1:j<=radius_struct_y;j++){
       //k et l permettend de limité la zone de travail en partant d'un pixel donnée de -radius à +radius
