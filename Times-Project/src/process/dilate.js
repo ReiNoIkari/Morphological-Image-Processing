@@ -40,7 +40,7 @@ const worskpace = function(x,y,r_output,r_struct) {
   
   let struct_Center=(struct.length+1)/2; 
   //i et j sont les radius en X et Y permmetant de parcours tout les voirsins d'un pixels donnée quelques soit la taille du structurement element (3*3,5*5...)
-  for (let i=0;i<radius_x;i++){
+  for (let i=1;i<=radius_x;i++){
     for (let j=0:j<radius_y;j++){
       //y et x permettend de limité la zone de travail en partant d'un pixel donnée de -radius à +radius
       for(y;y>=-r_struct.height && <=r_struct.height;y++) {
