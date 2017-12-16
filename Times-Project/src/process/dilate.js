@@ -50,8 +50,11 @@ const worskpace = function(x,y,r_output,r_struct) {
   for (let i=1;i<=radius_struct_x;i++){
     for (let j=1;j<=radius_struct_y;j++){
       //k et l permettend de limité la zone de travail en partant d'un pixel donnée de -radius à +radius
-      for(k;k >=-radius_struct_y && k<= radius_struct_y;k++){
-        for (l;l >=-radius_struct_x && l<= radius_struct_x;l++){
+
+      //redondant k et l je crois bien apres reflexion
+
+      // for(k;k >=-radius_struct_y && k<= radius_struct_y;k++){
+      //   for (l;l >=-radius_struct_x && l<= radius_struct_x;l++){
           //conditions pour les voisins autour d'un pixels donnée tourne de en haut à gauche sens aiguille montre
           //Cherhe dans la zone taille struct element les 0 dans raster image. Si 0 mais 1 dans raster struc change valeur par 2 pour eviter
           //résultat de dilation n'est lieu
@@ -59,33 +62,31 @@ const worskpace = function(x,y,r_output,r_struct) {
           // if (r_output.getPixel(x-i,y-j)!=struct_raster.getPixel(x-i,y-j)){
           //   r_output.setPixels(x,y,struct_raster.getPixel(x-i,y-j));
           // }
-          
-          if (r_output.getPixel(x-i,y-j)==0 && struct_raster.getPixel(x-i,y-j)==255){
-            r_output.setPixels(x,y,2);
-          }
-          if (r_output.getPixel(x-i,y)==0 && struct_raster.getPixel(x-i,y)==255){
-            r_output.setPixels(x,y,2);
-          }
-          if (r_output.getPixel(x-i,y+i)==0 && struct_raster.getPixel(x-i,y+j)==255){
-            r_output.setPixels(x,y,struct_raster.getPixel(x-i,y+j));
-          }
-          if (r_output.getPixel(x,y-i)==0 && struct_raster.getPixel(x,y-j)==255){
-            r_output.setPixels(x,y,2);
-          }
+      
+      if (r_output.getPixel(x-i,y-j)==0 && struct_raster.getPixel(x-i,y-j)==255){
+        r_output.setPixels(x,y,2);
+      }
+      if (r_output.getPixel(x-i,y)==0 && struct_raster.getPixel(x-i,y)==255){
+        r_output.setPixels(x,y,2);
+      }
+      if (r_output.getPixel(x-i,y+i)==0 && struct_raster.getPixel(x-i,y+j)==255){
+        r_output.setPixels(x,y,struct_raster.getPixel(x-i,y+j));
+      }
+      if (r_output.getPixel(x,y-i)==0 && struct_raster.getPixel(x,y-j)==255){
+        r_output.setPixels(x,y,2);
+      }
 
-          if (r_output.getPixel(x,y+j)==0 && struct_raster.getPixel(x,y+j)==255){
-            r_output.setPixels(x,y,2);
-          }
-          if (r_output.getPixel(x+i,y-j)==0 && struct_raster.getPixel(x+i,y-j)==255){
-            r_output.setPixels(x,y,2);
-          }
-          if (r_output.getPixel(x+i,y)==0 && struct_raster.getPixel(x+i,y)==255){
-            r_output.setPixels(x,y,2);
-          }
-          if (r_output.getPixel(x+i,y+j)==0 && struct_raster.getPixel(x+i,y+j==255)){
-            r_output.setPixels(x,y,2);
-          }
-        }
+      if (r_output.getPixel(x,y+j)==0 && struct_raster.getPixel(x,y+j)==255){
+        r_output.setPixels(x,y,2);
+      }
+      if (r_output.getPixel(x+i,y-j)==0 && struct_raster.getPixel(x+i,y-j)==255){
+        r_output.setPixels(x,y,2);
+      }
+      if (r_output.getPixel(x+i,y)==0 && struct_raster.getPixel(x+i,y)==255){
+        r_output.setPixels(x,y,2);
+      }
+      if (r_output.getPixel(x+i,y+j)==0 && struct_raster.getPixel(x+i,y+j==255)){
+        r_output.setPixels(x,y,2);
       }
     }
   }
@@ -104,8 +105,9 @@ const process = function(r_output){
 };
 const dilate = function(img,struct,copy=true){
 
-  let output = img;
-  let r_output = output.getRaster();
+  let temp = new T.Image('uint8',img.width,img.height);
+	temp.setRaster(T.Raster.from(img.getRaster(),copy));
+  temp=temp.getRaster();
   let r_struct=  struct.getRaster();
   let struct_Center=(r_struct.length+1)/2; 
   let radius_y = struct.height-struct_Center
@@ -117,23 +119,24 @@ const dilate = function(img,struct,copy=true){
   let value_center_pixel=255;//a chnger valeur fausse pour l'instant
 
 
-  // for(let k=0; k<r_output.height; k++) { //parcours la liste de pixels de l'image en x
-  //   for(let l=0; l=r_output.width; l++) {//parcours la liste de pixels de l'image en y
-  //     if (r_output.getPixel(k,l)==value_center_pixel){ //cherche dans la liste de pixels valeur du centre de l'élement structurant
-  //       worskpace(k,l,r_output,r_struct);      
-  //     }
-  //   }
-  // }
+  for(let k=0; k<temp.height; k++) { //parcours la liste de pixels de l'image en x
+    for(let l=0; l=temp.width; l++) {//parcours la liste de pixels de l'image en y
+      if (temp.getPixel(k,l)==value_center_pixel){ //cherche dans la liste de pixels valeur du centre de l'élement structurant
+        let r_output=worskpace(k,l,temp,r_struct);      
+      }
+    }
+  }
 
   //need changer return pour voir si marche ou pas 
-  return output;
+  temp.setRaster(r_output);
+  return temp;
 }
 
 
 //1st window :original 
 
-let img0 = new T.Image('uint8',500,500);
-img0.setPixels(b_image2);
+let img0 = new T.Image('uint8',500,17);
+img0.setPixels(b_image2_test);
 let win0 = new T.Window('Original');
 let view0 = T.view(img0.getRaster());
 // Create the window content from the view
