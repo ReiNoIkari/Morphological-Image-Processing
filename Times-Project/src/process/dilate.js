@@ -113,13 +113,13 @@ const dilate = function(img,struct,copy=true){
   let value_center_pixel=255;//a chnger valeur fausse pour l'instant
 
 
-  for(let k=0; k<r_output.height; k++) { //parcours la liste de pixels de l'image en x
-    for(let l=0; l=r_output.width; l++) {//parcours la liste de pixels de l'image en y
-      if (r_output.getPixel(k,l)==value_struc_center){ //cherche dans la liste de pixels valeur du centre de l'élement structurant
-        worskpace(k,l,r_output,r_struct);      
-      }
-    }
-  }
+  // for(let k=0; k<r_output.height; k++) { //parcours la liste de pixels de l'image en x
+  //   for(let l=0; l=r_output.width; l++) {//parcours la liste de pixels de l'image en y
+  //     if (r_output.getPixel(k,l)==value_struc_center){ //cherche dans la liste de pixels valeur du centre de l'élement structurant
+  //       worskpace(k,l,r_output,r_struct);      
+  //     }
+  //   }
+  // }
 
 
   return output;
