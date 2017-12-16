@@ -51,6 +51,8 @@ const worskpace = function(x,y,r_output,r_struct) {
         for (l;l>=-radius_struct_x && <=radius_struct_x;l++){
           //conditions pour les 8 voisins autour d'un pixels donnée, demande plus de travail théorique mais en théorique prend tout les voisins quelques soit la taille du struc element--need check more in detail work in progress
          //Condition pour une dilate toujours pas appliqué need changer ça, pas finis !
+         //idee : pour eviter des soucis tel que dilate une zone qui vient juste d'etre dilate, passer
+         // par une valeur intermediare et changer à la fin--A implementé, pas encore fait
           if (r_output.getPixel(x-i,y-j)!=struct_raster.getPixel(x-i,y-j)){
             r_output.setPixels(x,y,struct_raster.getPixel(x-i,y-j));
           }
