@@ -86,6 +86,7 @@ const worskpace = function(x,y,r_output,r_struct) {
       }
     }
   }
+  return r_output;
 };
 
 const process = function(r_output){
@@ -102,21 +103,23 @@ const dilate = function(img,struct,copy=true){
   let output = img;
   let r_output = output.getRaster();
   let r_struct=  struct.getRaster();
-  let struct_Center=(struct.length+1)/2; 
+  let struct_Center=(r_struct.length+1)/2; 
   let radius_y = struct.height-struct_Center
   let radius_x = struct.width-struct_Center
-  let value_struc_center=struct.xy(struct_Center);
-  let value_center_pixel=0;//a chnger valeur fausse pour l'instant
+  let value_struc_center=r_struct.xy(struct_Center);
+  //let value_struc_center=r_struct.getPixel(struct.width/2,struct.height/2)
+  console.log("heaaa");
+  console.log(value_struc_center);
+  let value_center_pixel=1;//a chnger valeur fausse pour l'instant
 
-  var outside = Boolean(false);
 
-  for(let k=0; k<r_output.height; k++) { //parcours la liste de pixels de l'image en x
-    for(let l=0; l=r_output.width; l++) {//parcours la liste de pixels de l'image en y
-      if (r_output.getPixel(k,l)==struct_Center){ //cherche dans la liste de pixels valeur du centre de l'élement structurant
-        worskpace(k,l,r_output,r_struct);      
-      }
-    }
-  }
+  // for(let k=0; k<r_output.height; k++) { //parcours la liste de pixels de l'image en x
+  //   for(let l=0; l=r_output.width; l++) {//parcours la liste de pixels de l'image en y
+  //     if (r_output.getPixel(k,l)==value_struc_center){ //cherche dans la liste de pixels valeur du centre de l'élement structurant
+  //       worskpace(k,l,r_output,r_struct);      
+  //     }
+  //   }
+  // }
 
 
   return output;
@@ -137,14 +140,14 @@ win0.addToDOM('workspace');
 
 //2nd windows : struc element
 
-let img3 = new T.Image('uint8',200,200);
-img3.setPixels(struc_cross);
+let img3 = new T.Image('uint8',3,3);
+img3.setPixels(mask3by3Star);
 let win3 = new T.Window('Structuring element');
 let view3 = T.view(img3.getRaster());
 // Create the window content from the view
-win0.addView(view3);
+win3.addView(view3);
 // Add the window to the DOM and display it
-win0.addToDOM('workspace');
+win3.addToDOM('workspace');
 
 //3nd window :result 
 
