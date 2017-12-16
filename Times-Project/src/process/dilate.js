@@ -36,8 +36,8 @@
 const process = function(r_output){
   for(let i=0;i<=r_output.height;i++) {
 		for (let j=0;j<=r_output.width;j++){
-			if (r_output.getPixel(x,y)==2) {
-				r_output.setPixel(x,y,255);
+			if (r_output.getPixel(i,j)==2) {
+				r_output.setPixel(i,j,255);
 			}
 		}
   }
@@ -46,10 +46,9 @@ const process = function(r_output){
 
 const dilate = function(img,struct,copy=true){
 
-  let temp = new T.Image('uint8',img.width,img.height);
-	temp.setRaster(T.Raster.from(img.getRaster(),copy));
-  temp=temp.getRaster();
-  let r_struct=  struct.getRaster();
+  let output = img;
+  let r_output = output.getRaster();
+  let r_struct=struct.getRaster();
   let struct_Center=(r_struct.length+1)/2; 
   let value_struc_center=r_struct.xy(struct_Center);
   let x_value_struc_element=value_struc_center[0];
@@ -60,34 +59,34 @@ const dilate = function(img,struct,copy=true){
 
 
  
-  for(let y=0; y<temp.height; y++) { //parcours le raster de l'image en x
-    for(let x=0; x=temp.width; x++) {//parcours le raster de l'image en y
-      if (temp.getPixel(x,y)==value_center_pixel){    
+  for(let y=0; y<r_output.height; y++) { //parcours le raster de l'image en x
+    for(let x=0; x<r_output.width; x++) {//parcours le raster de l'image en y
+      if (r_output.getPixel(x,y)==value_center_pixel){    
         for (let i=0;i<=radius_struct_x;i++){
           for (let j=0;j<=radius_struct_y;j++){
-            if (temp.getPixel(x-i,y-j)==0 && r_struct.getPixel(x_value_struc_element-i,y_value_struc_element-j)==255){
-              temp.setPixels(x,y,2);
+            if (r_output.getPixel(x-i,y-j)==0 && r_struct.getPixel(x_value_struc_element-i,y_value_struc_element-j)==255){
+              r_output.setPixels(x,y,2);
             }
-            if (temp.getPixel(x-i,y)==0 && r_struct.getPixel(x_value_struc_element-i,y_value_struc_element)==255){
-              temp.setPixels(x,y,2);
+            if (r_output.getPixel(x-i,y)==0 && r_struct.getPixel(x_value_struc_element-i,y_value_struc_element)==255){
+              r_output.setPixels(x,y,2);
             }
-            if (temp.getPixel(x-i,y+i)==0 && r_struct.getPixel(x_value_struc_element-i,y_value_struc_element+j)==255){
-              temp.setPixels(x,y,r_struct.getPixel(x-i,y+j));
+            if (r_output.getPixel(x-i,y+i)==0 && r_struct.getPixel(x_value_struc_element-i,y_value_struc_element+j)==255){
+              r_output.setPixels(x,y,2);
             }
-            if (temp.getPixel(x,y-i)==0 && r_struct.getPixel(x_value_struc_element,y_value_struc_element-j)==255){
-              temp.setPixels(x,y,2);
+            if (r_output.getPixel(x,y-i)==0 && r_struct.getPixel(x_value_struc_element,y_value_struc_element-j)==255){
+              r_output.setPixels(x,y,2);
             }
-            if (temp.getPixel(x,y+j)==0 && r_struct.getPixel(x_value_struc_element,y_value_struc_element+j)==255){
-              temp.setPixels(x,y,2);
+            if (r_output.getPixel(x,y+j2)==0 && r_struct.getPixel(x_value_struc_element,y_value_struc_element+j)==255){
+              r_output.setPixels(x,y,2);
             }
-            if (temp.getPixel(x+i,y-j)==0 && r_struct.getPixel(x_value_struc_element+i,y_value_struc_element-j)==255){
-              temp.setPixels(x,y,2);
+            if (r_output.getPixel(x+i,y-j)==0 && r_struct.getPixel(x_value_struc_element+i,y_value_struc_element-j)==255){
+              r_output.setPixels(x,y,2);
             }
-            if (temp.getPixel(x+i,y)==0 && r_struct.getPixel(x_value_struc_element+i,y_value_struc_element)==255){
-              temp.setPixels(x,y,2);
+            if (r_output.getPixel(x+i,y)==0 && r_struct.getPixel(x_value_struc_element+i,y_value_struc_element)==255){
+              r_output.setPixels(x,y,2);
             }
-            if (temp.getPixel(x+i,y+j)==0 && r_struct.getPixel(x_value_struc_element+i,y_value_struc_element+j==255)){
-              temp.setPixels(x,y,2);
+            if (r_output.getPixel(x+i,y+j)==0 && r_struct.getPixel(x_value_struc_element+i,y_value_struc_element+j==255)){
+              r_output.setPixels(x,y,2);
             }           
           }
         }
@@ -95,9 +94,9 @@ const dilate = function(img,struct,copy=true){
     }
   }
 
-  r_output=process(temp);
-  temp.setRaster(r_output);
-  return temp;
+  r_output=process(r_output);
+  r_output.setRaster(r_output);
+  return r_output;
 };
 
 
