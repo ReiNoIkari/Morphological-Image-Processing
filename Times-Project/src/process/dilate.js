@@ -39,12 +39,15 @@
 const worskpace = function(x,y,r_output,r_struct) {
   
   let struct_Center=(struct.length+1)/2; 
+  let radius_y = struct.height-struct_Center
+  let radius_x = struct.width-struct_Center
   //i et j sont les radius en X et Y permmetant de parcours tout les voirsins d'un pixels donnée quelques soit la taille du structurement element (3*3,5*5...)
-  for (let i=1;i<=radius_x;i++){
-    for (let j=0:j<radius_y;j++){
-      //y et x permettend de limité la zone de travail en partant d'un pixel donnée de -radius à +radius
-      for(y;y>=-r_struct.height && <=r_struct.height;y++) {
-        for (x;x>=-r_struct.width && <=r_struct.width;x++){
+  //i et j start 1 car radius minimum
+  for (let i=1;i<=radius_struct_x;i++){
+    for (let j=1:j<=radius_struct_y;j++){
+      //k et l permettend de limité la zone de travail en partant d'un pixel donnée de -radius à +radius
+      for(k;k>=-radius_struct_y && <=radius_struct_y;k++) {
+        for (l;l>=-radius_struct_x && <=radius_struct_x;l++){
           //conditions pour les 8 voisins autour d'un pixels donnée, demande plus de travail théorique mais en théorique prend tout les voisins quelques soit la taille du struc element--need check more in detail work in progress
          //Condition pour une dilate toujours pas appliqué need changer ça, pas finis !
           if (r_output.getPixel(x-i,y-j)!=struct_raster.getPixel(x-i,y-j)){
@@ -84,6 +87,7 @@ const dilate = function(img,copy=true,struct=[0,1,0,1,1,1,0,1,0]){
   let r_output = output.getRaster();
   let r_struct=struct.getRaster();
   let struct_Center=(struct.length+1)/2; 
+  let value_struc_center=struct.xy(struct_Center);
   let radius_y = struct.height-struct_Center
   let radius_x = struct.width-struct_Center
   let value_center_pixel=0;//a chnger valeur fausse pour l'instant
