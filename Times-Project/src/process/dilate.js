@@ -69,7 +69,7 @@ const dilate_process=function(raster,struct,copy=true){
   let x_value_struc_element=value_struc_center[0];
   let y_value_struc_element=value_struc_center[1];
   let value_center_pixel=r_struct.getPixel(x_value_struc_element,y_value_struc_element);
-
+  let equalval=false;
   //valeur abérante radius_struct_y(-878)
   let radius_struct_y = r_struct.height-value_struc_center[1];
   let radius_struct_x = r_struct.width-value_struc_center[0];
@@ -118,8 +118,10 @@ const dilate_process=function(raster,struct,copy=true){
             // } 
             
             //aucun pixel valoir de 2, pourquoiiii?
-            if (r_output.getPixel(x-rx,y-ry)==0 && r_struct.getPixel(x_value_struc_element-rx,y_value_struc_element-ry)==255){
-              r_output.setPixel(x-rx,y-ry,2);       
+            if (r_output.getPixel(x-rx,y-ry)==0){
+              if (r_struct.getPixel(x_value_struc_element-rx,y_value_struc_element-ry)==255){
+                r_output.setPixel(x-rx,y-ry,2);
+              }   
             }
           } 
         }   
@@ -157,8 +159,18 @@ win0.addView(view0);
 win0.addToDOM('workspace');
 
 
-let img3 = new T.Image('uint8',3,3);
-img3.setPixels(mask3by3Star);
+// let img3 = new T.Image('uint8',3,3);
+// img3.setPixels(mask3by3Star);
+// let win3 = new T.Window('Structuring element');
+// let view3 = T.view(img3.getRaster());
+// // Create the window content from the view
+// win3.addView(view3);
+// // Add the window to the DOM and display it
+// win3.addToDOM('workspace');
+
+
+let img3 = new T.Image('uint8',45,41);
+img3.setPixels(struc_cross);
 let win3 = new T.Window('Structuring element');
 let view3 = T.view(img3.getRaster());
 // Create the window content from the view
