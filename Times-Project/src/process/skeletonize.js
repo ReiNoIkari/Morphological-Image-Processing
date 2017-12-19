@@ -29,7 +29,7 @@ const convert_process = function(rast,undo=false,copy=true) {
 	return rast;
 };
 
-//returns true if a foreground pixel (1) is surrounded by 4 foreground pixels
+//returns true if a foreground pixel (=1) is surrounded by 4 foreground(=1) pixels
 const is_interior = function(x,y,raster) {
 	if (raster.getPixel(x,y) != 0){
 		if (x-1 >= 0 && raster.getPixel(x-1,y) != 0 && (x+1) <= raster.width && raster.getPixel(x+1,y) != 0 
@@ -40,11 +40,14 @@ const is_interior = function(x,y,raster) {
 	return false
 };
 
-//returns true if the x,y pixel is next to an interior pixel (north, south ,east ,west)
+//returns true if the x,y pixelis an exterior (=1) pixel next to an interior(=2) pixel (north, south ,east ,west)
 const is_removable = function(x,y,raster) {
+	//is the pixel exterior?
 	if (raster.getPixel(x,y) == 1){
+		//is the exterior pixel next to an interior pixel? 
 		if ((x-1 >= 0 && raster.getPixel(x-1,y) == 2) || ((x+1) <= raster.width && raster.getPixel(x+1,y) == 2) 
 			|| (y-1 >= 0 && raster.getPixel(x,y-1) == 2) || ((y+1) <= raster.height && raster.getPixel(x,y+1) == 2) ) {
+			//the x,y pixel is an edge pixel, removable, not a skeleton pixel)
 			return true;
 		}
 	}
