@@ -36,22 +36,13 @@
  
  * @author Adrien MENDES SANTOS
  */
+/*PROVISOIRE AVANT TOUT METTRE DANS MEME FICHIER */
+/*PROVISOIRE AVANT TOUT METTRE DANS MEME FICHIER */
+/*PROVISOIRE AVANT TOUT METTRE DANS MEME FICHIER */
+/*PROVISOIRE AVANT TOUT METTRE DANS MEME FICHIER */
+/*PROVISOIRE AVANT TOUT METTRE DANS MEME FICHIER */
 
-function differences(a, b) {
-    var missings = [];
-    var matches = false;
-  
-    for ( var i = 0; i < a.length; i++ ) {
-        matches = false;
-        for ( var e = 0; e < b.length; e++ ) {
-            if ( a[i] === b[e] ) matches = true;
-        }
-        if(!matches) missings.push( a[i] );
-    }
-    return missings;
-  }
-
-const process_operation = function(r_output,copy=true){
+const process_operation_erode = function(r_output,copy=true){
     for(let i=0;i<=r_output.height;i++){
     	for (let j=0;j<=r_output.width;j++){
 	      if (r_output.getPixel(i,j)==2){
@@ -115,19 +106,76 @@ const erode = function(img,struct,copy=true){
     let temp = new T.Image('uint8',img.width,img.height);
     temp.setRaster(T.Raster.from(img.getRaster(),copy));
     let r_output = erode_process(temp.getRaster(),struct);
-    r_output = process_operation(r_output);
-    let r_output2=erode_process(r_output,struct);
-    r_output2 = process_operation(r_output2);
-    let r_output3=erode_process(r_output2,struct);
-    r_output3 = process_operation(r_output3);
-    let r_output4=erode_process(r_output3,struct);
-    r_output4 = process_operation(r_output4);
-    let r_output5=erode_process(r_output4,struct);
-    r_output5 = process_operation(r_output5);
-    temp.setRaster(r_output5);
+    r_output = process_operation_erode(r_output);
+    temp.setRaster(r_output);
     return temp;
 };
 
+const process_operation = function(r_output,copy=true){
+    for(let i=0;i<=r_output.height;i++) {
+          for (let j=0;j<=r_output.width;j++){
+              if (r_output.getPixel(i,j)==2) {
+                  r_output.setPixel(i,j,255);
+              }
+          }
+    }
+    return r_output;
+  };
+  
+  const dilate_process=function(raster,struct,copy=true){
+    let r_output = T.Raster.from(raster,copy);
+    let r_struct=struct.getRaster();
+    let struct_Center=(r_struct.length+1)/2; 
+    let value_struc_center=r_struct.xy(struct_Center);
+    let x_value_struc_element=value_struc_center[0];
+    let y_value_struc_element=value_struc_center[1];
+    let value_center_pixel=r_struct.getPixel(x_value_struc_element,y_value_struc_element);
+    let radius_struct_y = r_struct.height-value_struc_center[1];
+    let radius_struct_x = r_struct.width-value_struc_center[0];
+  
+    for(let y=0; y<raster.height; y++) { //parcours le raster de l'image en x
+      for(let x=0; x<raster.width; x++) {//parcours le raster de l'image en y
+        if (raster.getPixel(x,y)==value_center_pixel){
+          for (let rx = -radius_struct_x; rx <= radius_struct_x; rx++) {
+            for (let ry = -radius_struct_y; ry <= radius_struct_y; ry++) {
+              if (raster.getPixel(x-rx,y-ry)==0 && r_struct.getPixel(x_value_struc_element-rx,y_value_struc_element-ry)==255){
+                  r_output.setPixel(x-rx,y-ry,2);
+              }
+            } 
+          }   
+        }
+      }
+    }
+  
+    return r_output;
+  }
+  const dilate = function(img,struct,copy=true){
+  
+    let temp = new T.Image('uint8',img.width,img.height);
+    temp.setRaster(T.Raster.from(img.getRaster(),copy));
+    let r_output = dilate_process(temp.getRaster(),struct,copy=true);
+    r_output = process_operation_dilate(r_output,true);
+    temp.setRaster(r_output);
+      return temp;
+  };
+/*PROVISOIRE AVANT TOUT METTRE DANS MEME FICHIER */
+/*PROVISOIRE AVANT TOUT METTRE DANS MEME FICHIER */
+/*PROVISOIRE AVANT TOUT METTRE DANS MEME FICHIER */
+/*PROVISOIRE AVANT TOUT METTRE DANS MEME FICHIER */
+/*PROVISOIRE AVANT TOUT METTRE DANS MEME FICHIER */
+
+
+
+const opening= function(img,struct,copy=true){
+    let temp = new T.Image('uint8',img.width,img.height);
+    temp.setRaster(T.Raster.from(img.getRaster(),copy));
+    let r_output = erode_process(temp.getRaster(),struct,copy=true);
+    r_output = process_operation_erode(r_output,true);
+    r_output=dilate_process(r_output,true)
+    r_output=process_operation_dilate(r_output,true)
+    temp.setRaster(r_output);
+    return temp;
+  };
 
 //1st window :original 
 

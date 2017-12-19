@@ -76,7 +76,7 @@ const dilate = function(img,struct,copy=true){
   let temp = new T.Image('uint8',img.width,img.height);
   temp.setRaster(T.Raster.from(img.getRaster(),copy));
   let r_output = dilate_process(temp.getRaster(),struct,copy=true);
-  r_output = process_operation(r_output,true);
+  r_output = process_operation_dilate(r_output,true);
   temp.setRaster(r_output);
 	return temp;
 };
