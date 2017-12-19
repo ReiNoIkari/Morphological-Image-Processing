@@ -60,36 +60,28 @@ const distance_map = function(rast,window_type,copy=true) {
     return rast;
 }
 
-const process = function (rast,x,y,processed) {
+//Finds and returns the nearest max value
+const nearestMaxValue = function (rast,x,y,processed) {
     for (i=-1;i<2;i++){
 	for (j=-1;j<2;j++){
-	    if (x+i >=0 && y+j >=0 && x+i <= rast.width && y+j <= rast.heigth){		
-		if (rast.getPixel(x+i,y+j)<rast.getPixel(x,y) && rast.getPixel(i,j)!= 0){
-		    processed.push([x,y]);
-		    tmp=process(rast,x+i,y+j,processed);
-		    rast.setPixel(x,y,tmp);
-		    return tmp;
-		}
-	    }
+	    ;
 	}
     }
-    processed.push([x,y]);
     return rast.getPixel(x,y);
 }
 
 //takes a gray-level raster and returns the 8-bit binary raster segmented
 const segmentation = function(rast,copy=true) {
-    /*for (let y=rast.height;y>=0;y--){
-	for(let x=rast.width;x>=0;x--) {
-	    	    
+    for (let y=0;y<=rast.height;y++){
+	for(let x=0;x<=rast.width;x++) {
+	    rast.setPixel(x,y,nearestMaxValue(rast,x,y));	    	    
 	    }
 	}
-    }*/
     return rast;
 }
 
 //watershed transform on a binary image, returns a copy of the segmented image
-const watershed = function (img,window_type="chessboard",copy=true) {
+const watershed = function (img,window_type="CDA",copy=true) {
     let temp = new T.Image('uint8',img.width,img.height);
     temp.setRaster(T.Raster.from(img.getRaster(),copy));
     //watershed segmentation : how to process ?
@@ -111,7 +103,7 @@ win0.addView(view0);
 // Add the window to the DOM and display it
 win0.addToDOM('workspace');
 
-// SKELETONIZE
+// WATERSHED
 let img1 = watershed(img0);
 let win1 = new T.Window('Output');
 let view1 = T.view(img1.getRaster());
