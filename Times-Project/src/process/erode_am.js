@@ -37,17 +37,29 @@
  * @author Adrien MENDES SANTOS
  */
 
+function differences(a, b) {
+    var missings = [];
+    var matches = false;
+  
+    for ( var i = 0; i < a.length; i++ ) {
+        matches = false;
+        for ( var e = 0; e < b.length; e++ ) {
+            if ( a[i] === b[e] ) matches = true;
+        }
+        if(!matches) missings.push( a[i] );
+    }
+    return missings;
+  }
+
 const process_operation = function(r_output,copy=true){
     for(let i=0;i<=r_output.height;i++){
-	for (let j=0;j<=r_output.width;j++){
-	    if (r_output.getPixel(i,j)==2){
-		r_output.setPixel(i,j,255);
-		// console.log("interiot");
-		// console.log( r_output.getPixel(441,499));       
+    	for (let j=0;j<=r_output.width;j++){
+	      if (r_output.getPixel(i,j)==2){
+		      r_output.setPixel(i,j,255); 
+	      }
+	      else 
+		      r_output.setPixel(i,j,0);
 	    }
-	    else 
-		r_output.setPixel(i,j,0);
-	}
     }
     return r_output;
 };
@@ -63,26 +75,39 @@ const erode_process=function(raster,struct,copy=true){
     let radius_struct_y = r_struct.height-value_struc_center[1];
     let radius_struct_x = r_struct.width-value_struc_center[0];
 
+    var values_foreground=0;
     var values=0;
 
-    for(let y=0; y<raster.height; y++) {
-	for(let x=0; x<raster.width; x++) {
-	    if (raster.getPixel(x,y)==value_center_pixel){
-		for (let rx = -radius_struct_x; rx <= radius_struct_x; rx++) {
-		    for (let ry = -radius_struct_y; ry <= radius_struct_y; ry++) {
-			if (raster.getPixel(x-rx,y-ry) == r_struct.getPixel(x_value_struc_element-rx,y_value_struc_element-ry)){
-			    values+=1;
-			}
-		    } 
-		}
-		if (values==(struct.length-1)){
-		    r_output.setPixel(x,y,2)
-		}
-	    } 
-	    values=0;
-	}
+    console.log('rstruc');
+    console.log(r_struct.pixelData);
+
+    for(let a=0; a<r_struct.height; a++){
+	    for(let b=0; b<r_struct.width; b++){
+        if(r_struct.getPixel(a,b)==255){
+          values_foreground+=1;
+        }
+      }
     }
-    console.log(r_output.pixelData);
+
+    for(let y=0; y<raster.height; y++) {
+	    for(let x=0; x<raster.width; x++) {
+        values=0;
+	      if (raster.getPixel(x,y)==value_center_pixel){
+		      for (let rx = -radius_struct_x; rx <= radius_struct_x; rx++) {
+		        for (let ry = -radius_struct_y; ry <= radius_struct_y; ry++) {
+              if(r_struct.getPixel(x_value_struc_element-rx,y_value_struc_element-ry)==255){
+                if (raster.getPixel(x-rx,y-ry) == 255) {
+                  values+=1;
+                }
+              }
+		        } 
+		      }
+		    if (values==values_foreground){
+		      r_output.setPixel(x,y,2)
+		    }
+	      } 
+	    }
+    }
     return r_output;
 }
 
@@ -91,21 +116,42 @@ const erode = function(img,struct,copy=true){
     temp.setRaster(T.Raster.from(img.getRaster(),copy));
     let r_output = erode_process(temp.getRaster(),struct);
     r_output = process_operation(r_output);
-    temp.setRaster(r_output);
+    let r_output2=erode_process(r_output,struct);
+    r_output2 = process_operation(r_output2);
+    let r_output3=erode_process(r_output2,struct);
+    r_output3 = process_operation(r_output3);
+    let r_output4=erode_process(r_output3,struct);
+    r_output4 = process_operation(r_output4);
+    let r_output5=erode_process(r_output4,struct);
+    r_output5 = process_operation(r_output5);
+    temp.setRaster(r_output5);
     return temp;
 };
 
 
 //1st window :original 
 
-let img0 = new T.Image('uint8',500,500);
-img0.setPixels(b_image2);
+// let img0 = new T.Image('uint8',500,500);
+// img0.setPixels(b_image2);
+// let win0 = new T.Window('Original');
+// let view0 = T.view(img0.getRaster());
+// // Create the window content from the view
+// win0.addView(view0);
+// // Add the window to the DOM and display it
+// win0.addToDOM('workspace');
+
+let img0 = new T.Image('uint8',446,446);
+img0.setPixels(b_image3);
 let win0 = new T.Window('Original');
 let view0 = T.view(img0.getRaster());
 // Create the window content from the view
 win0.addView(view0);
 // Add the window to the DOM and display it
 win0.addToDOM('workspace');
+
+
+let img4 = new T.Image('uint8',446,446);
+img4.setPixels(b_image3);
 
 
 let img3 = new T.Image('uint8',3,3);
