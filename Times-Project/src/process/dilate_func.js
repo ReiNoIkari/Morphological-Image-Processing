@@ -33,9 +33,9 @@
  * @author Adrien MENDES SANTOS
  */
 
-const process_operation_dilate = function(r_output,copy=true){
-  for(let i=0;i<r_output.height;i++) {
-		for (let j=0;j<r_output.width;j++){
+const process_operation = function(r_output,copy=true){
+  for(let i=0;i<=r_output.height;i++) {
+		for (let j=0;j<=r_output.width;j++){
 			if (r_output.getPixel(i,j)==2) {
 				r_output.setPixel(i,j,255);
 			}
@@ -47,13 +47,25 @@ const process_operation_dilate = function(r_output,copy=true){
 const dilate_process=function(raster,struct,copy=true){
   let r_output = T.Raster.from(raster,copy);
   let r_struct=struct.getRaster();
-  let struct_Center=(r_struct.length-1)/2; 
+  let struct_Center=(r_struct.length+1)/2; 
   let value_struc_center=r_struct.xy(struct_Center);
   let x_value_struc_element=value_struc_center[0];
   let y_value_struc_element=value_struc_center[1];
   let value_center_pixel=r_struct.getPixel(x_value_struc_element,y_value_struc_element);
   let radius_struct_y = r_struct.height-value_struc_center[1];
   let radius_struct_x = r_struct.width-value_struc_center[0];
+
+    let test=0
+
+    raster.height.forEach(function(val, Y){
+        raster.width.forEach(function(val, Y){
+            test+=1;
+        });  
+        console.log("heya");
+        console.log(test);
+    });
+
+
 
   for(let y=0; y<raster.height; y++) { //parcours le raster de l'image en x
     for(let x=0; x<raster.width; x++) {//parcours le raster de l'image en y
