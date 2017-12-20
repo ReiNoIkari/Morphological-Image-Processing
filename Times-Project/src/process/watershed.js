@@ -31,9 +31,8 @@ const check = (x,y,x1,y1,dist,rast) => {
 
 //processes the raster and returns the gray-level distance map of the raster
 //this distance map algorithm is based on the Borgefors’ Chamfer distance algorithm (CDA)
-//might be updated to the DRA if I have the time ( more accurate, little more process time)
 //rast = raster of the image containing the pixelData
-//window_type = the type of window to apply for the distance map ( soon : CDA 3x3, chessboard, city block)
+//window_type = the type of window to apply for the distance map ( soon : EDM, chessboard, city block )
 const distance_map = (rast,window_type="CDA",copy=true) => {
     //todo : switch window_type
     let dxy=4; // values for CDA window_type
@@ -48,13 +47,13 @@ const distance_map = (rast,window_type="CDA",copy=true) => {
     	    check(x,y,x-1,y,dx,rast); // checking left neighbor
     	}
     }/*
-    rast.pixelData = rast.pixelData.map((x,i,a) => {
-    	check(rast.x(i),rast.y(i),rast.x(i)-1,rast.y(i)-1,dxy,rast); //checking top-left neighbor
-    	check(rast.x(i),rast.y(i),rast.x(i),rast.y(i)-1,dy,rast); //checking top neighbor
-    	check(rast.x(i),rast.y(i),rast.x(i)+1,rast.y(i)-1,dxy,rast); //checking top-right neighbor
-    	check(rast.x(i),rast.y(i),rast.x(i)-1,rast.y(i),dx,rast);// checking left neighbor
-	return x;
-    });*/
+       rast.pixelData = rast.pixelData.map((x,i,a) => {
+       check(rast.x(i),rast.y(i),rast.x(i)-1,rast.y(i)-1,dxy,rast); //checking top-left neighbor
+       check(rast.x(i),rast.y(i),rast.x(i),rast.y(i)-1,dy,rast); //checking top neighbor
+       check(rast.x(i),rast.y(i),rast.x(i)+1,rast.y(i)-1,dxy,rast); //checking top-right neighbor
+       check(rast.x(i),rast.y(i),rast.x(i)-1,rast.y(i),dx,rast);// checking left neighbor
+       return x;
+       });*/
     //backward scan
     for (let y=rast.height;y>=0;y--){
 	for(let x=rast.width;x>=0;x--) {
