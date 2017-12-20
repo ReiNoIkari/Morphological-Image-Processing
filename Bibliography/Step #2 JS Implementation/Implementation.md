@@ -90,6 +90,19 @@ Closing is the erosion of the dilation of a set A by a structuring element B. Th
 
 ### Skeletonized
 
+The skeletonization is part of the morphological operators that will from and image, transform the different shapes in it, in a thin version of those shapes that is equidistant to their boundaries. It's mainly use in optical character recognition and fingerprint recognition. Skeletons have several different mathematical definitions in the technical literature, and there are many different algorithms for computing them. For our project we decide to implement the algorithm of (??????name?????). This algorithm could be sum up in three main steps. First is to detect the edge of the different objects in our image, the second step is to remove the edge pixels and finaly to do a thinning and to determine what would be the last thinning possible before the final stage where the object dissapear.
+
+In order to do this skeletonize function we had to implement our own personal version of edge detection, but the final version of edge detection will be added by another group.
+
+This function is composed as multiple function like the others. A main function is present, called *skeletonize(img)*. It takes an image as input, return a skeletonized of it in output. It creates a raster of the input image, and then call one of the secondary functions : *thinning(rast)*.
+
+This *thinning(rast)* function uses two additional functions which are *is_interior(n,rast)* and *is_removable(n,rast)*.
+The first one, will check the neighbors of pixel at the n index position. Ff a foreground pixel is not neighbor of a background pixel (in x-1,x+1,y-1 or y+1 postion) then it will return a true boolean.
+
+The second one, works and are build in the same way, but instead it will returns true if the n pixel is an foreground pixel next to an interior(=2) pixel (in x-1,x+1,y-1 or y+1 postion)
+
+
+
 ### Watershed
 
 ## Results
