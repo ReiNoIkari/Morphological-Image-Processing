@@ -84,7 +84,7 @@ const nearestMaxValue = function (rast,x,y) {
 
 //takes a rast from a flooded grayscale image
 //returns true if one of the 4 neighbors is from an other flood level)
-const isFloodLimit = function(rast,x,y,xy_value) {
+const isFloodLimit = (rast,x,y,xy_value) => {
 	return ((rast.getPixel(x-1,y) != xy_value && rast.getPixel(x-1,y) !=0) ||
 		(rast.getPixel(x,y-1) != xy_value && rast.getPixel(x,y-1) !=0) ||
 		(rast.getPixel(x+1,y) != xy_value && rast.getPixel(x+1,y) !=0) ||
@@ -136,27 +136,3 @@ const watershed = function (img,window_type="CDA",copy=true) {
     temp.setRaster(r_output);
     return temp;
 };
-
-
-/**
- * Display uint8 images
- */
-let img0 = new T.Image('uint8',446,446);
-img0.setPixels(b_image3);
-let win0 = new T.Window('Original');
-let view0 = T.view(img0.getRaster());
-// Create the window content from the view
-win0.addView(view0);
-// Add the window to the DOM and display it
-win0.addToDOM('workspace');
-
-// WATERSHED
-let img1 = watershed(img0);
-let win1 = new T.Window('Output');
-let view1 = T.view(img1.getRaster());
-// Create the window content from the view
-win1.addView(view1);
-// Add the window to the DOM and display it
-win1.addToDOM('workspace');
-
-//New display code? examples/adaptativeTest.js
