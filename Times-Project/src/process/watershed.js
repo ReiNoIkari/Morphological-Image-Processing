@@ -61,12 +61,9 @@ const distance_map = function(rast,window_type="CDA",copy=true) {
 }
 
 //Finds and returns the nearest max value of a x,y pixel in a grayscale raster
-//This methods isn't properly working, especially when neighbor pixels have the same value
-//storing visited pixels could fix the problem by visiting any max value >= actual value 
-// (instead of visiting only when value is strictly > actual value)
-//TODO : find a way to keep track of the visited pixels TRYING visited ARRAY.
-const nearestMaxValue = function (rast,x,y,visited=[]) {
-	//finding the max value between 8 neighbors to x,y
+//This methods isn't properly working, especially when neighbor pixels have the same value (stopping since no max is strictly > than actual value)
+const nearestMaxValue = function (rast,x,y) {
+    //finding the max value between 8 neighbors to x,y
 	maxValue=Math.max(rast.getPixel(x-1,y),rast.getPixel(x,y-1),rast.getPixel(x+1,y),rast.getPixel(x,y-1),
 		rast.getPixel(x-1,y-1),rast.getPixel(x+1,y+1),rast.getPixel(x-1,y+1),rast.getPixel(x+1,y-1))
     for (i=-1;i<2;i++){
@@ -74,10 +71,9 @@ const nearestMaxValue = function (rast,x,y,visited=[]) {
 			//Boundary check
 			if (x+i >=0 && y+j >= 0 && x+i <= rast.width && y+j <= rast.height){
 				//if new max
-				if (rast.getPixel(x+i,y+j) == maxValue && rast.getPixel(x+i,y+j) > rast.getPixel(x,y)){
-					//find max next to neighbor's neighbors
-					let new_max = nearestMaxValue(rast,x+i,y+j);
-					return new_max;
+			    if (rast.getPixel(x+i,y+j) == maxValue && rast.getPixel(x+i,y+j) > rast.getPixel(x,y)){
+				//find max next to neighbor's neighbors
+				return nearestMaxValue(rast,x+i,y+j);
 				}
 			}
 		}
