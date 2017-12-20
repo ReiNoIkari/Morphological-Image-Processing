@@ -60,9 +60,18 @@ const dilate_process=function(raster,struct,copy=true){
     for(let x=0; x<raster.width; x++) {
       if (raster.getPixel(x,y)==value_center_pixel){
         for (let rx = -radius_struct_x; rx <= radius_struct_x; rx++) {
-          for (let ry = -radius_struct_y; ry <= radius_struct_y; ry++) {
-            if (raster.getPixel(x-rx,y-ry)==0 && r_struct.getPixel(x_value_struc_element-rx,y_value_struc_element-ry)==255){
-              r_output.setPixel(x-rx,y-ry,2);
+          for (let ry = -radius_struct_y; ry <= radius_struct_y; ry++) { 
+            let imgEdge = false;
+            if (x-rx<0 || x-rx>raster.height-1){
+              imgEdge=true;
+            }
+            if (y-ry<0 || y-ry>raster.width-1){
+              imgEdge=true;
+            }
+            if(imgEdge==false) {           
+              if (raster.getPixel(x-rx,y-ry)==0 && r_struct.getPixel(x_value_struc_element-rx,y_value_struc_element-ry)==255){
+                r_output.setPixel(x-rx,y-ry,2);
+              }
             }
           } 
         }   
@@ -125,8 +134,8 @@ win1.addView(view1);
 win1.addToDOM('workspace');
 
 
-let img5 = dilate(dilate(dilate(img0,img3),img3),img3);
-let win5 = new T.Window('Dilated 3 times');
+let img5 = dilate(dilate(dilate(dilate(dilate(img0,img3),img3),img3),img3),img3);
+let win5 = new T.Window('Dilated 5 times');
 let view5 = T.view(img5.getRaster());
 // Create the window content from the view
 win5.addView(view5);
