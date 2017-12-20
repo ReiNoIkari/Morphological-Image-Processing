@@ -5,3 +5,78 @@ Vincent DEJONGHE, Adrien MENDES SANTOS, Rodolphe TWOREK\*
 Link to Github : https://github.com/ReiNoIkari/Morphological-Image-Processing
 
 ## Introduction
+
+
+Nowadays, scientists have access to huge image databases which can make studying organisms easier.  One problem still persist : those collected datas are worthless if they are not interpreted and the concern is that a lifetime won't be enough for a scientist to follow the flow. That’s were informatics come in order to help to analyse those huge amount of raw data, and in our case more precisely Image Processing. Indeed, the developement of some Image processing tool made that easier to computerize and analyse [^GON1992],[^JAI1989].
+
+Mathematical morphology has been invented in 1964 by Georges Matheron and Jean Serra in the MINES ParisTech's laboratories. Its development was always motivated by industrial application. At the begining, the main purpose was to answer issues in the mining exploitation field. Then this purpose diversified itself to biology, medical imagery, material science, industrial vision, multimedia, teledetection, geophisic, etc. It consist in a mathematical and informatical theory and technique which is linked with algebra, the lattice theory, topology and probabilities [^SCH1993] .
+
+Currently, one of the mathematical morphology’s main field is Image Processing. It particularly allows to use filtering, segmentation and quantification tools. Since it’s emergence in 1964, it knows a growing success and constitutes a part of many Image Processing softwares yet.
+
+For the purposes of object identification required in industrial vision applications, the operations of mathematical morphology are more useful than the convolution operations employed in signal processing because the morphological operators relate directly to shape.
+
+For this second step corresponding to the Javascript implementation, we had to do our own implementation of the morphological operators(erode,dilate,close,open,hit or miss, watershed and skeletonized) described in the first step which was Literature Search.
+
+In this report, we will focus firstly describe in detail each function in the Material & Methods, then we will present our results using one precise example, followed by a comparison about our implementation and the implementation available in ImageJ. Finaly, we will conclude our work and make some possible improvements.
+
+## Material & Methods
+
+[//]: # (Material and Methods: Describe in detail for each function the algorithm used in the implementation. Add a diagram or pseudo-code if necessary. This section is very important because it must help the reading of the source code.)
+
+All our functions are build the same way. We can note the presence of an equivalent of a main function usually with the name of the morphological operation, that will call all our secondaries functions used to make the different steps.
+
+Another thing to note, is that in our functions we use an intermediate value of 2. The reason is because if we would process our image at the given time(and so while the process is still running) this would interfere with the remaining treatment and false our results. For this reason, the primary function will set an intermediate value if needed, and then an intermediate function will exchange those intermediate value by the correct ones.
+
+###Erosion
+
+As a reminder, erosion is one of two fundamental operations (the other being dilation) in morphological image processing from which all other morphological operations are based. It was originally defined for binary images, later being extended to grayscale images, and subsequently to complete lattices. Our part of the project(Morphological operation) targeted binary images, so the implementation of our erosion(and most of our operations) use some binary property like a pixel can only be in two state : foreground (and so it's value is 255) and background (it's value is 0).
+
+The erosion operation was implemented in Javascript using a candid approach which is the definition itself of an erosion. An erosion is defined as follow by wikipedia (for further details refer to the report from step 1) : 
+
+*Let E be a Euclidean space or an integer grid, and A a binary image in E.
+When the structuring element B has a center, and this center is located on the origin of E, then the erosion of A by B can be understood as the locus of points reached by the center of B when B moves inside A. For example, the erosion of a square of side 10, centered at the origin, by a disc of radius 2, also centered at the origin, is a square of side 6 centered at the origin.*
+
+To rephrase it with our own word, when a structuring fits in our image(i.e. when all foreground pixels in the structuring element are the same in our image), then all the others pixels are turned off except for the center pixel. 
+
+To summarize this approach, we had to convert our two images(the one we are working on, and the kernel image) in Traster so we could work more easily with predefine properties. From here, we had to parse our entire image using the kernel and for each pixel in the original image that have the same value as the center pixel of our kernel check if from this set of corrdinates, if the both the kernel and the image has the same neighbors. If so then, we just needed to light off the neighbors pixels if that was the case and return an eroded image.
+
+The main function of the erode process if *erode(img,struct)*. It takes as input 2 parameters, the first one if the image that need to be eroded, the second argument if an image of the structurent element you wish to erode your image with.
+This functions acts like a main, in the regard that apart from creating a copy of the original image(so we don't work in the original one) it will call two functions : *erode_process(r_img,struct)* and *process_operation_erode(r_output)* and return an eroded image. We will describe those function below.
+
+In order to do the erode operation, *process_operation_erode(raster,struct)* is the first function call. The first step if to determine the number of the foreground pixels that are present in our kernel, we use for this the map function in such a way that we scan all the kernek and if a pixel as a value of 255, then we add a +1 to a constant named "values_foreground". The number of this constant is then egual to the number of foreground pixel in our kernel.
+
+Then, we iterate in height and width the raster (that we took care to create) from the source image, and we fix a constant "values" to 0. This variable will have the same goal as the previous constant, it will allow us to determine the number of foreground pixels in the raster(we will come back to it).
+
+From here, for each y,x values in height and width if a pixel as the same value as the one of the center pixel of our kernel, then from those coordinates, we check using once again two for loops this time of the height and width of the structuring element and from minus the radius of the kernel and radius of the kernel the values of neighbors in both the image and the kernel. If the pixel value from those first coordinates of a lenght of minus the radius of the kernel and the radius of the kernel is 255 then we had a +1 to our variable "values. If this constant and the "values_foreground" constant have the same values, then it means that the foreground pixels of the kernel have an exact match with the pixels of the raster of the image and so we set for those x,y coordinates a value of 2. We then return the raster with containing those intermediate pixels.
+
+ The last function *process_operation_erode(r_output)* is the intermediate function we talked earlier. It will iterate through the raster in heigh and width, and in the case of the erode, change all the pixels with a value of 2 to foreground pixel(255), and all the other pixels will be set to background pixel(0). It return the final raster containing the good pixel values.
+
+The *erode(img,struct)* is then in charge to call those two functions, and return the eroded image that will be diplayed.
+
+###Dilation
+
+###Opening
+
+###Closing
+
+###Hit or Miss
+
+###Skeletonized
+
+###Watershed
+
+## Results
+
+[//]: # (Results: Present one example of your function(s). Then, calculate benchmarks with the same image at different size. Recalculate the benchmarks for 8-bit, 16-bit, and float32 images. Display them as diagram. Don't forget to describe them in your text, add a legend.)
+
+## Discussion
+
+[//]: # (Discussion: Comparison of your implementation with those of ImageJ. Is it faster, better, less memory consuming, ...?)
+
+## Conclusion
+
+[//]: # (Conclusion: Conclusion and possible improvements, ...)
+
+## References
+
+[//]: # (References. To complete if required. Be sure that all of your references are called in the text.)
