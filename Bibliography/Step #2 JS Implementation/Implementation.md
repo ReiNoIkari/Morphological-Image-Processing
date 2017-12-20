@@ -27,7 +27,7 @@ All our functions are build the same way. We can note the presence of an equival
 
 Another thing to note, is that in our functions we use an intermediate value of 2. The reason is because if we would process our image at the given time(and so while the process is still running) this would interfere with the remaining treatment and false our results. For this reason, the primary function will set an intermediate value if needed, and then an intermediate function will exchange those intermediate value by the correct ones.
 
-### Erosion
+###Erosion
 
 As a reminder, erosion is one of two fundamental operations (the other being dilation) in morphological image processing from which all other morphological operations are based. It was originally defined for binary images, later being extended to grayscale images, and subsequently to complete lattices. Our part of the project(Morphological operation) targeted binary images, so the implementation of our erosion(and most of our operations) use some binary property like a pixel can only be in two state : foreground (and so it's value is 255) and background (it's value is 0).
 
@@ -40,7 +40,7 @@ To rephrase it with our own word, when a structuring fits in our image(i.e. when
 
 To summarize this approach, we had to convert our two images(the one we are working on, and the kernel image) in Traster so we could work more easily with predefine properties. From here, we had to parse our entire image using the kernel and for each pixel in the original image that have the same value as the center pixel of our kernel check if from this set of corrdinates, if the both the kernel and the image has the same neighbors. If so then, we just needed to light off the neighbors pixels if that was the case and return an eroded image.
 
-The main function of the erode process if *erode(img,struct)*. It takes as input 2 parameters, the first one if the image that need to be eroded, the second argument if an image of the structurent element you wish to erode your image with.
+The main function of the erode process if *erode(img,struct)*. It takes as input 2 parameters, the first one if the image that need to be eroded,the second argument if an image of the structurent element you wish to erode your image with.
 This functions acts like a main, in the regard that apart from creating a copy of the original image(so we don't work in the original one) it will call two functions : *erode_process(r_img,struct)* and *process_operation_erode(r_output)* and return an eroded image. We will describe those function below.
 
 In order to do the erode operation, *process_operation_erode(raster,struct)* is the first function call. The first step if to determine the number of the foreground pixels that are present in our kernel, we use for this the map function in such a way that we scan all the kernek and if a pixel as a value of 255, then we add a +1 to a constant named "values_foreground". The number of this constant is then egual to the number of foreground pixel in our kernel.
@@ -49,15 +49,42 @@ Then, we iterate in height and width the raster (that we took care to create) fr
 
 From here, for each y,x values in height and width if a pixel as the same value as the one of the center pixel of our kernel, then from those coordinates, we check using once again two for loops this time of the height and width of the structuring element and from minus the radius of the kernel and radius of the kernel the values of neighbors in both the image and the kernel. If the pixel value from those first coordinates of a lenght of minus the radius of the kernel and the radius of the kernel is 255 then we had a +1 to our variable "values. If this constant and the "values_foreground" constant have the same values, then it means that the foreground pixels of the kernel have an exact match with the pixels of the raster of the image and so we set for those x,y coordinates a value of 2. We then return the raster with containing those intermediate pixels.
 
- The last function *process_operation_erode(r_output)* is the intermediate function we talked earlier. It will iterate through the raster in heigh and width, and in the case of the erode, change all the pixels with a value of 2 to foreground pixel(255), and all the other pixels will be set to background pixel(0). It return the final raster containing the good pixel values.
+The last function *process_operation_erode(r_output)* is the intermediate function we talked earlier. It will iterate through the raster in heigh and width, and in the case of the erode, change all the pixels with a value of 2 to foreground pixel(255), and all the other pixels will be set to background pixel(0). It return the final raster containing the good pixel values.
 
 The *erode(img,struct)* is then in charge to call those two functions, and return the eroded image that will be diplayed.
 
 ### Dilation
 
+As said in the erosion part, dilation is the other fundamental operations (the first one being erosion) in morphological image processing from which all other morphological operations are based. The same way as the erosion, the dilation was implemented in a naive way, using the definition itself. If we refer to Wikipedia, the dilation definition it the follow :
+
+*Let E be a Euclidean space or an integer grid, A a binary image in E, and B a structuring element regarded as a subset of Rd.
+If B has a center on the origin, then the dilation of A by B can be understood as the locus of the points covered by B when the center of B moves inside A*
+
+Part of the procedure is really similar to the erode process. We will once more iterate through the entire image but this time we won't need to use counting values. However, in contrary of erosion, we will have to take care of one problem we encountered : the concern of the boundaries of the image. Since the dilation and the erosion are two close operators, the code and our approach for those two operators are very similar.
+
+The main function of the dilate process if *dilate(img,struct)*. It takes as input 2 parameters, the first one if the image that need to be eroded, the second argument if an image of the structurent element you wish to erode your image with.
+This functions acts like a main, in the regard that apart from creating a copy of the original image(so we don't work in the original one) it will call two functions : *dilate_process(r_img,struct)* and *process_operation_dilate(r_output)* and return a dilated image. We will describe those function below.
+
+
+In order to do the dilate operation, *process_operation_dilate(raster,struct)* is the first function call. We iterate in height and width the raster (that we took care to create) from the source image.
+
+From here, for each y,x values in height and width, if a pixel as the same value as the one of the center pixel of our kernel, then from those coordinates, we check using once again two for loops this time of the height and width of the structuring element and from minus the radius of the kernel and radius of the kernel the values of neighbors in both the image and the kernel. Two steps will occurs under those if conditions.
+
+First, we will check that when we check for the neighbors we are still in the interior of the image. Indeed, during our tests, we have observed that our initial functial without that conditions will considerer a pixel of the opposite side od the image as a neighbord, instead to have pixels with "no value" or "out of bound" values. Therefore, we created a condition that will check if the neighors at a x,y coordinates are inferior of 0 or superior of the height/widht of the raster. If it's the case, then those neightbors coordinated are not processed. But if there are in the interior of the image, then we check if those neighbors have a value of 0 whereas for a same pad, the pixel value for the kernel is 255. If that is the case, then for those given x,y we set an intermediate value of 2 in the raster image that we will then treat.
+
+The last function *process_operation_dilate(r_output)* is an intermediate function. It will iterate through the raster in heigh and width, and in the case of the dialtion, change all the pixels with a value of 2 to foreground pixel(255) whitout touching the others values. It return the final raster containing the good pixel values.
+
+The *dilate(img,struct)* is then in charge to call those two functions, and return the dilated image that will be diplayed.
+
 ### Opening
 
+Opening is mathematical morphology operator that is used for noise removal. Opening removes small objects from the foreground of an image, placing them in the background. Opening is the dilation of the erosion of a set A by a structuring element B. In this case, using the opening operation definition, the opening result of an image, is just an erosion of this image followed by a dilation of the eroded image.
+This why for the opening operator, we just call the *erode(img,struct)* and we put the result of this function in the *dilate(img,struct)* function. This result in obtaining an opened image.
+
 ### Closing
+
+Together with opening, closing in an mathematical morphlogy operator used for noise removal.At the difference of closing removes small holes.
+Closing is the erosion of the dilation of a set A by a structuring element B. The same way as we did for the opening operator, we just call the *dilate(img,struct)* and we put the result of this function in the *erode(img,struct)*. This result in obtaining a closed image.
 
 ### Hit or Miss
 
