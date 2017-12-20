@@ -49,26 +49,26 @@ const dilate_process=function(raster,struct,copy=true){
   let r_struct=struct.getRaster();
   let struct_Center=(r_struct.length-1)/2; 
   let value_struc_center=r_struct.xy(struct_Center);
+
   let x_value_struc_element=value_struc_center[0];
   let y_value_struc_element=value_struc_center[1];
   let value_center_pixel=r_struct.getPixel(x_value_struc_element,y_value_struc_element);
-  let radius_struct_y = r_struct.height-value_struc_center[1];
-  let radius_struct_x = r_struct.width-value_struc_center[0];
-
-  for(let y=0; y<raster.height; y++) { //parcours le raster de l'image en x
-    for(let x=0; x<raster.width; x++) {//parcours le raster de l'image en y
+  let radius_struct_y = (r_struct.height-1)-value_struc_center[1];
+  let radius_struct_x = (r_struct.width-1)-value_struc_center[0];
+ 
+  for(let y=0; y<raster.height; y++) {
+    for(let x=0; x<raster.width; x++) {
       if (raster.getPixel(x,y)==value_center_pixel){
         for (let rx = -radius_struct_x; rx <= radius_struct_x; rx++) {
           for (let ry = -radius_struct_y; ry <= radius_struct_y; ry++) {
             if (raster.getPixel(x-rx,y-ry)==0 && r_struct.getPixel(x_value_struc_element-rx,y_value_struc_element-ry)==255){
-                r_output.setPixel(x-rx,y-ry,2);
+              r_output.setPixel(x-rx,y-ry,2);
             }
           } 
         }   
       }
     }
   }
-
   return r_output;
 }
 const dilate = function(img,struct,copy=true){
@@ -77,6 +77,7 @@ const dilate = function(img,struct,copy=true){
   temp.setRaster(T.Raster.from(img.getRaster(),copy));
   let r_output = dilate_process(temp.getRaster(),struct,copy=true);
   r_output = process_operation_dilate(r_output,true);
+
   temp.setRaster(r_output);
 	return temp;
 };
@@ -94,24 +95,24 @@ win0.addView(view0);
 win0.addToDOM('workspace');
 
 
-// let img3 = new T.Image('uint8',3,3);
-// img3.setPixels(mask3by3Star);
-// let win3 = new T.Window('Structuring element');
-// let view3 = T.view(img3.getRaster());
-// //Create the window content from the view
-// win3.addView(view3);
-// //Add the window to the DOM and display it
-// win3.addToDOM('workspace');
-
-
-let img3 = new T.Image('uint8',45,41);
-img3.setPixels(struc_cross);
+let img3 = new T.Image('uint8',3,3);
+img3.setPixels(mask3by3Star);
 let win3 = new T.Window('Structuring element');
 let view3 = T.view(img3.getRaster());
 //Create the window content from the view
 win3.addView(view3);
 //Add the window to the DOM and display it
 win3.addToDOM('workspace');
+
+
+// let img3 = new T.Image('uint8',45,41);
+// img3.setPixels(struc_cross);
+// let win3 = new T.Window('Structuring element');
+// let view3 = T.view(img3.getRaster());
+// //Create the window content from the view
+// win3.addView(view3);
+// //Add the window to the DOM and display it
+// win3.addToDOM('workspace');
 
 //3nd window :result 
 
@@ -122,3 +123,13 @@ let view1 = T.view(img1.getRaster());
 win1.addView(view1);
 // Add the window to the DOM and display it
 win1.addToDOM('workspace');
+
+
+let img5 = dilate(dilate(dilate(img0,img3),img3),img3);
+let win5 = new T.Window('Dilated 3 times');
+let view5 = T.view(img5.getRaster());
+// Create the window content from the view
+win5.addView(view5);
+// Add the window to the DOM and display it
+win5.addToDOM('workspace');
+
