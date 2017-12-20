@@ -64,12 +64,10 @@ const nearestMaxValue = (rast,x,y) => {
   for (i=-1;i<2;i++){
     for (j=-1;j<2;j++){
       //Boundary check
-      if (x+i >=0 && y+j >= 0 && x+i <= rast.width && y+j <= rast.height){
-        //if new max
-        if (rast.getPixel(x+i,y+j) == maxValue && rast.getPixel(x+i,y+j) > rast.getPixel(x,y)){
-          //find max next to neighbor's neighbors
-          return nearestMaxValue(rast,x+i,y+j);
-        }
+      if ((x+i >=0 && y+j >= 0 && x+i <= rast.width && y+j <= rast.height) &&
+      (rast.getPixel(x+i,y+j) == maxValue && rast.getPixel(x+i,y+j) > rast.getPixel(x,y))) {
+        //find max next to neighbor's neighbors
+        return nearestMaxValue(rast,x+i,y+j);
       }
     }
   }
