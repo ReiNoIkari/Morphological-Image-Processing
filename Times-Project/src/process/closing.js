@@ -172,7 +172,14 @@ const dilate = function(img,struct,copy=true){
 /*PROVISOIRE AVANT TOUT METTRE DANS MEME FICHIER */
 /*PROVISOIRE AVANT TOUT METTRE DANS MEME FICHIER */
 
-
+/**
+ * Description: 
+ *
+ * @param {img,img} -  img, struct - Take as input 2 images. One is the image that will be processed, the other is the  structuring element. This function calls the different functions to do the closing operation.
+ * @return {img} - return an image that is a copy of the original image with processed pixels i.e. an closed image.
+ 
+ * @author Adrien MENDES SANTOS
+ */
 
 const closing= function(img,struct,copy=true){
     let temp = new T.Image('uint8',img.width,img.height);
