@@ -35,7 +35,7 @@ const thinning = (rast,copy=true) => {
     //removing all edge pixel in contact with an interior pixel
     r_output.pixelData = r_output.pixelData.map((x,i,a) => is_removable(i,r_output) ? 0 : x);
     //turning back all non-background pixels to 255
-    r_output.pixelData = r_output.pixelData.map((x,i,a) => r_output.get(i) !=0 ? 255 : x);
+    r_output.pixelData = r_output.pixelData.map((x,i,a) => x !=0 ? 255 : x);
     return (rast.pixelData.length==r_output.pixelData.length && rast.pixelData.every((v,i)=> v === r_output.pixelData[i])) ? r_output : thinning(r_output);
 };
 

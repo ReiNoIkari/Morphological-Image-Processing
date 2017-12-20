@@ -1,8 +1,8 @@
 /**
  * Display uint8 images
  */
-let img0 = new T.Image('uint8',500,500);
-img0.setPixels(b_image2);
+let img0 = new T.Image('uint8',446,446);
+img0.setPixels(b_image3);
 let win0 = new T.Window('Original');
 let view0 = T.view(img0.getRaster());
 // Create the window content from the view
