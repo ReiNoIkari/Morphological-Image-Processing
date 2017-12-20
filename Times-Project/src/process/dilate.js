@@ -25,10 +25,10 @@
 'use script';
 
 /**
- * Description: TODO
+ * Description: 
  *
- * @param {type} <name> - <Description>
- * @return {type} - <Description>
+ * @param {TRaster} -  r_output - Take as input a Traster and change all the intermediate value of 2 by 255. We don't touch the others pixels.
+ * @return {TRaster} - return a Traster with valued changed from 2 to 255.
  
  * @author Adrien MENDES SANTOS
  */
@@ -44,81 +44,69 @@ const process_operation_dilate = function(r_output,copy=true){
   return r_output;
 };
 
+/**
+ * Description: 
+ *
+ * @param {TRaster,img} -  raster, struct - Take as input a Traster and the structuring element an image. Various variable are then determined like radius of the kernel, the number of foreground pixels(same methodology is used in the erode function). If the center of the kernel pass through a pixel in the raster of the same value as the center of kernel, then it would check if the neighbors of the pixel in raster has the same foreground neighbors than the kernel. If not change those values with the kernel values. Conditions are also present to take care of the border of the image.
+ * @return {TRaster} - return a Traster with the pixels that will be be set to foreground set to a value of 2.
+ 
+ * @author Adrien MENDES SANTOS
+ */
+
 const dilate_process=function(raster,struct,copy=true){
   let r_output = T.Raster.from(raster,copy);
   let r_struct=struct.getRaster();
   let struct_Center=(r_struct.length-1)/2; 
   let value_struc_center=r_struct.xy(struct_Center);
+
   let x_value_struc_element=value_struc_center[0];
   let y_value_struc_element=value_struc_center[1];
   let value_center_pixel=r_struct.getPixel(x_value_struc_element,y_value_struc_element);
-  let radius_struct_y = r_struct.height-value_struc_center[1];
-  let radius_struct_x = r_struct.width-value_struc_center[0];
-
-  for(let y=0; y<raster.height; y++) { //parcours le raster de l'image en x
-    for(let x=0; x<raster.width; x++) {//parcours le raster de l'image en y
+  let radius_struct_y = (r_struct.height-1)-value_struc_center[1];
+  let radius_struct_x = (r_struct.width-1)-value_struc_center[0];
+ 
+  for(let y=0; y<raster.height; y++) {
+    for(let x=0; x<raster.width; x++) {
       if (raster.getPixel(x,y)==value_center_pixel){
         for (let rx = -radius_struct_x; rx <= radius_struct_x; rx++) {
-          for (let ry = -radius_struct_y; ry <= radius_struct_y; ry++) {
-            if (raster.getPixel(x-rx,y-ry)==0 && r_struct.getPixel(x_value_struc_element-rx,y_value_struc_element-ry)==255){
+          for (let ry = -radius_struct_y; ry <= radius_struct_y; ry++) { 
+            let img_edge = false;
+            if (x-rx<0 || x-rx>raster.height-1){
+              img_edge=true;
+            }
+            if (y-ry<0 || y-ry>raster.width-1){
+              img_edge=true;
+            }
+            if(img_edge==false) {           
+              if (raster.getPixel(x-rx,y-ry)==0 && r_struct.getPixel(x_value_struc_element-rx,y_value_struc_element-ry)==255){
                 r_output.setPixel(x-rx,y-ry,2);
+              }
             }
           } 
         }   
       }
     }
   }
-
   return r_output;
 }
+
+/**
+ * Description: 
+ *
+ * @param {img,img} -  img, struct - Take as input 2 images. One is the image that will be processed, the other is the  structuring element. This function is equivalent as the main, it will call the different functions to do the dilate operation.
+ * @return {img} - return an image that is a copy of the original image with processed pixels i.e. a dilated image.
+ 
+ * @author Adrien MENDES SANTOS
+ */
+
 const dilate = function(img,struct,copy=true){
 
   let temp = new T.Image('uint8',img.width,img.height);
   temp.setRaster(T.Raster.from(img.getRaster(),copy));
   let r_output = dilate_process(temp.getRaster(),struct,copy=true);
   r_output = process_operation_dilate(r_output,true);
+
   temp.setRaster(r_output);
 	return temp;
 };
 
-
-//1st window :original 
-
-let img0 = new T.Image('uint8',500,500);
-img0.setPixels(b_image2);
-let win0 = new T.Window('Original');
-let view0 = T.view(img0.getRaster());
-// Create the window content from the view
-win0.addView(view0);
-// Add the window to the DOM and display it
-win0.addToDOM('workspace');
-
-
-// let img3 = new T.Image('uint8',3,3);
-// img3.setPixels(mask3by3Star);
-// let win3 = new T.Window('Structuring element');
-// let view3 = T.view(img3.getRaster());
-// //Create the window content from the view
-// win3.addView(view3);
-// //Add the window to the DOM and display it
-// win3.addToDOM('workspace');
-
-
-let img3 = new T.Image('uint8',45,41);
-img3.setPixels(struc_cross);
-let win3 = new T.Window('Structuring element');
-let view3 = T.view(img3.getRaster());
-//Create the window content from the view
-win3.addView(view3);
-//Add the window to the DOM and display it
-win3.addToDOM('workspace');
-
-//3nd window :result 
-
-let img1 = dilate(img0,img3);
-let win1 = new T.Window('Dilated');
-let view1 = T.view(img1.getRaster());
-// Create the window content from the view
-win1.addView(view1);
-// Add the window to the DOM and display it
-win1.addToDOM('workspace');

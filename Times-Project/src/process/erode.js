@@ -24,15 +24,11 @@
 
 'use script';
 
-            //si pixel le meme mettre une valeur intermédiaire dans une copie
-            //parcourir copie et si que des 2 dans un radius du struct 
-
-
 /**
- * Description: TODO
+ * Description: 
  *
- * @param {type} <name> - <Description>
- * @return {type} - <Description>
+ * @param {TRaster} -  r_output - Take as input a Traster and change all the intermediate value of 2 by 255. Else all other values are set to 0. So only the pixels corresponding to the kernel will remain.
+ * @return {TRaster} - return a Traster with valued changed.
  
  * @author Adrien MENDES SANTOS
  */
@@ -50,6 +46,15 @@ const process_operation_erode = function(r_output,copy=true){
     }
     return r_output;
 };
+
+/**
+ * Description: 
+ *
+ * @param {TRaster,img} -  raster, struct - Take as input a Traster and the structuring element an image. Various variable are then determined like radius of the kernel, the number of foreground pixels. If the kernel pass through an area containing the same foreground pixels in the raster of the image then, fixes the center to an intermediate value of 2. 
+ * @return {TRaster} - return a Traster with the pixels that will be be set to foreground set to a value of 2.
+ 
+ * @author Adrien MENDES SANTOS
+ */
 
 const erode_process=function(raster,struct,copy=true){
     let r_output = T.Raster.from(raster,copy);
@@ -95,6 +100,14 @@ const erode_process=function(raster,struct,copy=true){
 
     return r_output;
 }
+/**
+ * Description: 
+ *
+ * @param {img,img} -  img, struct - Take as input 2 images. One is the image that will be processed, the other is the  structuring element. This function is equivalent as the main, it will call the different functions to do the erode operation.
+ * @return {img} - return an image that is a copy of the original image with processed pixels i.e. an eroded image.
+ 
+ * @author Adrien MENDES SANTOS
+ */
 
 const erode = function(img,struct,copy=true){
     let temp = new T.Image('uint8',img.width,img.height);
@@ -105,58 +118,3 @@ const erode = function(img,struct,copy=true){
 
     return temp;
 };
-
-
-//1st window :original 
-
-// let img0 = new T.Image('uint8',500,500);
-// img0.setPixels(b_image2);
-// let win0 = new T.Window('Original');
-// let view0 = T.view(img0.getRaster());
-// // Create the window content from the view
-// win0.addView(view0);
-// // Add the window to the DOM and display it
-// win0.addToDOM('workspace');
-
-let img0 = new T.Image('uint8',446,446);
-img0.setPixels(b_image3);
-let win0 = new T.Window('Original');
-let view0 = T.view(img0.getRaster());
-// Create the window content from the view
-win0.addView(view0);
-// Add the window to the DOM and display it
-win0.addToDOM('workspace');
-
-
-let img4 = new T.Image('uint8',446,446);
-img4.setPixels(b_image3);
-
-
-let img3 = new T.Image('uint8',3,3);
-img3.setPixels(mask3by3Star);
-let win3 = new T.Window('Structuring element');
-let view3 = T.view(img3.getRaster());
-//Create the window content from the view
-win3.addView(view3);
-//Add the window to the DOM and display it
-win3.addToDOM('workspace');
-
-
-// let img3 = new T.Image('uint8',45,41);
-// img3.setPixels(struc_cross);
-// let win3 = new T.Window('Structuring element');
-// let view3 = T.view(img3.getRaster());
-// //Create the window content from the view
-// win3.addView(view3);
-// //Add the window to the DOM and display it
-// win3.addToDOM('workspace');
-
-//3rd window :result 
-
-let img1 = erode(img0,img3);
-let win1 = new T.Window('Eroded');
-let view1 = T.view(img1.getRaster());
-// Create the window content from the view
-win1.addView(view1);
-// Add the window to the DOM and display it
-win1.addToDOM('workspace');

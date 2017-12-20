@@ -33,6 +33,18 @@
  * @author Adrien MENDES SANTOS
  */
 
+// var aFn = function(obj) {
+//   // Defines a label named `key`
+//   key: obj.value; // Gets `obj.value`
+//   // Implicit returns `undefined`
+// };
+
+// const aFn = obj => {
+//   return { key: obj.value };
+// };
+
+var process_operation=(r_output,copy=true)=>
+
 const process_operation = function(r_output,copy=true){
   for(let i=0;i<=r_output.height;i++) {
 		for (let j=0;j<=r_output.width;j++){
