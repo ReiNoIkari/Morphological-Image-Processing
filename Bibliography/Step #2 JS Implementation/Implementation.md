@@ -27,7 +27,7 @@ All our functions are build the same way. We can note the presence of an equival
 
 Another thing to note, is that in our functions we use an intermediate value of 2. The reason is because if we would process our image at the given time(and so while the process is still running) this would interfere with the remaining treatment and false our results. For this reason, the primary function will set an intermediate value if needed, and then an intermediate function will exchange those intermediate value by the correct ones.
 
-###Erosion
+### Erosion
 
 As a reminder, erosion is one of two fundamental operations (the other being dilation) in morphological image processing from which all other morphological operations are based. It was originally defined for binary images, later being extended to grayscale images, and subsequently to complete lattices. Our part of the project(Morphological operation) targeted binary images, so the implementation of our erosion(and most of our operations) use some binary property like a pixel can only be in two state : foreground (and so it's value is 255) and background (it's value is 0).
 
@@ -53,17 +53,17 @@ From here, for each y,x values in height and width if a pixel as the same value 
 
 The *erode(img,struct)* is then in charge to call those two functions, and return the eroded image that will be diplayed.
 
-###Dilation
+### Dilation
 
-###Opening
+### Opening
 
-###Closing
+### Closing
 
-###Hit or Miss
+### Hit or Miss
 
-###Skeletonized
+### Skeletonized
 
-###Watershed
+### Watershed
 
 ## Results
 
