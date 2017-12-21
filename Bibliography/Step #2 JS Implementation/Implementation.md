@@ -112,9 +112,9 @@ This function is composed as multiple function like the others. A main function 
 This *thinning()* function uses two additional functions which are *is_interior()* and *is_removable()*.
 The first one, will check the neighbors of pixel at the n index position. Ff a foreground pixel is not neighbor of a background pixel (in x-1,x+1,y-1 or y+1 postion) then it will return a true boolean.
 
-The second one, works and are build in the same way, but instead it will returns true if the a specific pixel is a foreground pixel next to an interior(value of 2) pixel in x-1,x+1,y-1 or y+1 postions.
+The second one, works and is build in the same way, but instead it will returns true if a specific pixel is a foreground pixel next to an interior(value of 2) pixel in x-1,x+1,y-1 or y+1 postions.
 
-The last 
+Finaly, after calling those two function
 
 
 
