@@ -99,7 +99,10 @@ This function is composed as multiple function like the others. A main function 
 This *thinning(rast)* function uses two additional functions which are *is_interior(n,rast)* and *is_removable(n,rast)*.
 The first one, will check the neighbors of pixel at the n index position. Ff a foreground pixel is not neighbor of a background pixel (in x-1,x+1,y-1 or y+1 postion) then it will return a true boolean.
 
-The second one, works and are build in the same way, but instead it will returns true if the n pixel is an foreground pixel next to an interior(=2) pixel (in x-1,x+1,y-1 or y+1 postion).
+The second one, works and are build in the same way, but instead it will returns true if the n pixel is an foreground pixel next to an interior(it's value is equal to 2) pixel (in x-1,x+1,y-1 or y+1 postion).
+
+
+si pixel 1 contact pixel 2
 
 
 ### Watershed

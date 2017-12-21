@@ -10,7 +10,7 @@
 // // Add the window to the DOM and display it
 // win0.addToDOM('workspace');
 
-let img0 = new T.Image('uint8',250,250);
+let img0 = new T.Image('uint8',1600,1600);
 img0.setPixels(working_image);
 let win0 = new T.Window('Original');
 let view0 = T.view(img0.getRaster());
