@@ -102,7 +102,7 @@ const segmentation = (rast,copy=true) => {
 
 //watershed transform on a binary image, returns a copy of the segmented image
 const watershed = (img,window_type="CDA",copy=true) => {
-  let temp = new T.Image('uint8',img.width,img.height);
-  temp.setRaster(segmentation(distance_map(T.Raster.from(img.getRaster(),copy),window_type)));
-  return temp;
+    let temp = new T.Image('uint8',img.width,img.height);
+    temp.setRaster(segmentation(distance_map(T.Raster.from(img.getRaster(),copy),"CDA")));
+    return temp;
 };

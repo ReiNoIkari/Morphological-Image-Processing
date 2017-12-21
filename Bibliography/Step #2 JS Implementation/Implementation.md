@@ -88,22 +88,38 @@ Closing is the erosion of the dilation of a set A by a structuring element B. Th
 
 ### Hit or Miss
 
+Hit or miss is can also be defined as a basic operation. It is used to detect occurrences of given binary patterns in fixed orientations. In order to do so, a structural element representative from the pattern to detect is set up. This structural element contains both foreground and background pixel, and also contains “don’t care” values that are used for a better structural element/image to process fitting. 
+
+The hit-and-miss operation is performed in much the same way as other morphological operators, by translating the origin of the structuring element to all points in the image, and then comparing the structuring element with the underlying image pixels. If the foreground and background pixels in the structuring element exactly match foreground and background pixels in the image, then the pixel underneath the origin of the structuring element is set to the foreground color. If it doesn't match, then that pixel is set to the background color.
+
+The Hit_or_Miss’ function takes two parameters as input: the image to process and the structural element used to find pattern within it. It returns an output image’s raster, which consists of the image’s raster copy. Indeed, the original image’s raster will be used for convolutive iterations in order to determine the patterns. When a pattern is determined, the corresponding center of the structuring element is set to the foreground color at the emplacement of the pixel in the ouput copy. The “don’t care” values figurate on the structural element as every pixel values that differs from 0 and 255.
+
+In a first step, the correspondance between the center of the structural element’s pixel value and each image’s pixel value is tested. We also consider the situation where the center of the structural element’s pixel value corresponds to a “don’t care” value. 
+If the first condition is verified, we compare each of the structuring element’s pixel with it’s counterpart on the image to process by iterating with it’s radius. The “don’t care” values aren’t taken in consideration by the add of a selection condition. Then, if the pattern seeked matches the it counterpart, the coordinates of the pixel that corresponds to the center of the structural element applied to the image is set to the foreground value at the same coordinates on the output raster. 
+
+This function also returns the number of matching patterns within the input image.
+
+
+
 ### Skeletonized
 
 The skeletonization is part of the morphological operators that will from and image, transform the different shapes in it, in a thin version of those shapes that is equidistant to their boundaries. It's mainly use in optical character recognition and fingerprint recognition. Skeletons have several different mathematical definitions in the technical literature, and there are many different algorithms for computing them. For our project we decide to implement the algorithm of (??????name?????). This algorithm could be sum up in three main steps. First is to detect the edge of the different objects in our image, the second step is to remove the edge pixels and finaly to do a thinning and to determine what would be the last thinning possible before the final stage where the object dissapear.
 
 In order to do this skeletonize function we had to implement our own personal version of edge detection, but the final version of edge detection will be added by another group.
 
-This function is composed as multiple function like the others. A main function is present, called *skeletonize(img)*. It takes an image as input, return a skeletonized of it in output. It creates a raster of the input image, and then call one of the secondary functions : *thinning(rast)*.
+This function is composed as multiple function like the others. A main function is present, called *skeletonize()*. It takes an image as input, return a skeletonized of it in output. It creates a raster of the input image, and then call one of the secondary functions : *thinning()*.
 
-This *thinning(rast)* function uses two additional functions which are *is_interior(n,rast)* and *is_removable(n,rast)*.
+This *thinning()* function uses two additional functions which are *is_interior()* and *is_removable()*.
 The first one, will check the neighbors of pixel at the n index position. Ff a foreground pixel is not neighbor of a background pixel (in x-1,x+1,y-1 or y+1 postion) then it will return a true boolean.
 
-The second one, works and are build in the same way, but instead it will returns true if the n pixel is an foreground pixel next to an interior(=2) pixel (in x-1,x+1,y-1 or y+1 postion)
+The second one, works and is build in the same way, but instead it will returns true if a specific pixel is a foreground pixel next to an interior(value of 2) pixel in x-1,x+1,y-1 or y+1 postions.
 
+Finaly, after callng those two function in order to detect the edge of the objects and removing all the edge pixel in contact with an interior pixel, the *thinning()* function will turn back all the non background pixels to a foreground pixel value.
 
+The *skeletonize()* function then return a skeletonized image of the original image.
 
 ### Watershed
+
 
 ## Results
 
