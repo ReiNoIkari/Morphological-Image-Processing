@@ -52,6 +52,15 @@ const hit_or_miss = function(img,copy=true,mask){
 	let halfMask_X = masqueRaster.height-centerMask_X;
 	console.log(halfMask_Y,halfMask_X);
 	let compteur=0;
+
+	/*
+	//Use for applying on the borders by extending them ?
+	let leftPadding = -masque.width%2;// pixel distance from the center to the left border
+	let rightPadding = masque.width%2;// pixel distance from the center to the right border
+	let topPadding = -masque.height%2;// pixel distance from the center to the top border
+	let bottomPadding = masque.height%2;// pixel distance from the center to the bottom border
+	console.log(leftPadding, rightPadding, topPadding, bottomPadding);
+	*/
 	
 	for (i=0;i<rasterDetectionPattern.width;i++){
 		for (j=0;j<rasterDetectionPattern.height;j++){
