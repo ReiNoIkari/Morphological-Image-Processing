@@ -8,7 +8,7 @@ const benchmarking = (foo,img_List,options) => {
 	for (j=0;j<1000;j++) {
 	    foo(img_List[i],options);
 	    }
-	let end = performance.now();   
+	let end = performance.now();
 	timelist['image'+i]=(end-start);
     }
     console.log(timelist);
@@ -47,5 +47,5 @@ let mask = new T.Image('uint8',3,3);
 mask.setPixels(mask3by3Star);
 
 let img_Array = [img_50,img_150,img_250,img_350,img_550,img_750,img_1050,img_1250,img_1450,img_1600];
-console.log("watershed");
-benchmarking(watershed,img_Array,true);
+console.log("hit_or_miss");
+benchmarking(hit_or_miss,img_Array,mask);
