@@ -115,6 +115,6 @@ const erode = function(img,struct,copy=true){
     let r_output = erode_process(temp.getRaster(),struct);
     r_output = process_operation_erode(r_output);
     temp.setRaster(r_output );
-
+    
     return temp;
 };

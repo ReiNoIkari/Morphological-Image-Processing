@@ -94,13 +94,12 @@ The skeletonization is part of the morphological operators that will from and im
 
 In order to do this skeletonize function we had to implement our own personal version of edge detection, but the final version of edge detection will be added by another group.
 
-This function is composed as multiple function like the others. A main function is present, called *skeletonize(img)*. It takes an image as input, return a skeletonized of it in output. It creates a raster of the input image, and then call one of the secondary functions : *thinning(rast)*.
+This function is composed as multiple function like the others. A main function is present, called *skeletonize()*. It takes an image as input, return a skeletonized of it in output. It creates a raster of the input image, and then call one of the secondary functions : *thinning()*.
 
 This *thinning(rast)* function uses two additional functions which are *is_interior(n,rast)* and *is_removable(n,rast)*.
 The first one, will check the neighbors of pixel at the n index position. Ff a foreground pixel is not neighbor of a background pixel (in x-1,x+1,y-1 or y+1 postion) then it will return a true boolean.
 
-The second one, works and are build in the same way, but instead it will returns true if the n pixel is an foreground pixel next to an interior(=2) pixel (in x-1,x+1,y-1 or y+1 postion)
-
+The second one, works and are build in the same way, but instead it will returns true if the n pixel is an foreground pixel next to an interior(=2) pixel (in x-1,x+1,y-1 or y+1 postion).
 
 
 ### Watershed
