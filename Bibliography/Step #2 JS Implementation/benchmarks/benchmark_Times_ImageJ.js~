@@ -48,4 +48,4 @@ mask.setPixels(mask3by3Star);
 
 let img_Array = [img_50,img_150,img_250,img_350,img_550,img_750,img_1050,img_1250,img_1450,img_1600];
 console.log("closing");
-benchmarking(hit_or_miss,img_Array,mask);
+benchmarking(skeletonize,img_Array,true);
