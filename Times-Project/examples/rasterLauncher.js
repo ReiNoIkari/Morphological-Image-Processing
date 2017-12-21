@@ -6,7 +6,7 @@ win0.addView(view0);
 win0.addToDOM('workspace');
 
 let mask0= new T.Image('uint8',3,3);
-mask0.setPixels(maskAngle);
+mask0.setPixels(mask3by3Star);//maskAngle
 
 let img1 = new T.Image('uint8',500,500);
 img1 = hit_or_miss(img0, mask0);
