@@ -1,6 +1,6 @@
 
-  let img0 = new T.Image('uint8',446,446);
-  img0.setPixels(b_image4);
+  let img0 = new T.Image('uint8',250,250);
+  img0.setPixels(b_250_250);
   let win0 = new T.Window('Original');
   let view0 = T.view(img0.getRaster());
   // Create the window content from the view
@@ -9,8 +9,8 @@
   win0.addToDOM('workspace');
   
   
-  let img4 = new T.Image('uint8',446,446);
-  img4.setPixels(b_image4);
+  let img4 = new T.Image('uint8',250,250);
+  img4.setPixels(b_250_250);
   
   
   let img3 = new T.Image('uint8',3,3);
