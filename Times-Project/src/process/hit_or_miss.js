@@ -67,14 +67,23 @@ const hit_or_miss = function(img,copy=true,mask){
 			if(rasterDetectionPattern.getPixel(i,j)==valueCenterMask || ((masqueRaster.getPixel(centerMask_X,centerMask_Y) != 0) && (masqueRaster.getPixel(centerMask_X,centerMask_Y)!= 255))){//si la valeur de pixel de l'image est égale au centre du masque ou si le centre du masque est égal à une valeur de non interet
 				for (let rayon_x=-halfMask_X;rayon_x<=halfMask_X;rayon_x++){
 					for (let rayon_y=-halfMask_Y;rayon_y<=halfMask_Y;rayon_y++){
-						if(masqueRaster.getPixel(centerMask_X-rayon_x,centerMask_Y-rayon_y) == 0 || masqueRaster.getPixel(centerMask_X-rayon_x,centerMask_Y-rayon_y) == 255){
-							if(rasterDetectionPattern.getPixel(i-rayon_x, j-rayon_y)==masqueRaster.getPixel(centerMask_X-rayon_x, centerMask_Y-rayon_y)){	
-								output.setPixel(i-rayon_x, j-rayon_y,255);
-							}
-							else{
-								output.setPixel(i-rayon_x, j-rayon_y,0);
-							}
-						}
+					            let img_edge = false;
+								if (i-rayon_x<0 || i-rayon_x>rasterDetectionPattern.height-1){
+									img_edge=true;
+								}
+								if (j-rayon_y<0 || j-rayon_y>rasterDetectionPattern.width-1){
+									img_edge=true;
+								}
+								if(img_edge==false) {
+									if(masqueRaster.getPixel(centerMask_X-rayon_x,centerMask_Y-rayon_y) == 0 || masqueRaster.getPixel(centerMask_X-rayon_x,centerMask_Y-rayon_y) == 255){
+										if(rasterDetectionPattern.getPixel(i-rayon_x, j-rayon_y)==masqueRaster.getPixel(centerMask_X-rayon_x, centerMask_Y-rayon_y)){	
+											output.setPixel(i-rayon_x, j-rayon_y,255);
+										}
+										else{
+											output.setPixel(i-rayon_x, j-rayon_y,0);
+										}
+									}
+								}
 					}
 				}
 			}
