@@ -33,7 +33,7 @@
  * @author Vincent Dejonghe
  */
 
-const hit_or_miss = function(img,copy=true,mask){
+const hit_or_miss = function(img,mask,copy=true){
 	let imgRaster = img.getRaster();
 	let rasterDetectionPattern = T.Raster.from(imgRaster,copy=true);
 	let output = T.Raster.from(imgRaster,copy=true);
