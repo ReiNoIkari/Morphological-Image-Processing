@@ -88,6 +88,19 @@ Closing is the erosion of the dilation of a set A by a structuring element B. Th
 
 ### Hit or Miss
 
+Hit or miss is can also be defined as a basic operation. It is used to detect occurrences of given binary patterns in fixed orientations. In order to do so, a structural element representative from the pattern to detect is set up. This structural element contains both foreground and background pixel, and also contains “don’t care” values that are used for a better structural element/image to process fitting. 
+
+The hit-and-miss operation is performed in much the same way as other morphological operators, by translating the origin of the structuring element to all points in the image, and then comparing the structuring element with the underlying image pixels. If the foreground and background pixels in the structuring element exactly match foreground and background pixels in the image, then the pixel underneath the origin of the structuring element is set to the foreground color. If it doesn't match, then that pixel is set to the background color.
+
+The Hit_or_Miss’ function takes two parameters as input: the image to process and the structural element used to find pattern within it. It returns an output image’s raster, which consists of the image’s raster copy. Indeed, the original image’s raster will be used for convolutive iterations in order to determine the patterns. When a pattern is determined, the corresponding center of the structuring element is set to the foreground color at the emplacement of the pixel in the ouput copy. The “don’t care” values figurate on the structural element as every pixel values that differs from 0 and 255.
+
+In a first step, the correspondance between the center of the structural element’s pixel value and each image’s pixel value is tested. We also consider the situation where the center of the structural element’s pixel value corresponds to a “don’t care” value. 
+If the first condition is verified, we compare each of the structuring element’s pixel with it’s counterpart on the image to process by iterating with it’s radius. The “don’t care” values aren’t taken in consideration by the add of a selection condition. Then, if the pattern seeked matches the it counterpart, the coordinates of the pixel that corresponds to the center of the structural element applied to the image is set to the foreground value at the same coordinates on the output raster. 
+
+This function also returns the number of matching patterns within the input image.
+
+
+
 ### Skeletonized
 
 The skeletonization is part of the morphological operators that will from and image, transform the different shapes in it, in a thin version of those shapes that is equidistant to their boundaries. It's mainly use in optical character recognition and fingerprint recognition. Skeletons have several different mathematical definitions in the technical literature, and there are many different algorithms for computing them. For our project we decide to implement the algorithm of (??????name?????). This algorithm could be sum up in three main steps. First is to detect the edge of the different objects in our image, the second step is to remove the edge pixels and finaly to do a thinning and to determine what would be the last thinning possible before the final stage where the object dissapear.
