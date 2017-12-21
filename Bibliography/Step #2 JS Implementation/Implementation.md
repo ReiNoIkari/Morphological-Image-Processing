@@ -120,6 +120,41 @@ The *skeletonize()* function then return a skeletonized image of the original im
 
 ### Watershed
 
+avant de pouvoir remplir les puis d'eau il faut calculer profondeur des puit, donc distance map prend du binaire re sssort du nivreau de gris(plutot score) Plus le score est eleve plus le background est profond
+Passe image en x, pour chaque pixek regarde un angle de la longeur et de la larger au niveau de la longeur pixel.
+(angle en haut a gauche). Prend la distance la plus petite des voisins pour coordonées donnée. Check feuille pour savoir les 4 voisins qui sont pris en compte. Selon le voisin concerné la valeur du score n'a pas le meme poids. On cherche le score le plus petit possible qui cocreepond dont au voix voisin le plus proche.
+2eme passage : en theorie on fait l'inverse dans le passage on go dans le sens contraire. Permet d'egaliser les scores car au premier passage les valleurs de profoncdeur dons trop elevé.
+Toutegoid en fonctione pas possible de faire de fin au début, donc reverse array, et on realiser le premier passage mais comme array inversé bah ça correspond à un 2eme passage, on reinverse ensuite l'array pour obtenir les valeurs finals.
+Tout ça pour trouver le meilleues score.
+
+
+
+
+D'abord, regarde tout les max voisins parr apport a un x donnéee
+Mainstenant que on a niveau de gris, pour tout x si background on fait rien, des que arrrive pixel, regarde tout les voisins
+Pour chaque pixel, regarde tourjous le score plus fort jusqu'a arrivé au score maximum(corredponc au plus profond du puit).
+A la fin tout les pixld de la azone qui entoruse la valeurs max auront tours la meme valeurs, ceux d'une autre zoe valeront un autre max, et il y aura donc un separation de zones. 
+Code apres is isfloodlimit, si un pixel a une valeur diff de son voisin(sans compter les background) on supprime le pixel ou on est situé.
+
+
+Probleme rencontré : 
+Soucis de plateau, c'est à dire que algo nearmaxvalue regarde les voisins autour d'une positions donnéee. Si les voisins donnée d'une valeur X pour une valeur elle meme egal a X, la fonction va considerer qu'il nexiste pas  de superieur parce que seul les voisins a proximité imédiate sont consideré.
+C'est plateau, font donc former des images mal "édecoupé"
+voisin doivent etre strictement supérieur
+
+Segmentation faite via le ruisselement,
+
+
+
+
+
+
+
+
+
+
+distance map
+segmentation
 
 ## Results
 
