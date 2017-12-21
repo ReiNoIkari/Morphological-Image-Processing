@@ -33,10 +33,10 @@
  * @author Vincent Dejonghe
  */
 
-const hit_or_miss = function(img,mask,copy=true){
-	let imgRaster = img.getRaster();
-	let rasterDetectionPattern = T.Raster.from(imgRaster,copy=true);
-	let output = T.Raster.from(imgRaster,copy=true);
+const hit_or_miss_process = function(raster,mask,copy=true){
+	
+	let rasterDetectionPattern = T.Raster.from(raster,copy=true);
+	let output = T.Raster.from(raster,copy=true);
 	let masqueRaster = mask.getRaster();
 	let masque = T.Raster.from(masqueRaster,copy=true);//copie du raster du masque
 	console.log(masque, output);
@@ -104,3 +104,11 @@ const hit_or_miss = function(img,mask,copy=true){
 
 	return output;
 }
+
+const hit_or_miss=function(img,mask,copy=true){
+	let imageSec=new T.Image('uint8',img.width,img.height);
+	imageSec.setRaster(T.Raster.from(img.getRaster(),copy));
+	let output = hit_or_miss_process(imageSec.getRaster(),mask,copy=true);
+	imageSec.setRaster(output);
+	return imageSec;
+};
