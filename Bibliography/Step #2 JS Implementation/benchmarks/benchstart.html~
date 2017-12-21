@@ -23,7 +23,7 @@
 <p>Tests #01 - Display various data</p>
 <div id="workspace"></div>
 
-<script type="text/javascript" src="../../../Times-Project/src/process/closing.js"></script>
+<script type="text/javascript" src="../../../Times-Project/src/process/skeletonize.js"></script>
 <script type="text/javascript" src="./benchmark_Times_ImageJ.js"></script>
 </body>
 </html>
