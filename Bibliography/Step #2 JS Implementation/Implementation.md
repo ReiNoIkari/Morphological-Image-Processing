@@ -114,11 +114,12 @@ The first one, will check the neighbors of pixel at the n index position. Ff a f
 
 The second one, works and is build in the same way, but instead it will returns true if a specific pixel is a foreground pixel next to an interior(value of 2) pixel in x-1,x+1,y-1 or y+1 postions.
 
-Finaly, after calling those two function
+Finaly, after callng those two function in order to detect the edge of the objects and removing all the edge pixel in contact with an interior pixel, the *thinning()* function will turn back all the non background pixels to a foreground pixel value.
 
-
+The *skeletonize()* function then return a skeletonized image of the original image.
 
 ### Watershed
+
 
 ## Results
 
