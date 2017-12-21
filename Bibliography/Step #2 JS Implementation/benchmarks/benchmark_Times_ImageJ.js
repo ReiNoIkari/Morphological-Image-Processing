@@ -1,13 +1,17 @@
-const benchmarking = (img_List,func,options) => {
-    for (i=0;i<img_List.length;i++) {	
+const benchmarking = (img_List,blbl) => {
+    timelist = [];
+    for (i=0;i<img_List.length;i++) {
+	let start = performance.now();
 	for (j=0;j<100;j++) {
-	    console.log("heating up")
-	    func(img_List[i],options);
+	    watershed(img_List[i],blbl,true);
 	}
+	let end = performance.now();   
 	/*for (j=0;j<1000;j++) {
 	    func(img_List[i],options);
-	}*/
+	    }*/
+	timelist['image'+i]=(end-start);
     }
+    console.log(timelist);
 }
 
 
@@ -43,6 +47,12 @@ let mask = new T.Image('uint8',3,3);
 mask.setPixels(mask3by3Star);
 
 
-let img_Array = [img_50,img_150,img_250,img_350,img_550,img_750,img_1050,img_1250,img_1450,img_1600];
+let img_Array = [img_50,img_150]//,img_250,img_350,img_550,img_750,img_1050,img_1250,img_1450,img_1600];
 
-benchmarking(img_Array,erode);
+let start = performance.now();
+for (j=0;j<10;j++) {
+    watershed(img_50,true,true);
+}
+let end = performance.now();   
+console.log(end-start);
+//benchmarking(img_Array,true);
