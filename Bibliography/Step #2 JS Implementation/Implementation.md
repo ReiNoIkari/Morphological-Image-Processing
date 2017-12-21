@@ -96,13 +96,13 @@ In order to do this skeletonize function we had to implement our own personal ve
 
 This function is composed as multiple function like the others. A main function is present, called *skeletonize()*. It takes an image as input, return a skeletonized of it in output. It creates a raster of the input image, and then call one of the secondary functions : *thinning()*.
 
-This *thinning(rast)* function uses two additional functions which are *is_interior(n,rast)* and *is_removable(n,rast)*.
+This *thinning()* function uses two additional functions which are *is_interior()* and *is_removable()*.
 The first one, will check the neighbors of pixel at the n index position. Ff a foreground pixel is not neighbor of a background pixel (in x-1,x+1,y-1 or y+1 postion) then it will return a true boolean.
 
-The second one, works and are build in the same way, but instead it will returns true if the n pixel is an foreground pixel next to an interior(it's value is equal to 2) pixel (in x-1,x+1,y-1 or y+1 postion).
+The second one, works and are build in the same way, but instead it will returns true if the a specific pixel is a foreground pixel next to an interior(value of 2) pixel in x-1,x+1,y-1 or y+1 postions.
 
+The last 
 
-si pixel 1 contact pixel 2
 
 
 ### Watershed
