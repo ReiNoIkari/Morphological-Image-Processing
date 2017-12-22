@@ -227,10 +227,12 @@ The images output from the watershed process are those below.
 As we can see, the output result if different from the ImageJ results and our own implementation. In Image J we obtain only the ultimate eroded point for the circles which don't touch and a line from the center of a circle to the center of the second circle when those are stick together. Yet, in our implementation we can see the diagonals for each of the ultimate eroded point. The lines formed in ImageJ when two circles are stick are also shown.
 
 Let's see our benchmark results.
+
 ![Fig.X](Results/skeletonize_benchmark.png)
 
 **Figure 11: Benchmark graph representing the time processing in ms of an image of different size for the skeletonize process**
 
+Once more the pattern shown is quite the same. Until the 750\*750 image pixels our implementation is stable with a ratio difference of more or less 30. But from this size to the highest posible, our ratio difference goes from 30 to 50.
 
 ### Watershed
 
