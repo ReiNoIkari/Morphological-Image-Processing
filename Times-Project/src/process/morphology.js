@@ -195,11 +195,11 @@ const dilate = (img,struct,copy=true)=>{
 //Open
 
 /**
- * Description: 
+ * Description:
  *
  * @param {img,img} -  img, struct - Take as input 2 images. One is the image that will be processed, the other is the  structuring element. This function calls the different functions to do the opening  operation.
  * @return {img} - return an image that is a copy of the original image with processed pixels i.e. an opened image.
- 
+
  * @author Adrien MENDES SANTOS
  */
 
@@ -217,11 +217,11 @@ const opening= (img,struct,copy=true)=>{
 //Close
 
 /**
- * Description: 
+ * Description:
  *
  * @param {img,img} -  img, struct - Take as input 2 images. One is the image that will be processed, the other is the  structuring element. This function calls the different functions to do the closing operation.
  * @return {img} - return an image that is a copy of the original image with processed pixels i.e. an closed image.
- 
+
  * @author Adrien MENDES SANTOS
  */
 
@@ -230,7 +230,7 @@ const closing= (img,struct,copy=true)=>{
   temp.setRaster(T.Raster.from(img.getRaster(),copy));
   let r_output = dilate_process(temp.getRaster(),struct);
   r_output = process_operation_dilate(r_output);
-  
+
   let r_output2=erode_process(r_output,struct)
   r_output2=process_operation_erode(r_output2)
 
@@ -250,7 +250,7 @@ const closing= (img,struct,copy=true)=>{
  */
 
 const hit_or_miss_process = function(raster,mask,copy=true){
-	
+
 	let rasterDetectionPattern = T.Raster.from(raster,copy=true);
 	let output = T.Raster.from(raster,copy=true);
 	let masqueRaster = mask.getRaster();
@@ -277,7 +277,7 @@ const hit_or_miss_process = function(raster,mask,copy=true){
 	let bottomPadding = masque.height%2;// pixel distance from the center to the bottom border
 	console.log(leftPadding, rightPadding, topPadding, bottomPadding);
 	*/
-	
+
 	for (i=0;i<rasterDetectionPattern.width;i++){
 		for (j=0;j<rasterDetectionPattern.height;j++){
 			if(rasterDetectionPattern.getPixel(i,j)==valueCenterMask || ((masqueRaster.getPixel(centerMask_X,centerMask_Y) != 0) && (masqueRaster.getPixel(centerMask_X,centerMask_Y)!= 255))){//si la valeur de pixel de l'image est �gale au centre du masque ou si le centre du masque est �gal � une valeur de non interet
@@ -292,7 +292,7 @@ const hit_or_miss_process = function(raster,mask,copy=true){
 								}
 								if(img_edge==false) {
 									if(masqueRaster.getPixel(centerMask_X-rayon_x,centerMask_Y-rayon_y) == 0 || masqueRaster.getPixel(centerMask_X-rayon_x,centerMask_Y-rayon_y) == 255){
-										if(rasterDetectionPattern.getPixel(i-rayon_x, j-rayon_y)==masqueRaster.getPixel(centerMask_X-rayon_x, centerMask_Y-rayon_y)){	
+										if(rasterDetectionPattern.getPixel(i-rayon_x, j-rayon_y)==masqueRaster.getPixel(centerMask_X-rayon_x, centerMask_Y-rayon_y)){
 											output.setPixel(i-rayon_x, j-rayon_y,255);
 										}
 										else{
@@ -466,6 +466,7 @@ const check = (n,x,y,dist,rast) => {
 /**
 *processes a uint8 binary T.Raster and returns a gray-level distance map T.Raster
 *this distance map algorithm is based on the Borgefors’ Chamfer distance algorithm (CDA)
+*this algorithm can be found here : https://www.springer.com/cda/content/document/cda_downloaddocument/9780387312019-c1.pdf
 *
 * @param {T.Raster} rast - uint8 binary T.Raster
 * @param {string} window_type - either "CDA","chessboard" or "EDM" depending on the neighbor scoring
