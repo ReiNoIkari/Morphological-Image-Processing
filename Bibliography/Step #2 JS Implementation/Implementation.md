@@ -182,15 +182,26 @@ The values obtained from the benchmark for our erode operation result in this gr
 
 **Figure 3: Benchmark graph representing the time processing in ms of an image of different size for the erode process**
 
-As we can note, until the image of a size of 150\*150 pixels our performance are really close to the ImageJ erosion. From the 250\*250 pixels image to the one at 550\*550
+As we can note, until the image of a size of 150\*150 pixels our performance are really close to the ImageJ erosion. From the 250\*250 pixels image to the one at 550\*550 we can observe a difference of a ration of 7. This means that for an image with 550\*500 pixels our implementation will take 7 more times than the ImageJ implementation to erode one image (14.999ms for our implementation against 2.09466ms for the ImageJ one).
+However, is we couls be satisfied with our results from a small image until the 550\*550 images, we can't say the same for the rest.
+From this size until our biggest size, the results we obtained from our implementation are quite(to not say very) bad. Indeed, where we had a ration difference of 7 for an image of size 550\*550 pixels, for images of bigger size we double this ration to obtain a value of 15. Yet this ratio don't change whatever we use a 750\*750 pixel or a 1600\*1600 pixel image.
 
-
-
+The values obtained from the benchmark for our dilation operation result in this graph.
 ![Fig.X](Results/dilate_benchmark.png)
 
 **Figure 4: Benchmark graph representing the time processing in ms of an image of different size for the dilate process**
 
+The observation are quite similar to the the results obtained for the erosion even the ration difference for an image of 550\*500 pixels is the same (ratio of 7). The ration after this critical size if also the same (ratio of 16).
+
 ### Open and Close
+
+The same way as we did for the erosion and dilation, the open and close methods have been runing the default functions available in ImageJ. The parameters used are the same as the erode and close operations.
+
+The differents output obtained for the open process are those :
+
+![Fig.X](Results/open_mixed.png)
+
+**Figure 5: Result of the open operation using as a structuring element a cross of 3 by 3 size. Left: Original image, Middle: made with ImageJ default function, Right: made with our own implementation**
 
 ### Hit or Miss
 
