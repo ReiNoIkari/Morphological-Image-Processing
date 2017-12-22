@@ -276,8 +276,8 @@ Our function, delete some point that it should not, and don't delete some point 
 Moreover, we use a naive approach, in the sense that we delete every pixel that is in contact with an interior pixel whereas sometimes you should not, however this would require conditions we were not able to determine
 An amelioration of the operations will require to fixes thos bugs, to obtains the exact same image as imageJ.
 
-Finaly, the watershed implementation has result in the same kind of problem we encountered with skeletonize. The output image from our implementation is different from the ImageJ implementation. This is due to the translation of an algorithm into code that we were not able to resolve completly.
-The
+Finaly, the watershed implementation has result in the same kind of problem we encountered with skeletonize. The output image from our implementation is different from the ImageJ implementation. This is due to the translation of an algorithm into code that we were not able to resolve completly (the pleateau issue, check material et methode-watershed).
+As for skeletonized, and amelioration would be to fix this bug issues, so that our image output would be the same as the ImageJ one especially that a part from that plateau bug, our circles are well defined.
 
 ## Conclusion
 
