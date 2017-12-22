@@ -125,12 +125,10 @@ During the implementation of this operator we ran into a problem that we were no
 
 ## Results
 
-[//]: # (Results: Present one example of your function(s). Then, calculate benchmarks with the same image at different size. Recalculate the benchmarks for 8-bit, 16-bit, and float32 images. Display them as diagram. Don't forget to describe them in your text, add a legend.)
-
 
 Now that we have explained our implmentation, we will compare the results obtained for each of our process using the implementation of ImageJ and our implementation in Javascript. The same image will be used for every operations and the input image will always be a binary image and we will use a 3x3 cross kernel, the one used by ImageJ. 
 
-Our benchmarks for the imageJ process were done using a custom plugin created by ourselves. The benchmark of our implementation are done using also a custom script. The function *Performance.now()*(or *startBenchmark()* for the ImageJ plugin) will give us a time of executions in ms (and ImageJ in ns). Both of our script do a preheating phase, running over 100 images in order to initialise the classes. We were not able to calculate the memory usage using firefox methods, so we won't be able to talk about it.
+Our benchmarks for the imageJ process were done using a custom plugin created by ourselves. The benchmark of our implementation are done using also a custom script. The function *Performance.now()*(or *startBenchmark()* for the ImageJ plugin) will give us a time of executions in ms (and ImageJ in ns). Both of our script do a preheating phase, running over 100 images in order to initialise the classes. We were not able to calculate the memory usage using firefox methods, so we won't be able to talk about it. The version of Firefox used is : Firefox ESR 52.4.0(64bit), the specs of the CPU are E3-1240 v5 @3.50GHz. The desktops are also equipped with 16Go ram.
 
 ### Erode and Dilate
 
@@ -261,10 +259,27 @@ From 350\*350 image pixels to the biggest one there is a ratio difference betwen
 [//]: # (Discussion: Comparison of your implementation with those of ImageJ. Is it faster, better, less memory consuming, ...?)
 
 
-In this 
-## Conclusion
+In this part we will discuss about the implementation of our own implementation and it's state against the ImageJ implementation.
 
-[//]: # (Conclusion: Conclusion and possible improvements, ...)
+Sadly, as explained ealier, we were not able to determine the memory usage of our implementation using the Firefox console, even tough we can assume that we will be way less optimized than ImageJ.
+
+For the erode, dilate, open and close operations, we were able to find the same output as the ImageJ Implementation. However, as the result aprt has shownd, our performance are for every dimenstion of image worse than ImageJ. For the smallest image we are able to only have a ratio difference of 2 between our implementation and the ImageJ one, but when we look for the largest one we go as high as a ratio of 15.
+At best, we are 2 times slowers than ImageJ and at worst we are 15 slover with our implementation.
+Moreover, our implementatio of those function are also different, since ImageJ use predefined structuring elements whereas our implementation of those operations let the user to be free to use any kernel he wish from a 3\*3 to something like for example a 45\*45 kernel.
+The erode and dilate function could be optmized since right now, for each pixels values it will recalculate the kernel pattern(all the neighbours) while that kernek doesn't change during the processing time, and so it uses pointless time processing.
+
+The hit or miss operator, was a tricky one to do. Indeed, compared to all the others, we had no ImageJ equivalent to compare the obtain results. In an indeal world, the hit or miss function shjould be test with a kernel with a high size to see the output.
+
+
+The skeletonize implementation was not as good as we excpected. As said in the result part, we don't have the exact same image as ImageJ. This due do some issues we encountered.
+Our function, delete some point that it should not, and don't delete some point he should. This may come from the fact that our function, only check as neighbours 4 of them and not all of the 8 neihgbours.
+Moreover, we use a naive approach, in the sense that we delete every pixel that is in contact with an interior pixel whereas sometimes you should not, however this would require conditions we were not able to determine
+An amelioration of the operations will require to fixes thos bugs, to obtains the exact same image as imageJ.
+
+Finaly, the watershed implementation has result in the same kind of problem we encountered with skeletonize. The output image from our implementation is different from the ImageJ implementation. This is due to the translation of an algorithm into code that we were not able to resolve completly.
+The
+
+## Conclusion
 
 Our task was to implement the morphological operators erode, dilate, open, close, hit or miss, skeletonize and watershed using javascript, and as much as functional Javascript as we could.
 As result, we managed to make most of our operation similar to ImageJ at least from a layout perspective. Unfortunately, even tought our implementation may have acceptable time processing values for low size images, the ratio difference bewteen our implementation and ImageJ implemenation is way to high to be considered as satisfasing. 
