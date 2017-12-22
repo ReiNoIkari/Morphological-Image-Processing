@@ -286,19 +286,6 @@ As result, we managed to make most of our operation similar to ImageJ at least f
 This end correspond to the expected end, in the sense that we could have not do better performing time than an ImageJ wich is a software used by the a large communities with many contributors.
 However, the next step will be the adding of webgl tools in our implementation, so we may have way more better results and we could hope to have time processing results more satisfacting against ImageJ than those actuals. 
 
-
-
-
-
-
-
-
-
-Mathematical morphology have nowadays a very diversified range of application fields from the mining exploitation to the biology, passing by the medical science or the geophysic. 
-
-During this study, we took a look at some mathematical morphology processes allowing the data treatment in binary images with ImageJ. Throughout our study we approached different  ways to treat images depending on what the user aims. More than this, those treatments can be implemented from different ways and hasn't necessarily the sames results when running. Unfortunately, we didn't find any plugin considered relevant to compare with ImageJ's functions, according to our goal. However, the benchmark and the structuring diagonal element we made taught us well about how parameters can influence the results in term of runtime statistics and display. Otherwise, other binary functions could have been studied such as thinning or watershed.
-
- Image Processing is a wide domain that contain numerous branches and applications (from biomedical use to robot vision). ImageJ offers many essential ways to perform Image Processing and what we studied is just a tiny part of the whole tools proposed. Those years, the deep learning principal has performed a major breakthrough in a whole bunch of domains. Maybe a projection to Image Processing with ImageJ could be interesting [^SOI2010] .
 ## References
 
 [//]: # (References. To complete if required. Be sure that all of your references are called in the text.)
