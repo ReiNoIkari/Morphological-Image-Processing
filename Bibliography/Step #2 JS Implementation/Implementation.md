@@ -5,18 +5,23 @@ Vincent DEJONGHE, Adrien MENDES SANTOS, Rodolphe TWOREK\*
 Link to Github : https://github.com/ReiNoIkari/Morphological-Image-Processing
 
 ## Introduction
+
 Nowadays, scientists have access to huge image databases which can make studying organisms easier. One problem still persist : those collected datas are worthless if they are not interpreted and the concern is that a lifetime won't be enough for a scientist to follow the flow. That’s were informatics come in order to help to analyse those huge amount of raw data, and in our case more precisely Image Processing. Indeed, the developement of some Image processing tool made that easier to computerize and analyse [^GON1992],[^JAI1989].
 
-Mathematical morphology has been invented in 1964 by Georges Matheron and Jean Serra in the MINES ParisTech's laboratories. Its development was always motivated by industrial application. At the begining, the main purpose was to answer issues in the mining exploitation field. Then this purpose diversified itself to biology, medical imagery, material science, industrial vision, multimedia, teledetection, geophisic, etc. It consist in a mathematical and informatical theory and technique which is linked with algebra, the lattice theory, topology and probabilities [^SCH1993].
+Mathematical morphology has been invented in 1964 by Georges Matheron and Jean Serra in the MINES ParisTech's laboratories. Its development was always motivated by industrial application. At the begining, the main purpose was to answer issues in the mining exploitation field. Then this purpose diversified itself to biology, medical imagery, material science, industrial vision, multimedia, teledetection, geophisic, etc. It consist in a mathematical and informatical theory and technique which is linked with algebra, the lattice theory, topology and probabilities [^SCH1993] .
 
 Currently, one of the mathematical morphology’s main field is Image Processing. It particularly allows to use filtering, segmentation and quantification tools. Since it’s emergence in 1964, it knows a growing success and constitutes a part of many Image Processing softwares yet.
 
 For the purposes of object identification required in industrial vision applications, the operations of mathematical morphology are more useful than the convolution operations employed in signal processing because the morphological operators relate directly to shape.
+
 For this second step corresponding to the Javascript implementation, we had to make our own implementation of the morphological operators (erode, dilate, close, open, hit or miss, watershed and skeletonized) related to the Literature Search.
+
 In this report, we will focus on describe in detail each function in the Material & Methods part. We will then present our results with the use of the same input image sample, followed by a comparison about our implementation and the ImageJ processes. Finally, we will discuss about our work and some possible improvements.
 
 ## Material & Methods
+
 Each of our functions is built with the same way. We can note the presence of an equivalent of a main function usually associated with the name of the morphological operation, that calls all our secondaries functions used to process the different steps.
+
 Another thing to note is that most of our functions use an intermediate value of 2. Indeed, we set each pixels values at given times pixel by pixel, which would interfere with the global image’s remaining treatment and falsify our results. The primary function will thus set an intermediate value if needed, and then an intermediate function will exchange those intermediate value by the correct ones.
 
 ### Erosion
@@ -67,6 +72,7 @@ The *process_operation_dilate()* function is an intermediate function. It will i
 
 The *dilate()*function is then in charge to call those two functions, and return the dilated image that will be displayed.
 
+ 
 ### Opening
 
 Opening is a mathematical morphology operator that is used for noise removal. Opening removes small objects from the foreground of an image, placing them in the background. Opening consists in the dilation of the erosion of a set A with a structuring element B. In this case, using the opening operation definition, the opening result of an image, is just an erosion of this image followed by a dilation of the eroded image. This why for the opening operator, we just call the erode main *erode()* and we put the result of this function into the dilate main *dilate()* function. It results on an opened image.
@@ -94,6 +100,7 @@ The skeletonization is a part of the morphological operators that will transform
 In order to do this skeletonize function we had to implement our own personal version of edge detection, but the final version of edge detection will be added by another group.
 
 This function is composed by multiple function like the others. A main function *skeletonize()* takes an image as input, return a skeletonized of it in output. It creates a raster of the input image, and then call one of the secondary functions : *thinning()*.
+
 This *thinning()* function uses two additional functions : *is_interior()* and *is_removable()*. Whether *is_interior()* returns a “true” boolean if a foreground pixel is not a neighbour of a background pixel (in x-1,x+1,y-1 or y+1 postion) after checking the neighbours of pixel at the n index position, *is_removable()* instead returns a “true” boolean if the a specific pixel is a foreground pixel next to an interior (value of 2) pixel in x-1,x+1,y-1 or y+1 positions.
 
 ### Watershed
@@ -122,71 +129,71 @@ The separation of the different areas is done using the *isFloodLimit()* functio
 
 During the implementation of this operator we ran into a problem that we were not able to resolve. This problem concerns the identification plateau. Indeed, in our implementation if all the direct neighbours of a pixels have the same value of the processed pixel then the function will consider that there is not superior value even though the next pixel from one of the neighbours has a higher value. This plateau issue causes our image to be more divided than what it should be.
 
-
 ## Results
 
+Now that we have explained our implementation, we will compare the results obtained for each of our process using the implementation of ImageJ and our implementation in JavaScript. The same image will be used for every process, the input image will always be a binary image and we will use a 3x3 cross kernel, which corresponds to the one used by ImageJ. 
 
-Now that we have explained our implmentation, we will compare the results obtained for each of our process using the implementation of ImageJ and our implementation in Javascript. The same image will be used for every operations and the input image will always be a binary image and we will use a 3x3 cross kernel, the one used by ImageJ. 
-
-Our benchmarks for the imageJ process were done using a custom plugin created by ourselves. The benchmark of our implementation are done using also a custom script. The function *Performance.now()*(or *startBenchmark()* for the ImageJ plugin) will give us a time of executions in ms (and ImageJ in ns). Both of our script do a preheating phase, running over 100 images in order to initialise the classes. We were not able to calculate the memory usage using firefox methods, so we won't be able to talk about it. The version of Firefox used is : Firefox ESR 52.4.0(64bit), the specs of the CPU are E3-1240 v5 @3.50GHz. The desktops are also equipped with 16Go ram.
+Our benchmarks for the imageJ process were done using a custom plugin created by ourselves. Our implementation’s benchmark are also done using a custom script. The function *Performance.now()*(or *startBenchmark()* for the ImageJ plugin) gives us the time of executions in ms (and ImageJ in ns). Both of our script first comports a preheating phase, running over 100 images in order to initialise the classes. We were not able to calculate the memory usage using firefox methods, so we won't be able to talk about it.
 
 ### Erode and Dilate
 
 The erosion and dilates methods have been runing the default functions available in ImageJ. The parameters used are iterations=1, count=1, black background, and edm=8-bit. Our function will use the same parameters as those previously mentioned.
 
-The differents output obtained for the erode process are those :
+The differents output obtained for the erode process are as following :
 
 ![Fig.X](Results/erode_mixed.png)
 
 **Figure 1: Result of the erode operation using as a structuring element a cross of 3 by 3 size. Left: Original image, Middle: made with ImageJ default function, Right: made with our own implementation**
 
-As we can see some circles that were stick together have form more disctinct borders. The results obtained between the two process are quite the same. We can see some minor differences from a display view, but the results seems to be the same whatever we use the ImageJ plugin or our own implementation.
+As shown here, some circles that were stick together have form more observable borders. The results obtained between the two processes are quite the same. We can see some minor differences from a display view, but the results seems to be the same whatever we use the ImageJ plugin or our own implementation.
 
-For the dilation, we obtained the results below.
+For the dilation, we obtained the results shown as below.
 
 ![Fig.X](Results/dilation_mixed.png)
 
 **Figure 2: Result of the dilate operation using as a structuring element a cross of 3 by 3 size. Left: Original image, Middle: made with ImageJ default function, Right: made with our own implementation**
 
-We can observe that the same way as the erode operation, the dilate results obtained for both the Image J function and our own implemenantation have the same general outcome. Even tough we can see at some locations that some circles are more dilated by the ImageJ implementation. However, the general results can be considered as the same.
+We can observe that the dilate results obtained for both the Image J function and our own implementation have the same general outcome such as the erode operation. However, wheter the general results can be considered as the same, we can see at some locations that some circles are more dilated by the ImageJ implementation. 
 
-Now that we have proven that the results obtained by both of our plugins are the same, let's take a look at the benchmark obtained :
+Now that we have proven that the global results obtained by both of our plugins are kindly the same, let's take a look at the benchmark obtained :
 
-The values obtained from the benchmark for our erode operation result in this graph.
+The values obtained from the benchmark for our erode operation are shown in the following graph :
 ![Fig.X](Results/erode_benchmark.png)
 
 **Figure 3: Benchmark graph representing the time processing in ms of an image of different size for the erode process**
 
-As we can note, until the image of a size of 150\*150 pixels our performance are really close to the ImageJ erosion. From the 250\*250 pixels image to the one at 550\*550 we can observe a difference of a ration of 7. This means that for an image with 550\*500 pixels our implementation will take 7 more times than the ImageJ implementation to erode one image (14.999ms for our implementation against 2.09466ms for the ImageJ one).
-However, is we couls be satisfied with our results from a small image until the 550\*550 images, we can't say the same for the rest.
-From this size until our biggest size, the results we obtained from our implementation are quite(to not say very) bad. Indeed, where we had a ration difference of 7 for an image of size 550\*550 pixels, for images of bigger size we double this ration to obtain a value of 15. Yet this ratio don't change whatever we use a 750\*750 pixel or a 1600\*1600 pixel image.
+As we can note, until the image of a size of 150\*150 pixels our performances are really close to the ImageJ erosion. From the 250\*250 pixels image to the one at 550\*550 we can observe a difference of a 7 ratio. This means that for an image with 550\*500 pixels our implementation will take 7 more times than the ImageJ implementation to erode one image (14.999ms for our implementation against 2.09466ms for the ImageJ one).
+
+However, if we could be satisfied with our results from a small image until the 550\*550 images, this statement cannot be affirmed for higher images’ dimensions.
+
+From this size until our biggest size, the results we obtained from our implementation are quite (to not say very) bad. Indeed, for a difference ration of 7 with an image sized by 550\*550 pixels, bigger sized images double this ratio to obtain a value of 15. This ratio don't change whatever we use a 750\*750 pixel or a 1600\*1600 pixel image Yet.
 
 The values obtained from the benchmark for our dilation operation result in this graph.
 ![Fig.X](Results/dilate_benchmark.png)
 
 **Figure 4: Benchmark graph representing the time processing in ms of an image of different size for the dilate process**
 
-The observation are quite similar to the the results obtained for the erosion even the ration difference for an image of 550\*500 pixels is the same (ratio of 7). The ration after this critical size if also the same (ratio of 16).
+The observation are quite similar to the the results obtained for the erosion. Indeed, even the ration difference for an image of 550\*500 pixels is the same (ratio of 7). The ratio after this critical size if also almost the same (ratio of 16).
 
 ### Open and Close
 
 The same way as we did for the erosion and dilation, the open and close methods have been runing the default functions available in ImageJ. The parameters used are the same as the erode and close operations.
 
-The differents output obtained for the open process are those :
+The different outputs obtained for the open process are as follows :
 
 ![Fig.X](Results/open_mixed.png)
 
 **Figure 5: Result of the open operation using as a structuring element a cross of 3 by 3 size. Left: Original image, Middle: made with ImageJ default function, Right: made with our own implementation**
 
-As we can inspect after the open operation, the circles from the original image are more pixeled in the their border, for both of the implementation, even tough it seems that ImageJ implementation result in more pixeled border than our implementation.
+As we can expect after the open operation, the circles from the original image are more pixeled in the their border, for both of the implementation, even though it seems that ImageJ implementation result in more pixeled border than our implementation.
 
-The ouput results for the close operation are those below. 
+The output results for the close operation are those below. 
 
 ![Fig.X](Results/closing_mixed.png)
 
 **Figure 6: Result of the close operation using as a structuring element a cross of 3 by 3 size. Left: Original image, Middle: made with ImageJ default function, Right: made with our own implementation**
 
-The results obtained after a close operation are in a general way the same for both of the implementation, resulting in the removal of small holes. However, as we can note, the ImageJ implementation closes gaps between object in a more important radius than our own implementation.
+The results obtained after a close operation are in a general way the same for both of the implementation, resulting in the removal of small holes. However, as we can note, the ImageJ implementation closes gaps between object with a bigger radius than our own implementation.
 
 Let's take a look at the benchmark results.
 
@@ -196,8 +203,9 @@ The benchmark for the opening is :
 
 **Figure 7: Benchmark graph representing the time processing in ms of an image of different size for the opening process**
 
-Since closing and opening, are the erosion of the dilation and vice verse, the issue encountered for the erode and dilate operation will be present here too.
-Indeed, as we can see the observation are quite similar to the the results obtained for the erosion/dilation even the ration difference for an image of 550\*500 pixels is the same (ratio of 7). The ratio after this critical size if also the same (ratio of 15-16).
+Since closing is quite the reversed process from the issue encountered for the erode and dilate operation will be presented here.
+
+Indeed, as we can see, the observations are quite similar to the results obtained for the erosion/dilation. Even the ration difference for an image of 550\*500 pixels is the same (ratio of 7). The ratio after this critical size if also the same (ratio of 15-16).
 
 The associated benchmark of the close operation is as follows.
 ![Fig.X](Results/closing_benchmark.png)
@@ -205,24 +213,27 @@ The associated benchmark of the close operation is as follows.
 **Figure 8: Benchmark graph representing the time processing in ms of an image of different size for the closing process**
 
 The observation we can do for the closing operation are exactly the same as the opening one, and so the same as the erode/dilate.
-We can see the observation are similar to the the results obtained for the erosion/dilation even the ration difference for an image of 550\*500 pixels is the same (ratio of 7). The ratio after this critical size if also the same (ratio of 15-16).
+
+We can see the observation are similar to the results obtained for the erosion/dilation. Even the ration difference for an image of 550\*500 pixels is the same (ratio of 7). The ratio after this critical size if also the same (ratio of 15-16).
 
 ### Hit or Miss
+
 ![Fig.X](Results/hit_or_miss_mixed.png)
 
 **Figure 9: Result of the hit or miss operation using as a structuring element a cross of 3 by 3 size. Left: Original image, Middle: made with ImageJ default function, Right: made with our own implementation**
-
+Since there is no real implementation of hit or miss in ImageJ, we are not able to give a proper comparison with an other implementation handling binary images. There is thus no need to process it into our benchmark algorithm. However, taking in consideration the theorical example studied to implement this function, the results seems to looks well like the results expected. Indeed, the center of the structuring element’s position when it matched its pattern with the image to process seems to be retain whereas other position when it didn’t match seems to have been exclude.  
 
 ### Skeletonize
+
 The skeletonize method have been done running the default functions available in ImageJ.
 
-The images output from the watershed process are those below.
+The images output from the watershed process are shown below.
 
 ![Fig.X](Results/skeletonize_mixed.png)
 
 **Figure 10: Result of the skeletonize operation using as a structuring element a cross of 3 by 3 size. Left: Original image, Middle: made with ImageJ default function, Right: made with our own implementation**
 
-As we can see, the output result if different from the ImageJ results and our own implementation. In Image J we obtain only the ultimate eroded point for the circles which don't touch and a line from the center of a circle to the center of the second circle when those are stick together. Yet, in our implementation we can see the diagonals for each of the ultimate eroded point. The lines formed in ImageJ when two circles are stick are also shown.
+As we can see, the output result are different between the ImageJ’s results and our own implementation. In Image J, we obtain only the ultimate eroded point for the circles which don't touch and a line corresponding to the link from the center of a circle to the center of the second circle when those are stick together. Yet, in our implementation we can see the diagonals for each of the ultimate eroded point. The lines formed in ImageJ when two circles are stick are also shown.
 
 Let's see our benchmark results.
 
@@ -230,61 +241,69 @@ Let's see our benchmark results.
 
 **Figure 11: Benchmark graph representing the time processing in ms of an image of different size for the skeletonize process**
 
-Once more the pattern shown is quite the same. Until the 750\*750 image pixels our implementation is stable with a ratio difference of more or less 30. But from this size to the highest posible, our ratio difference goes from 30 to 50.
+Once more the pattern shown is quite the same. Until the 750\*750 image pixels our implementation is stable with a ratio difference of more or less 30. But from this size to the highest one, our ratio difference goes from 30 to 50.
 
 ### Watershed
 
 The wathershed method have been done running the default functions available in ImageJ.
 
-The images output from the watershed process are those those one below.
+The images output from the watershed process are as following:
 ![Fig.X](Results/watershed_mixed.png)
 
 **Figure 12: Result of the wathershed operation using as a structuring element a cross of 3 by 3 size. Left: Original image, Middle: made with ImageJ default function, Right: made with our own implementation**
 
-We can obeserve than there is the presence of an element that is not present in the ImageJ implementation : the appearence of black triangles within some circles. This is due to a bug in our implementation and how the plateau are treated(see, chapter 2-watershed for more details).  Appart from this, the circles are well delimited the same way as ImageJ.
+We can observe that there is the presence of an element that is not present in the ImageJ implementation: the appearance of black triangles within some circles. This is due to a bug in our implementation and how the plateaus are treated (see, chapter 2-watershed for more details).  However, the circles are well delimited the same way as ImageJ.
 
-As we can see some circles that were stick together have form more disctinct borders. The results obtained between the two process are quite the same. We can see some minor differences from a display view, but the results seems to be the same whatever we use the ImageJ plugin or our own implementation.
+As we can see some circles that were stick together have formed more distinct borders. The results obtained between the two processes are quite the same. We can see some minor differences from a display view, but the results seems to be the same whatever we use the ImageJ plugin or our own implementation.
 
 
 The benchmark associated to the watershed operation is the following one.
 ![Fig.X](Results/watershed_benchmark.png)
 
-**Figure 13: Benchmark graph representing the time processing in ms of an image of different size for the wathershed process**
+**Figure 13: Benchmark graph representing the time processing in ms of an image of different size for the watershed process**
 
-We can see that the pattern present in the erode/dilate part is also noticable here. For smal image of 50\*50 pixels until 350\*350 pixels the performances are quite similar to those obtained with ImageJ.
-From 350\*350 image pixels to the biggest one there is a ratio difference betwen our implementation and the ImageJ implementation between 13 and 17(even tough it would seems from the graph that for a 1250\*1250 image pixels the ration is higher in reality it's not)
+We can see that the pattern present in the erode/dilate part is also noticeable here. For smalls images of 50\*50 pixels until 350\*350 pixels the performances are quite similar to those obtained with ImageJ.
+From 350\*350 image pixels to the biggest ones, we can observe a ratio difference between our implementation and the ImageJ implementation scaled between 13 and 17 (even though it would seems from the graph that for a 1250\*1250 image pixels the ratio is higher. In reality it is not).
+
 
 ## Discussion
 
 [//]: # (Discussion: Comparison of your implementation with those of ImageJ. Is it faster, better, less memory consuming, ...?)
 
 
-In this part we will discuss about the implementation of our own implementation and it's state against the ImageJ implementation.
+Sadly, as explained earlier, we were not able to determine the memory usage of our implementation using the Firefox console, even though we can assume that we will be way less optimized than ImageJ.
 
-Sadly, as explained ealier, we were not able to determine the memory usage of our implementation using the Firefox console, even tough we can assume that we will be way less optimized than ImageJ.
+For the erode, dilate, open and close operations, we were able to find the general same output as the ImageJ Implementation. However, as the result part has show, our performance are for every dimension of image more or less worse than ImageJ. For the smallest image we are only able to have get a difference ratio of 2 between our implementation and the ImageJ one, but looking for the largest ones rises this ratio as 15.
 
-For the erode, dilate, open and close operations, we were able to find the same output as the ImageJ Implementation. However, as the result aprt has shownd, our performance are for every dimenstion of image worse than ImageJ. For the smallest image we are able to only have a ratio difference of 2 between our implementation and the ImageJ one, but when we look for the largest one we go as high as a ratio of 15.
-At best, we are 2 times slowers than ImageJ and at worst we are 15 slover with our implementation.
-Moreover, our implementatio of those function are also different, since ImageJ use predefined structuring elements whereas our implementation of those operations let the user to be free to use any kernel he wish from a 3\*3 to something like for example a 45\*45 kernel.
-The erode and dilate function could be optmized since right now, for each pixels values it will recalculate the kernel pattern(all the neighbours) while that kernek doesn't change during the processing time, and so it uses pointless time processing.
+Thus, in the better case, we are 2 times slowers with our implementation than ImageJ and in the worst one we are 15 slower.
 
-The hit or miss operator, was a tricky one to do. Indeed, compared to all the others, we had no ImageJ equivalent to compare the obtain results. In an indeal world, the hit or miss function shjould be test with a kernel with a high size to see the output.
+However, our implementation of those function are also different, since ImageJ use predefined structuring elements whereas our implementation of those operations let the user to be free to use any kernel he wish from a 3\*3 to something like for example a 45\*45 kernel.
 
+The erode and dilate function could be optimized since right now, for each pixels values it will recalculate the kernel pattern (all the neighbours) while that kernel doesn't change during the processing time, and so it uses pointless time processing and could partly explain our higher ratio.
 
-The skeletonize implementation was not as good as we excpected. As said in the result part, we don't have the exact same image as ImageJ. This due do some issues we encountered.
-Our function, delete some point that it should not, and don't delete some point he should. This may come from the fact that our function, only check as neighbours 4 of them and not all of the 8 neihgbours.
-Moreover, we use a naive approach, in the sense that we delete every pixel that is in contact with an interior pixel whereas sometimes you should not, however this would require conditions we were not able to determine
-An amelioration of the operations will require to fixes thos bugs, to obtains the exact same image as imageJ.
+The hit or miss operator was a tricky one to do. Indeed, compared to all the others, we had no ImageJ equivalent to compare the obtain results. Whether the process has been tested with several 3 by 3 kernel patterns and seems to work greatly, the use of some bigger or pair sized kernel remains to test.
 
-Finaly, the watershed implementation has result in the same kind of problem we encountered with skeletonize. The output image from our implementation is different from the ImageJ implementation. This is due to the translation of an algorithm into code that we were not able to resolve completly (the pleateau issue, check material et methode-watershed).
-One resolution we tried to do and that should be working but is not, ended with an error telling us that we were doing too much recursivity.
+The skeletonize implementation was not as good as we expected. As said in the result part, we don't have the exactly same image as ImageJ, this due do some issues we encountered. Our function deletes some point that it should not, and don't delete some point he should. This may come from the fact that our function only checks at neighbours 4 of them and not all of the 8 neighbours.
+
+Moreover, we use a naive approach, in the sense that we delete every pixel that is in contact with an interior pixel whereas sometimes it should not be done. However, this would require conditions we were not able to determine greatly.
+
+An amelioration of the operations will require to fixes these bugs, in order to obtain the exact same image as imageJ.
+
+Finally, we encountered the same kind of problem with our watershed implementation than with our skeletonize. The output image from our implementation is different from the ImageJ implementation. This is due to the translation of an algorithm into code that we were not able to resolve completely according to the plateau issue exposed in the material et methode part. As for skeletonized, and amelioration sould be done in order to fix those bug issues, so our image output would be the same as ImageJ, especially for the plateau bug, where our circles are well defined.
+
+A resolution we tried to set up should be working but isn’t, ended with an error telling us that we were using too much recursivity.
 
 ## Conclusion
 
-Our task was to implement the morphological operators erode, dilate, open, close, hit or miss, skeletonize and watershed using javascript, and as much as functional Javascript as we could.
-As result, we managed to make most of our operation similar to ImageJ at least from a layout perspective. Unfortunately, even tought our implementation may have acceptable time processing values for low size images, the ratio difference bewteen our implementation and ImageJ implemenation is way to high to be considered as satisfasing. 
-This end correspond to the expected end, in the sense that we could have not do better performing time than an ImageJ wich is a software used by the a large communities with many contributors.
-However, the next step will be the adding of webgl tools in our implementation, so we may have way more better results and we could hope to have time processing results more satisfacting against ImageJ than those actuals. 
+Our task was to implement the morphological operators erode, dilate, open, close, hit or miss, skeletonize and watershed using JavaScript, as much as functional as we could.
+
+As results, we managed to make most of our operation similar to ImageJ at least from a layout perspective. Unfortunately, even thought our implementation may have acceptable time processing values for low sized images, the ratio difference between our implementation and the ImageJ one is way to hight to be considered as satisficing. 
+
+This end corresponds to the end we expected, in the sense that we could have not do better performing time than an ImageJ which is a software used by the a large communities with many contributors with our actual programming level and skills.
+
+However, the add of WebGL tools in our implementation will may return better results and we hope having time processing results more satisficing against ImageJ than the actual ones.
+
+
 
 ## References
 
