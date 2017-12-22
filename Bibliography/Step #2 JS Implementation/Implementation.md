@@ -151,7 +151,9 @@ During the implementation of this operator we ran into a problem that we were no
 [//]: # (Results: Present one example of your function(s). Then, calculate benchmarks with the same image at different size. Recalculate the benchmarks for 8-bit, 16-bit, and float32 images. Display them as diagram. Don't forget to describe them in your text, add a legend.)
 
 
-Now that we have explained our implmentation, we will compare the results obtained for each of our process using the implementation of ImageJ and our implementation in Javascript. The same image will be used for every operations and the input image will always be a binary image and we will use a 3x3 cross kernel, the one used by ImageJ.  
+Now that we have explained our implmentation, we will compare the results obtained for each of our process using the implementation of ImageJ and our implementation in Javascript. The same image will be used for every operations and the input image will always be a binary image and we will use a 3x3 cross kernel, the one used by ImageJ. 
+
+Our benchmarks for the imageJ process were done using a custom plugin created by ourselves. The benchmark of our implementation are done using also a custom script. The function *Performance.now()*(or *startBenchmark()* for the ImageJ plugin) will give us a time of executions in ms (and ImageJ in ns). Both of our script do a preheating phase, running over 100 images in order to initialise the classes. We were not able to calculate the memory usage using firefox methods, so we won't be able to talk about it.
 
 ### Erode and Dilate
 
@@ -161,12 +163,32 @@ The differents output obtained for the erode process are those :
 
 ![Fig.X](Results/erode_mixed.png)
 
-**Figure 1: Result of the erode operation using as a structuring element a disk of 3 by 3 size. Left: Original image, Middle: made with ImageJ default function, Right: made with our own implementation**
+**Figure 1: Result of the erode operation using as a structuring element a cross of 3 by 3 size. Left: Original image, Middle: made with ImageJ default function, Right: made with our own implementation**
 
 As we can see some circles that were stick together have form more disctinct borders. The results obtained between the two process are quite the same. We can see some minor differences from a display view, but the results seems to be the same whatever we use the ImageJ plugin or our own implementation.
 
 For the dilation, we obtained the results below.
 
+![Fig.X](Results/dilation_mixed.png)
+
+**Figure 2: Result of the dilate operation using as a structuring element a cross of 3 by 3 size. Left: Original image, Middle: made with ImageJ default function, Right: made with our own implementation**
+
+We can observe that the same way as the erode operation, the dilate results obtained for both the Image J function and our own implemenantation have the same general outcome. Even tough we can see at some locations that some circles are more dilated by the ImageJ implementation. However, the general results can be considered as the same.
+
+Now that we have proven that the results obtained by both of our plugins are the same, let's take a look at the benchmark obtained :
+
+The values obtained from the benchmark for our erode operation result in this graph.
+![Fig.X](Results/erode_benchmark.png)
+
+**Figure 3: Benchmark graph representing the time processing in ms of an image of different size for the erode process**
+
+As we can note, until the image of a size of 150\*150 pixels our performance are really close to the ImageJ erosion. From the 250\*250 pixels image to the one at 550\*550
+
+
+
+![Fig.X](Results/dilate_benchmark.png)
+
+**Figure 4: Benchmark graph representing the time processing in ms of an image of different size for the dilate process**
 
 ### Open and Close
 
