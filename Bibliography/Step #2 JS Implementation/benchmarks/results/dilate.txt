@@ -1,1 +1,23 @@
 Object { image0: 471.8349999999999, image1: 1994.1349999999998, image2: 6971.379999999999, image3: 13134.929999999998, image4: 16104.350000000002, image5: 66787.02, image6: 132955.02999999997, image7: 184546.45500000002, image8: 257793.38999999996, image9: 312815.595 }
+
+ImageJ
+Function : Dilateon image nÂ° 0
+The average execution time for Dilate is 0.04948 ms.
+Function : Dilateon image nÂ° 1
+The average execution time for Dilate is 0.22680 ms.
+Function : Dilateon image nÂ° 2
+The average execution time for Dilate is 0.54052 ms.
+Function : Dilateon image nÂ° 3
+The average execution time for Dilate is 1.00716 ms.
+Function : Dilateon image nÂ° 4
+The average execution time for Dilate is 2.32262 ms.
+Function : Dilateon image nÂ° 5
+The average execution time for Dilate is 4.24166 ms.
+Function : Dilateon image nÂ° 6
+The average execution time for Dilate is 8.11096 ms.
+Function : Dilateon image nÂ° 7
+The average execution time for Dilate is 11.39476 ms.
+Function : Dilateon image nÂ° 8
+The average execution time for Dilate is 15.26726 ms.
+Function : Dilateon image nÂ° 9
+The average execution time for Dilate is 18.55749 ms.

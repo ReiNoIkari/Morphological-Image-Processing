@@ -1,1 +1,23 @@
 Object { image0: 244.5949999999998, image1: 1742.6950000000002, image2: 5305.205, image3: 15709.035000000002, image4: 14998.509999999998, image5: 55212.880000000005, image6: 109974.675, image7: 151848.43000000002, image8: 211542.72999999998, image9: 251122.28000000003 }
+
+ImageJ
+Function : Erodeon image nÂ° 0
+0.10715 ms
+Function : Erodeon image nÂ° 1
+0.28741 ms
+Function : Erodeon image nÂ° 2
+0.51236 ms
+Function : Erodeon image nÂ° 3
+0.89578 ms
+Function : Erodeon image nÂ° 4
+2.09466 ms
+Function : Erodeon image nÂ° 5
+3.93524 ms
+Function : Erodeon image nÂ° 6
+7.31786 ms
+Function : Erodeon image nÂ° 7
+10.30011 ms
+Function : Erodeon image nÂ° 8
+13.80170 ms
+Function : Erodeon image nÂ° 9
+16.76635 ms

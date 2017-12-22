@@ -1,0 +1,22 @@
+
+ImageJ
+Function : Watershedon image nÂ° 0
+The average execution time for Watershed is 0.54921 ms.
+Function : Watershedon image nÂ° 1
+The average execution time for Watershed is 2.18268 ms.
+Function : Watershedon image nÂ° 2
+The average execution time for Watershed is 4.75950 ms.
+Function : Watershedon image nÂ° 3
+The average execution time for Watershed is 8.50726 ms.
+Function : Watershedon image nÂ° 4
+The average execution time for Watershed is 19.17780 ms.
+Function : Watershedon image nÂ° 5
+The average execution time for Watershed is 33.90241 ms.
+Function : Watershedon image nÂ° 6
+The average execution time for Watershed is 64.63747 ms.
+Function : Watershedon image nÂ° 7
+The average execution time for Watershed is 91.35636 ms.
+Function : Watershedon image nÂ° 8
+The average execution time for Watershed is 121.38679 ms.
+Function : Watershedon image nÂ° 9
+The average execution time for Watershed is 149.40422 ms.

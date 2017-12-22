@@ -1,1 +1,23 @@
 Object { image0: 360.03, image1: 2745.255, image2: 41373.665, image3: 17604.310000000005, image4: 30061.695000000007, image5: 111316.45500000002, image6: 223179.37999999998, image7: 309202.25499999995, image8: 428550.18000000005, image9: 506865.92500000005 }
+
+ImageJ
+Function : Openon image nÂ° 0
+The average execution time for Open is 0.06519 ms.
+Function : Openon image nÂ° 1
+The average execution time for Open is 0.39176 ms.
+Function : Openon image nÂ° 2
+The average execution time for Open is 0.97065 ms.
+Function : Openon image nÂ° 3
+The average execution time for Open is 1.78905 ms.
+Function : Openon image nÂ° 4
+The average execution time for Open is 4.21183 ms.
+Function : Openon image nÂ° 5
+The average execution time for Open is 7.66256 ms.
+Function : Openon image nÂ° 6
+The average execution time for Open is 14.83287 ms.
+Function : Openon image nÂ° 7
+The average execution time for Open is 20.91938 ms.
+Function : Openon image nÂ° 8
+The average execution time for Open is 28.06050 ms.
+Function : Openon image nÂ° 9
+The average execution time for Open is 34.12397 ms.

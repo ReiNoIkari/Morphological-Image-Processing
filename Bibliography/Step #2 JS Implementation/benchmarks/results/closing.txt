@@ -1,1 +1,23 @@
 Object { image0: 559.6399999999999, image1: 2814.73, image2: 9960.759999999998, image3: 19121.605, image4: 29862.28, image5: 117598.85500000001, image6: 236322.15000000002, image7: 328889.225, image8: 457475.4149999999, image9: 545631.4600000002 }
+
+ImageJ
+Function : Close-on image nÂ° 0
+The average execution time for Close- is 0.09827 ms.
+Function : Close-on image nÂ° 1
+The average execution time for Close- is 0.38263 ms.
+Function : Close-on image nÂ° 2
+The average execution time for Close- is 0.95458 ms.
+Function : Close-on image nÂ° 3
+The average execution time for Close- is 1.78694 ms.
+Function : Close-on image nÂ° 4
+The average execution time for Close- is 4.21591 ms.
+Function : Close-on image nÂ° 5
+The average execution time for Close- is 7.67472 ms.
+Function : Close-on image nÂ° 6
+The average execution time for Close- is 14.84303 ms.
+Function : Close-on image nÂ° 7
+The average execution time for Close- is 20.91561 ms.
+Function : Close-on image nÂ° 8
+The average execution time for Close- is 28.04104 ms.
+Function : Close-on image nÂ° 9
+The average execution time for Close- is 34.13084 ms.
