@@ -25,10 +25,10 @@
 'use script';
 
 /**
- * Description: Returns a raster showing where were the correspondances between an input image and a kernel's pattern
+ * Description: Returns an image showing where are the correspondances between an input image raster and a kernel's pattern
  *
  * @param {type} <Images> - <img and mask are images given as parameters>
- * @return {type} - <The hit or miss function returns a modified copy of the original image's raster>
+ * @return {type} - <The hit or miss function returns a modified copy of the original image after processing with both image and kernel's rasters>
  *
  * @author Vincent Dejonghe
  */
