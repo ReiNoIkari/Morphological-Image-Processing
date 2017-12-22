@@ -469,7 +469,7 @@ const check = (n,x,y,dist,rast) => {
 *this algorithm can be found here : https://www.springer.com/cda/content/document/cda_downloaddocument/9780387312019-c1.pdf
 *
 * @param {T.Raster} rast - uint8 binary T.Raster
-* @param {string} window_type - either "CDA","chessboard" or "EDM" depending on the neighbor scoring
+* @param {string} window_type - either "CDA","chessboard" or "cityblock" depending on the neighbor scoring
 * @param {Boolean} copy - used for the copy of the raster
 * @return {T.Raster} A grayscale uint8 T.Raster
 * @see {check}
@@ -479,9 +479,16 @@ const check = (n,x,y,dist,rast) => {
 */
 const distance_map = (rast,window_type="CDA",copy=true) => {
   //todo : switch with window_type
-  let dxy=4; // values for CDA window_type
-  let dx=3;
-  let dy=3;
+  switch (window_type){
+   case "CDA":
+   let dxy=4,dx=3,dy=3;break;
+   case "chessboard":
+   let dxy=1,dx=1,dy=1;break;
+   case "cityblock":
+   let dxy=255,dx=1,dy=1;break;
+   default:
+   let dxy=4,dx=3,dy=3;break;
+ }
   rast.pixelData.forEach((x,i,a) => {
     check(i,rast.x(i)-1,rast.y(i)-1,dxy,rast); //checking top-left neighbor
     check(i,rast.x(i),rast.y(i)-1,dy,rast); //checking top neighbor
