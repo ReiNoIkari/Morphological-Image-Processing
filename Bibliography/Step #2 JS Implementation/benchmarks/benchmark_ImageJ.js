@@ -47,10 +47,10 @@ imageList.push(IJ.openImage("https://raw.githubusercontent.com/ReiNoIkari/Morpho
 Prefs.blackBackground = true;
 
 //list of our IJ functions/plugins to use, and the corresponding options (obtained via IJ macro recorder)
-var functionList= ["Erode","Dilate","Open","Close-"];
-//var functionList= ["Skevaronize","watershed"];
-var parameterList = ["","","",""];
-//var parameterList = ["",""];
+//var functionList= ["Erode","Dilate","Open","Close-"];
+var functionList= ["Skevaronize","watershed"];
+//var parameterList = ["","","",""];
+var parameterList = ["",""];
 IJ.log("starting...\n");
 for (var i=0;i<functionList.length;i++)
 {

@@ -1,0 +1,22 @@
+
+ImageJ
+Function : Skeletonizeon image nÂ° 0
+The average execution time for Skeletonize is 0.22063 ms.
+Function : Skeletonizeon image nÂ° 1
+The average execution time for Skeletonize is 1.21857 ms.
+Function : Skeletonizeon image nÂ° 2
+The average execution time for Skeletonize is 4.54005 ms.
+Function : Skeletonizeon image nÂ° 3
+The average execution time for Skeletonize is 10.71053 ms.
+Function : Skeletonizeon image nÂ° 4
+The average execution time for Skeletonize is 39.19127 ms.
+Function : Skeletonizeon image nÂ° 5
+The average execution time for Skeletonize is 96.91479 ms.
+Function : Skeletonizeon image nÂ° 6
+The average execution time for Skeletonize is 264.67936 ms.
+Function : Skeletonizeon image nÂ° 7
+The average execution time for Skeletonize is 446.80180 ms.
+Function : Skeletonizeon image nÂ° 8
+The average execution time for Skeletonize is 701.27754 ms.
+Function : Skeletonizeon image nÂ° 9
+The average execution time for Skeletonize is 970.28031 ms.
