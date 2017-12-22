@@ -234,11 +234,45 @@ The observation we can do for the closing operation are exactly the same as the 
 We can see the observation are similar to the the results obtained for the erosion/dilation even the ration difference for an image of 550\*500 pixels is the same (ratio of 7). The ratio after this critical size if also the same (ratio of 15-16).
 
 ### Hit or Miss
+![Fig.X](Results/hit_or_miss_mixed.png)
+
+**Figure 9: Result of the close operation using as a structuring element a cross of 3 by 3 size. Left: Original image, Middle: made with ImageJ default function, Right: made with our own implementation**
+
+![Fig.X](Results/hit_or_miss_benchmark.png)
+
+**Figure 10: Benchmark graph representing the time processing in ms of an image of different size for the closing process**
 
 ### Skeletonize
 
+![Fig.X](Results/skeletonize_mixed.png)
+
+**Figure 11: Result of the close operation using as a structuring element a cross of 3 by 3 size. Left: Original image, Middle: made with ImageJ default function, Right: made with our own implementation**
+
+![Fig.X](Results/skeletonize_benchmark.png)
+
+**Figure 12: Benchmark graph representing the time processing in ms of an image of different size for the closing process**
+
 ### Watershed
 
+The wathershed methods have been runing the default functions available in ImageJ.
+
+The images output from the watershed process are those those one below.
+![Fig.X](Results/watershed_mixed.png)
+
+**Figure 13: Result of the close operation using as a structuring element a cross of 3 by 3 size. Left: Original image, Middle: made with ImageJ default function, Right: made with our own implementation**
+
+We can obeserve than there is the presence of an element that is not present in the ImageJ implementation : the appearence of black triangles within some circles. This is due to a bug in our implementation and how the plateau are treated(see, chapter 2-watershed for more details).  Appart from this, the circles are well delimited the same way as ImageJ.
+
+As we can see some circles that were stick together have form more disctinct borders. The results obtained between the two process are quite the same. We can see some minor differences from a display view, but the results seems to be the same whatever we use the ImageJ plugin or our own implementation.
+
+
+The benchmark associated to the watershed operation is the following one.
+![Fig.X](Results/watershed_benchmark.png)
+
+**Figure 14: Benchmark graph representing the time processing in ms of an image of different size for the closing process**
+
+We can see that the pattern present in the erode/dilate part is also noticable here. For smal image of 50\*50 pixels until 350\*350 pixels the performances are quite similar to those obtained with ImageJ.
+From 350\*350 image pixels to the biggest one there is a ratio difference betwen our implementation and the ImageJ implementation between 13 and 17(even tough it would seems from the graph that for a 1250\*1250 image pixels the ration is higher in reality it's not)
 ## Discussion
 
 [//]: # (Discussion: Comparison of your implementation with those of ImageJ. Is it faster, better, less memory consuming, ...?)
