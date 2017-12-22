@@ -181,7 +181,7 @@ const dilate = function(img,struct,copy=true){
  * @author Adrien MENDES SANTOS
  */
 
-const closing= function(img,struct,copy=true){
+const closing= (img,struct,copy=true)=>{
     let temp = new T.Image('uint8',img.width,img.height);
     temp.setRaster(T.Raster.from(img.getRaster(),copy));
     let r_output = dilate_process(temp.getRaster(),struct);

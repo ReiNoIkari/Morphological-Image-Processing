@@ -182,7 +182,7 @@ const dilate = function(img,struct,copy=true){
  * @author Adrien MENDES SANTOS
  */
 
-const opening= function(img,struct,copy=true){
+const opening= (img,struct,copy=true)=>{
     let temp = new T.Image('uint8',img.width,img.height);
     temp.setRaster(T.Raster.from(img.getRaster(),copy));
     let r_output = erode_process(temp.getRaster(),struct);

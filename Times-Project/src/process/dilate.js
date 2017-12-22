@@ -34,14 +34,9 @@
  */
 
 const process_operation_dilate = (r_output,copy=true) => {
-  for(let i=0;i<r_output.height;i++) {
-		for (let j=0;j<r_output.width;j++){
-			if (r_output.getPixel(i,j)==2) {
-				r_output.setPixel(i,j,255);
-			}
-		}
-  }
-  //r_output.pixelData = r_output.pixelData.map((x,i,a) => x==2 ? 255 : x);
+
+  r_output.pixelData = r_output.pixelData.map((x,i,a) => x==2 ? 255 : x);
+
   return r_output;
 };
 
@@ -54,7 +49,7 @@ const process_operation_dilate = (r_output,copy=true) => {
  * @author Adrien MENDES SANTOS
  */
 
-const dilate_process=function(raster,struct,copy=true){
+const dilate_process=(raster,struct,copy=true)=>{
   let r_output = T.Raster.from(raster,copy);
   let r_struct=struct.getRaster();
   let struct_Center=(r_struct.length-1)/2;
@@ -72,20 +67,9 @@ const dilate_process=function(raster,struct,copy=true){
         for (let rx = -radius_struct_x; rx <= radius_struct_x; rx++) {
           for (let ry = -radius_struct_y; ry <= radius_struct_y; ry++) {
             let img_edge = false;
-            //if (!(x-rx<0 || x-rx>raster.height-1 || y-ry<0 || y-ry>raster.width-1) &&
-            //(raster.getPixel(x-rx,y-ry)==0 && r_struct.getPixel(x_value_struc_element-rx,y_value_struc_element-ry)==255)){
-            //r_output.setPixel(x-rx,y-ry,2);
-            //}
-            if (x-rx<0 || x-rx>raster.height-1){
-              img_edge=true;
-            }
-            if (y-ry<0 || y-ry>raster.width-1){
-              img_edge=true;
-            }
-            if(img_edge==false) {
-              if (raster.getPixel(x-rx,y-ry)==0 && r_struct.getPixel(x_value_struc_element-rx,y_value_struc_element-ry)==255){
-                r_output.setPixel(x-rx,y-ry,2);
-              }
+            if (!(x-rx<0 || x-rx>raster.height-1 || y-ry<0 || y-ry>raster.width-1) &&
+            (raster.getPixel(x-rx,y-ry)==0 && r_struct.getPixel(x_value_struc_element-rx,y_value_struc_element-ry)==255)){
+            r_output.setPixel(x-rx,y-ry,2);
             }
           }
         }
@@ -104,7 +88,7 @@ const dilate_process=function(raster,struct,copy=true){
  * @author Adrien MENDES SANTOS
  */
 
-const dilate = function(img,struct,copy=true){
+const dilate = (img,struct,copy=true)=>{
 
   let temp = new T.Image('uint8',img.width,img.height);
   temp.setRaster(T.Raster.from(img.getRaster(),copy));
