@@ -145,9 +145,36 @@ At the end, we will be in presence of areas of pixels (which different values de
 The seperation of the different areas is done using the *isFloodLimit()* function. If take for input a rast from a flooded grayscale image and returns true if one of the 4 neighbors is from an other flood level. In other words, it will check for each pixels if the it's neighbors have the same value as itself. If that's the case then it meaning that all of those pixels are part of the same area, however if a pixels has a different value from one of it's neighbord then it means that we are at the boundary of two objects. If it's the case, then one of those pixels either from the first area, or the second area is then set as a background pixel.
 
 During the implementation of this operator we ran into a problem that we were not able to resolve. This problem concern the plateau identification. Indeed, in our implementation if all the direct neighbors of a pixels have the same value of the processed pixel then the function will consider that there is not superior value even though the next pixel from one of the neighbors has a higher value. This plateau issue causes our image to be more divided than what it should be.
+
 ## Results
 
 [//]: # (Results: Present one example of your function(s). Then, calculate benchmarks with the same image at different size. Recalculate the benchmarks for 8-bit, 16-bit, and float32 images. Display them as diagram. Don't forget to describe them in your text, add a legend.)
+
+
+Now that we have explained our implmentation, we will compare the results obtained for each of our process using the implementation of ImageJ and our implementation in Javascript. The same image will be used for every operations and the input image will always be a binary image and we will use a 3x3 cross kernel, the one used by ImageJ.  
+
+### Erode and Dilate
+
+The erosion and dilates methods have been runing the default functions available in ImageJ. The parameters used are iterations=1, count=1, black background, and edm=8-bit. Our function will use the same parameters as those previously mentioned.
+
+The differents output obtained for the erode process are those :
+
+![Fig.X](Results/erode_mixed.png)
+
+**Figure 1: Result of the erode operation using as a structuring element a disk of 3 by 3 size. Left: Original image, Middle: made with ImageJ default function, Right: made with our own implementation**
+
+As we can see some circles that were stick together have form more disctinct borders. The results obtained between the two process are quite the same. We can see some minor differences from a display view, but the results seems to be the same whatever we use the ImageJ plugin or our own implementation.
+
+For the dilation, we obtained the results below.
+
+
+### Open and Close
+
+### Hit or Miss
+
+### Skeletonize
+
+### Watershed
 
 ## Discussion
 
