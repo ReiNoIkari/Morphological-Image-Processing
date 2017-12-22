@@ -1,8 +1,0 @@
-
-# Temporary gedit files
-############################
-**/*.*~
-**/*.old
-
-node_modules/
-gh-pages/
