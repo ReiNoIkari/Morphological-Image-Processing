@@ -39,9 +39,9 @@ Prefs.blackBackground = true;
 
 //list of our IJ functions/plugins to use, and the corresponding options (obtained via IJ macro recorder)
 let functionList= ["Erode","Dilate","Open","Close-"]
-//let functionList= ["Skeletonize","watershed"];
+//let functionList= ["Skeletonize"];
 let parameterList = ["","","",""]
-//let parameterList = ["",""];
+//let parameterList = [""];
 
 for (let i=0;i<functionList.length;i++)
 {
