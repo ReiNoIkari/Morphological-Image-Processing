@@ -124,11 +124,12 @@ The watershed transform is a transformation defined on a grayscale image that wi
 
 Let's imagine a landscape being immersed in a lake, with holes pierced in local minima. Basins will fill up with water starting at these local minima, and, at points where water coming from different basins would meet, dams are built.  When the water level has reached the highest
 peak in the landscape, the  process is stopped. As a result, the landscape is partitioned into regions or basins separated by dams, called watershed lines or simply watershed.
-(manque un tout petit bout check publi)
+When simulating this process for image segmentation, two approaches may be used:  either
+one first finds basins, then watersheds by taking a set complement. We took the first approach.(mettre la reference ici)
 
 This image, is what we tried to do implement in our *watershed()* function.
 
-Before filling those basins, we need to determine the depth of those, which is done by calculating a distance map. Our *distance_map()* function was implemented using the Borgefors’ Chamfer distance algorithm (CDA). It takes as an input a binary raster of an image (and the windows or not????) and return as an output the raster which score values. This function call another function in it : *check()*. This *check()* takes as an argument, the coordinates of the processed pixel, their coordinates of the neighbors point, the raster of the image beeing processed and the distance map calculed right before containing the different score value.
+Before filling those basins, we need to determine the depth of those, which is done by calculating a distance map. Our *distance_map()* function was implemented using the Borgefors’ Chamfer distance algorithm (CDA). It takes as an input a binary raster of an image and the windows(either CDA 3×3, city block or chessboard) and return as an output the raster which score values. This function call another function in it : *check()*. This *check()* takes as an argument, the coordinates of the processed pixel, their coordinates of the neighbors point, the raster of the image beeing processed and the distance map calculed right before containing the different score value.
 
 Those two function work as follow. We parse the image using it coordinates values(but the function is built using the forEach method, so in practice it will use the index postion) and we look for the neighboorr from the left side to the right top angle corner. The *check()* will then check those neighbors and set as coordinates the lowest neighbors value. According to with neighbord is chosen (those neighbors don't have the same weight/value) the score value will vary. This is our first pass.
 
@@ -202,6 +203,35 @@ The differents output obtained for the open process are those :
 ![Fig.X](Results/open_mixed.png)
 
 **Figure 5: Result of the open operation using as a structuring element a cross of 3 by 3 size. Left: Original image, Middle: made with ImageJ default function, Right: made with our own implementation**
+
+As we can inspect after the open operation, the circles from the original image are more pixeled in the their border, for both of the implementation, even tough it seems that ImageJ implementation result in more pixeled border than our implementation.
+
+The ouput results for the close operation are those below. 
+
+![Fig.X](Results/closing_mixed.png)
+
+**Figure 6: Result of the close operation using as a structuring element a cross of 3 by 3 size. Left: Original image, Middle: made with ImageJ default function, Right: made with our own implementation**
+
+The results obtained after a close operation are in a general way the same for both of the implementation, resulting in the removal of small holes. However, as we can note, the ImageJ implementation closes gaps between object in a more important radius than our own implementation.
+
+Let's take a look at the benchmark results.
+
+The benchmark for the opening is :
+
+![Fig.X](Results/opening_benchmark.png)
+
+**Figure 7: Benchmark graph representing the time processing in ms of an image of different size for the opening process**
+
+Since closing and opening, are the erosion of the dilation and vice verse, the issue encountered for the erode and dilate operation will be present here too.
+Indeed, as we can see the observation are quite similar to the the results obtained for the erosion/dilation even the ration difference for an image of 550\*500 pixels is the same (ratio of 7). The ratio after this critical size if also the same (ratio of 15-16).
+
+The associated benchmark of the close operation is as follows.
+![Fig.X](Results/closing_benchmark.png)
+
+**Figure 8: Benchmark graph representing the time processing in ms of an image of different size for the closing process**
+
+The observation we can do for the closing operation are exactly the same as the opening one, and so the same as the erode/dilate.
+We can see the observation are similar to the the results obtained for the erosion/dilation even the ration difference for an image of 550\*500 pixels is the same (ratio of 7). The ratio after this critical size if also the same (ratio of 15-16).
 
 ### Hit or Miss
 
