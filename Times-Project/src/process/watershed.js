@@ -34,10 +34,6 @@ const check = (n,x,y,dist,rast) => {
   }
 }
 
-//processes the raster and returns the gray-level distance map of the raster
-//this distance map algorithm is based on the Borgefors’ Chamfer distance algorithm (CDA)
-//rast = raster of the image containing the pixelData
-//window_type = the type of window to apply for the distance map ( soon : EDM, chessboard, city block )
 /**
 *processes a uint8 binary T.Raster and returns a gray-level distance map T.Raster
 *this distance map algorithm is based on the Borgefors’ Chamfer distance algorithm (CDA)
@@ -101,8 +97,7 @@ const nearestMaxValue = (rast,x,y) => {
   return rast.getPixel(x,y);
 }
 
-//takes a rast from a flooded grayscale image
-//returns true if one of the 4 neighbors is from an other flood level)
+
 /**
 * Tells if the considered pixel is part of the limit between 2 grayscale objects to segment
 *
