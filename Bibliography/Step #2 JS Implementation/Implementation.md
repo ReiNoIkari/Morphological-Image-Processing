@@ -277,7 +277,7 @@ Moreover, we use a naive approach, in the sense that we delete every pixel that 
 An amelioration of the operations will require to fixes thos bugs, to obtains the exact same image as imageJ.
 
 Finaly, the watershed implementation has result in the same kind of problem we encountered with skeletonize. The output image from our implementation is different from the ImageJ implementation. This is due to the translation of an algorithm into code that we were not able to resolve completly (the pleateau issue, check material et methode-watershed).
-As for skeletonized, and amelioration would be to fix this bug issues, so that our image output would be the same as the ImageJ one especially that a part from that plateau bug, our circles are well defined.
+One resolution we tried to do and that should be working but is not, ended with an error telling us that we were doing too much recursivity.
 
 ## Conclusion
 
