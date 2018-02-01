@@ -1,0 +1,71 @@
+/**
+ * first attempt to convert the java script to javascript
+ */
+
+const skeletonize = (raster,table,table2) =>{
+    let pass = 0;
+    let pixelsRemoved;
+    do {
+		pixelsRemoved = thin(pass++, table);
+		pixelsRemoved += thin(pass++, table);
+	} while (pixelsRemoved>0);
+	do { // use a second table to remove "stuck" pixels
+		pixelsRemoved = thin(pass++, table2);
+		pixelsRemoved += thin(pass++, table2);
+	} while (pixelsRemoved>0);
+}
+
+const thin = (pass,table) => {
+    let p1, p2, p3, p4, p5, p6, p7, p8, p9;
+	let bgColor = 0;
+		
+	let pixels2 = getPixelsCopy(); // METTRE LE RASTER ICI ?
+	let v, index, code;
+    let offset, rowOffset = width;
+    let pixelsRemoved = 0;
+    let count = 100;
+	for (let y=yMin; y<=yMax; y++) {
+		offset = xMin + y * width; // get the pixel array size ?
+		for (let x=xMin; x<=xMax; x++) {
+			p5 = pixels2[offset];
+			v = p5;
+			if (v!=bgColor) {
+                //cette partie recup les pixels voisins du p5
+				p1 = pixels2[offset-rowOffset-1]; // recupère le pixel a la fin du raster ?
+				p2 = pixels2[offset-rowOffset];
+				p3 = pixels2[offset-rowOffset+1];
+				p4 = pixels2[offset-1];
+				p6 = pixels2[offset+1];
+				p7 = pixels2[offset+rowOffset-1];
+				p8 = pixels2[offset+rowOffset];
+				p9 = pixels2[offset+rowOffset+1];
+                index = 0; // ahem... ????
+                // if (truc) a |= b c'est en gros : if (truc) {a=a} else {a=b}
+				if (p1!=bgColor) index |= 1;
+				if (p2!=bgColor) index |= 2;
+				if (p3!=bgColor) index |= 4;
+				if (p6!=bgColor) index |= 8;
+				if (p9!=bgColor) index |= 16;
+				if (p8!=bgColor) index |= 32;
+				if (p7!=bgColor) index |= 64;
+				if (p4!=bgColor) index |= 128;
+				code = table[index]; // aucune idée ? faut que je comprenne les tables
+				if ((pass&1)==1) { //odd pass
+					if (code==2||code==3) {
+						v = bgColor;
+						pixelsRemoved++;
+					}
+				} else { //even pass
+					if (code==1||code==3) {
+						v = bgColor;
+						pixelsRemoved++;
+					}
+				}
+			}
+			pixels[offset++] = v;
+		}
+    }
+    // retourne ne nb de pixels modifiés 
+    // donc savoir si on continue ou pas le skeletonize
+    return pixelsRemoved;
+}
