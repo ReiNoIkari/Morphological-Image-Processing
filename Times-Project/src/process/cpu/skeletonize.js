@@ -75,7 +75,7 @@ const thin = (pass,table) => {
 				if (p8!=bgColor) index |= 32;
 				if (p7!=bgColor) index |= 64;
 				if (p4!=bgColor) index |= 128;
-				code = table[index]; // aucune idée ? faut que je comprenne les tables
+				code = table[index]; // recupère le code a la position index dans la table ou table2
 				if ((pass&1)==1) { //odd pass
 					if (code==2||code==3) {
 						v = bgColor;
@@ -91,7 +91,7 @@ const thin = (pass,table) => {
 			pixels[offset++] = v;
 		}
     }
-    // retourne ne nb de pixels modifiés 
+    // retourne le nb de pixels modifiés 
     // donc savoir si on continue ou pas le skeletonize
     return pixelsRemoved;
 }
