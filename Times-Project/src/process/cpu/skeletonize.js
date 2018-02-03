@@ -28,18 +28,25 @@ const table2  =
 	  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 	  0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
-const skeletonize = (raster,table,table2) =>{
+const skeletonize = (img,copy=true) => {
+	let temp = new T.Image('uint8',img.width,img.height);
+	temp.setRaster(skeletonize_process(T.Raster.from(img.getRaster(),copy)));
+	return temp;
+};
+
+const skeletonize_process = (raster) =>{
     let pass = 0;
     let pixelsRemoved;
     do {
-		pixelsRemoved = thin(pass++, table);
-		pixelsRemoved += thin(pass++, table);
+		pixelsRemoved = thin(pass++, table, raster.pixelData);
+		pixelsRemoved += thin(pass++, table, raster.pixelData);
 	} while (pixelsRemoved>0);
 	do { // use a second table to remove "stuck" pixels
-		pixelsRemoved = thin(pass++, table2);
-		pixelsRemoved += thin(pass++, table2);
+		pixelsRemoved = thin(pass++, table2, raster.pixelData);
+		pixelsRemoved += thin(pass++, table2, raster.pixelData);
 	} while (pixelsRemoved>0);
-}
+	return raster;
+};
 
 const thin = (pass,table) => {
     let p1, p2, p3, p4, p5, p6, p7, p8, p9;
@@ -94,4 +101,4 @@ const thin = (pass,table) => {
     // retourne le nb de pixels modifiés 
     // donc savoir si on continue ou pas le skeletonize
     return pixelsRemoved;
-}
+};
