@@ -49,6 +49,10 @@ const skeletonize_process = (raster) =>{
 };
 
 const thin = (pass,table, raster) => {
+	let xMax = raster.width;
+	let yMax = raster.height;	
+	let xMin = 0;	
+	let yMin = 0;	
 	let pixels = raster.pixelData;
     let p1, p2, p3, p4, p5, p6, p7, p8, p9;
 	let bgColor = 0;
@@ -59,7 +63,7 @@ const thin = (pass,table, raster) => {
 	let count = 100;
 	//TODO: Define yMin and xMin -> defining offset ( = index)
 	for (let y=yMin; y<=raster.width-1; y++) {
-		offset = xMin + y * width; // get the pixel array size ? TODO !
+		offset = xMin + y * raster.width; // get the pixel array size ? TODO !
 		for (let x=xMin; x<=xMax; x++) {
 			p5 = pixels2[offset];
 			v = p5;
