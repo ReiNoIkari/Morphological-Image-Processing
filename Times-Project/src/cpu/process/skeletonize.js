@@ -38,25 +38,27 @@ const skeletonize_process = (raster) =>{
     let pass = 0;
     let pixelsRemoved;
     do {
-		pixelsRemoved = thin(pass++, table, raster.pixelData);
-		pixelsRemoved += thin(pass++, table, raster.pixelData);
+		pixelsRemoved = thin(pass++, table, raster);
+		pixelsRemoved += thin(pass++, table, raster);
 	} while (pixelsRemoved>0);
 	do { // use a second table to remove "stuck" pixels
-		pixelsRemoved = thin(pass++, table2, raster.pixelData);
-		pixelsRemoved += thin(pass++, table2, raster.pixelData);
+		pixelsRemoved = thin(pass++, table2, raster);
+		pixelsRemoved += thin(pass++, table2, raster);
 	} while (pixelsRemoved>0);
 	return raster;
 };
 
-const thin = (pass,table, pixels) => {
+const thin = (pass,table, raster) => {
+	let pixels = raster.pixelData;
     let p1, p2, p3, p4, p5, p6, p7, p8, p9;
 	let bgColor = 0;
 	let pixels2 = pixels; // 2 copies de la liste des pixels (pour ne pas prendre en compte les modif en cours)
 	let v, index, code;
-    let offset, rowOffset = width;
+    let offset, rowOffset = raster.width;
     let pixelsRemoved = 0;
-    let count = 100;
-	for (let y=yMin; y<=yMax; y++) {
+	let count = 100;
+	//TODO: Define yMin and xMin -> defining offset ( = index)
+	for (let y=yMin; y<=raster.width-1; y++) {
 		offset = xMin + y * width; // get the pixel array size ? TODO !
 		for (let x=xMin; x<=xMax; x++) {
 			p5 = pixels2[offset];
