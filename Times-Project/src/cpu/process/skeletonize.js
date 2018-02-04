@@ -36,7 +36,7 @@ const skeletonize = (img,copy=true) => {
 
 const skeletonize_process = (raster) =>{
     let pass = 0;
-    let pixelsRemoved;
+	let pixelsRemoved;
     do {
 		pixelsRemoved = thin(pass++, table, raster);
 		pixelsRemoved += thin(pass++, table, raster);
@@ -48,7 +48,7 @@ const skeletonize_process = (raster) =>{
 	return raster;
 };
 
-const thin = (pass,table, raster) => {
+const thin = (pass, table, raster) => {
 	let xMax = raster.width;
 	let yMax = raster.height;	
 	let xMin = 0;	
@@ -62,8 +62,8 @@ const thin = (pass,table, raster) => {
     let pixelsRemoved = 0;
 	let count = 100;
 	//TODO: Define yMin and xMin -> defining offset ( = index)
-	for (let y=yMin; y<=raster.width-1; y++) {
-		offset = xMin + y * raster.width; // get the pixel array size ? TODO !
+	for (let y=yMin; y<=yMax-1; y++) {
+		offset = xMax + y * raster.width; // get the pixel array size ? TODO !
 		for (let x=xMin; x<=xMax; x++) {
 			p5 = pixels2[offset];
 			v = p5;
@@ -77,7 +77,7 @@ const thin = (pass,table, raster) => {
 				p7 = pixels2[offset+rowOffset-1];
 				p8 = pixels2[offset+rowOffset];
 				p9 = pixels2[offset+rowOffset+1];
-                index = 0; // ahem... ????
+                index = 0;
                 // if (truc) a |= b c'est en gros : if (truc) {a=a} else {a=b}
 				if (p1!=bgColor) index |= 1;
 				if (p2!=bgColor) index |= 2;
@@ -105,5 +105,7 @@ const thin = (pass,table, raster) => {
     }
     // retourne le nb de pixels modifiés 
     // donc savoir si on continue ou pas le skeletonize
+	raster.pixelData = pixels;
+	console.log(pixelsRemoved); // le bug est par la , ca fait 493 pui 2 a chaque loop (du coup tjs >0)
     return pixelsRemoved;
 };
