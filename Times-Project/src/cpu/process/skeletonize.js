@@ -52,7 +52,7 @@ const thin = (pass, table, raster) => {
 	let pixels = raster.pixelData;
     let p1, p2, p3, p4, p5, p6, p7, p8, p9;
 	let bgColor = 0;
-	let pixels2 = pixels; // 2 copies de la liste des pixels (pour ne pas prendre en compte les modif en cours)
+	let pixels2 = pixels.slice(); // 2 copies de la liste des pixels (pour ne pas prendre en compte les modif en cours)
 	let v, index, code;
     let offset, rowOffset = raster.width-1;
     let pixelsRemoved = 0;
