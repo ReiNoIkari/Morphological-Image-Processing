@@ -98,6 +98,5 @@ const thin = (pass, table, raster) => {
     // retourne le nb de pixels modifiés 
     // donc savoir si on continue ou pas le skeletonize
 	raster.pixelData = pixels;
-	console.log(pixelsRemoved); 
     return pixelsRemoved;
 };
