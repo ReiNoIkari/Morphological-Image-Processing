@@ -13,7 +13,7 @@ win0.addToDOM('workspace');
 // Skeletonize
 let img1 = skeletonize(img0);
 let win1 = new T.Window('Skeletonize');
-let view1 = T.view(img1.getRaster());
+let view1 = cpu.view(img1.getRaster());
 // Create the window content from the view
 win1.addView(view1);
 // Add the window to the DOM and display it

@@ -49,63 +49,55 @@ const skeletonize_process = (raster) =>{
 };
 
 const thin = (pass, table, raster) => {
-	let xMax = raster.width;
-	let yMax = raster.height;	
-	let xMin = 0;	
-	let yMin = 0;	
 	let pixels = raster.pixelData;
     let p1, p2, p3, p4, p5, p6, p7, p8, p9;
 	let bgColor = 0;
 	let pixels2 = pixels; // 2 copies de la liste des pixels (pour ne pas prendre en compte les modif en cours)
 	let v, index, code;
-    let offset, rowOffset = raster.width;
+    let offset, rowOffset = raster.width-1;
     let pixelsRemoved = 0;
 	let count = 100;
-	//TODO: Define yMin and xMin -> defining offset ( = index)
-	for (let y=yMin; y<=yMax-1; y++) {
-		offset = xMax + y * raster.width; // get the pixel array size ? TODO !
-		for (let x=xMin; x<=xMax; x++) {
-			p5 = pixels2[offset];
-			v = p5;
-			if (v!=bgColor) {
-                //cette partie recup les pixels voisins du p5
-				p1 = pixels2[offset-rowOffset-1]; // recupère le pixel a la fin du raster ?
-				p2 = pixels2[offset-rowOffset];
-				p3 = pixels2[offset-rowOffset+1];
-				p4 = pixels2[offset-1];
-				p6 = pixels2[offset+1];
-				p7 = pixels2[offset+rowOffset-1];
-				p8 = pixels2[offset+rowOffset];
-				p9 = pixels2[offset+rowOffset+1];
-                index = 0;
-                // if (truc) a |= b c'est en gros : if (truc) {a=a} else {a=b}
-				if (p1!=bgColor) index |= 1;
-				if (p2!=bgColor) index |= 2;
-				if (p3!=bgColor) index |= 4;
-				if (p6!=bgColor) index |= 8;
-				if (p9!=bgColor) index |= 16;
-				if (p8!=bgColor) index |= 32;
-				if (p7!=bgColor) index |= 64;
-				if (p4!=bgColor) index |= 128;
-				code = table[index]; // recupère le code a la position index dans la table ou table2
-				if ((pass&1)==1) { //odd pass
-					if (code==2||code==3) {
-						v = bgColor;
-						pixelsRemoved++;
-					}
-				} else { //even pass
-					if (code==1||code==3) {
-						v = bgColor;
-						pixelsRemoved++;
-					}
+	for (let offset=0;offset<pixels.length;offset++){
+		p5 = pixels2[offset];
+		v = p5;
+		if (v!=bgColor) {
+			//cette partie recup les pixels voisins du p5
+			p1 = pixels2[offset-rowOffset-1]; // recupère le pixel a la fin du raster ?
+			p2 = pixels2[offset-rowOffset];
+			p3 = pixels2[offset-rowOffset+1];
+			p4 = pixels2[offset-1];
+			p6 = pixels2[offset+1];
+			p7 = pixels2[offset+rowOffset-1];
+			p8 = pixels2[offset+rowOffset];
+			p9 = pixels2[offset+rowOffset+1];
+            index = 0;
+            // if (truc) a |= b c'est en gros : if (truc) {a=a} else {a=b}
+			if (p1!=bgColor) index |= 1;
+			if (p2!=bgColor) index |= 2;
+			if (p3!=bgColor) index |= 4;
+			if (p6!=bgColor) index |= 8;
+			if (p9!=bgColor) index |= 16;
+			if (p8!=bgColor) index |= 32;
+			if (p7!=bgColor) index |= 64;
+			if (p4!=bgColor) index |= 128;
+			code = table[index]; // recupère le code a la position index dans la table ou table2
+			if ((pass&1)==1) { //odd pass
+				if (code==2||code==3) {
+					v = bgColor;
+					pixelsRemoved++;
+				}
+			} else { //even pass
+				if (code==1||code==3) {
+					v = bgColor;
+					pixelsRemoved++;
 				}
 			}
-			pixels[offset++] = v;
 		}
+		pixels[offset] = v;
     }
     // retourne le nb de pixels modifiés 
     // donc savoir si on continue ou pas le skeletonize
 	raster.pixelData = pixels;
-	console.log(pixelsRemoved); // le bug est par la , ca fait 493 pui 2 a chaque loop (du coup tjs >0)
+	console.log(pixelsRemoved); 
     return pixelsRemoved;
 };
