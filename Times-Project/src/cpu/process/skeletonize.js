@@ -49,6 +49,11 @@ const skeletonize_process = (raster) =>{
 	return raster;
 };
 
+
+const is_border = (n,rast) => {
+	return (n<rast.width || n > rast.length-rast.width || n % rast.width == 0 || n % rast.width == rast.width-1 );
+}
+
 const thin = (pass, table, raster) => {
 	let pixels = raster.pixelData;
     let p1, p2, p3, p4, p5, p6, p7, p8, p9;
@@ -57,8 +62,12 @@ const thin = (pass, table, raster) => {
 	let v, index, code;
     let offset, rowOffset = raster.width;
     let pixelsRemoved = 0;
-	let count = 100;
 	for (let offset=0;offset<pixels.length;offset++){
+		// Set pixel to background if border line
+		if (is_border(offset,raster)) {
+			pixels[offset] = bgColor;
+			continue;
+		}
 		p5 = pixels2[offset];
 		v = p5;
 		if (v!=bgColor) {
