@@ -49,7 +49,6 @@ const skeletonize_process = (raster) =>{
 	return raster;
 };
 
-
 const is_border = (n,rast) => {
 	return (n<rast.width || n > rast.length-rast.width || n % rast.width == 0 || n % rast.width == rast.width-1 );
 }
