@@ -49,9 +49,7 @@ const skeletonize_process = (raster) =>{
 	return raster;
 };
 
-const is_border = (n,rast) => {
-	return (n<rast.width || n > rast.length-rast.width || n % rast.width == 0 || n % rast.width == rast.width-1 );
-}
+const is_border = (n,rast) => (n < rast.width || n > rast.length-rast.width || n % rast.width == 0 || n % rast.width == rast.width-1 );
 
 const thin = (pass, table, raster) => {
 	let pixels = raster.pixelData;
@@ -62,16 +60,15 @@ const thin = (pass, table, raster) => {
     let offset, rowOffset = raster.width;
     let pixelsRemoved = 0;
 	for (let offset=0;offset<pixels.length;offset++){
-		// Set pixel to background if border line
-		if (is_border(offset,raster)) {
-			pixels[offset] = bgColor;
-			continue;
-		}
 		p5 = pixels2[offset];
 		v = p5;
 		if (v!=bgColor) {
-			//cette partie recup les pixels voisins du p5
-			p1 = pixels2[offset-rowOffset-1]; // recupère le pixel a la fin du raster ?
+			// Set pixel to background if the pixel is in the border of the image
+			if (is_border(offset,raster)) {
+				pixels[offset] = bgColor;
+				continue;
+			}
+			p1 = pixels2[offset-rowOffset-1];
 			p2 = pixels2[offset-rowOffset];
 			p3 = pixels2[offset-rowOffset+1];
 			p4 = pixels2[offset-1];
@@ -79,8 +76,7 @@ const thin = (pass, table, raster) => {
 			p7 = pixels2[offset+rowOffset-1];
 			p8 = pixels2[offset+rowOffset];
 			p9 = pixels2[offset+rowOffset+1];
-            index = 0;
-            // if (truc) a |= b -> if (truc) {a=a} else {a=b}
+			index = 0;
 			if (p1!=bgColor) index |= 1;
 			if (p2!=bgColor) index |= 2;
 			if (p3!=bgColor) index |= 4;
@@ -104,8 +100,6 @@ const thin = (pass, table, raster) => {
 		}
 		pixels[offset] = v;
     }
-    // retourne le nb de pixels modifiés 
-    // donc savoir si on continue ou pas le skeletonize
 	raster.pixelData = pixels;
     return pixelsRemoved;
 };
