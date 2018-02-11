@@ -4,58 +4,41 @@
  * 2017/02/06
  ***************************************/
 
-// Use of Literal Strings only available in ES6
+// Utilisation du code fourni dans le pdf du cours
 
 // Vertex Shader
+let gpuEnv = gpu.getGraphicContext('gpuframe');
 
-const shader_vs = `#version 300 es
-    in vec3 aVertexPosition;
-    in vec3 aVertexColor;
+let src_vs = `#version 300 es
+    in vec2 a_vertex;
+    in vec2 a_texCoord;
 
-    uniform mat4 uModelMatrix;
-    uniform mat4 uViewMatrix;
-    uniform mat4 uProjMatrix;
+    uniform vec2 u_resolution;
 
-    out vec3 vColor;
-    out vec4 eye;
+    out vec2 v_texCoord;
 
-    void main(void) {
-        gl_Position = uProjMatrix * uViewMatrix * uModelMatrix * vec4(aVertexPosition, 1.0);
-        eye = normalize(- uViewMatrix * uModelMatrix * vec4(aVertexPosition, 1.0));
-        gl_PointSize = 30.0;
-        vColor = aVertexColor;
+    void main() {
+        v_texCoord = a_texCoord;
+        vec2 clipSpace = a_vertex * u_resolution * 2.0 - 1.0;
+        gl_Position = vec4( clipSpace * vec2(1.0,-1.0), 0.0, 1.0);
     }
 `;
 
 
 // Fragment Shader
 
-const shader_fs = `#version 300 es
+let src_fs = `#version 300 es
     precision mediump float;
 
-    in vec3 vColor;
-    out vec4 outputColor;
-    const vec3 light = normalize(vec3(0.5,-0.5,0.5));
-    const float shininess = 20.0;
-    in vec4 eye;
+    in vec2 v_texCoord;
+    uniform sampler2D u_raster;
 
+    //Declare an output for the fragment shader
+    out vec4 outColor;
 
-
-    void main(void) {
-        float C = 0.5;
-        float r = 0.5;
-        float x = gl_PointCoord.x-C;
-        float y = gl_PointCoord.y-C;
-        if (pow(x,2.0)+pow(y,2.0) > pow(r,2.0)){
-            discard;
-        }
-        float z = sqrt(r*r-x*x-y*y);
-        vec3 normal = vec3(x,y,z);
-        normal = normalize(normal);
-        float kd = dot(normal,light);
-        vec3 reflection = normalize(reflect(-light,normal));
-        float spAngle = clamp(max(dot(reflection, eye.xyz),0.0),0.0,1.0);
-        float ks = pow(spAngle,shininess);
-        outputColor = vec4(0.8*ks,0.8*ks,0.8*ks,1.0)+vec4(kd*vColor,1.0);
+    void main() {
+        outColor = texture(u_raster, v_texCoord);
     }
 `;
+
+let program = gpu.createProgram(gpuEnv,src_vs,src_fs);
