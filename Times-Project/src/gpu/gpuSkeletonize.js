@@ -30,7 +30,7 @@ let src_vs = `#version 300 es
 
 // Fragment Shader
 let src_fs = `#version 300 es
-    precision mediump float;
+    precision highp float;
 
     in vec2 v_texCoord;
     uniform sampler2D u_raster;
@@ -39,7 +39,7 @@ let src_fs = `#version 300 es
     out vec4 outColor;
 
     void main() {
-        outColor = texture(u_raster, v_texCoord);
+        outColor = vec4(1.0 - texture(u_raster, v_texCoord).rgb, 1.0);
     }
 `;
 
