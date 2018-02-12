@@ -32,8 +32,7 @@ const gpuSkeletonize = (raster,gpuEnv) => {
 
         in vec2 v_texCoord;
         uniform sampler2D u_raster;
-        // making a copy of the initial texture
-        vec2 texCopy = v_texCoord;
+        // TODO : make a copy of the initial texture ? 
 
         //Declare an output for the fragment shader
         out vec4 outColor;
