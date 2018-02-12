@@ -34,6 +34,7 @@ let src_fs = `#version 300 es
 
     in vec2 v_texCoord;
     uniform sampler2D u_raster;
+    //TODO : create a copy of the raster ?
 
     //Declare an output for the fragment shader
     out vec4 outColor;
@@ -48,16 +49,9 @@ let program = gpu.createProgram(gpuEnv,src_vs,src_fs);
 //Create an instance of gpuProcessor 
 let gproc = gpu.createGPU(gpuEnv,raster.width,raster.height);
 
+
 //Create geometry buffers (aka ArrayBuffer)
-gproc.geometry({
-    type: 'TRIANGLE_STRIP',
-    num: 4,
-    vertices: new Float32Array([
-        0.0,0.0,0.0,0.0,
-        0.0,h  ,0.0,1.0,
-        w  ,0.0,1.0,0.0,
-        w  ,h  ,1.0,1.0])
-})
+gproc.geometry(gpu.rectangle(raster.width, raster.height));
 
 //Define attributes and create VertexArray object
 gproc.attribute('a_vertex',2,'float',16,0) //X, Y
