@@ -59,7 +59,7 @@ gproc.geometry(gpu.rectangle(raster.width, raster.height));
 //Define attributes and create VertexArray object
 gproc.attribute('a_vertex',2,'float',16,0) //X, Y
     .attribute('a_texCoord',2,'float',16,8) //S, T
-    .packWith(program) //VAO (VertexArrayObject ?)
+    .packWith(program) //VAO
 
 //Define vertices + texture coordinates
 gproc.texture(raster,texUnit = 4); //texture(raster,unit=0, wrap='clamp',mini='nearest', mag= 'nearest')

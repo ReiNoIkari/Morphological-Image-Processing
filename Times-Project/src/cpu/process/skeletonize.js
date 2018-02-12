@@ -58,7 +58,7 @@ const thin = (raster) => (table) => (pass) => {
 	let pixels = raster.pixelData;
     let p1, p2, p3, p4, p5, p6, p7, p8, p9;
 	let bgColor = 0;
-	let pixels2 = pixels.slice(); // 2 copies de la liste des pixels (pour ne pas prendre en compte les modif en cours)
+	let pixels2 = pixels.slice(); // create a copy of the original pixelData (so one pixel change doesn't affect it's neighbors processing)
 	let v, index, code;
     let rowOffset = raster.width;
     let pixelsRemoved = 0;
@@ -71,6 +71,7 @@ const thin = (raster) => (table) => (pass) => {
 				pixels[offset] = bgColor;
 				continue;
 			}
+			// Get all neighbors value (3x3 kernel)
 			p1 = pixels2[offset-rowOffset-1];
 			p2 = pixels2[offset-rowOffset];
 			p3 = pixels2[offset-rowOffset+1];
@@ -79,6 +80,7 @@ const thin = (raster) => (table) => (pass) => {
 			p7 = pixels2[offset+rowOffset-1];
 			p8 = pixels2[offset+rowOffset];
 			p9 = pixels2[offset+rowOffset+1];
+			// Set a "score" considering neighbors' values
 			index = 0;
 			if (p1!=bgColor) index |= 1;
 			if (p2!=bgColor) index |= 2;
@@ -88,6 +90,7 @@ const thin = (raster) => (table) => (pass) => {
 			if (p8!=bgColor) index |= 32;
 			if (p7!=bgColor) index |= 64;
 			if (p4!=bgColor) index |= 128;
+			// Determinate if the pixel must be removed ( = set to background value)
 			code = table[index];
 			if ((pass&1)==1) { //odd pass
 				if (code==2||code==3) {
