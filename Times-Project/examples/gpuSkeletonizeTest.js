@@ -14,4 +14,5 @@ win0.addToDOM('workspace');
  * GPU
  */
 let gpuEnv = gpu.getGraphicsContext('skeletonize');
+//gpu.invert(img0.getRaster(),gpuEnv);
 gpuSkeletonize(img0.getRaster(),gpuEnv);

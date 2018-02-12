@@ -1,18 +1,19 @@
 /**************************************
  *
- * Jean-Christophe Taveau
- * 2017/02/06
+ * From gpu_color.js in times/src/gpu/ (author : Jean-Christophe Taveau)
+ * 
  ***************************************/
 
 // Utilisation du code fourni dans le pdf du cours
-const gpuSkeletonize = (raster,gpuEnv) => {
+const gpuSkeletonize = (raster,graphContext,copy_mode = true) => {
+    let id = 'skeletonize'
     // Vertex Shader 
     let src_vs = `#version 300 es
         //inputs : vertices + texture coordinates
         in vec2 a_vertex;
         in vec2 a_texCoord;
         
-        //resolution = (1/w,1/h) ?
+        //resolution = (1/w,1/h)
         uniform vec2 u_resolution;
         
         out vec2 v_texCoord;
@@ -24,51 +25,49 @@ const gpuSkeletonize = (raster,gpuEnv) => {
         }
     `;
 
-
-    // Fragment Shader
-    //TODO : find a way to repeat this until completion of the skeletonization
-    let src_fs = `#version 300 es
-        precision highp float;
-
+    const getFragmentSource = (samplerType,outVec) => {
+        return `#version 300 es
+        #pragma debug(on)
+    
+        precision mediump usampler2D;
+        precision mediump float;
+        
         in vec2 v_texCoord;
-        uniform sampler2D u_raster;
-        // TODO : make a copy of the initial texture ? 
-
-        //Declare an output for the fragment shader
+        const float maxUint16 = 65535.0;
+        uniform ${samplerType} u_image;
         out vec4 outColor;
-
+        
         void main() {
-            //TODO : find a way to collect neighbors pixelsan modify current one
-            outColor = vec4(1.0 - texture(u_raster, v_texCoord).rgb, 1.0);
-        }
-    `;
+          outColor = vec4(${outVec}, 1.0); 
+        }`;
+    }
+    
+    // Step #1: Create - compile + link - shader program
+    // Set up fragment shader source depending of raster type (uint8, uint16, float32,rgba)
+    let samplerType = (raster.type === 'uint16') ? 'usampler2D' : 'sampler2D';
+    let outColor;
+    switch (raster.type) {
+        case 'uint8': 
+        case 'rgba' : outColor = `1.0 - texture(u_image, v_texCoord).rgb`; break; 
+        case 'uint16': outColor = `vec3(1.0 - float(texture(u_image, v_texCoord).r) / maxUint16 )`; break; 
+        case 'float32': outColor = `vec3(1.0 - texture(u_image, v_texCoord).r)`; break; 
+    }
+    
+    let program = gpu.createProgram(graphContext,src_vs,getFragmentSource(samplerType,outColor));
+    
+    // Step #2: Create a gpu.Processor, and define geometry, attributes, texture, VAO, .., and run
+    let gproc = gpu.createGPU(graphContext)
+        .size(raster.width,raster.height)
+        .geometry(gpu.rectangle(raster.width,raster.height))
+        .attribute('a_vertex',2,'float', 16,0)      // X, Y
+        .attribute('a_texCoord',2, 'float', 16, 8)  // S, T
+        .texture(raster,0)
+        .packWith(program) // VAO
+        .clearCanvas([0.0,1.0,1.0,1.0])
+        .preprocess()
+        .uniform('u_resolution',new Float32Array([1.0/raster.width,1.0/raster.height]))
+        .uniform('u_image',0)
+        .run();
 
-    let program = gpu.createProgram(gpuEnv,src_vs,src_fs);
-
-    //Create an instance of gpuProcessor 
-    let gproc = gpu.createGPU(gpuEnv,raster.width,raster.height);
-
-
-    //Create geometry buffers (aka ArrayBuffer)
-    gproc.geometry(gpu.rectangle(raster.width, raster.height));
-
-    //Define attributes and create VertexArray object
-    gproc.attribute('a_vertex',2,'float',16,0) //X, Y
-        .attribute('a_texCoord',2,'float',16,8) //S, T
-        .packWith(program) //VAO
-
-    //Define vertices + texture coordinates
-    gproc.texture(raster,texUnit = 4); //texture(raster,unit=0, wrap='clamp',mini='nearest', mag= 'nearest')
-
-
-    //Load program and run 
-    //clear canvas 
-    gproc.clearCanvas([0.0,1.0,0.0,1.0]);
-    gproc.preprocess()
-        .uniform('u_resolution',
-                new Float32Array([1.0/raster.width,1.0/raster.height])
-        )
-        .uniform('u_raster',texUnit);
-    //Run the process
-    gproc.run();
+  return raster;
 }
