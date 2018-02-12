@@ -7,7 +7,7 @@
 // Utilisation du code fourni dans le pdf du cours
 
 //get a graphics context
-let gpuEnv = gpu.getGraphicsContext('gpuframe'); // a mettre dans le html ?
+let gpuEnv = gpu.getGraphicsContext('workspace'); // a mettre dans le html ?
 
 // Vertex Shader
 let src_vs = `#version 300 es
@@ -15,7 +15,7 @@ let src_vs = `#version 300 es
     in vec2 a_vertex;
     in vec2 a_texCoord;
     
-    //resolution = (1/w,1/h)
+    //resolution = (1/w,1/h) ?
     uniform vec2 u_resolution;
     
     out vec2 v_texCoord;
@@ -29,16 +29,20 @@ let src_vs = `#version 300 es
 
 
 // Fragment Shader
+//TODO : find a way to repeat this until completion of the skeletonization
 let src_fs = `#version 300 es
     precision highp float;
 
     in vec2 v_texCoord;
     uniform sampler2D u_raster;
+    // making a copy of the initial texture
+    vec2 texCopy = v_texCoord;
 
     //Declare an output for the fragment shader
     out vec4 outColor;
 
     void main() {
+        //TODO : find a way to collect neighbors pixelsan modify current one
         outColor = vec4(1.0 - texture(u_raster, v_texCoord).rgb, 1.0);
     }
 `;
