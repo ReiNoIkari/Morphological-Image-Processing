@@ -38,20 +38,23 @@ const skeletonize = (img,copy=true) => {
 const skeletonize_process = (raster) =>{
     let pass = 0;
 	let pixelsRemoved;
+	const thinRaster = thin(raster);
+	const thinFirstTable = thinRaster(table);
+	const thinSecondTable = thinRaster(table2);
     do {
-		pixelsRemoved = thin(pass++, table, raster);
-		pixelsRemoved += thin(pass++, table, raster);
+		pixelsRemoved = thinFirstTable(pass++);
+		pixelsRemoved += thinFirstTable(pass++);
 	} while (pixelsRemoved>0);
 	do { // use a second table to remove "stuck" pixels
-		pixelsRemoved = thin(pass++, table2, raster);
-		pixelsRemoved += thin(pass++, table2, raster);
+		pixelsRemoved = thinSecondTable(pass++);
+		pixelsRemoved += thinSecondTable(pass++);
 	} while (pixelsRemoved>0);
 	return raster;
 };
 
 const is_border = (n,rast) => (n < rast.width || n > rast.length-rast.width || n % rast.width == 0 || n % rast.width == rast.width-1 );
 
-const thin = (pass, table, raster) => {
+const thin = (raster) => (table) => (pass) => {
 	let pixels = raster.pixelData;
     let p1, p2, p3, p4, p5, p6, p7, p8, p9;
 	let bgColor = 0;
