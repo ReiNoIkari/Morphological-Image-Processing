@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf8">
-<title>Test Skeletonize webGL</title>
+<title>Test Skeletonize GPU</title>
 <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"> 
 <link rel="stylesheet" type="text/css" href="../../../times/css/times.css">
 <script type="text/javascript" src="../../../times/javascripts/TIMES.bundle.js"></script>
@@ -12,9 +12,19 @@
 
 </head>
 <body>
-<p>Tests - Skeletonize via GPU</p>
+
 <div id="workspace">
-    <canvas id="skeletonize" width="500" height="500"></canvas>
+<article class="gpu_window">
+<header class="theader">
+<label>Skeletonize</label>
+</header>
+<content>
+<canvas id="skeletonize" width="500" height="500"></canvas>
+</content>
+<footer class="tfooter">
+<p class="tstatus" id="skeletonize"></p>
+</footer>
+</article>
 </div>
 
 <script type="text/javascript" src="../src/gpu/gpuSkeletonize.js"></script>

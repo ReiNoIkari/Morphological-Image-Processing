@@ -55,6 +55,8 @@ const gpuSkeletonize = (raster,graphContext,copy_mode = true) => {
     
     let program = gpu.createProgram(graphContext,src_vs,getFragmentSource(samplerType,outColor));
     
+    console.log('programs done...');
+    
     // Step #2: Create a gpu.Processor, and define geometry, attributes, texture, VAO, .., and run
     let gproc = gpu.createGPU(graphContext)
         .size(raster.width,raster.height)
