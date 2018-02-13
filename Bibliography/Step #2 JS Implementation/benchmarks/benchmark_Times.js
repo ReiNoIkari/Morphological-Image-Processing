@@ -14,7 +14,7 @@ const benchmarking = (foo,img_List,options=true) => {
 	}
 	// benchmark
 	let start = performance.now();
-	for (j=0;j<1000;j++) {
+	for (j=0;j<100;j++) {
 	    foo(img_List[i],options);
 	    }
 	let end = performance.now();
