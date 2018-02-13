@@ -3,6 +3,31 @@
  * From gpu_color.js in times/src/gpu/ (author : Jean-Christophe Taveau)
  * 
  ***************************************/
+// 2012/09/16: 3,0 1->0
+// 2012/09/16: 24,0 2->0
+const table =
+	//0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1
+	 `[0,0,0,0,0,0,1,3,0,0,3,1,1,0,1,3,0,0,0,0,0,0,0,0,0,0,2,0,3,0,3,3,
+	  0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,3,0,2,2,
+	  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	  2,0,0,0,0,0,0,0,2,0,0,0,2,0,0,0,3,0,0,0,0,0,0,0,3,0,0,0,3,0,2,0,
+	  0,0,3,1,0,0,1,3,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+	  3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	  2,3,1,3,0,0,1,3,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	  2,3,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,0,1,0,0,0,0,2,2,0,0,2,0,0,0];`;
+
+// 2013/12/02: 16,6 2->0
+// 2013/12/02: 24,5 0->2
+const table2 =
+	  //0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1
+	 `[0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,2,2,0,0,0,0,
+	  0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,
+	  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	  0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,
+	  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,
+	  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	  0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];`;
 
 // Utilisation du code fourni dans le pdf du cours
 const gpuSkeletonize = (raster,graphContext,copy_mode = true) => {
@@ -35,6 +60,7 @@ const gpuSkeletonize = (raster,graphContext,copy_mode = true) => {
         in vec2 v_texCoord;
         const float maxUint16 = 65535.0;
         uniform ${samplerType} u_image;
+        uniform int table;
         out vec4 outColor;
         
         void main() {
@@ -48,9 +74,9 @@ const gpuSkeletonize = (raster,graphContext,copy_mode = true) => {
     let outColor;
     switch (raster.type) {
         case 'uint8': 
-        case 'rgba' : outColor = `1.0 - texture(u_image, v_texCoord).rgb`; break; 
-        case 'uint16': outColor = `vec3(1.0 - float(texture(u_image, v_texCoord).r) / maxUint16 )`; break; 
-        case 'float32': outColor = `vec3(1.0 - texture(u_image, v_texCoord).r)`; break; 
+        case 'rgba' : outColor = `texture(u_image, v_texCoord).rgb`; break; 
+        case 'uint16': outColor = `vec3(float(texture(u_image, v_texCoord).r) / maxUint16 )`; break; 
+        case 'float32': outColor = `vec3(texture(u_image, v_texCoord).r)`; break; 
     }
     
     let program = gpu.createProgram(graphContext,src_vs,getFragmentSource(samplerType,outColor));
@@ -69,6 +95,7 @@ const gpuSkeletonize = (raster,graphContext,copy_mode = true) => {
         .preprocess()
         .uniform('u_resolution',new Float32Array([1.0/raster.width,1.0/raster.height]))
         .uniform('u_image',0)
+        .uniform('table', new Int16Array(table))
         .run();
 
   return raster;
