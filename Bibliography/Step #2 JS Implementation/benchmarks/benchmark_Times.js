@@ -1,9 +1,18 @@
-const benchmarking = (foo,img_List,options) => {
-    timelist = {};
+/**
+ * Benchmark of a choosen transform with a pool of given binary images
+ * @param {function} foo the function to benchmark
+ * @param {T.Image[]} img_List the Array containing the test images
+ * @param {*} options extra options for the foo funtion (default = true for the copy parameter)
+ */
+const benchmarking = (foo,img_List,options=true) => {
+	timelist = {};
+	// for each image
     for (i=0;i<img_List.length;i++) {
+		// pre-heat
 	for (j=0;j<100;j++) {
 	    foo(img_List[i],options);
 	}
+	// benchmark
 	let start = performance.now();
 	for (j=0;j<1000;j++) {
 	    foo(img_List[i],options);
@@ -13,12 +22,6 @@ const benchmarking = (foo,img_List,options) => {
     }
     console.log(timelist);
 }
-
-
-
-/*
-Benchmark of a choosen transform with a pool of given binary images
-*/
 
 
 //set of images resized
@@ -48,7 +51,8 @@ mask.setPixels(mask3by3Star);
 
 let img_Array = [img_50,img_150,img_250,img_350,img_550,img_750,img_1050,img_1250,img_1450,img_1600];
 console.log("Skeletonize");
-//benchmarking(watershed,img_Array,true);
+benchmarking(skeletonize,img_Array,true);
+/*
 let start = performance.now();
 skeletonize(img_1600);
 skeletonize(img_1600);
@@ -62,3 +66,4 @@ skeletonize(img_1600);
 skeletonize(img_1600);
 let end = performance.now();
 console.log(end-start);
+*/

@@ -329,7 +329,208 @@ const hit_or_miss=function(img,mask,copy=true){
 	return imageSec;
 };
 
-//Skeletonize
+
+
+// SKELETONIZE : NEW VERSION
+// Modified version of imageJ 's skeletonize algorithm 
+// original available at "https://github.com/imagej/imagej1/blob/master/ij/process/BinaryProcessor.java"
+
+/**
+ * A lookup table to repeatably remove pixels from the edges of objects in a binary image.
+ * An entry of '1' means delete pixel on first pass, '2' means delete pixel on
+ * second pass, and '3' means delete on either pass.
+ * This table is from imageJ "https://github.com/imagej/imagej1/blob/master/ij/process/BinaryProcessor.java"
+ * this table is used first part of the thinning
+ * @alias skel_table
+ * @type {number[]}
+ * @see {skeletonize_process}
+ */
+const table =
+	//0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1
+	 [0,0,0,0,0,0,1,3,0,0,3,1,1,0,1,3,0,0,0,0,0,0,0,0,0,0,2,0,3,0,3,3,
+	  0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,3,0,2,2,
+	  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	  2,0,0,0,0,0,0,0,2,0,0,0,2,0,0,0,3,0,0,0,0,0,0,0,3,0,0,0,3,0,2,0,
+	  0,0,3,1,0,0,1,3,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+	  3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	  2,3,1,3,0,0,1,3,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    2,3,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,0,1,0,0,0,0,2,2,0,0,2,0,0,0]
+;
+
+/**
+ * A lookup table to repeatably remove pixels from the edges of objects in a binary image.
+ * An entry of '1' means delete pixel on first pass, '2' means delete pixel on
+ * second pass, and '3' means delete on either pass.
+ * This table is from imageJ "https://github.com/imagej/imagej1/blob/master/ij/process/BinaryProcessor.java"
+ * this table is used for the second part of the thinning (removing "stuck" pixels)
+ * @alias skel_table2
+ * @type {number[]}
+ * @see {skeletonize_process}
+ */
+const table2 =
+	//0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1
+	 [0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,2,2,0,0,0,0,
+	  0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,
+	  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	  0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,
+	  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,
+	  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+;
+
+/**
+ * Skeletonize a copy of a binary T.Image
+ * @param {T.Image} img - a 8-bit (uint8) binary T.Image to skeletonize
+ * @param {boolean} copy - used for the copy of the raster
+ * @return {T.Image} the skeletonized copy of the given T.Image
+ * @example skeletonize(T.image) returns a skeletonized T.Image
+ * @see {skeletonize_process}
+ * @see {T.Image}
+ * @see {T.Image~getRaster}
+ * @see {T.Image~setRaster}
+ * @see {T.Raster}
+ * @see {T.Raster.from}
+ * @author Rodolphe Tworek
+ */
+const skeletonize = (img,copy=true) => {
+	let temp = new T.Image('uint8',img.width,img.height);
+	temp.setRaster(skeletonize_process(T.Raster.from(img.getRaster(),copy)));
+	return temp;
+};
+
+/**
+ * Takes a T.Raster and returns it skeletonized
+ * 
+ * This function is inspired from imageJ "https://github.com/imagej/imagej1/blob/master/ij/process/BinaryProcessor.java"
+ * @param {T.Raster} raster - Raster of a binary 8-bit
+ * @return {T.Raster} the modified T.Raster
+ * @see {skel_table}
+ * @see {skel_table2}
+ * @see {thin}
+ * @see {skeletonize}
+ * @see {T.Raster}
+ * @author Rodolphe Tworek
+ */
+const skeletonize_process = (raster) =>{
+  let pass = 0;
+	let pixelsRemoved;
+	const thinRaster = thin(raster);
+	const thinFirstTable = thinRaster(table);
+  const thinSecondTable = thinRaster(table2);
+  do {
+		pixelsRemoved = thinFirstTable(pass++);
+		pixelsRemoved += thinFirstTable(pass++);
+	} while (pixelsRemoved>0);
+	do { // use a second table to remove "stuck" pixels
+		pixelsRemoved = thinSecondTable(pass++);
+		pixelsRemoved += thinSecondTable(pass++);
+	} while (pixelsRemoved>0);
+	return raster;
+};
+
+/**
+ * Tells if a pixel is or not at the border of a T.Raster
+ * @param {number} n the position of your pixel in the Array
+ * @param {T.Raster} rast a T.Raster your pixel comes from
+ * @return {boolean} true : the pixel is a border pixel | false : the pixel is not a border pixel
+ * @see {thin}
+ * @see {T.Raster}
+ * @see {T.Raster.width}
+ * @see {T.Raster.length}
+ * @author Rodolphe Tworek
+ */
+const is_border = (n,rast) => (n < rast.width || n > rast.length-rast.width || n % rast.width == 0 || n % rast.width == rast.width-1 );
+
+/**
+ * Removes pixels from a T.Raster according to a given table.
+ * 
+ * This is a curried version of the thin() method found in ImageJ : "https://github.com/imagej/imagej1/blob/master/ij/process/BinaryProcessor.java"
+ * @param {T.Raster} raster the T.Raster we want to remove pixels from
+ * @example thin(a_TRaster)(a_table)(number_of_passes) => number_of_removed_pixels
+ * @see {T.Raster}
+ * @see {skel_table}
+ * @see {skel_table2}
+ * @see {is_border}
+ * @author Rodolphe Tworek
+ */
+const thin = (raster) => 
+  /**
+   * The second layer of the curried thin() method
+   * @param {number[]} table an Array containing the behaviour for each neighborhood of pixels
+   * @example foo(a_table)(number_of_passes) => number_of_removed_pixels
+   * @see {thin}
+   * @see {skel_table}
+   * @see {skel_table2}
+   */ 
+  (table) => 
+  /**
+   * The last layer of the curried thin() method
+   * @param {number} pass the number of times the function has been called (number of passes)
+   * @return {number} the number of pixel removed from the T.Raster
+   * @example foo(number_of_passes) => number_of_removed_pixels
+   * @see {thin}
+   * @see {is_border}
+   */
+  (pass) => {
+	let pixels = raster.pixelData;
+  let p1, p2, p3, p4, p5, p6, p7, p8, p9;
+	let bgColor = 0;
+	let pixels2 = pixels.slice(); // create a copy of the original pixelData (so one pixel change doesn't affect it's neighbors processing)
+	let v, index, code;
+  let rowOffset = raster.width;
+  let pixelsRemoved = 0;
+	for (let offset=0;offset<pixels.length;offset++){
+		p5 = pixels2[offset];
+		v = p5;
+		if (v!=bgColor) {
+			// Set pixel to background if the pixel is in the border of the image
+			if (is_border(offset,raster)) {
+				pixels[offset] = bgColor;
+				continue;
+			}
+			// Get all neighbors value (3x3 kernel)
+			p1 = pixels2[offset-rowOffset-1];
+			p2 = pixels2[offset-rowOffset];
+			p3 = pixels2[offset-rowOffset+1];
+			p4 = pixels2[offset-1];
+			p6 = pixels2[offset+1];
+			p7 = pixels2[offset+rowOffset-1];
+			p8 = pixels2[offset+rowOffset];
+			p9 = pixels2[offset+rowOffset+1];
+			// Set a "score" considering neighbors' values
+			index = 0;
+			if (p1!=bgColor) index |= 1;
+			if (p2!=bgColor) index |= 2;
+			if (p3!=bgColor) index |= 4;
+			if (p6!=bgColor) index |= 8;
+			if (p9!=bgColor) index |= 16;
+			if (p8!=bgColor) index |= 32;
+			if (p7!=bgColor) index |= 64;
+			if (p4!=bgColor) index |= 128;
+			// Determinate if the pixel must be removed ( = set to background value)
+			code = table[index];
+			if ((pass&1)==1) { //odd pass
+				if (code==2||code==3) {
+					v = bgColor;
+					pixelsRemoved++;
+				}
+			} else { //even pass
+				if (code==1||code==3) {
+					v = bgColor;
+					pixelsRemoved++;
+				}
+			}
+		}
+		pixels[offset] = v;
+  }
+	raster.pixelData = pixels;
+  return pixelsRemoved;
+};
+
+/**
+ * skeletonize OLD VERSION
+ */
 //Magic numbers :
 //0 = value of background pixels in 8-bit binary images
 //255 = value of foreground pixels in 8 bit binary images
@@ -340,9 +541,9 @@ const hit_or_miss=function(img,mask,copy=true){
 *
 * @param {number} n - Pixel index
 * @param {T.Raster} rast - Raster of a 8-bit binary image (0/255)
-* @return {Boolean} true/false : the pixel is/isn't an interior pixel
-* @see {thinning}
-* @see {skeletonize}
+* @return {boolean} true/false : the pixel is/isn't an interior pixel
+* @see {thinning_old}
+* @see {skeletonize_old}
 * @see {T.Raster}
 * @author Rodolphe Tworek
 */
@@ -359,10 +560,10 @@ const is_interior = (n,rast) => {
 *
 * @param {number} n - Pixel index
 * @param {T.Raster} rast - Raster of a 8-bit binary image (0/255) with "interior" pixels =2
-* @return {Boolean} true/false : the pixel is/isn't removable
-* @see {thinning}
+* @return {boolean} true/false : the pixel is/isn't removable
+* @see {thinning_old}
 * @see {is_interior}
-* @see {skeletonize}
+* @see {skeletonize_old}
 * @see {T.Raster}
 * @author Rodolphe Tworek
 */
@@ -378,16 +579,16 @@ const is_removable = (n,rast) => {
 * takes a 0/255 binary T.Raster and returns a skeletonized binary T.Raster
 *
 * @param {T.Raster} rast - Raster of a binary 8-bit
-* @param {Boolean} copy - used for the copy of the raster
-* @return {T.Raster} returns a binary T.Raster when the final T.Raster hasn't changed compared to the initial T.Raster, else returns thinning(T.Raster)
+* @param {boolean} copy - used for the copy of the raster
+* @return {T.Raster} returns a binary T.Raster when the final T.Raster hasn't changed compared to the initial T.Raster, else returns thinning_old(T.Raster)
 * @see {is_interior}
 * @see {is_removable}
-* @see {skeletonize}
+* @see {skeletonize_old}
 * @see {T.Raster}
 * @see {T.Raster.from}
 * @author Rodolphe Tworek
 */
-const thinning = (rast,copy=true) => {
+const thinning_old = (rast,copy=true) => {
 	/**
 	*copying the initial raster
 	*/
@@ -404,26 +605,26 @@ const thinning = (rast,copy=true) => {
 	*turning back all non-background pixels to 255
 	*/
 	r_output.pixelData = r_output.pixelData.map((x,i,a) => x !=0 ? 255 : x);
-	return (rast.pixelData.length==r_output.pixelData.length && rast.pixelData.every((v,i)=> v === r_output.pixelData[i])) ? r_output : thinning(r_output);
+	return (rast.pixelData.length==r_output.pixelData.length && rast.pixelData.every((v,i)=> v === r_output.pixelData[i])) ? r_output : thinning_old(r_output);
 };
 
 /**
-*skeletonize  a copy of a binary T.Image
+*skeletonize a copy of a binary T.Image
 *
 * @param {T.Image} img - a 8-bit (uint8) binary T.Image to skeletonize
-* @param {Boolean} copy - used for the copy of the raster
+* @param {boolean} copy - used for the copy of the raster
 * @return {T.Image} the skeletonized copy of the given T.Image
-* @example skeletonize(image) returns skeletonized T.Image
-* @see {thinning}
+* @example skeletonize_old(image) returns skeletonized T.Image
+* @see {thinning_old}
 * @see {T.Image}
 * @see {T.Image~getRaster}
 * @see {T.Raster}
 * @see {T.Raster.from}
 * @author Rodolphe Tworek
 */
-const skeletonize = (img,copy=true) => {
+const skeletonize_old = (img,copy=true) => {
 	let temp = new T.Image('uint8',img.width,img.height);
-	temp.setRaster(thinning(T.Raster.from(img.getRaster(),copy)));
+	temp.setRaster(thinning_old(T.Raster.from(img.getRaster(),copy)));
 	return temp;
 };
 
@@ -470,7 +671,7 @@ const check = (n,x,y,dist,rast) => {
 *
 * @param {T.Raster} rast - uint8 binary T.Raster
 * @param {string} window_type - either "CDA","chessboard" or "cityblock" depending on the neighbor scoring
-* @param {Boolean} copy - used for the copy of the raster
+* @param {boolean} copy - used for the copy of the raster
 * @return {T.Raster} A grayscale uint8 T.Raster
 * @see {check}
 * @see {watershed}
@@ -542,7 +743,7 @@ const nearestMaxValue = (rast,x,y) => {
 * @param {number} x - x coordinate of the considered pixel
 * @param {number} y - y coordinate of the considered pixel
 * @param {number} xy_value - value of the x,y pixel
-* @return {Boolean} true if the pixel is the limit of 2 grayscale objects
+* @return {boolean} true if the pixel is the limit of 2 grayscale objects
 * @see {segmentation}
 * @see {watershed}
 * @see {T.Raster}
@@ -559,7 +760,7 @@ const isFloodLimit = (rast,x,y,xy_value) => {
 *takes a gray-level raster and returns a binary raster segmented
 *
 * @param {T.Raster} rast - a uint8 grayscale T.Raster
-* @param {Boolean} copy - used for the copy of the raster
+* @param {boolean} copy - used for the copy of the raster
 * @return {T.Raster} the segmented binary version of the uint8 grayscale T.Raster
 * @see {nearestMaxValue}
 * @see {isFloodLimit}
@@ -585,7 +786,7 @@ const segmentation = (rast,copy=true) => {
 *
 * @param {T.Image} img - a 8-bit (uint8) binary T.Image to segment
 * @param {string} window_type - either "CDA","chessboard" or "EDM" depending on the wanted neighbor scoring
-* @param {Boolean} copy - used for the copy of the raster
+* @param {boolean} copy - used for the copy of the raster
 * @return {T.Image} the segmented copy of the given T.Image
 * @example watershed(image) returns segmented T.Image
 * @see {distance_map}
