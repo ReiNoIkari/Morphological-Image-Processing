@@ -38,7 +38,7 @@ const gpuSkeletonize = (raster,graphContext,copy_mode = true) => {
         out vec4 outColor;
         
         void main() {
-          outColor = vec4(${outVec}, 1.0); 
+            outColor = vec4(${outVec}, 1.0); 
         }`;
     }
     
