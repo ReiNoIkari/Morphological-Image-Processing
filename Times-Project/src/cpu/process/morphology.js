@@ -442,6 +442,7 @@ const skeletonize_process = (raster) =>{
  */
 const is_border = (n,rast) => (n < rast.width || n > rast.length-rast.width || n % rast.width == 0 || n % rast.width == rast.width-1 );
 
+
 /**
  * Removes pixels from a T.Raster according to a given table.
  * 
@@ -454,6 +455,7 @@ const is_border = (n,rast) => (n < rast.width || n > rast.length-rast.width || n
  * @see {is_border}
  * @author Rodolphe Tworek
  */
+//const thin = (raster) => (table) => (pass) => {
 const thin = (raster) => 
   /**
    * The second layer of the curried thin() method
