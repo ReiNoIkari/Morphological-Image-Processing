@@ -552,8 +552,7 @@ const functionalMinDist2 = function(points, pPrev, pDiag, x, y,	distSqr, NO_POIN
         return distSqr;
     } 
 	//END OF FUNCTIONAL JAVASCRIPT version
-
-	//END OF EDM
+//END OF EDM
 
 
 
@@ -907,16 +906,16 @@ const check = (n,x,y,dist,rast) => {
 * @author Rodolphe Tworek
 */
 const distance_map = (rast,window_type="CDA",copy=true) => {
-  //todo : switch with window_type
+  let dxy,dx,dy;
   switch (window_type){
    case "CDA":
-   let dxy=4,dx=3,dy=3;break;
+   dxy=4;dx=3;dy=3;break;
    case "chessboard":
-   let dxy=1,dx=1,dy=1;break;
+   dxy=1;dx=1;dy=1;break;
    case "cityblock":
-   let dxy=255,dx=1,dy=1;break;
+   dxy=255;dx=1;dy=1;break;
    default:
-   let dxy=4,dx=3,dy=3;break;
+   dxy=4;dx=3;dy=3;break;
  }
   rast.pixelData.forEach((x,i,a) => {
     check(i,rast.x(i)-1,rast.y(i)-1,dxy,rast); //checking top-left neighbor
