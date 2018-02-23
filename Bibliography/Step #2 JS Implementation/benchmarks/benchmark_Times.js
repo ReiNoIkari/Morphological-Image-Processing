@@ -14,7 +14,7 @@ const benchmarking = (foo,img_List,options=true) => {
 	}
 	// benchmark
 	let start = performance.now();
-	for (j=0;j<100;j++) {
+	for (j=0;j<1000;j++) {
 	    foo(img_List[i],options);
 	    }
 	let end = performance.now();
@@ -51,19 +51,4 @@ mask.setPixels(mask3by3Star);
 
 let img_Array = [img_50,img_150,img_250,img_350,img_550,img_750,img_1050,img_1250,img_1450,img_1600];
 console.log("Skeletonize");
-benchmarking(skeletonize,img_Array,true);
-/*
-let start = performance.now();
-skeletonize(img_1600);
-skeletonize(img_1600);
-skeletonize(img_1600);
-skeletonize(img_1600);
-skeletonize(img_1600);
-skeletonize(img_1600);
-skeletonize(img_1600);
-skeletonize(img_1600);
-skeletonize(img_1600);
-skeletonize(img_1600);
-let end = performance.now();
-console.log(end-start);
-*/
+benchmarking(skeletonize,img_Array,true); // remplacer true par false évite la copie d'image => execution plus rapide ?
